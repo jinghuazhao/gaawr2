@@ -19,7 +19,7 @@ Rscript -e '
 
 setup
 
-for f in $(ls)
+for f in .github $(ls)
 do
   echo adding ${f}
   git add ${f}
