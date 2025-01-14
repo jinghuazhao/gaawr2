@@ -57,3 +57,10 @@ Upon use `pkgdown`, an article can be seen as <https://jinghuazhao.github.io/gaa
 We carry on adding files such as `NEWS.md` and `_pkgdown.yml`.
 
 # Mode of execution
+
+# Showcase of proteogenomics
+
+The relevant paper is @suhre20.
+
+# References
+
