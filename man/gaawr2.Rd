@@ -30,6 +30,7 @@ Some generic description for the datasets are as follows.
 Vignettes on package usage:
 \itemize{
 \item Genetic Association Analysis with R (II), \code{vignette("gaawr2")}.
+\item plumber, \code{vignette("plumber")}.
 }
 }
 
