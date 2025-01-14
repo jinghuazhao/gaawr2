@@ -1,0 +1,53 @@
+---
+title: "Genetic Association Analysis with R (II)"
+output:
+  bookdown::html_document2:
+    toc: true
+    toc_float: true
+    number_sections: true
+fontsize: 11pt
+bibliography: '`r system.file("REFERENCES.bib", package="gaawr2")`'
+csl: nature-genetics.csl
+pkgdown:
+  as_is: true
+vignette: >
+  %\VignetteIndexEntry{gaawr2}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+set.seed(0)
+knitr::opts_chunk$set(
+  out.extra = 'style="display:block; margin: auto"',
+  fig.align = "center",
+  fig.path = "gaawr2/",
+  collapse = TRUE,
+  comment = "#>",
+  dev = "png")
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+pkgs <- c("knitr")
+for (p in pkgs) if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
+    if (!requireNamespace(p)) warning(paste0("This vignette needs package `", p, "'; please install"))
+}
+invisible(suppressMessages(lapply(pkgs, require, character.only = TRUE)))
+```
+
+This package intends to gather information, meta-data and relevant scripts in genetic association analysis as a companion to a Henry-Stewart talk.
+
+The package is adapted from earlier package development work,  particularly pQTLdata.
+
+# Setup
+
+The relevant scripts are with `inst/scripts` directory in the source package. Briefly,
+
+- `create_github_pository.sh` is called to create `gaawr2` at GitHub from the command line.
+- `create_package.R` is used to create the package in R.
+- `pkgdown.sh` is called to make a pkgdown-style package and this vignette is set to be processed with the `bookdown` package.
+- `docs.sh` is used to push files to GitHub.
+
+Note that for creation of the GitHub repository, a SSH key is already in place.
+
+A GitHub login is still necessary to enable web pages, so that this can be accessed as <https://jinghuazhao.github.io/gaawr2/>.
