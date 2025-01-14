@@ -135,7 +135,7 @@ Note also that only selected columns (as in 4) are kept. The simplest way to hav
 
 This is alternative to `plumber`,
 
-```{r}
+```r
 library(httpuv)
 serve_directory(".", port = 8000)
 ```
