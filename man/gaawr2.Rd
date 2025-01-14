@@ -29,16 +29,13 @@ Some generic description for the datasets are as follows.
 
 Vignettes on package usage:
 \itemize{
-\item An Overview of pQTLdata. \code{vignette("gaawr2")}.
+\item Genetic Association Analysis with R (II), \code{vignette("gaawr2")}.
 }
 }
 
 \examples{
 \dontrun{
-# See more on SCALLOP-INF at https://jinghuazhao.github.io/INF/
-# datasets
 head(biomaRt)
-
 }
 }
 \author{
