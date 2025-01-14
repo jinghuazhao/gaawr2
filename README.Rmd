@@ -12,7 +12,7 @@ knitr::opts_chunk$set(
 
 <img src="man/figures/logo.svg" align="right" alt="" width="120" />
 
-## gaawr2 - Genetic Association Analysis with R (II)
+# Genetic Association Analysis with R (II)
 
 An R package companion to a Henry-Steward talk
 
