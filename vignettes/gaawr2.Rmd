@@ -51,3 +51,9 @@ The relevant scripts are with `inst/scripts` directory in the source package. Br
 Note that for creation of the GitHub repository, a SSH key is already in place.
 
 A GitHub login is still necessary to enable web pages, so that this can be accessed as <https://jinghuazhao.github.io/gaawr2/>.
+
+Upon use `pkgdown`, an article can be seen as <https://jinghuazhao.github.io/gaawr2/articles/index.html>.
+
+We carry on adding files such as `NEWS.md` and `pkgdown.yml`.
+
+# Mode of execution
