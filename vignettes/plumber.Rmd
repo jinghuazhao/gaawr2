@@ -35,7 +35,7 @@ It is `an API generator in R`, which has been tested through Caprion data as fol
 
 As noted elsewhere, `libsodium` is required for installation of the R package.
 
-```{r}
+```r
 library(plumber)
 library(seqminer)
 library(jsonlite)
@@ -137,6 +137,10 @@ This is alternative to `plumber`,
 
 ```{r}
 library(httpuv)
+serve_directory(".", port = 8000)
+```
+
+```r
 s <- startServer("0.0.0.0", 5000,
   list(
     call = function(req) {
