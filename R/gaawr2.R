@@ -21,7 +21,7 @@
 #'
 #' @section Usage:
 #' Vignettes on package usage:
-#' - An Overview of pQTLdata. `vignette("gaawr2")`.
+#' - Genetic Association Analysis with R (II), `vignette("gaawr2")`.
 #' @md
 #'
 #' @import knitr
@@ -31,10 +31,7 @@
 #' @keywords internal
 #' @examples
 #' \dontrun{
-#' # See more on SCALLOP-INF at https://jinghuazhao.github.io/INF/
-#' # datasets
 #' head(biomaRt)
-#'
 #' }
 
 "_PACKAGE"
