@@ -39,11 +39,11 @@ navbar:
         text: Articles
         menu:
         - text: "Vignettes:"
-        - text: An overview of pQTLdata
-          href: articles/pQTLdata.html
+        - text: Genetic Association Analysis with R (II)
+          href: articles/gaawr2.html
     reference:
           text: Reference
-          href: reference/pQTLdata.html
+          href: reference/gaawr2.html
     changelog:
           text: Changelog
           href: news/index.html
