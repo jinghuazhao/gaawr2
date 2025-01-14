@@ -1,0 +1,10 @@
+Package: gaawr2
+Title: Genetic Association Analysis with R (II)
+Version: 0.0.1
+Authors@R: 
+    person("Jing Hua", "Zhao", , "jinghuazhao@hotmail.com", role = c("aut", "cre"))
+Description: This package illustrates creation and maintenance of package used in genetic association analysis.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
