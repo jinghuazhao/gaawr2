@@ -26,4 +26,4 @@ do
   git commit -m "${f}"
 done
 git push --set-upstream origin main
-du -h --exclude .git
+du -h --exclude .git --exclude docs
