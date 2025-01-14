@@ -3,8 +3,8 @@ pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   gaawr2: gaawr2.html
-  plumber: plumber.html
-last_built: 2025-01-14T22:00Z
+  web: web.html
+last_built: 2025-01-14T22:25Z
 urls:
   reference: https://jinghuazhao.github.io/gaawr2/reference
   article: https://jinghuazhao.github.io/gaawr2/articles

@@ -5,12 +5,12 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>plumber • gaawr2</title>
+<title>Web facilities • gaawr2</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="plumber">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Web facilities">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -35,7 +35,7 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><h6 class="dropdown-header" data-toc-skip>Vignettes:</h6></li>
     <li><a class="dropdown-item" href="../articles/gaawr2.html">Genetic Association Analysis with R (II)</a></li>
-    <li><a class="dropdown-item" href="../articles/plumber.html">plumber</a></li>
+    <li><a class="dropdown-item" href="../articles/web.html">Web facilities</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../reference/gaawr2.html">Reference</a></li>
@@ -55,11 +55,11 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
 
-      <h1>plumber</h1>
+      <h1>Web facilities</h1>
             
       
 
-      <div class="d-none name"><code>plumber.Rmd</code></div>
+      <div class="d-none name"><code>web.Rmd</code></div>
     </div>
 
     
@@ -69,11 +69,6 @@
 <span class="header-section-number">1</span> plumber<a class="anchor" aria-label="anchor" href="#plumber"></a>
 </h2>
 <p>It is <code>an API generator in R</code>, which has been tested through Caprion data as follows.</p>
-</div>
-<div class="section level2" number="2">
-<h2 id="setup">
-<span class="header-section-number">2</span> Setup<a class="anchor" aria-label="anchor" href="#setup"></a>
-</h2>
 <p>As noted elsewhere, <code>libsodium</code> is required for installation of the R package.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.rplumber.io" class="external-link">plumber</a></span><span class="op">)</span></span>
@@ -119,8 +114,8 @@
 <span><span class="va">plbr</span><span class="op">$</span><span class="fu">run</span><span class="op">(</span>port <span class="op">=</span> <span class="fl">8001</span><span class="op">)</span></span></code></pre></div>
 <p>We see that,</p>
 <pre><code>&gt; head(data,1)
-  Chromosome Position   MarkerName Allele1 Allele2  Freq1 FreqSE MinFreq MaxFreq      Effect    StdErr  logP Direction HetISq HetChiSq HetDf logHetP    N
-1          1    10352 1:10352_T_TA       t      ta 0.6147 0.0038  0.6122  0.6273 -0.05283738 0.0335632 -0.94    +--???    5.2    2.109     2 -0.4579 2491</code></pre>
+  Chromosome  Position         MarkerName Allele1 Allele2 Freq1 FreqSE MinFreq MaxFreq  Effect StdErr  logP   Direction HetISq HetChiSq HetDf logHetP     N
+1          2 102700138 chr2:102700138_A_G       a       g 0.087 0.0207  0.0641  0.1376 -0.0566 0.0239 -1.75 -?-+n-?--n+   78.2   36.757     8  -4.894 12799</code></pre>
 <p>and</p>
 <pre><code>Running plumber API at http://127.0.0.1:8001
 Running swagger Docs at http://127.0.0.1:8001/__docs__/</code></pre>
@@ -162,11 +157,11 @@ Running swagger Docs at http://127.0.0.1:8001/__docs__/</code></pre>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">curl</span> command as above.</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">)</span></span></code></pre></div>
 </div>
-<div class="section level2" number="3">
+<div class="section level2" number="2">
 <h2 id="httpuv">
-<span class="header-section-number">3</span> httpuv<a class="anchor" aria-label="anchor" href="#httpuv"></a>
+<span class="header-section-number">2</span> httpuv<a class="anchor" aria-label="anchor" href="#httpuv"></a>
 </h2>
-<p>This is alternative to <code>plumber</code>,</p>
+<p>This is alternative to <code>plumber</code>, the following script sets up port 8000,</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">startServer</span><span class="op">(</span><span class="st">"0.0.0.0"</span>, <span class="fl">8000</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>  call <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">req</span><span class="op">)</span> <span class="op">{</span></span>
@@ -177,6 +172,7 @@ Running swagger Docs at http://127.0.0.1:8001/__docs__/</code></pre>
 <span>    <span class="op">)</span></span>
 <span>  <span class="op">}</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
+<p>upon access <a href="http://127.0.0.1:8000" class="external-link uri">http://127.0.0.1:8000</a>, we see the message “Hello, world!”. A somewhat more involved version is as follows,</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu">startServer</span><span class="op">(</span><span class="st">"0.0.0.0"</span>, <span class="fl">5000</span>,</span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
@@ -207,9 +203,9 @@ Running swagger Docs at http://127.0.0.1:8001/__docs__/</code></pre>
 <span><span class="op">)</span></span>
 <span><span class="va">s</span><span class="op">$</span><span class="kw">stop</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level2" number="4">
+<div class="section level2" number="3">
 <h2 id="references">
-<span class="header-section-number">4</span> References<a class="anchor" aria-label="anchor" href="#references"></a>
+<span class="header-section-number">3</span> References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
