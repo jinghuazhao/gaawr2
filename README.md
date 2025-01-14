@@ -6,7 +6,7 @@ output: github_document
 
 <img src="man/figures/logo.svg" align="right" alt="" width="120" />
 
-# Genetic Association Analysis with R (II)
+\# Genetic Association Analysis with R (II)
 
 An R package companion to a Henry-Steward talk
 
@@ -15,7 +15,7 @@ An R package companion to a Henry-Steward talk
 [![R-CMD-check](https://github.com/jinghuazhao/gaawr2/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jinghuazhao/gaawr2/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-## A protein Quantitative Trait Locus toolkit
+## Description
 
 This package illustrates creation and maintenance of package used in genetic association analysis.
 
