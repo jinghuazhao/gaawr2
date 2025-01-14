@@ -136,8 +136,15 @@ Note also that only selected columns (as in 4) are kept. The simplest way to hav
 This is alternative to `plumber`,
 
 ```r
-library(httpuv)
-serve_directory(".", port = 8000)
+startServer("0.0.0.0", 8000, list(
+  call = function(req) {
+    list(
+      status = 200L,
+      headers = list("Content-Type" = "text/plain"),
+      body = "Hello, world!"
+    )
+  })
+)
 ```
 
 ```r
