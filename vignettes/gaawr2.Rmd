@@ -37,7 +37,7 @@ invisible(suppressMessages(lapply(pkgs, require, character.only = TRUE)))
 
 This package intends to gather information, meta-data and relevant scripts in genetic association analysis as a companion to a Henry-Stewart talk.
 
-The package is adapted from earlier package development work,  particularly pQTLdata.
+The package is adapted from earlier package development work, particularly pQTLdata.
 
 # Setup
 
