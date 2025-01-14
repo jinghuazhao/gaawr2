@@ -48,7 +48,7 @@ The relevant scripts are with `inst/scripts` directory in the source package. Br
 - `pkgdown.sh` is called to make a pkgdown-style package and this vignette is set to be processed with the `bookdown` package.
 - `docs.sh` is used to push files to GitHub.
 
-Note that for creation of the GitHub repository, a SSH key is already in place.
+Note that for creation of the GitHub repository, a SSH key is already in place. In order for `pkgdown.sh` to function well, all required files such as `nature-genetics.csl` need to be available.
 
 A GitHub login is still necessary to enable web pages, so that this can be accessed as <https://jinghuazhao.github.io/gaawr2/>.
 
