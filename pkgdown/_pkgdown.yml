@@ -1,0 +1,74 @@
+home:
+  title: Genetic Association Analysis with R (II)
+  description: An R package companion to a Henry-Steward talk.
+  links:
+  - text: GitHub
+    icon: fab fa-github
+    href: https://github.com/jinghuazhao/gaawr2
+  sidebar:
+    structure: [links, license, community, authors, dev]
+    components:
+
+authors:
+  Jing Hua Zhao:
+    title: Jing Hua Zhao
+    html: "[Jing Hua Zhao](https://jinghuazhao.github.io)"
+  footer:
+    roles: [cre, fnd]
+    text: "Crafted by"
+  sidebar:
+    roles: [aut, ctb]
+    before: ""
+    after: "Welcome!"
+
+url: https://jinghuazhao.github.io/gaawr2/
+template:
+  bootstrap: 5
+  params:
+    bootswatch: litera
+
+navbar:
+  structure:
+    left: [home, articles, reference, changelog]
+    right: [github, cran]
+  components:
+    home:
+        icon: fa-home
+        href: index.html
+    articles:
+        text: Articles
+        menu:
+        - text: "Vignettes:"
+        - text: An overview of pQTLdata
+          href: articles/pQTLdata.html
+    reference:
+          text: Reference
+          href: reference/pQTLdata.html
+    changelog:
+          text: Changelog
+          href: news/index.html
+    github:
+        icon: fab fa-github
+        href: https://github.com/jinghuazhao/gaawr2
+    cran:
+        icon: fab fa-r-project
+        href: https://jinghuazhao.github.io/R/
+
+reference:
+  - title: A summary
+    contents:
+    - gaawr2
+  - title: Data
+    contents:
+    - biomaRt
+
+footer:
+  structure:
+    left: [developed_by, built_with]
+    right: [legal]
+  components:
+    legal: Provided without **any warranty**.
+
+env:
+ global:
+   - _R_CHECK_FORCE_SUGGESTS_: false
