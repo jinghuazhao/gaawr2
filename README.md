@@ -6,7 +6,7 @@ output: github_document
 
 <img src="man/figures/logo.svg" align="right" alt="" width="120" />
 
-\# Genetic Association Analysis with R (II)
+## gaawr2 - Genetic Association Analysis with R (II)
 
 An R package companion to a Henry-Steward talk
 
