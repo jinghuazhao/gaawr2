@@ -1,8 +1,8 @@
 #!/usr/bin/bash
 
 module load ceuadmin/htslib
-export scallop_inf1=~/rds/results/private/proteomics/scallop-inf1/METAL
-export f=${scallop_inf1}/IL.18R1-1.tbl.gz
+export csd3_inf1=~/rds/results/private/proteomics/scallop-inf1/METAL
+export f=${csd3_inf1}/IL.18R1-1.tbl.gz
 export r=2:102700000-103800000
 
 (
@@ -12,6 +12,18 @@ export r=2:102700000-103800000
 ) | \
 bgzip -f > IL.18R1-1.tbl.gz
 tabix -f -S1 -s1 -b2 -e2 IL.18R1-1.tbl.gz
+
+export gcst_inf1=https://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/GCST90274001-GCST90275000/
+export gcst=${gcst_inf1}/GCST90274804/harmonised/GCST90274804.h.tsv.gz
+(
+  wget -qO- ${gcst} | \
+  gunzip -c | \
+  head -1
+  tabix ${gcst} ${r}
+) | \
+bgzip -f > IL.18R1.gz
+tabix -f -S1 -s1 -b2 -e2 IL.18R1.gz
+rm GCST90274804.h.tsv.gz.tbi
 
 Rscript -e '
 r <- Sys.getenv("r")
