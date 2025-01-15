@@ -22,7 +22,7 @@
 #' @section Usage:
 #' Vignettes on package usage:
 #' - Genetic Association Analysis with R (II), `vignette("gaawr2")`.
-#' - plumber, `vignette("plumber")`.
+#' - Web facilities, `vignette("web")`.
 #' @md
 #'
 #' @import knitr
