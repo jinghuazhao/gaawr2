@@ -45,10 +45,10 @@ As with other R packages, it includes data examples, customized functions, docum
 
 The relevant scripts are with `inst/scripts` directory in the source package. Briefly,
 
-- `create_package.R` is used to create the package in R.
-- `create_github_pository.sh` is called to create `gaawr2` at GitHub from the command line.
-- `pkgdown.sh` is called to make a pkgdown-style package and this vignette is set to be processed with the `bookdown` package.
-- `docs.sh` is used to add and push files to GitHub.
+- `gaawr2.R` creates the package in R.
+- `github.sh` creates `gaawr2` at GitHub from the command line.
+- `pkgdown.sh` makes a pkgdown-style package and this vignette is set to be processed with the `bookdown` package.
+- `docs.sh` adds, commits and pushes files to GitHub.
 
 Note that for creation of the GitHub repository, a SSH key is already in place. In order for `pkgdown.sh` to function well, all required files such as `nature-genetics.csl` need to be available.
 
@@ -107,7 +107,7 @@ id <- function(ontology)
 data(go)
 goidname <- id(go)
 # EFO
-file <- "efo.obo"
+file <- "efo.obo" # efo-3.26.0
 get_relation_names(file)
 efo <- get_ontology(file, extract_tags="everything")
 length(efo) # 89
@@ -117,7 +117,7 @@ diseases <- get_descendants(efo,"EFO:0000408")
 efo_0000540 <- get_descendants(efo,"EFO:0000540")
 efo_0000540name <- efo$name[efo_0000540]
 isd <- data.frame(efo_0000540,efo_0000540name)
-save(efo,diseases,isd,efoidname,goidname, file="work/efo.rda")
+save(efo,diseases,isd,efoidname,goidname, file="efo.rda")
 write.table(isd,file="efo_0000540.csv",col.names=FALSE,row.names=FALSE,sep=",")
 library(ontologyPlot)
 onto_plot(efo,efo_0000540)
