@@ -95,7 +95,7 @@ searchFilters(mart = ensembl, pattern = "gene")
 
 ### EFO
 
-The ontology of traits/disease is available through Experimental Factor Ontology (EFO)@malone10.
+The ontology of traits/disease is available through Experimental Factor Ontology (EFO) @malone10.
 
 ```r
 library(ontologyIndex)
@@ -196,6 +196,7 @@ post_body <- list(query = query_string, variables = variables)
 r <- httr::POST(url=base_url, body=post_body, encode='json')
 data <- iconv(r, "latin1", "ASCII")
 content <- jsonlite::fromJSON(data)
+knitr::kable(content)
 ```
 
 ## HWE
