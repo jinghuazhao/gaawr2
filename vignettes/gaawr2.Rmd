@@ -28,7 +28,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-pkgs <- c("knitr")
+pkgs <- c("EnsDb.Hsapiens.v75","knitr","HardyWeinberg","biomaRt","httr","jsonlite")
 for (p in pkgs) if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
     if (!requireNamespace(p)) warning(paste0("This vignette needs package `", p, "'; please install"))
 }
@@ -65,7 +65,6 @@ We carry on adding files such as `NEWS.md` and `_pkgdown.yml`.
 ## EnsDb.Hsapiens.v75
 
 ```{r ensdb, messages=FALSE}
-require(EnsDb.Hsapiens.v75)
 ensembldb::metadata(EnsDb.Hsapiens.v75)
 genes <- ensembldb::genes(EnsDb.Hsapiens.v75)
 head(genes)
@@ -77,27 +76,26 @@ One can also use `exons_data <- ensembldb::exons(EnsDb.Hsapiens.v75);head(exons_
 ## biomaRt
 
 ```{r biomart, messages=FALSE}
-library(biomaRt)
-listMarts()
-mart <- useMart("ENSEMBL_MART_FUNCGEN")
-listDatasets(mart)
-mart <- useMart("ensembl")
-listDatasets(mart)
-ensembl <- useMart("ensembl", dataset="hsapiens_gene_ensembl", host="grch37.ensembl.org", path="/biomart/martservice")
-attr <- listAttributes(ensembl)
-attr_select <- c('ensembl_gene_id', 'chromosome_name', 'start_position', 'end_position', 'description', 'hgnc_symbol', 'transcription_start_site')
-gene <- getBM(attributes = attr_select, mart = ensembl)
-filter <- listFilters(ensembl)
-searchFilters(mart = ensembl, pattern = "gene")
+biomaRt::listMarts()
+mart <- biomaRt::useMart("ENSEMBL_MART_FUNCGEN")
+biomaRt::listDatasets(mart)
+mart <- biomaRt::useMart("ensembl")
+biomaRt::listDatasets(mart)
+ensembl <- biomaRt::useMart("ensembl", dataset="hsapiens_gene_ensembl", host="grch37.ensembl.org", path="/biomart/martservice")
+attr <- biomaRt::listAttributes(ensembl)
+attr_select <- c('ensembl_gene_id', 'chromosome_name', 'start_position', 'end_position', 'description', 'hgnc_symbol',
+                 'transcription_start_site')
+gene <- biomaRt::getBM(attributes = attr_select, mart = ensembl)
+filter <- biomaRt::listFilters(ensembl)
+biomaRt::searchFilters(mart = ensembl, pattern = "gene")
 ```
 
 ## Experimental Factor Ontology (EFO)
 
-The ontology of traits/disease is also available @malone10.
+The ontology of traits/disease is formally available as this @malone10.
 
 ```r
 library(ontologyIndex)
-
 id <- function(ontology)
 {
   inflammatory <- grep(ontology$name,pattern="inflammatory")
@@ -162,7 +160,6 @@ all_links <- entrez_link(dbfrom='pubmed', id=id, db='all')
 
 ```{r hwe, fig.cap="SNP ternary plot", fig.height=15.07, fig.width=15.6, messages=FALSE}
 options(width=200)
-library(HardyWeinberg)
 SNP <- c(3,2,2)
 HardyWeinberg::maf(SNP)
 HardyWeinberg::HWTernaryPlot(SNP,region=0,hwcurve=FALSE,grid=TRUE,markercol="blue")
@@ -194,9 +191,6 @@ An overview on the topic is found from the relevant paper @suhre20.
 # OpenTargets
 
 ```{r, messages=FALSE}
-library(httr)
-library(jsonlite)
-
 gene_id <- "ENSG00000164308"
 query_string = "
   query target($ensemblId: String!){
@@ -227,7 +221,7 @@ post_body <- list(query = query_string, variables = variables)
 r <- httr::POST(url=base_url, body=post_body, encode='json')
 data <- iconv(r, "latin1", "ASCII")
 content <- jsonlite::fromJSON(data)
-knitr::kable(content)
+knitr::kable(content, caption="Query of ERAP2 from OpenTargets")
 ```
 
 # References
