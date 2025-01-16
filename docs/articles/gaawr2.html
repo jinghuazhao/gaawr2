@@ -74,13 +74,13 @@
 <p>The relevant scripts are with <code>inst/scripts</code> directory in the source package. Briefly,</p>
 <ul>
 <li>
-<code>create_package.R</code> is used to create the package in R.</li>
+<code>gaawr2.R</code> creates the package in R.</li>
 <li>
-<code>create_github_pository.sh</code> is called to create <code>gaawr2</code> at GitHub from the command line.</li>
+<code>github.sh</code> creates <code>gaawr2</code> at GitHub from the command line.</li>
 <li>
-<code>pkgdown.sh</code> is called to make a pkgdown-style package and this vignette is set to be processed with the <code>bookdown</code> package.</li>
+<code>pkgdown.sh</code> makes a pkgdown-style package and this vignette is set to be processed with the <code>bookdown</code> package.</li>
 <li>
-<code>docs.sh</code> is used to add and push files to GitHub.</li>
+<code>docs.sh</code> adds, commits and pushes files to GitHub.</li>
 </ul>
 <p>Note that for creation of the GitHub repository, a SSH key is already in place. In order for <code>pkgdown.sh</code> to function well, all required files such as <code>nature-genetics.csl</code> need to be available.</p>
 <p>A GitHub login is still necessary to enable web pages, so that this can be accessed as <a href="https://jinghuazhao.github.io/gaawr2/" class="uri">https://jinghuazhao.github.io/gaawr2/</a>.</p>
@@ -943,7 +943,7 @@
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">go</span><span class="op">)</span></span>
 <span><span class="va">goidname</span> <span class="op">&lt;-</span> <span class="fu">id</span><span class="op">(</span><span class="va">go</span><span class="op">)</span></span>
 <span><span class="co"># EFO</span></span>
-<span><span class="va">file</span> <span class="op">&lt;-</span> <span class="st">"efo.obo"</span></span>
+<span><span class="va">file</span> <span class="op">&lt;-</span> <span class="st">"efo.obo"</span> <span class="co"># efo-3.26.0</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/ontologyIndex/man/get_relation_names.html" class="external-link">get_relation_names</a></span><span class="op">(</span><span class="va">file</span><span class="op">)</span></span>
 <span><span class="va">efo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ontologyIndex/man/get_ontology.html" class="external-link">get_ontology</a></span><span class="op">(</span><span class="va">file</span>, extract_tags<span class="op">=</span><span class="st">"everything"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">efo</span><span class="op">)</span> <span class="co"># 89</span></span>
@@ -953,7 +953,7 @@
 <span><span class="va">efo_0000540</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ontologyIndex/man/get_descendants.html" class="external-link">get_descendants</a></span><span class="op">(</span><span class="va">efo</span>,<span class="st">"EFO:0000540"</span><span class="op">)</span></span>
 <span><span class="va">efo_0000540name</span> <span class="op">&lt;-</span> <span class="va">efo</span><span class="op">$</span><span class="va">name</span><span class="op">[</span><span class="va">efo_0000540</span><span class="op">]</span></span>
 <span><span class="va">isd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">efo_0000540</span>,<span class="va">efo_0000540name</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/save.html" class="external-link">save</a></span><span class="op">(</span><span class="va">efo</span>,<span class="va">diseases</span>,<span class="va">isd</span>,<span class="va">efoidname</span>,<span class="va">goidname</span>, file<span class="op">=</span><span class="st">"work/efo.rda"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/save.html" class="external-link">save</a></span><span class="op">(</span><span class="va">efo</span>,<span class="va">diseases</span>,<span class="va">isd</span>,<span class="va">efoidname</span>,<span class="va">goidname</span>, file<span class="op">=</span><span class="st">"efo.rda"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.table</a></span><span class="op">(</span><span class="va">isd</span>,file<span class="op">=</span><span class="st">"efo_0000540.csv"</span>,col.names<span class="op">=</span><span class="cn">FALSE</span>,row.names<span class="op">=</span><span class="cn">FALSE</span>,sep<span class="op">=</span><span class="st">","</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ontologyPlot</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/ontologyPlot/man/onto_plot.html" class="external-link">onto_plot</a></span><span class="op">(</span><span class="va">efo</span>,<span class="va">efo_0000540</span><span class="op">)</span></span></code></pre></div>
