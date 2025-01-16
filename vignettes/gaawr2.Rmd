@@ -60,11 +60,9 @@ We carry on adding files such as `NEWS.md` and `_pkgdown.yml`.
 
 # Mode of execution
 
-# Examples
+# Annotation
 
-## Annotation
-
-### EnsDb.Hsapiens.v75
+## EnsDb.Hsapiens.v75
 
 ```{r}
 require(EnsDb.Hsapiens.v75)
@@ -76,7 +74,7 @@ head(transcripts_data)
 ```
 One can also use `exons_data <- ensembldb::exons(EnsDb.Hsapiens.v75);head(exons_data)` but it is skipped for being considerably longer.
 
-### biomaRt
+## biomaRt
 
 ```{r}
 library(biomaRt)
@@ -93,7 +91,7 @@ filter <- listFilters(ensembl)
 searchFilters(mart = ensembl, pattern = "gene")
 ```
 
-### EFO
+## EFO
 
 The ontology of traits/disease is available through Experimental Factor Ontology (EFO) @malone10.
 
@@ -127,7 +125,7 @@ library(ontologyPlot)
 onto_plot(efo,efo_0000540)
 ```
 
-### rentrez
+## rentrez
 
 ```r
 library(rentrez)
@@ -160,7 +158,21 @@ snp_links <- entrez_link(dbfrom="clinvar", db="snp", web_history=asthma_variants
 all_links <- entrez_link(dbfrom='pubmed', id=id, db='all')
 ```
 
-### OpenTargets
+# HWE
+
+# Basic association
+
+# Haplotype analysis
+
+# GWAS
+
+This includes association modeling, annotation. Graphics, e.g., `inst/scripts/lz.R`.
+
+# Proteogenomics
+
+An overview on the topic is found from the relevant paper @suhre20.
+
+# OpenTargets
 
 ```{r}
 library(httr)
@@ -198,19 +210,5 @@ data <- iconv(r, "latin1", "ASCII")
 content <- jsonlite::fromJSON(data)
 knitr::kable(content)
 ```
-
-## HWE
-
-## Basic association
-
-## Haplotype analysis
-
-## GWAS
-
-This includes association modeling, annotation. Graphics, e.g., `inst/scripts/lz.R`.
-
-## Proteogenomics
-
-An overview on the topic is found from the relevant paper @suhre20.
 
 # References
