@@ -1,0 +1,8 @@
+require(EnsDb.Hsapiens.v75)
+ensembldb::metadata(EnsDb.Hsapiens.v75)
+genes <- ensembldb::genes(EnsDb.Hsapiens.v75)
+head(genes)
+exons_data <- ensembldb::exons(EnsDb.Hsapiens.v75)
+head(exons_data)
+transcripts_data <- ensembldb::transcripts(EnsDb.Hsapiens.v75)
+head(transcripts_data)
