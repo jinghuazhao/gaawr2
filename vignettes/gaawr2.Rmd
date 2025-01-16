@@ -129,7 +129,7 @@ onto_plot(efo,efo_0000540)
 
 ### rentrez
 
-```{r}
+```r
 library(rentrez)
 entrez_dbs()
 entrez_db_links("pubmed")
