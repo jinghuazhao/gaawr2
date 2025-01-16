@@ -91,9 +91,9 @@ filter <- listFilters(ensembl)
 searchFilters(mart = ensembl, pattern = "gene")
 ```
 
-## EFO
+## Experimental Factor Ontology (EFO)
 
-The ontology of traits/disease is available through Experimental Factor Ontology (EFO) @malone10.
+The ontology of traits/disease is also available @malone10.
 
 ```r
 library(ontologyIndex)
@@ -158,7 +158,7 @@ snp_links <- entrez_link(dbfrom="clinvar", db="snp", web_history=asthma_variants
 all_links <- entrez_link(dbfrom='pubmed', id=id, db='all')
 ```
 
-# HWE
+# Hardy-Weinberg equilibrium (HWE)
 
 ```{r hwe, fig.cap="SNP ternary plot", fig.height=15.07, fig.width=15.6, messages=FALSE}
 options(width=200)
@@ -167,7 +167,7 @@ SNP <- c(3,2,2)
 HardyWeinberg::maf(SNP)
 HardyWeinberg::HWTernaryPlot(SNP,region=0,hwcurve=FALSE,grid=TRUE,markercol="blue")
 HardyWeinberg::HWChisq(SNP, cc = 0, verbose = TRUE)
-SNP.X <- c(A=10,B=20,AA=30,AB=204,BB=10)
+SNP.X <- c(A=10,B=20, AA=30,AB=20,BB=10)
 HardyWeinberg::HWChisq(SNP.X,cc=0,x.linked=TRUE,verbose=TRUE)
 library(gap)
 DQR <- hla[,3:4]
@@ -183,7 +183,7 @@ HardyWeinberg::HWStr(hla[,3:4],test="permutation",nperm=1000)
 
 # Haplotype analysis
 
-# GWAS
+# Genomewide association study (GWAS)
 
 This includes association modeling, annotation. Graphics, e.g., `inst/scripts/lz.R`.
 
