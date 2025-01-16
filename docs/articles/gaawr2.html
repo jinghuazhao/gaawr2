@@ -67,19 +67,20 @@
 <p>This package intends to gather information, meta-data and relevant scripts in genetic association analysis as a companion to a Henry-Stewart talk.</p>
 <p>The package is adapted from earlier package development work, particularly pQTLdata.</p>
 <div class="section level2" number="1">
-<h2 id="setup">
-<span class="header-section-number">1</span> Setup<a class="anchor" aria-label="anchor" href="#setup"></a>
+<h2 id="outlines">
+<span class="header-section-number">1</span> Outlines<a class="anchor" aria-label="anchor" href="#outlines"></a>
 </h2>
+<p>As with other R packages, it includes data examples, customized functions, documentation and featured articles.</p>
 <p>The relevant scripts are with <code>inst/scripts</code> directory in the source package. Briefly,</p>
 <ul>
 <li>
-<code>create_github_pository.sh</code> is called to create <code>gaawr2</code> at GitHub from the command line.</li>
-<li>
 <code>create_package.R</code> is used to create the package in R.</li>
+<li>
+<code>create_github_pository.sh</code> is called to create <code>gaawr2</code> at GitHub from the command line.</li>
 <li>
 <code>pkgdown.sh</code> is called to make a pkgdown-style package and this vignette is set to be processed with the <code>bookdown</code> package.</li>
 <li>
-<code>docs.sh</code> is used to push files to GitHub.</li>
+<code>docs.sh</code> is used to add and push files to GitHub.</li>
 </ul>
 <p>Note that for creation of the GitHub repository, a SSH key is already in place. In order for <code>pkgdown.sh</code> to function well, all required files such as <code>nature-genetics.csl</code> need to be available.</p>
 <p>A GitHub login is still necessary to enable web pages, so that this can be accessed as <a href="https://jinghuazhao.github.io/gaawr2/" class="uri">https://jinghuazhao.github.io/gaawr2/</a>.</p>
@@ -92,10 +93,1027 @@
 </h2>
 </div>
 <div class="section level2" number="3">
-<h2 id="showcase-of-proteogenomics">
-<span class="header-section-number">3</span> Showcase of proteogenomics<a class="anchor" aria-label="anchor" href="#showcase-of-proteogenomics"></a>
+<h2 id="examples">
+<span class="header-section-number">3</span> Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
 </h2>
-<p>The relevant paper is<span class="citation"><sup>1</sup></span>.</p>
+<div class="section level3" number="3.1">
+<h3 id="annotation">
+<span class="header-section-number">3.1</span> Annotation<a class="anchor" aria-label="anchor" href="#annotation"></a>
+</h3>
+<div class="section level4" number="3.1.1">
+<h4 id="ensdb-hsapiens-v75">
+<span class="header-section-number">3.1.1</span> EnsDb.Hsapiens.v75<a class="anchor" aria-label="anchor" href="#ensdb-hsapiens-v75"></a>
+</h4>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va">EnsDb.Hsapiens.v75</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Loading required package: EnsDb.Hsapiens.v75</span></span>
+<span><span class="co">#&gt; Loading required package: ensembldb</span></span>
+<span><span class="co">#&gt; Loading required package: BiocGenerics</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'BiocGenerics'</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     IQR, mad, sd, var, xtabs</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     anyDuplicated, aperm, append, as.data.frame, basename, cbind,</span></span>
+<span><span class="co">#&gt;     colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,</span></span>
+<span><span class="co">#&gt;     get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,</span></span>
+<span><span class="co">#&gt;     match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,</span></span>
+<span><span class="co">#&gt;     Position, rank, rbind, Reduce, rownames, sapply, setdiff, table,</span></span>
+<span><span class="co">#&gt;     tapply, union, unique, unsplit, which.max, which.min</span></span>
+<span><span class="co">#&gt; Loading required package: GenomicRanges</span></span>
+<span><span class="co">#&gt; Loading required package: stats4</span></span>
+<span><span class="co">#&gt; Loading required package: S4Vectors</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'S4Vectors'</span></span>
+<span><span class="co">#&gt; The following object is masked from 'package:utils':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     findMatches</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     expand.grid, I, unname</span></span>
+<span><span class="co">#&gt; Loading required package: IRanges</span></span>
+<span><span class="co">#&gt; Loading required package: GenomeInfoDb</span></span>
+<span><span class="co">#&gt; Loading required package: GenomicFeatures</span></span>
+<span><span class="co">#&gt; Loading required package: AnnotationDbi</span></span>
+<span><span class="co">#&gt; Loading required package: Biobase</span></span>
+<span><span class="co">#&gt; Welcome to Bioconductor</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     Vignettes contain introductory material; view with</span></span>
+<span><span class="co">#&gt;     'browseVignettes()'. To cite Bioconductor, see</span></span>
+<span><span class="co">#&gt;     'citation("Biobase")', and for packages 'citation("pkgname")'.</span></span>
+<span><span class="co">#&gt; Loading required package: AnnotationFilter</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'ensembldb'</span></span>
+<span><span class="co">#&gt; The following object is masked from 'package:stats':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     filter</span></span>
+<span><span class="fu">ensembldb</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Annotated-class.html" class="external-link">metadata</a></span><span class="op">(</span><span class="va">EnsDb.Hsapiens.v75</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                  name                               value</span></span>
+<span><span class="co">#&gt; 1             Db type                               EnsDb</span></span>
+<span><span class="co">#&gt; 2     Type of Gene ID                     Ensembl Gene ID</span></span>
+<span><span class="co">#&gt; 3  Supporting package                           ensembldb</span></span>
+<span><span class="co">#&gt; 4       Db created by ensembldb package from Bioconductor</span></span>
+<span><span class="co">#&gt; 5      script_version                               0.3.0</span></span>
+<span><span class="co">#&gt; 6       Creation time            Thu May 18 09:15:45 2017</span></span>
+<span><span class="co">#&gt; 7     ensembl_version                                  75</span></span>
+<span><span class="co">#&gt; 8        ensembl_host                           localhost</span></span>
+<span><span class="co">#&gt; 9            Organism                        homo_sapiens</span></span>
+<span><span class="co">#&gt; 10        taxonomy_id                                9606</span></span>
+<span><span class="co">#&gt; 11       genome_build                              GRCh37</span></span>
+<span><span class="co">#&gt; 12    DBSCHEMAVERSION                                 2.0</span></span>
+<span><span class="va">genes</span> <span class="op">&lt;-</span> <span class="fu">ensembldb</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GenomicFeatures/man/transcripts.html" class="external-link">genes</a></span><span class="op">(</span><span class="va">EnsDb.Hsapiens.v75</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">genes</span><span class="op">)</span></span>
+<span><span class="co">#&gt; GRanges object with 6 ranges and 6 metadata columns:</span></span>
+<span><span class="co">#&gt;                   seqnames      ranges strand |         gene_id   gene_name</span></span>
+<span><span class="co">#&gt;                      &lt;Rle&gt;   &lt;IRanges&gt;  &lt;Rle&gt; |     &lt;character&gt; &lt;character&gt;</span></span>
+<span><span class="co">#&gt;   ENSG00000223972        1 11869-14412      + | ENSG00000223972     DDX11L1</span></span>
+<span><span class="co">#&gt;   ENSG00000227232        1 14363-29806      - | ENSG00000227232      WASH7P</span></span>
+<span><span class="co">#&gt;   ENSG00000243485        1 29554-31109      + | ENSG00000243485  MIR1302-10</span></span>
+<span><span class="co">#&gt;   ENSG00000237613        1 34554-36081      - | ENSG00000237613     FAM138A</span></span>
+<span><span class="co">#&gt;   ENSG00000268020        1 52473-54936      + | ENSG00000268020      OR4G4P</span></span>
+<span><span class="co">#&gt;   ENSG00000240361        1 62948-63887      + | ENSG00000240361     OR4G11P</span></span>
+<span><span class="co">#&gt;                   gene_biotype seq_coord_system      symbol</span></span>
+<span><span class="co">#&gt;                    &lt;character&gt;      &lt;character&gt; &lt;character&gt;</span></span>
+<span><span class="co">#&gt;   ENSG00000223972   pseudogene       chromosome     DDX11L1</span></span>
+<span><span class="co">#&gt;   ENSG00000227232   pseudogene       chromosome      WASH7P</span></span>
+<span><span class="co">#&gt;   ENSG00000243485      lincRNA       chromosome  MIR1302-10</span></span>
+<span><span class="co">#&gt;   ENSG00000237613      lincRNA       chromosome     FAM138A</span></span>
+<span><span class="co">#&gt;   ENSG00000268020   pseudogene       chromosome      OR4G4P</span></span>
+<span><span class="co">#&gt;   ENSG00000240361   pseudogene       chromosome     OR4G11P</span></span>
+<span><span class="co">#&gt;                                            entrezid</span></span>
+<span><span class="co">#&gt;                                              &lt;list&gt;</span></span>
+<span><span class="co">#&gt;   ENSG00000223972               100287596,100287102</span></span>
+<span><span class="co">#&gt;   ENSG00000227232                  100287171,653635</span></span>
+<span><span class="co">#&gt;   ENSG00000243485 100422919,100422834,100422831,...</span></span>
+<span><span class="co">#&gt;   ENSG00000237613              654835,645520,641702</span></span>
+<span><span class="co">#&gt;   ENSG00000268020                              &lt;NA&gt;</span></span>
+<span><span class="co">#&gt;   ENSG00000240361                              &lt;NA&gt;</span></span>
+<span><span class="co">#&gt;   -------</span></span>
+<span><span class="co">#&gt;   seqinfo: 273 sequences (1 circular) from GRCh37 genome</span></span>
+<span><span class="va">transcripts_data</span> <span class="op">&lt;-</span> <span class="fu">ensembldb</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GenomicFeatures/man/transcripts.html" class="external-link">transcripts</a></span><span class="op">(</span><span class="va">EnsDb.Hsapiens.v75</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">transcripts_data</span><span class="op">)</span></span>
+<span><span class="co">#&gt; GRanges object with 6 ranges and 6 metadata columns:</span></span>
+<span><span class="co">#&gt;                   seqnames      ranges strand |           tx_id</span></span>
+<span><span class="co">#&gt;                      &lt;Rle&gt;   &lt;IRanges&gt;  &lt;Rle&gt; |     &lt;character&gt;</span></span>
+<span><span class="co">#&gt;   ENST00000456328        1 11869-14409      + | ENST00000456328</span></span>
+<span><span class="co">#&gt;   ENST00000515242        1 11872-14412      + | ENST00000515242</span></span>
+<span><span class="co">#&gt;   ENST00000518655        1 11874-14409      + | ENST00000518655</span></span>
+<span><span class="co">#&gt;   ENST00000450305        1 12010-13670      + | ENST00000450305</span></span>
+<span><span class="co">#&gt;   ENST00000438504        1 14363-29370      - | ENST00000438504</span></span>
+<span><span class="co">#&gt;   ENST00000541675        1 14363-24886      - | ENST00000541675</span></span>
+<span><span class="co">#&gt;                               tx_biotype tx_cds_seq_start tx_cds_seq_end</span></span>
+<span><span class="co">#&gt;                              &lt;character&gt;        &lt;integer&gt;      &lt;integer&gt;</span></span>
+<span><span class="co">#&gt;   ENST00000456328   processed_transcript             &lt;NA&gt;           &lt;NA&gt;</span></span>
+<span><span class="co">#&gt;   ENST00000515242 transcribed_unproces..             &lt;NA&gt;           &lt;NA&gt;</span></span>
+<span><span class="co">#&gt;   ENST00000518655 transcribed_unproces..             &lt;NA&gt;           &lt;NA&gt;</span></span>
+<span><span class="co">#&gt;   ENST00000450305 transcribed_unproces..             &lt;NA&gt;           &lt;NA&gt;</span></span>
+<span><span class="co">#&gt;   ENST00000438504 unprocessed_pseudogene             &lt;NA&gt;           &lt;NA&gt;</span></span>
+<span><span class="co">#&gt;   ENST00000541675 unprocessed_pseudogene             &lt;NA&gt;           &lt;NA&gt;</span></span>
+<span><span class="co">#&gt;                           gene_id         tx_name</span></span>
+<span><span class="co">#&gt;                       &lt;character&gt;     &lt;character&gt;</span></span>
+<span><span class="co">#&gt;   ENST00000456328 ENSG00000223972 ENST00000456328</span></span>
+<span><span class="co">#&gt;   ENST00000515242 ENSG00000223972 ENST00000515242</span></span>
+<span><span class="co">#&gt;   ENST00000518655 ENSG00000223972 ENST00000518655</span></span>
+<span><span class="co">#&gt;   ENST00000450305 ENSG00000223972 ENST00000450305</span></span>
+<span><span class="co">#&gt;   ENST00000438504 ENSG00000227232 ENST00000438504</span></span>
+<span><span class="co">#&gt;   ENST00000541675 ENSG00000227232 ENST00000541675</span></span>
+<span><span class="co">#&gt;   -------</span></span>
+<span><span class="co">#&gt;   seqinfo: 273 sequences (1 circular) from GRCh37 genome</span></span></code></pre></div>
+<p>One can also use <code>exons_data &lt;- ensembldb::exons(EnsDb.Hsapiens.v75);head(exons_data)</code> but it is skipped for being considerably longer.</p>
+</div>
+<div class="section level4" number="3.1.2">
+<h4 id="biomart">
+<span class="header-section-number">3.1.2</span> biomaRt<a class="anchor" aria-label="anchor" href="#biomart"></a>
+</h4>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/grimbough/biomaRt" class="external-link">biomaRt</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listMarts.html" class="external-link">listMarts</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                biomart                version</span></span>
+<span><span class="co">#&gt; 1 ENSEMBL_MART_ENSEMBL      Ensembl Genes 113</span></span>
+<span><span class="co">#&gt; 2   ENSEMBL_MART_MOUSE      Mouse strains 113</span></span>
+<span><span class="co">#&gt; 3     ENSEMBL_MART_SNP  Ensembl Variation 113</span></span>
+<span><span class="co">#&gt; 4 ENSEMBL_MART_FUNCGEN Ensembl Regulation 113</span></span>
+<span><span class="va">mart</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/useMart.html" class="external-link">useMart</a></span><span class="op">(</span><span class="st">"ENSEMBL_MART_FUNCGEN"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listDatasets.html" class="external-link">listDatasets</a></span><span class="op">(</span><span class="va">mart</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                          dataset                                 description</span></span>
+<span><span class="co">#&gt; 1      hsapiens_external_feature Human Other Regulatory Regions (GRCh38.p14)</span></span>
+<span><span class="co">#&gt; 2  hsapiens_mirna_target_feature     Human miRNA Target Regions (GRCh38.p14)</span></span>
+<span><span class="co">#&gt; 3    hsapiens_regulatory_feature      Human Regulatory Features (GRCh38.p14)</span></span>
+<span><span class="co">#&gt; 4     mmusculus_external_feature     Mouse Other Regulatory Regions (GRCm39)</span></span>
+<span><span class="co">#&gt; 5 mmusculus_mirna_target_feature         Mouse miRNA Target Regions (GRCm39)</span></span>
+<span><span class="co">#&gt; 6   mmusculus_regulatory_feature          Mouse Regulatory Features (GRCm39)</span></span>
+<span><span class="co">#&gt;      version</span></span>
+<span><span class="co">#&gt; 1 GRCh38.p14</span></span>
+<span><span class="co">#&gt; 2 GRCh38.p14</span></span>
+<span><span class="co">#&gt; 3 GRCh38.p14</span></span>
+<span><span class="co">#&gt; 4     GRCm39</span></span>
+<span><span class="co">#&gt; 5     GRCm39</span></span>
+<span><span class="co">#&gt; 6     GRCm39</span></span>
+<span><span class="va">mart</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/useMart.html" class="external-link">useMart</a></span><span class="op">(</span><span class="st">"ensembl"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listDatasets.html" class="external-link">listDatasets</a></span><span class="op">(</span><span class="va">mart</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                            dataset</span></span>
+<span><span class="co">#&gt; 1     abrachyrhynchus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 2         acalliptera_gene_ensembl</span></span>
+<span><span class="co">#&gt; 3       acarolinensis_gene_ensembl</span></span>
+<span><span class="co">#&gt; 4        acchrysaetos_gene_ensembl</span></span>
+<span><span class="co">#&gt; 5        acitrinellus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 6        amelanoleuca_gene_ensembl</span></span>
+<span><span class="co">#&gt; 7          amexicanus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 8          anancymaae_gene_ensembl</span></span>
+<span><span class="co">#&gt; 9          aocellaris_gene_ensembl</span></span>
+<span><span class="co">#&gt; 10           apercula_gene_ensembl</span></span>
+<span><span class="co">#&gt; 11     aplatyrhynchos_gene_ensembl</span></span>
+<span><span class="co">#&gt; 12      apolyacanthus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 13    applatyrhynchos_gene_ensembl</span></span>
+<span><span class="co">#&gt; 14       atestudineus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 15            bbbison_gene_ensembl</span></span>
+<span><span class="co">#&gt; 16         bgrunniens_gene_ensembl</span></span>
+<span><span class="co">#&gt; 17           bihybrid_gene_ensembl</span></span>
+<span><span class="co">#&gt; 18          bmusculus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 19             bmutus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 20         bsplendens_gene_ensembl</span></span>
+<span><span class="co">#&gt; 21            btaurus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 22        cabingdonii_gene_ensembl</span></span>
+<span><span class="co">#&gt; 23              catys_gene_ensembl</span></span>
+<span><span class="co">#&gt; 24           cauratus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 25           cccarpio_gene_ensembl</span></span>
+<span><span class="co">#&gt; 26       cdromedarius_gene_ensembl</span></span>
+<span><span class="co">#&gt; 27           celegans_gene_ensembl</span></span>
+<span><span class="co">#&gt; 28        cgchok1gshd_gene_ensembl</span></span>
+<span><span class="co">#&gt; 29             cgobio_gene_ensembl</span></span>
+<span><span class="co">#&gt; 30          charengus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 31            chircus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 32         choffmanni_gene_ensembl</span></span>
+<span><span class="co">#&gt; 33     chyarkandensis_gene_ensembl</span></span>
+<span><span class="co">#&gt; 34          cimitator_gene_ensembl</span></span>
+<span><span class="co">#&gt; 35      cintestinalis_gene_ensembl</span></span>
+<span><span class="co">#&gt; 36           cjacchus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 37          cjaponica_gene_ensembl</span></span>
+<span><span class="co">#&gt; 38          clanigera_gene_ensembl</span></span>
+<span><span class="co">#&gt; 39            cldingo_gene_ensembl</span></span>
+<span><span class="co">#&gt; 40       clfamiliaris_gene_ensembl</span></span>
+<span><span class="co">#&gt; 41            clumpus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 42             cmilii_gene_ensembl</span></span>
+<span><span class="co">#&gt; 43           cpbellii_gene_ensembl</span></span>
+<span><span class="co">#&gt; 44         cporcellus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 45           cporosus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 46           csabaeus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 47          csavignyi_gene_ensembl</span></span>
+<span><span class="co">#&gt; 48        csemilaevis_gene_ensembl</span></span>
+<span><span class="co">#&gt; 49          csyrichta_gene_ensembl</span></span>
+<span><span class="co">#&gt; 50        cvariegatus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 51           cwagneri_gene_ensembl</span></span>
+<span><span class="co">#&gt; 52        dclupeoides_gene_ensembl</span></span>
+<span><span class="co">#&gt; 53            dlabrax_gene_ensembl</span></span>
+<span><span class="co">#&gt; 54            dleucas_gene_ensembl</span></span>
+<span><span class="co">#&gt; 55      dmelanogaster_gene_ensembl</span></span>
+<span><span class="co">#&gt; 56      dnovemcinctus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 57             dordii_gene_ensembl</span></span>
+<span><span class="co">#&gt; 58             drerio_gene_ensembl</span></span>
+<span><span class="co">#&gt; 59            easinus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 60           eburgeri_gene_ensembl</span></span>
+<span><span class="co">#&gt; 61          ecaballus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 62       ecalabaricus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 63        eelectricus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 64         eeuropaeus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 65            elucius_gene_ensembl</span></span>
+<span><span class="co">#&gt; 66          etelfairi_gene_ensembl</span></span>
+<span><span class="co">#&gt; 67        falbicollis_gene_ensembl</span></span>
+<span><span class="co">#&gt; 68             fcatus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 69      fheteroclitus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 70         gaculeatus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 71          gevgoodei_gene_ensembl</span></span>
+<span><span class="co">#&gt; 72            gfortis_gene_ensembl</span></span>
+<span><span class="co">#&gt; 73            ggallus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 74           ggorilla_gene_ensembl</span></span>
+<span><span class="co">#&gt; 75            gmorhua_gene_ensembl</span></span>
+<span><span class="co">#&gt; 76           hburtoni_gene_ensembl</span></span>
+<span><span class="co">#&gt; 77             hcomes_gene_ensembl</span></span>
+<span><span class="co">#&gt; 78           hgfemale_gene_ensembl</span></span>
+<span><span class="co">#&gt; 79             hhucho_gene_ensembl</span></span>
+<span><span class="co">#&gt; 80           hsapiens_gene_ensembl</span></span>
+<span><span class="co">#&gt; 81         ipunctatus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 82  itridecemlineatus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 83           jjaculus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 84        kmarmoratus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 85          lafricana_gene_ensembl</span></span>
+<span><span class="co">#&gt; 86          lbergylta_gene_ensembl</span></span>
+<span><span class="co">#&gt; 87        lcalcarifer_gene_ensembl</span></span>
+<span><span class="co">#&gt; 88         lchalumnae_gene_ensembl</span></span>
+<span><span class="co">#&gt; 89            lcrocea_gene_ensembl</span></span>
+<span><span class="co">#&gt; 90       llaticaudata_gene_ensembl</span></span>
+<span><span class="co">#&gt; 91       lleishanense_gene_ensembl</span></span>
+<span><span class="co">#&gt; 92          loculatus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 93           marmatus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 94           mauratus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 95            mcaroli_gene_ensembl</span></span>
+<span><span class="co">#&gt; 96         mdomestica_gene_ensembl</span></span>
+<span><span class="co">#&gt; 97      mfascicularis_gene_ensembl</span></span>
+<span><span class="co">#&gt; 98         mgallopavo_gene_ensembl</span></span>
+<span><span class="co">#&gt; 99       mleucophaeus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 100        mlucifugus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 101         mmmarmota_gene_ensembl</span></span>
+<span><span class="co">#&gt; 102        mmonoceros_gene_ensembl</span></span>
+<span><span class="co">#&gt; 103      mmoschiferus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 104          mmulatta_gene_ensembl</span></span>
+<span><span class="co">#&gt; 105          mmurdjan_gene_ensembl</span></span>
+<span><span class="co">#&gt; 106          mmurinus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 107         mmusculus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 108       mnemestrina_gene_ensembl</span></span>
+<span><span class="co">#&gt; 109      mochrogaster_gene_ensembl</span></span>
+<span><span class="co">#&gt; 110           mpahari_gene_ensembl</span></span>
+<span><span class="co">#&gt; 111            mpfuro_gene_ensembl</span></span>
+<span><span class="co">#&gt; 112       mspicilegus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 113          mspretus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 114            mzebra_gene_ensembl</span></span>
+<span><span class="co">#&gt; 115        nbrichardi_gene_ensembl</span></span>
+<span><span class="co">#&gt; 116          neugenii_gene_ensembl</span></span>
+<span><span class="co">#&gt; 117          nfurzeri_gene_ensembl</span></span>
+<span><span class="co">#&gt; 118           ngalili_gene_ensembl</span></span>
+<span><span class="co">#&gt; 119       nleucogenys_gene_ensembl</span></span>
+<span><span class="co">#&gt; 120             nnaja_gene_ensembl</span></span>
+<span><span class="co">#&gt; 121         nscutatus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 122            nvison_gene_ensembl</span></span>
+<span><span class="co">#&gt; 123         oanatinus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 124     oarambouillet_gene_ensembl</span></span>
+<span><span class="co">#&gt; 125            oaries_gene_ensembl</span></span>
+<span><span class="co">#&gt; 126        ocuniculus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 127            odegus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 128        ogarnettii_gene_ensembl</span></span>
+<span><span class="co">#&gt; 129        ojavanicus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 130          okisutch_gene_ensembl</span></span>
+<span><span class="co">#&gt; 131          olatipes_gene_ensembl</span></span>
+<span><span class="co">#&gt; 132       omelastigma_gene_ensembl</span></span>
+<span><span class="co">#&gt; 133           omykiss_gene_ensembl</span></span>
+<span><span class="co">#&gt; 134        oniloticus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 135         oprinceps_gene_ensembl</span></span>
+<span><span class="co">#&gt; 136         osinensis_gene_ensembl</span></span>
+<span><span class="co">#&gt; 137      otshawytscha_gene_ensembl</span></span>
+<span><span class="co">#&gt; 138           pabelii_gene_ensembl</span></span>
+<span><span class="co">#&gt; 139           panubis_gene_ensembl</span></span>
+<span><span class="co">#&gt; 140         pcapensis_gene_ensembl</span></span>
+<span><span class="co">#&gt; 141          pcatodon_gene_ensembl</span></span>
+<span><span class="co">#&gt; 142         pcinereus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 143        pcoquereli_gene_ensembl</span></span>
+<span><span class="co">#&gt; 144          pformosa_gene_ensembl</span></span>
+<span><span class="co">#&gt; 145       pkingsleyae_gene_ensembl</span></span>
+<span><span class="co">#&gt; 146        platipinna_gene_ensembl</span></span>
+<span><span class="co">#&gt; 147              pleo_gene_ensembl</span></span>
+<span><span class="co">#&gt; 148            pmajor_gene_ensembl</span></span>
+<span><span class="co">#&gt; 149          pmarinus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 150         pmbairdii_gene_ensembl</span></span>
+<span><span class="co">#&gt; 151          pmuralis_gene_ensembl</span></span>
+<span><span class="co">#&gt; 152        pnattereri_gene_ensembl</span></span>
+<span><span class="co">#&gt; 153         pnyererei_gene_ensembl</span></span>
+<span><span class="co">#&gt; 154         ppaniscus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 155           ppardus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 156       preticulata_gene_ensembl</span></span>
+<span><span class="co">#&gt; 157            psimus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 158         psinensis_gene_ensembl</span></span>
+<span><span class="co">#&gt; 159            psinus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 160         ptaltaica_gene_ensembl</span></span>
+<span><span class="co">#&gt; 161         ptextilis_gene_ensembl</span></span>
+<span><span class="co">#&gt; 162      ptroglodytes_gene_ensembl</span></span>
+<span><span class="co">#&gt; 163         pvampyrus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 164            rbieti_gene_ensembl</span></span>
+<span><span class="co">#&gt; 165    rferrumequinum_gene_ensembl</span></span>
+<span><span class="co">#&gt; 166       rnorvegicus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 167        rroxellana_gene_ensembl</span></span>
+<span><span class="co">#&gt; 168          saraneus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 169           saurata_gene_ensembl</span></span>
+<span><span class="co">#&gt; 170     sbboliviensis_gene_ensembl</span></span>
+<span><span class="co">#&gt; 171          scanaria_gene_ensembl</span></span>
+<span><span class="co">#&gt; 172       scaustralis_gene_ensembl</span></span>
+<span><span class="co">#&gt; 173       scerevisiae_gene_ensembl</span></span>
+<span><span class="co">#&gt; 174         sdumerili_gene_ensembl</span></span>
+<span><span class="co">#&gt; 175         sformosus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 176       shabroptila_gene_ensembl</span></span>
+<span><span class="co">#&gt; 177         sharrisii_gene_ensembl</span></span>
+<span><span class="co">#&gt; 178        sldorsalis_gene_ensembl</span></span>
+<span><span class="co">#&gt; 179       slucioperca_gene_ensembl</span></span>
+<span><span class="co">#&gt; 180          smaximus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 181         smerianae_gene_ensembl</span></span>
+<span><span class="co">#&gt; 182         spartitus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 183        spunctatus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 184            ssalar_gene_ensembl</span></span>
+<span><span class="co">#&gt; 185           ssbamei_gene_ensembl</span></span>
+<span><span class="co">#&gt; 186       ssberkshire_gene_ensembl</span></span>
+<span><span class="co">#&gt; 187           sscrofa_gene_ensembl</span></span>
+<span><span class="co">#&gt; 188       sshampshire_gene_ensembl</span></span>
+<span><span class="co">#&gt; 189          ssjinhua_gene_ensembl</span></span>
+<span><span class="co">#&gt; 190        sslandrace_gene_ensembl</span></span>
+<span><span class="co">#&gt; 191      sslargewhite_gene_ensembl</span></span>
+<span><span class="co">#&gt; 192         ssmeishan_gene_ensembl</span></span>
+<span><span class="co">#&gt; 193        sspietrain_gene_ensembl</span></span>
+<span><span class="co">#&gt; 194       ssrongchang_gene_ensembl</span></span>
+<span><span class="co">#&gt; 195         sstibetan_gene_ensembl</span></span>
+<span><span class="co">#&gt; 196          ssusmarc_gene_ensembl</span></span>
+<span><span class="co">#&gt; 197       sswuzhishan_gene_ensembl</span></span>
+<span><span class="co">#&gt; 198           strutta_gene_ensembl</span></span>
+<span><span class="co">#&gt; 199         svulgaris_gene_ensembl</span></span>
+<span><span class="co">#&gt; 200        tbelangeri_gene_ensembl</span></span>
+<span><span class="co">#&gt; 201       tctriunguis_gene_ensembl</span></span>
+<span><span class="co">#&gt; 202          tguttata_gene_ensembl</span></span>
+<span><span class="co">#&gt; 203     tnigroviridis_gene_ensembl</span></span>
+<span><span class="co">#&gt; 204         trubripes_gene_ensembl</span></span>
+<span><span class="co">#&gt; 205        ttruncatus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 206       uamericanus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 207        umaritimus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 208          uparryii_gene_ensembl</span></span>
+<span><span class="co">#&gt; 209            vpacos_gene_ensembl</span></span>
+<span><span class="co">#&gt; 210          vursinus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 211           vvulpes_gene_ensembl</span></span>
+<span><span class="co">#&gt; 212       xcouchianus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 213        xmaculatus_gene_ensembl</span></span>
+<span><span class="co">#&gt; 214       xtropicalis_gene_ensembl</span></span>
+<span><span class="co">#&gt;                                                      description</span></span>
+<span><span class="co">#&gt; 1                          Pink-footed goose genes (ASM259213v1)</span></span>
+<span><span class="co">#&gt; 2                               Eastern happy genes (fAstCal1.3)</span></span>
+<span><span class="co">#&gt; 3                                Green anole genes (AnoCar2.0v2)</span></span>
+<span><span class="co">#&gt; 4                                Golden eagle genes (bAquChr1.2)</span></span>
+<span><span class="co">#&gt; 5                                 Midas cichlid genes (Midas_v5)</span></span>
+<span><span class="co">#&gt; 6                                Giant panda genes (ASM200744v2)</span></span>
+<span><span class="co">#&gt; 7                   Mexican tetra genes (Astyanax_mexicanus-2.0)</span></span>
+<span><span class="co">#&gt; 8                             Ma's night monkey genes (Anan_2.0)</span></span>
+<span><span class="co">#&gt; 9                         Clown anemonefish genes (ASM2253959v1)</span></span>
+<span><span class="co">#&gt; 10                              Orange clownfish genes (Nemo_v1)</span></span>
+<span><span class="co">#&gt; 11                                   Mallard genes (ASM874695v1)</span></span>
+<span><span class="co">#&gt; 12                             Spiny chromis genes (ASM210954v1)</span></span>
+<span><span class="co">#&gt; 13                                      Duck genes (CAU_duck1.0)</span></span>
+<span><span class="co">#&gt; 14                             Climbing perch genes (fAnaTes1.3)</span></span>
+<span><span class="co">#&gt; 15                           American bison genes (Bison_UMD1.0)</span></span>
+<span><span class="co">#&gt; 16                           Domestic yak genes (LU_Bosgru_v3.0)</span></span>
+<span><span class="co">#&gt; 17                    Hybrid - Bos Indicus genes (UOA_Brahman_1)</span></span>
+<span><span class="co">#&gt; 18                                Blue whale genes (mBalMus1.v2)</span></span>
+<span><span class="co">#&gt; 19                                  Wild yak genes (BosGru_v2.0)</span></span>
+<span><span class="co">#&gt; 20                      Siamese fighting fish genes (fBetSpl5.2)</span></span>
+<span><span class="co">#&gt; 21                                        Cow genes (ARS-UCD1.3)</span></span>
+<span><span class="co">#&gt; 22            Abingdon island giant tortoise genes (ASM359739v1)</span></span>
+<span><span class="co">#&gt; 23                               Sooty mangabey genes (Caty_1.0)</span></span>
+<span><span class="co">#&gt; 24                                  Goldfish genes (ASM336829v1)</span></span>
+<span><span class="co">#&gt; 25                            Common carp genes (Cypcar_WagV4.0)</span></span>
+<span><span class="co">#&gt; 26                                 Arabian camel genes (CamDro2)</span></span>
+<span><span class="co">#&gt; 27        Caenorhabditis elegans (Nematode, N2) genes (WBcel235)</span></span>
+<span><span class="co">#&gt; 28                  Chinese hamster CHOK1GS genes (CHOK1GS_HDv1)</span></span>
+<span><span class="co">#&gt; 29                        Channel bull blenny genes (fCotGob3.1)</span></span>
+<span><span class="co">#&gt; 30                         Atlantic herring  genes (Ch_v2.0.2v2)</span></span>
+<span><span class="co">#&gt; 31                                             Goat genes (ARS1)</span></span>
+<span><span class="co">#&gt; 32                                         Sloth genes (choHof1)</span></span>
+<span><span class="co">#&gt; 33                                   Yarkand deer genes (CEY_v1)</span></span>
+<span><span class="co">#&gt; 34    Panamanian white-faced capuchin genes (Cebus_imitator-1.0)</span></span>
+<span><span class="co">#&gt; 35                                     C.intestinalis genes (KH)</span></span>
+<span><span class="co">#&gt; 36              White-tufted-ear marmoset genes (mCalJac1.pat.X)</span></span>
+<span><span class="co">#&gt; 37                  Japanese quail genes (Coturnix_japonica_2.0)</span></span>
+<span><span class="co">#&gt; 38                      Long-tailed chinchilla genes (ChiLan1.0)</span></span>
+<span><span class="co">#&gt; 39                                     Dingo genes (ASM325472v1)</span></span>
+<span><span class="co">#&gt; 40                                      Dog genes (ROS_Cfam_1.0)</span></span>
+<span><span class="co">#&gt; 41                                 Lumpfish genes (fCycLum1.pri)</span></span>
+<span><span class="co">#&gt; 42              Elephant shark genes (Callorhinchus_milii-6.1.3)</span></span>
+<span><span class="co">#&gt; 43           Painted turtle genes (Chrysemys_picta_bellii-3.0.3)</span></span>
+<span><span class="co">#&gt; 44                                  Guinea Pig genes (Cavpor3.0)</span></span>
+<span><span class="co">#&gt; 45           Australian saltwater crocodile genes (CroPor_comp1)</span></span>
+<span><span class="co">#&gt; 46                                  Vervet-AGM genes (ChlSab1.1)</span></span>
+<span><span class="co">#&gt; 47                                   C.savignyi genes (CSAV 2.0)</span></span>
+<span><span class="co">#&gt; 48                                  Tongue sole genes (Cse_v1.0)</span></span>
+<span><span class="co">#&gt; 49                        Tarsier genes (Tarsius_syrichta-2.0.1)</span></span>
+<span><span class="co">#&gt; 50                    Sheepshead minnow genes (C_variegatus-1.0)</span></span>
+<span><span class="co">#&gt; 51                    Chacoan peccary genes (CatWag_v2_BIUU_UCD)</span></span>
+<span><span class="co">#&gt; 52                           Denticle herring genes (fDenClu1.2)</span></span>
+<span><span class="co">#&gt; 53                          European seabass genes (dlabrax2021)</span></span>
+<span><span class="co">#&gt; 54                              Beluga whale genes (ASM228892v3)</span></span>
+<span><span class="co">#&gt; 55          Drosophila melanogaster (Fruit fly) genes (BDGP6.46)</span></span>
+<span><span class="co">#&gt; 56                                   Armadillo genes (Dasnov3.0)</span></span>
+<span><span class="co">#&gt; 57                                 Kangaroo rat genes (Dord_2.0)</span></span>
+<span><span class="co">#&gt; 58                                      Zebrafish genes (GRCz11)</span></span>
+<span><span class="co">#&gt; 59                                   Donkey genes (ASM1607732v2)</span></span>
+<span><span class="co">#&gt; 60                                  Hagfish genes (Eburgeri_3.2)</span></span>
+<span><span class="co">#&gt; 61                                       Horse genes (EquCab3.0)</span></span>
+<span><span class="co">#&gt; 62                                   Reedfish genes (fErpCal1.1)</span></span>
+<span><span class="co">#&gt; 63                             Electric eel genes (fEleEle1.pri)</span></span>
+<span><span class="co">#&gt; 64                                      Hedgehog genes (eriEur1)</span></span>
+<span><span class="co">#&gt; 65                            Northern pike genes (fEsoLuc1.pri)</span></span>
+<span><span class="co">#&gt; 66                         Lesser hedgehog tenrec genes (TENREC)</span></span>
+<span><span class="co">#&gt; 67                         Collared flycatcher genes (FicAlb1.5)</span></span>
+<span><span class="co">#&gt; 68                                   Cat genes (Felis_catus_9.0)</span></span>
+<span><span class="co">#&gt; 69                 Mummichog genes (Fundulus_heteroclitus-3.0.2)</span></span>
+<span><span class="co">#&gt; 70                   Stickleback genes (GAculeatus_UGA_version5)</span></span>
+<span><span class="co">#&gt; 71              Goodes thornscrub tortoise genes (rGopEvg1_v1.p)</span></span>
+<span><span class="co">#&gt; 72                        Medium ground-finch genes (GeoFor_1.0)</span></span>
+<span><span class="co">#&gt; 73                   Chicken genes (bGalGal1.mat.broiler.GRCg7b)</span></span>
+<span><span class="co">#&gt; 74                                       Gorilla genes (gorGor4)</span></span>
+<span><span class="co">#&gt; 75                                Atlantic cod genes (gadMor3.0)</span></span>
+<span><span class="co">#&gt; 76                       Burton's mouthbrooder genes (AstBur1.0)</span></span>
+<span><span class="co">#&gt; 77                    Tiger tail seahorse genes (H_comes_QL1_v1)</span></span>
+<span><span class="co">#&gt; 78         Naked mole-rat female genes (Naked_mole-rat_maternal)</span></span>
+<span><span class="co">#&gt; 79                                    Huchen genes (ASM331708v1)</span></span>
+<span><span class="co">#&gt; 80                                      Human genes (GRCh38.p14)</span></span>
+<span><span class="co">#&gt; 81                           Channel catfish genes (ASM400665v3)</span></span>
+<span><span class="co">#&gt; 82                                    Squirrel genes (SpeTri2.0)</span></span>
+<span><span class="co">#&gt; 83                      Lesser Egyptian jerboa genes (JacJac1.0)</span></span>
+<span><span class="co">#&gt; 84                          Mangrove rivulus genes (ASM164957v1)</span></span>
+<span><span class="co">#&gt; 85                                    Elephant genes (Loxafr3.0)</span></span>
+<span><span class="co">#&gt; 86                              Ballan wrasse genes (BallGen_V1)</span></span>
+<span><span class="co">#&gt; 87                  Barramundi perch genes (ASB_HGAPassembly_v1)</span></span>
+<span><span class="co">#&gt; 88                                    Coelacanth genes (LatCha1)</span></span>
+<span><span class="co">#&gt; 89                     Large yellow croaker genes (L_crocea_2.0)</span></span>
+<span><span class="co">#&gt; 90                      Blue-ringed sea krait genes (latLat_1.0)</span></span>
+<span><span class="co">#&gt; 91                        Leishan spiny toad genes (ASM966780v1)</span></span>
+<span><span class="co">#&gt; 92                                   Spotted gar genes (LepOcu1)</span></span>
+<span><span class="co">#&gt; 93                                Zig-zag eel genes (fMasArm1.2)</span></span>
+<span><span class="co">#&gt; 94                              Golden Hamster genes (MesAur1.0)</span></span>
+<span><span class="co">#&gt; 95                          Ryukyu mouse genes (CAROLI_EIJ_v1.1)</span></span>
+<span><span class="co">#&gt; 96                                      Opossum genes (ASM229v1)</span></span>
+<span><span class="co">#&gt; 97           Crab-eating macaque genes (Macaca_fascicularis_6.0)</span></span>
+<span><span class="co">#&gt; 98                                     Turkey genes (Turkey_5.1)</span></span>
+<span><span class="co">#&gt; 99                                     Drill genes (Mleu.le_1.0)</span></span>
+<span><span class="co">#&gt; 100                                   Microbat genes (Myoluc2.0)</span></span>
+<span><span class="co">#&gt; 101                              Alpine marmot genes (marMar2.1)</span></span>
+<span><span class="co">#&gt; 102                                Narwhal genes (NGI_Narwhal_1)</span></span>
+<span><span class="co">#&gt; 103                Siberian musk deer genes (MosMos_v2_BIUU_UCD)</span></span>
+<span><span class="co">#&gt; 104                                      Macaque genes (Mmul_10)</span></span>
+<span><span class="co">#&gt; 105                      Pinecone soldierfish genes (fMyrMur1.1)</span></span>
+<span><span class="co">#&gt; 106                                 Mouse Lemur genes (Mmur_3.0)</span></span>
+<span><span class="co">#&gt; 107                                         Mouse genes (GRCm39)</span></span>
+<span><span class="co">#&gt; 108                          Pig-tailed macaque genes (Mnem_1.0)</span></span>
+<span><span class="co">#&gt; 109                               Prairie vole genes (MicOch1.0)</span></span>
+<span><span class="co">#&gt; 110                          Shrew mouse genes (PAHARI_EIJ_v1.1)</span></span>
+<span><span class="co">#&gt; 111                                  Ferret genes (MusPutFur1.0)</span></span>
+<span><span class="co">#&gt; 112                                 Steppe mouse genes (MUSP714)</span></span>
+<span><span class="co">#&gt; 113                          Algerian mouse genes (SPRET_EiJ_v1)</span></span>
+<span><span class="co">#&gt; 114                            Zebra mbuna genes (M_zebra_UMD2a)</span></span>
+<span><span class="co">#&gt; 115                           Lyretail cichlid genes (NeoBri1.0)</span></span>
+<span><span class="co">#&gt; 116                                     Wallaby genes (Meug_1.0)</span></span>
+<span><span class="co">#&gt; 117                     Turquoise killifish genes (Nfu_20140520)</span></span>
+<span><span class="co">#&gt; 118 Upper Galilee mountains blind mole rat genes (S.galili_v1.0)</span></span>
+<span><span class="co">#&gt; 119                                      Gibbon genes (Nleu_3.0)</span></span>
+<span><span class="co">#&gt; 120                                 Indian cobra genes (Nana_v5)</span></span>
+<span><span class="co">#&gt; 121                     Mainland tiger snake genes (TS10Xv2-PRI)</span></span>
+<span><span class="co">#&gt; 122                              American mink genes (NNQGG.v01)</span></span>
+<span><span class="co">#&gt; 123                               Platypus genes (mOrnAna1.p.v1)</span></span>
+<span><span class="co">#&gt; 124                               Sheep genes (ARS-UI_Ramb_v2.0)</span></span>
+<span><span class="co">#&gt; 125                               Sheep (texel) genes (Oar_v3.1)</span></span>
+<span><span class="co">#&gt; 126                                     Rabbit genes (OryCun2.0)</span></span>
+<span><span class="co">#&gt; 127                                       Degu genes (OctDeg1.0)</span></span>
+<span><span class="co">#&gt; 128                                     Bushbaby genes (OtoGar3)</span></span>
+<span><span class="co">#&gt; 129                           Javanese ricefish genes (OJAV_1.1)</span></span>
+<span><span class="co">#&gt; 130                                  Coho salmon genes (Okis_V2)</span></span>
+<span><span class="co">#&gt; 131                     Japanese medaka HdrR genes (ASM223467v1)</span></span>
+<span><span class="co">#&gt; 132                           Indian medaka genes (Om_v0.7.RACA)</span></span>
+<span><span class="co">#&gt; 133                         Rainbow trout genes (USDA_OmykA_1.1)</span></span>
+<span><span class="co">#&gt; 134                    Nile tilapia genes (O_niloticus_UMD_NMBU)</span></span>
+<span><span class="co">#&gt; 135                                   Pika genes (OchPri2.0-Ens)</span></span>
+<span><span class="co">#&gt; 136                           Chinese medaka genes (ASM858656v1)</span></span>
+<span><span class="co">#&gt; 137                             Chinook salmon genes (Otsh_v2.0)</span></span>
+<span><span class="co">#&gt; 138                       Sumatran orangutan genes (Susie_PABv2)</span></span>
+<span><span class="co">#&gt; 139                              Olive baboon genes (Panubis1.0)</span></span>
+<span><span class="co">#&gt; 140                                        Hyrax genes (proCap1)</span></span>
+<span><span class="co">#&gt; 141                              Sperm whale genes (ASM283717v2)</span></span>
+<span><span class="co">#&gt; 142                               Koala genes (phaCin_unsw_v4.1)</span></span>
+<span><span class="co">#&gt; 143                           Coquerel's sifaka genes (Pcoq_1.0)</span></span>
+<span><span class="co">#&gt; 144                  Amazon molly genes (Poecilia_formosa-5.1.2)</span></span>
+<span><span class="co">#&gt; 145                  Paramormyrops kingsleyae genes (PKINGS_0.1)</span></span>
+<span><span class="co">#&gt; 146                        Sailfin molly genes (P_latipinna-1.0)</span></span>
+<span><span class="co">#&gt; 147                                       Lion genes (PanLeo1.0)</span></span>
+<span><span class="co">#&gt; 148                             Great Tit genes (Parus_major1.1)</span></span>
+<span><span class="co">#&gt; 149                                 Lamprey genes (Pmarinus_7.0)</span></span>
+<span><span class="co">#&gt; 150             Northern American deer mouse genes (HU_Pman_2.1)</span></span>
+<span><span class="co">#&gt; 151                        Common wall lizard genes (PodMur_1.0)</span></span>
+<span><span class="co">#&gt; 152                     Red-bellied piranha genes (fPygNat1.pri)</span></span>
+<span><span class="co">#&gt; 153                      Makobe Island cichlid genes (PunNye1.0)</span></span>
+<span><span class="co">#&gt; 154                                     Bonobo genes (panpan1.1)</span></span>
+<span><span class="co">#&gt; 155                                    Leopard genes (PanPar1.0)</span></span>
+<span><span class="co">#&gt; 156                            Guppy genes (Guppy_female_1.0_MT)</span></span>
+<span><span class="co">#&gt; 157                      Greater bamboo lemur genes (Prosim_1.0)</span></span>
+<span><span class="co">#&gt; 158                  Chinese softshell turtle genes (PelSin_1.0)</span></span>
+<span><span class="co">#&gt; 159                                 Vaquita genes (mPhoSin1.pri)</span></span>
+<span><span class="co">#&gt; 160                                      Tiger genes (PanTig1.0)</span></span>
+<span><span class="co">#&gt; 161                     Eastern brown snake genes (EBS10Xv2-PRI)</span></span>
+<span><span class="co">#&gt; 162                               Chimpanzee genes (Pan_tro_3.0)</span></span>
+<span><span class="co">#&gt; 163                                      Megabat genes (pteVam1)</span></span>
+<span><span class="co">#&gt; 164                  Black snub-nosed monkey genes (ASM169854v1)</span></span>
+<span><span class="co">#&gt; 165                  Greater horseshoe bat genes (mRhiFer1_v1.p)</span></span>
+<span><span class="co">#&gt; 166                                        Rat genes (mRatBN7.2)</span></span>
+<span><span class="co">#&gt; 167                     Golden snub-nosed monkey genes (Rrox_v1)</span></span>
+<span><span class="co">#&gt; 168                                        Shrew genes (sorAra1)</span></span>
+<span><span class="co">#&gt; 169                         Gilthead seabream genes (fSpaAur1.1)</span></span>
+<span><span class="co">#&gt; 170                   Bolivian squirrel monkey genes (SaiBol1.0)</span></span>
+<span><span class="co">#&gt; 171                                   Common canary genes (SCA1)</span></span>
+<span><span class="co">#&gt; 172                           African ostrich genes (ASM69896v1)</span></span>
+<span><span class="co">#&gt; 173                     Saccharomyces cerevisiae genes (R64-1-1)</span></span>
+<span><span class="co">#&gt; 174                            Greater amberjack genes (Sdu_1.0)</span></span>
+<span><span class="co">#&gt; 175                          Asian bonytongue genes (fSclFor1.1)</span></span>
+<span><span class="co">#&gt; 176                                 Kakapo genes (bStrHab1_v1.p)</span></span>
+<span><span class="co">#&gt; 177                          Tasmanian devil genes (mSarHar1.11)</span></span>
+<span><span class="co">#&gt; 178                          Yellowtail amberjack genes (Sedor1)</span></span>
+<span><span class="co">#&gt; 179                                Pike-perch genes (SLUC_FBN_1)</span></span>
+<span><span class="co">#&gt; 180                                  Turbot genes (ASM1334776v1)</span></span>
+<span><span class="co">#&gt; 181             Argentine black and white tegu genes (HLtupMer3)</span></span>
+<span><span class="co">#&gt; 182          Bicolor damselfish genes (Stegastes_partitus-1.0.2)</span></span>
+<span><span class="co">#&gt; 183                                  Tuatara genes (ASM311381v1)</span></span>
+<span><span class="co">#&gt; 184                            Atlantic salmon genes (Ssal_v3.1)</span></span>
+<span><span class="co">#&gt; 185                             Pig - Bamei genes (Bamei_pig_v1)</span></span>
+<span><span class="co">#&gt; 186                     Pig - Berkshire genes (Berkshire_pig_v1)</span></span>
+<span><span class="co">#&gt; 187                                      Pig genes (Sscrofa11.1)</span></span>
+<span><span class="co">#&gt; 188                     Pig - Hampshire genes (Hampshire_pig_v1)</span></span>
+<span><span class="co">#&gt; 189                           Pig - Jinhua genes (Jinhua_pig_v1)</span></span>
+<span><span class="co">#&gt; 190                       Pig - Landrace genes (Landrace_pig_v1)</span></span>
+<span><span class="co">#&gt; 191                      Pig - Largewhite genes (Large_White_v1)</span></span>
+<span><span class="co">#&gt; 192                         Pig - Meishan genes (Meishan_pig_v1)</span></span>
+<span><span class="co">#&gt; 193                       Pig - Pietrain genes (Pietrain_pig_v1)</span></span>
+<span><span class="co">#&gt; 194                     Pig - Rongchang genes (Rongchang_pig_v1)</span></span>
+<span><span class="co">#&gt; 195                         Pig - Tibetan genes (Tibetan_Pig_v2)</span></span>
+<span><span class="co">#&gt; 196                                Pig USMARC genes (USMARCv1.0)</span></span>
+<span><span class="co">#&gt; 197                         Pig - Wuzhishan genes (minipig_v1.0)</span></span>
+<span><span class="co">#&gt; 198                               Brown trout genes (fSalTru1.1)</span></span>
+<span><span class="co">#&gt; 199                     Eurasian red squirrel genes (mSciVul1.1)</span></span>
+<span><span class="co">#&gt; 200                                   Tree Shrew genes (tupBel1)</span></span>
+<span><span class="co">#&gt; 201              Three-toed box turtle genes (T_m_triunguis-2.0)</span></span>
+<span><span class="co">#&gt; 202                            Zebra finch genes (bTaeGut1_v1.p)</span></span>
+<span><span class="co">#&gt; 203                              Tetraodon genes (TETRAODON 8.0)</span></span>
+<span><span class="co">#&gt; 204                                      Fugu genes (fTakRub1.2)</span></span>
+<span><span class="co">#&gt; 205                                      Dolphin genes (turTru1)</span></span>
+<span><span class="co">#&gt; 206                      American black bear genes (ASM334442v1)</span></span>
+<span><span class="co">#&gt; 207                                Polar bear genes (UrsMar_1.0)</span></span>
+<span><span class="co">#&gt; 208                   Arctic ground squirrel genes (ASM342692v1)</span></span>
+<span><span class="co">#&gt; 209                                       Alpaca genes (vicPac1)</span></span>
+<span><span class="co">#&gt; 210      Common wombat genes (bare-nosed_wombat_genome_assembly)</span></span>
+<span><span class="co">#&gt; 211                                    Red fox genes (VulVul2.2)</span></span>
+<span><span class="co">#&gt; 212     Monterrey platyfish genes (Xiphophorus_couchianus-4.0.1)</span></span>
+<span><span class="co">#&gt; 213                       Platyfish genes (X_maculatus-5.0-male)</span></span>
+<span><span class="co">#&gt; 214                   Tropical clawed frog genes (UCB_Xtro_10.0)</span></span>
+<span><span class="co">#&gt;                               version</span></span>
+<span><span class="co">#&gt; 1                         ASM259213v1</span></span>
+<span><span class="co">#&gt; 2                          fAstCal1.3</span></span>
+<span><span class="co">#&gt; 3                         AnoCar2.0v2</span></span>
+<span><span class="co">#&gt; 4                          bAquChr1.2</span></span>
+<span><span class="co">#&gt; 5                            Midas_v5</span></span>
+<span><span class="co">#&gt; 6                         ASM200744v2</span></span>
+<span><span class="co">#&gt; 7              Astyanax_mexicanus-2.0</span></span>
+<span><span class="co">#&gt; 8                            Anan_2.0</span></span>
+<span><span class="co">#&gt; 9                        ASM2253959v1</span></span>
+<span><span class="co">#&gt; 10                            Nemo_v1</span></span>
+<span><span class="co">#&gt; 11                        ASM874695v1</span></span>
+<span><span class="co">#&gt; 12                        ASM210954v1</span></span>
+<span><span class="co">#&gt; 13                        CAU_duck1.0</span></span>
+<span><span class="co">#&gt; 14                         fAnaTes1.3</span></span>
+<span><span class="co">#&gt; 15                       Bison_UMD1.0</span></span>
+<span><span class="co">#&gt; 16                     LU_Bosgru_v3.0</span></span>
+<span><span class="co">#&gt; 17                      UOA_Brahman_1</span></span>
+<span><span class="co">#&gt; 18                        mBalMus1.v2</span></span>
+<span><span class="co">#&gt; 19                        BosGru_v2.0</span></span>
+<span><span class="co">#&gt; 20                         fBetSpl5.2</span></span>
+<span><span class="co">#&gt; 21                         ARS-UCD1.3</span></span>
+<span><span class="co">#&gt; 22                        ASM359739v1</span></span>
+<span><span class="co">#&gt; 23                           Caty_1.0</span></span>
+<span><span class="co">#&gt; 24                        ASM336829v1</span></span>
+<span><span class="co">#&gt; 25                     Cypcar_WagV4.0</span></span>
+<span><span class="co">#&gt; 26                            CamDro2</span></span>
+<span><span class="co">#&gt; 27                           WBcel235</span></span>
+<span><span class="co">#&gt; 28                       CHOK1GS_HDv1</span></span>
+<span><span class="co">#&gt; 29                         fCotGob3.1</span></span>
+<span><span class="co">#&gt; 30                        Ch_v2.0.2v2</span></span>
+<span><span class="co">#&gt; 31                               ARS1</span></span>
+<span><span class="co">#&gt; 32                            choHof1</span></span>
+<span><span class="co">#&gt; 33                             CEY_v1</span></span>
+<span><span class="co">#&gt; 34                 Cebus_imitator-1.0</span></span>
+<span><span class="co">#&gt; 35                                 KH</span></span>
+<span><span class="co">#&gt; 36                     mCalJac1.pat.X</span></span>
+<span><span class="co">#&gt; 37              Coturnix_japonica_2.0</span></span>
+<span><span class="co">#&gt; 38                          ChiLan1.0</span></span>
+<span><span class="co">#&gt; 39                        ASM325472v1</span></span>
+<span><span class="co">#&gt; 40                       ROS_Cfam_1.0</span></span>
+<span><span class="co">#&gt; 41                       fCycLum1.pri</span></span>
+<span><span class="co">#&gt; 42          Callorhinchus_milii-6.1.3</span></span>
+<span><span class="co">#&gt; 43       Chrysemys_picta_bellii-3.0.3</span></span>
+<span><span class="co">#&gt; 44                          Cavpor3.0</span></span>
+<span><span class="co">#&gt; 45                       CroPor_comp1</span></span>
+<span><span class="co">#&gt; 46                          ChlSab1.1</span></span>
+<span><span class="co">#&gt; 47                           CSAV 2.0</span></span>
+<span><span class="co">#&gt; 48                           Cse_v1.0</span></span>
+<span><span class="co">#&gt; 49             Tarsius_syrichta-2.0.1</span></span>
+<span><span class="co">#&gt; 50                   C_variegatus-1.0</span></span>
+<span><span class="co">#&gt; 51                 CatWag_v2_BIUU_UCD</span></span>
+<span><span class="co">#&gt; 52                         fDenClu1.2</span></span>
+<span><span class="co">#&gt; 53                        dlabrax2021</span></span>
+<span><span class="co">#&gt; 54                        ASM228892v3</span></span>
+<span><span class="co">#&gt; 55                           BDGP6.46</span></span>
+<span><span class="co">#&gt; 56                          Dasnov3.0</span></span>
+<span><span class="co">#&gt; 57                           Dord_2.0</span></span>
+<span><span class="co">#&gt; 58                             GRCz11</span></span>
+<span><span class="co">#&gt; 59                       ASM1607732v2</span></span>
+<span><span class="co">#&gt; 60                       Eburgeri_3.2</span></span>
+<span><span class="co">#&gt; 61                          EquCab3.0</span></span>
+<span><span class="co">#&gt; 62                         fErpCal1.1</span></span>
+<span><span class="co">#&gt; 63                       fEleEle1.pri</span></span>
+<span><span class="co">#&gt; 64                            eriEur1</span></span>
+<span><span class="co">#&gt; 65                       fEsoLuc1.pri</span></span>
+<span><span class="co">#&gt; 66                             TENREC</span></span>
+<span><span class="co">#&gt; 67                          FicAlb1.5</span></span>
+<span><span class="co">#&gt; 68                    Felis_catus_9.0</span></span>
+<span><span class="co">#&gt; 69        Fundulus_heteroclitus-3.0.2</span></span>
+<span><span class="co">#&gt; 70            GAculeatus_UGA_version5</span></span>
+<span><span class="co">#&gt; 71                      rGopEvg1_v1.p</span></span>
+<span><span class="co">#&gt; 72                         GeoFor_1.0</span></span>
+<span><span class="co">#&gt; 73        bGalGal1.mat.broiler.GRCg7b</span></span>
+<span><span class="co">#&gt; 74                            gorGor4</span></span>
+<span><span class="co">#&gt; 75                          gadMor3.0</span></span>
+<span><span class="co">#&gt; 76                          AstBur1.0</span></span>
+<span><span class="co">#&gt; 77                     H_comes_QL1_v1</span></span>
+<span><span class="co">#&gt; 78            Naked_mole-rat_maternal</span></span>
+<span><span class="co">#&gt; 79                        ASM331708v1</span></span>
+<span><span class="co">#&gt; 80                         GRCh38.p14</span></span>
+<span><span class="co">#&gt; 81                        ASM400665v3</span></span>
+<span><span class="co">#&gt; 82                          SpeTri2.0</span></span>
+<span><span class="co">#&gt; 83                          JacJac1.0</span></span>
+<span><span class="co">#&gt; 84                        ASM164957v1</span></span>
+<span><span class="co">#&gt; 85                          Loxafr3.0</span></span>
+<span><span class="co">#&gt; 86                         BallGen_V1</span></span>
+<span><span class="co">#&gt; 87                ASB_HGAPassembly_v1</span></span>
+<span><span class="co">#&gt; 88                            LatCha1</span></span>
+<span><span class="co">#&gt; 89                       L_crocea_2.0</span></span>
+<span><span class="co">#&gt; 90                         latLat_1.0</span></span>
+<span><span class="co">#&gt; 91                        ASM966780v1</span></span>
+<span><span class="co">#&gt; 92                            LepOcu1</span></span>
+<span><span class="co">#&gt; 93                         fMasArm1.2</span></span>
+<span><span class="co">#&gt; 94                          MesAur1.0</span></span>
+<span><span class="co">#&gt; 95                    CAROLI_EIJ_v1.1</span></span>
+<span><span class="co">#&gt; 96                           ASM229v1</span></span>
+<span><span class="co">#&gt; 97            Macaca_fascicularis_6.0</span></span>
+<span><span class="co">#&gt; 98                         Turkey_5.1</span></span>
+<span><span class="co">#&gt; 99                        Mleu.le_1.0</span></span>
+<span><span class="co">#&gt; 100                         Myoluc2.0</span></span>
+<span><span class="co">#&gt; 101                         marMar2.1</span></span>
+<span><span class="co">#&gt; 102                     NGI_Narwhal_1</span></span>
+<span><span class="co">#&gt; 103                MosMos_v2_BIUU_UCD</span></span>
+<span><span class="co">#&gt; 104                           Mmul_10</span></span>
+<span><span class="co">#&gt; 105                        fMyrMur1.1</span></span>
+<span><span class="co">#&gt; 106                          Mmur_3.0</span></span>
+<span><span class="co">#&gt; 107                            GRCm39</span></span>
+<span><span class="co">#&gt; 108                          Mnem_1.0</span></span>
+<span><span class="co">#&gt; 109                         MicOch1.0</span></span>
+<span><span class="co">#&gt; 110                   PAHARI_EIJ_v1.1</span></span>
+<span><span class="co">#&gt; 111                      MusPutFur1.0</span></span>
+<span><span class="co">#&gt; 112                           MUSP714</span></span>
+<span><span class="co">#&gt; 113                      SPRET_EiJ_v1</span></span>
+<span><span class="co">#&gt; 114                     M_zebra_UMD2a</span></span>
+<span><span class="co">#&gt; 115                         NeoBri1.0</span></span>
+<span><span class="co">#&gt; 116                          Meug_1.0</span></span>
+<span><span class="co">#&gt; 117                      Nfu_20140520</span></span>
+<span><span class="co">#&gt; 118                     S.galili_v1.0</span></span>
+<span><span class="co">#&gt; 119                          Nleu_3.0</span></span>
+<span><span class="co">#&gt; 120                           Nana_v5</span></span>
+<span><span class="co">#&gt; 121                       TS10Xv2-PRI</span></span>
+<span><span class="co">#&gt; 122                         NNQGG.v01</span></span>
+<span><span class="co">#&gt; 123                     mOrnAna1.p.v1</span></span>
+<span><span class="co">#&gt; 124                  ARS-UI_Ramb_v2.0</span></span>
+<span><span class="co">#&gt; 125                          Oar_v3.1</span></span>
+<span><span class="co">#&gt; 126                         OryCun2.0</span></span>
+<span><span class="co">#&gt; 127                         OctDeg1.0</span></span>
+<span><span class="co">#&gt; 128                           OtoGar3</span></span>
+<span><span class="co">#&gt; 129                          OJAV_1.1</span></span>
+<span><span class="co">#&gt; 130                           Okis_V2</span></span>
+<span><span class="co">#&gt; 131                       ASM223467v1</span></span>
+<span><span class="co">#&gt; 132                      Om_v0.7.RACA</span></span>
+<span><span class="co">#&gt; 133                    USDA_OmykA_1.1</span></span>
+<span><span class="co">#&gt; 134              O_niloticus_UMD_NMBU</span></span>
+<span><span class="co">#&gt; 135                     OchPri2.0-Ens</span></span>
+<span><span class="co">#&gt; 136                       ASM858656v1</span></span>
+<span><span class="co">#&gt; 137                         Otsh_v2.0</span></span>
+<span><span class="co">#&gt; 138                       Susie_PABv2</span></span>
+<span><span class="co">#&gt; 139                        Panubis1.0</span></span>
+<span><span class="co">#&gt; 140                           proCap1</span></span>
+<span><span class="co">#&gt; 141                       ASM283717v2</span></span>
+<span><span class="co">#&gt; 142                  phaCin_unsw_v4.1</span></span>
+<span><span class="co">#&gt; 143                          Pcoq_1.0</span></span>
+<span><span class="co">#&gt; 144            Poecilia_formosa-5.1.2</span></span>
+<span><span class="co">#&gt; 145                        PKINGS_0.1</span></span>
+<span><span class="co">#&gt; 146                   P_latipinna-1.0</span></span>
+<span><span class="co">#&gt; 147                         PanLeo1.0</span></span>
+<span><span class="co">#&gt; 148                    Parus_major1.1</span></span>
+<span><span class="co">#&gt; 149                      Pmarinus_7.0</span></span>
+<span><span class="co">#&gt; 150                       HU_Pman_2.1</span></span>
+<span><span class="co">#&gt; 151                        PodMur_1.0</span></span>
+<span><span class="co">#&gt; 152                      fPygNat1.pri</span></span>
+<span><span class="co">#&gt; 153                         PunNye1.0</span></span>
+<span><span class="co">#&gt; 154                         panpan1.1</span></span>
+<span><span class="co">#&gt; 155                         PanPar1.0</span></span>
+<span><span class="co">#&gt; 156               Guppy_female_1.0_MT</span></span>
+<span><span class="co">#&gt; 157                        Prosim_1.0</span></span>
+<span><span class="co">#&gt; 158                        PelSin_1.0</span></span>
+<span><span class="co">#&gt; 159                      mPhoSin1.pri</span></span>
+<span><span class="co">#&gt; 160                         PanTig1.0</span></span>
+<span><span class="co">#&gt; 161                      EBS10Xv2-PRI</span></span>
+<span><span class="co">#&gt; 162                       Pan_tro_3.0</span></span>
+<span><span class="co">#&gt; 163                           pteVam1</span></span>
+<span><span class="co">#&gt; 164                       ASM169854v1</span></span>
+<span><span class="co">#&gt; 165                     mRhiFer1_v1.p</span></span>
+<span><span class="co">#&gt; 166                         mRatBN7.2</span></span>
+<span><span class="co">#&gt; 167                           Rrox_v1</span></span>
+<span><span class="co">#&gt; 168                           sorAra1</span></span>
+<span><span class="co">#&gt; 169                        fSpaAur1.1</span></span>
+<span><span class="co">#&gt; 170                         SaiBol1.0</span></span>
+<span><span class="co">#&gt; 171                              SCA1</span></span>
+<span><span class="co">#&gt; 172                        ASM69896v1</span></span>
+<span><span class="co">#&gt; 173                           R64-1-1</span></span>
+<span><span class="co">#&gt; 174                           Sdu_1.0</span></span>
+<span><span class="co">#&gt; 175                        fSclFor1.1</span></span>
+<span><span class="co">#&gt; 176                     bStrHab1_v1.p</span></span>
+<span><span class="co">#&gt; 177                       mSarHar1.11</span></span>
+<span><span class="co">#&gt; 178                            Sedor1</span></span>
+<span><span class="co">#&gt; 179                        SLUC_FBN_1</span></span>
+<span><span class="co">#&gt; 180                      ASM1334776v1</span></span>
+<span><span class="co">#&gt; 181                         HLtupMer3</span></span>
+<span><span class="co">#&gt; 182          Stegastes_partitus-1.0.2</span></span>
+<span><span class="co">#&gt; 183                       ASM311381v1</span></span>
+<span><span class="co">#&gt; 184                         Ssal_v3.1</span></span>
+<span><span class="co">#&gt; 185                      Bamei_pig_v1</span></span>
+<span><span class="co">#&gt; 186                  Berkshire_pig_v1</span></span>
+<span><span class="co">#&gt; 187                       Sscrofa11.1</span></span>
+<span><span class="co">#&gt; 188                  Hampshire_pig_v1</span></span>
+<span><span class="co">#&gt; 189                     Jinhua_pig_v1</span></span>
+<span><span class="co">#&gt; 190                   Landrace_pig_v1</span></span>
+<span><span class="co">#&gt; 191                    Large_White_v1</span></span>
+<span><span class="co">#&gt; 192                    Meishan_pig_v1</span></span>
+<span><span class="co">#&gt; 193                   Pietrain_pig_v1</span></span>
+<span><span class="co">#&gt; 194                  Rongchang_pig_v1</span></span>
+<span><span class="co">#&gt; 195                    Tibetan_Pig_v2</span></span>
+<span><span class="co">#&gt; 196                        USMARCv1.0</span></span>
+<span><span class="co">#&gt; 197                      minipig_v1.0</span></span>
+<span><span class="co">#&gt; 198                        fSalTru1.1</span></span>
+<span><span class="co">#&gt; 199                        mSciVul1.1</span></span>
+<span><span class="co">#&gt; 200                           tupBel1</span></span>
+<span><span class="co">#&gt; 201                 T_m_triunguis-2.0</span></span>
+<span><span class="co">#&gt; 202                     bTaeGut1_v1.p</span></span>
+<span><span class="co">#&gt; 203                     TETRAODON 8.0</span></span>
+<span><span class="co">#&gt; 204                        fTakRub1.2</span></span>
+<span><span class="co">#&gt; 205                           turTru1</span></span>
+<span><span class="co">#&gt; 206                       ASM334442v1</span></span>
+<span><span class="co">#&gt; 207                        UrsMar_1.0</span></span>
+<span><span class="co">#&gt; 208                       ASM342692v1</span></span>
+<span><span class="co">#&gt; 209                           vicPac1</span></span>
+<span><span class="co">#&gt; 210 bare-nosed_wombat_genome_assembly</span></span>
+<span><span class="co">#&gt; 211                         VulVul2.2</span></span>
+<span><span class="co">#&gt; 212      Xiphophorus_couchianus-4.0.1</span></span>
+<span><span class="co">#&gt; 213              X_maculatus-5.0-male</span></span>
+<span><span class="co">#&gt; 214                     UCB_Xtro_10.0</span></span>
+<span><span class="va">ensembl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/useMart.html" class="external-link">useMart</a></span><span class="op">(</span><span class="st">"ensembl"</span>, dataset<span class="op">=</span><span class="st">"hsapiens_gene_ensembl"</span>, host<span class="op">=</span><span class="st">"grch37.ensembl.org"</span>, path<span class="op">=</span><span class="st">"/biomart/martservice"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: Ensembl will soon enforce the use of https.</span></span>
+<span><span class="co">#&gt; Ensure the 'host' argument includes "https://"</span></span>
+<span><span class="va">attr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listAttributes.html" class="external-link">listAttributes</a></span><span class="op">(</span><span class="va">ensembl</span><span class="op">)</span></span>
+<span><span class="va">attr_select</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'ensembl_gene_id'</span>, <span class="st">'chromosome_name'</span>, <span class="st">'start_position'</span>, <span class="st">'end_position'</span>, <span class="st">'description'</span>, <span class="st">'hgnc_symbol'</span>, <span class="st">'transcription_start_site'</span><span class="op">)</span></span>
+<span><span class="va">gene</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/getBM.html" class="external-link">getBM</a></span><span class="op">(</span>attributes <span class="op">=</span> <span class="va">attr_select</span>, mart <span class="op">=</span> <span class="va">ensembl</span><span class="op">)</span></span>
+<span><span class="va">filter</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listFilters.html" class="external-link">listFilters</a></span><span class="op">(</span><span class="va">ensembl</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listFilters.html" class="external-link">searchFilters</a></span><span class="op">(</span>mart <span class="op">=</span> <span class="va">ensembl</span>, pattern <span class="op">=</span> <span class="st">"gene"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                              name</span></span>
+<span><span class="co">#&gt; 13  with_clone_based_ensembl_gene</span></span>
+<span><span class="co">#&gt; 15     with_clone_based_vega_gene</span></span>
+<span><span class="co">#&gt; 23                      with_ottg</span></span>
+<span><span class="co">#&gt; 30              with_ens_lrg_gene</span></span>
+<span><span class="co">#&gt; 33                  with_mim_gene</span></span>
+<span><span class="co">#&gt; 37                with_entrezgene</span></span>
+<span><span class="co">#&gt; 50                   with_unigene</span></span>
+<span><span class="co">#&gt; 58                  with_wikigene</span></span>
+<span><span class="co">#&gt; 59                ensembl_gene_id</span></span>
+<span><span class="co">#&gt; 60        ensembl_gene_id_version</span></span>
+<span><span class="co">#&gt; 66             external_gene_name</span></span>
+<span><span class="co">#&gt; 71       clone_based_ensembl_gene</span></span>
+<span><span class="co">#&gt; 73          clone_based_vega_gene</span></span>
+<span><span class="co">#&gt; 82                           ottg</span></span>
+<span><span class="co">#&gt; 91                   ens_lrg_gene</span></span>
+<span><span class="co">#&gt; 94             mim_gene_accession</span></span>
+<span><span class="co">#&gt; 99           entrezgene_accession</span></span>
+<span><span class="co">#&gt; 100                 entrezgene_id</span></span>
+<span><span class="co">#&gt; 113                       unigene</span></span>
+<span><span class="co">#&gt; 122                 wikigene_name</span></span>
+<span><span class="co">#&gt; 123                   wikigene_id</span></span>
+<span><span class="co">#&gt; 138            with_affy_hugenefl</span></span>
+<span><span class="co">#&gt; 139    with_affy_hugene_1_0_st_v1</span></span>
+<span><span class="co">#&gt; 140    with_affy_hugene_2_0_st_v1</span></span>
+<span><span class="co">#&gt; 173                 affy_hugenefl</span></span>
+<span><span class="co">#&gt; 174         affy_hugene_1_0_st_v1</span></span>
+<span><span class="co">#&gt; 175         affy_hugene_2_0_st_v1</span></span>
+<span><span class="co">#&gt; 198                        source</span></span>
+<span><span class="co">#&gt; 208                   with_gene3d</span></span>
+<span><span class="co">#&gt; 224                        gene3d</span></span>
+<span><span class="co">#&gt; 235    germ_line_variation_source</span></span>
+<span><span class="co">#&gt; 236      somatic_variation_source</span></span>
+<span><span class="co">#&gt;                                                       description</span></span>
+<span><span class="co">#&gt; 13                          With Clone-based (Ensembl) gene ID(s)</span></span>
+<span><span class="co">#&gt; 15                             With Clone-based (Vega) gene ID(s)</span></span>
+<span><span class="co">#&gt; 23                                         With Havana gene ID(s)</span></span>
+<span><span class="co">#&gt; 30                         With LRG display in Ensembl gene ID(s)</span></span>
+<span><span class="co">#&gt; 33                                            With MIM gene ID(s)</span></span>
+<span><span class="co">#&gt; 37                     With NCBI gene (formerly Entrezgene) ID(s)</span></span>
+<span><span class="co">#&gt; 50                                             With UniGene ID(s)</span></span>
+<span><span class="co">#&gt; 58                                            With WikiGene ID(s)</span></span>
+<span><span class="co">#&gt; 59                       Gene stable ID(s) [e.g. ENSG00000000003]</span></span>
+<span><span class="co">#&gt; 60       Gene stable ID(s) with version [e.g. ENSG00000000003.10]</span></span>
+<span><span class="co">#&gt; 66                                   Gene Name(s) [e.g. SLC25A26]</span></span>
+<span><span class="co">#&gt; 71             Clone-based (Ensembl) gene ID(s) [e.g. AB019440.1]</span></span>
+<span><span class="co">#&gt; 73                Clone-based (Vega) gene ID(s) [e.g. AB015752.3]</span></span>
+<span><span class="co">#&gt; 82                    Havana gene ID(s) [e.g. OTTHUMG00000000392]</span></span>
+<span><span class="co">#&gt; 91                 LRG display in Ensembl gene ID(s) [e.g. LRG_1]</span></span>
+<span><span class="co">#&gt; 94                            MIM gene accession(s) [e.g. 100640]</span></span>
+<span><span class="co">#&gt; 99  NCBI gene (formerly Entrezgene) accession(s) [e.g. 101927218]</span></span>
+<span><span class="co">#&gt; 100                NCBI gene (formerly Entrezgene) ID(s) [e.g. 1]</span></span>
+<span><span class="co">#&gt; 113                                UniGene ID(s) [e.g. Hs.100057]</span></span>
+<span><span class="co">#&gt; 122                             WikiGene name(s) [e.g. 101927218]</span></span>
+<span><span class="co">#&gt; 123                                       WikiGene ID(s) [e.g. 1]</span></span>
+<span><span class="co">#&gt; 138                                With AFFY HuGeneFL probe ID(s)</span></span>
+<span><span class="co">#&gt; 139                        With AFFY HuGene 1 0 st v1 probe ID(s)</span></span>
+<span><span class="co">#&gt; 140                        With AFFY HuGene 2 0 st v1 probe ID(s)</span></span>
+<span><span class="co">#&gt; 173                    AFFY HuGeneFL probe ID(s) [e.g. U82319_at]</span></span>
+<span><span class="co">#&gt; 174              AFFY HuGene 1 0 st v1 probe ID(s) [e.g. 8080896]</span></span>
+<span><span class="co">#&gt; 175             AFFY HuGene 2 0 st v1 probe ID(s) [e.g. 16942487]</span></span>
+<span><span class="co">#&gt; 198                                                 Source (gene)</span></span>
+<span><span class="co">#&gt; 208                                             With Gene3D ID(s)</span></span>
+<span><span class="co">#&gt; 224                                Gene3D ID(s) [e.g. 1.10.10.10]</span></span>
+<span><span class="co">#&gt; 235             limit to genes with germline variant data sources</span></span>
+<span><span class="co">#&gt; 236                   limit to genes with somatic variant sources</span></span></code></pre></div>
+</div>
+<div class="section level4" number="3.1.3">
+<h4 id="efo">
+<span class="header-section-number">3.1.3</span> EFO<a class="anchor" aria-label="anchor" href="#efo"></a>
+</h4>
+<p>The ontology of traits/disease is available through Experimental Factor Ontology (EFO)<span class="citation"><sup><strong>malone10?</strong></sup></span>.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ontologyIndex</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">id</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">ontology</span><span class="op">)</span></span>
+<span><span class="op">{</span></span>
+<span>  <span class="va">inflammatory</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="va">ontology</span><span class="op">$</span><span class="va">name</span>,pattern<span class="op">=</span><span class="st">"inflammatory"</span><span class="op">)</span></span>
+<span>  <span class="va">immune</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="va">ontology</span><span class="op">$</span><span class="va">name</span>,pattern<span class="op">=</span><span class="st">"immune"</span><span class="op">)</span></span>
+<span>  <span class="va">inf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sets.html" class="external-link">union</a></span><span class="op">(</span><span class="va">inflammatory</span>,<span class="va">immune</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>id<span class="op">=</span><span class="va">ontology</span><span class="op">$</span><span class="va">id</span><span class="op">[</span><span class="va">inf</span><span class="op">]</span>,name<span class="op">=</span><span class="va">ontology</span><span class="op">$</span><span class="va">name</span><span class="op">[</span><span class="va">inf</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="co"># GO</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">go</span><span class="op">)</span></span>
+<span><span class="va">goidname</span> <span class="op">&lt;-</span> <span class="fu">id</span><span class="op">(</span><span class="va">go</span><span class="op">)</span></span>
+<span><span class="co"># EFO</span></span>
+<span><span class="va">file</span> <span class="op">&lt;-</span> <span class="st">"efo.obo"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/ontologyIndex/man/get_relation_names.html" class="external-link">get_relation_names</a></span><span class="op">(</span><span class="va">file</span><span class="op">)</span></span>
+<span><span class="va">efo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ontologyIndex/man/get_ontology.html" class="external-link">get_ontology</a></span><span class="op">(</span><span class="va">file</span>, extract_tags<span class="op">=</span><span class="st">"everything"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">efo</span><span class="op">)</span> <span class="co"># 89</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">efo</span><span class="op">$</span><span class="va">id</span><span class="op">)</span> <span class="co"># 27962</span></span>
+<span><span class="va">efoidname</span> <span class="op">&lt;-</span> <span class="fu">id</span><span class="op">(</span><span class="va">efo</span><span class="op">)</span></span>
+<span><span class="va">diseases</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ontologyIndex/man/get_descendants.html" class="external-link">get_descendants</a></span><span class="op">(</span><span class="va">efo</span>,<span class="st">"EFO:0000408"</span><span class="op">)</span></span>
+<span><span class="va">efo_0000540</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ontologyIndex/man/get_descendants.html" class="external-link">get_descendants</a></span><span class="op">(</span><span class="va">efo</span>,<span class="st">"EFO:0000540"</span><span class="op">)</span></span>
+<span><span class="va">efo_0000540name</span> <span class="op">&lt;-</span> <span class="va">efo</span><span class="op">$</span><span class="va">name</span><span class="op">[</span><span class="va">efo_0000540</span><span class="op">]</span></span>
+<span><span class="va">isd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">efo_0000540</span>,<span class="va">efo_0000540name</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/save.html" class="external-link">save</a></span><span class="op">(</span><span class="va">efo</span>,<span class="va">diseases</span>,<span class="va">isd</span>,<span class="va">efoidname</span>,<span class="va">goidname</span>, file<span class="op">=</span><span class="st">"work/efo.rda"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.table</a></span><span class="op">(</span><span class="va">isd</span>,file<span class="op">=</span><span class="st">"efo_0000540.csv"</span>,col.names<span class="op">=</span><span class="cn">FALSE</span>,row.names<span class="op">=</span><span class="cn">FALSE</span>,sep<span class="op">=</span><span class="st">","</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ontologyPlot</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/ontologyPlot/man/onto_plot.html" class="external-link">onto_plot</a></span><span class="op">(</span><span class="va">efo</span>,<span class="va">efo_0000540</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level4" number="3.1.4">
+<h4 id="rentrez">
+<span class="header-section-number">3.1.4</span> rentrez<a class="anchor" aria-label="anchor" href="#rentrez"></a>
+</h4>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/rentrez/" class="external-link">rentrez</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/entrez_dbs.html" class="external-link">entrez_dbs</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/entrez_db_links.html" class="external-link">entrez_db_links</a></span><span class="op">(</span><span class="st">"pubmed"</span><span class="op">)</span></span>
+<span><span class="va">pubmed_fields</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/entrez_db_searchable.html" class="external-link">entrez_db_searchable</a></span><span class="op">(</span><span class="st">"pubmed"</span><span class="op">)</span></span>
+<span><span class="co"># set_entrez_key("")</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"ENTREZ_KEY"</span><span class="op">)</span></span>
+<span><span class="va">term</span> <span class="op">&lt;-</span> <span class="st">"pQTLs OR (protein AND quantitative AND trait AND loci) AND human [MH] AND (plasma OR Serum)"</span></span>
+<span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/entrez_search.html" class="external-link">entrez_search</a></span><span class="op">(</span>db<span class="op">=</span><span class="st">"pubmed"</span>,term<span class="op">=</span><span class="va">term</span>,use_history<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">r</span>,<span class="va">web_history</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"pubmed"</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"fetch"</span>,<span class="st">"summary"</span><span class="op">)</span>,sep<span class="op">=</span><span class="st">"."</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">fields</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"uid"</span>, <span class="st">"pubdate"</span>, <span class="st">"sortfirstauthor"</span>, <span class="st">"title"</span>, <span class="st">"source"</span>, <span class="st">"volume"</span>, <span class="st">"pages"</span><span class="op">)</span></span>
+<span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">r</span>,<span class="va">count</span><span class="op">)</span>,<span class="fl">50</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="va">i</span><span class="op">+</span><span class="fl">49</span>, <span class="st">"records downloaded\r"</span><span class="op">)</span></span>
+<span>  <span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/entrez_fetch.html" class="external-link">entrez_fetch</a></span><span class="op">(</span>db<span class="op">=</span><span class="st">"pubmed"</span>, web_history<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">r</span>,<span class="va">web_history</span><span class="op">)</span>, rettype<span class="op">=</span><span class="st">"text"</span>, retmax<span class="op">=</span><span class="fl">50</span>, retstart<span class="op">=</span><span class="va">i</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.table</a></span><span class="op">(</span><span class="va">f</span>, col.names<span class="op">=</span><span class="cn">FALSE</span>, row.names<span class="op">=</span><span class="cn">FALSE</span>, file<span class="op">=</span><span class="st">"pubmed.fetch"</span>, append<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  <span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/entrez_summary.html" class="external-link">entrez_summary</a></span><span class="op">(</span>db<span class="op">=</span><span class="st">"pubmed"</span>, web_history<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">r</span>,<span class="va">web_history</span><span class="op">)</span>, rettype<span class="op">=</span><span class="st">"text"</span>, retmax<span class="op">=</span><span class="fl">50</span>, retstart<span class="op">=</span><span class="va">i</span><span class="op">)</span></span>
+<span>  <span class="va">e</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/extract_from_esummary.html" class="external-link">extract_from_esummary</a></span><span class="op">(</span><span class="va">s</span>, <span class="va">fields</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">e</span><span class="op">)</span>, col.names<span class="op">=</span><span class="cn">FALSE</span>, row.names<span class="op">=</span><span class="cn">FALSE</span>, file<span class="op">=</span><span class="st">"pubmed.summary"</span>, append<span class="op">=</span><span class="cn">TRUE</span>, sep<span class="op">=</span><span class="st">"\t"</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="va">id</span> <span class="op">&lt;-</span> <span class="fl">600807</span></span>
+<span><span class="va">upload</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/entrez_post.html" class="external-link">entrez_post</a></span><span class="op">(</span>db<span class="op">=</span><span class="st">"omim"</span>, id<span class="op">=</span><span class="va">id</span><span class="op">)</span></span>
+<span><span class="va">asthma_variants</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/entrez_link.html" class="external-link">entrez_link</a></span><span class="op">(</span>dbfrom<span class="op">=</span><span class="st">"omim"</span>, db<span class="op">=</span><span class="st">"clinvar"</span>, cmd<span class="op">=</span><span class="st">"neighbor_history"</span>, web_history<span class="op">=</span><span class="va">upload</span><span class="op">)</span></span>
+<span><span class="va">asthma_variants</span></span>
+<span><span class="va">snp_links</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/entrez_link.html" class="external-link">entrez_link</a></span><span class="op">(</span>dbfrom<span class="op">=</span><span class="st">"clinvar"</span>, db<span class="op">=</span><span class="st">"snp"</span>, web_history<span class="op">=</span><span class="va">asthma_variants</span><span class="op">$</span><span class="va">web_histories</span><span class="op">$</span><span class="va">omim_clinvar</span>, cmd<span class="op">=</span><span class="st">"neighbor_history"</span><span class="op">)</span></span>
+<span><span class="va">all_links</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/entrez_link.html" class="external-link">entrez_link</a></span><span class="op">(</span>dbfrom<span class="op">=</span><span class="st">'pubmed'</span>, id<span class="op">=</span><span class="va">id</span>, db<span class="op">=</span><span class="st">'all'</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level4" number="3.1.5">
+<h4 id="opentargets">
+<span class="header-section-number">3.1.5</span> OpenTargets<a class="anchor" aria-label="anchor" href="#opentargets"></a>
+</h4>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://httr.r-lib.org/" class="external-link">httr</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'httr'</span></span>
+<span><span class="co">#&gt; The following object is masked from 'package:Biobase':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     content</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://jeroen.r-universe.dev/jsonlite" class="external-link">jsonlite</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">gene_id</span> <span class="op">&lt;-</span> <span class="st">"ENSG00000164308"</span></span>
+<span><span class="va">query_string</span> <span class="op">=</span> <span class="st">"</span></span>
+<span><span class="st">  query target($ensemblId: String!){</span></span>
+<span><span class="st">    target(ensemblId: $ensemblId){</span></span>
+<span><span class="st">      id</span></span>
+<span><span class="st">      approvedSymbol</span></span>
+<span><span class="st">      biotype</span></span>
+<span><span class="st">      geneticConstraint {</span></span>
+<span><span class="st">        constraintType</span></span>
+<span><span class="st">        exp</span></span>
+<span><span class="st">        obs</span></span>
+<span><span class="st">        score</span></span>
+<span><span class="st">        oe</span></span>
+<span><span class="st">        oeLower</span></span>
+<span><span class="st">        oeUpper</span></span>
+<span><span class="st">      }</span></span>
+<span><span class="st">      tractability {</span></span>
+<span><span class="st">        label</span></span>
+<span><span class="st">        modality</span></span>
+<span><span class="st">        value</span></span>
+<span><span class="st">      }</span></span>
+<span><span class="st">    }</span></span>
+<span><span class="st">  }</span></span>
+<span><span class="st">"</span></span>
+<span><span class="va">base_url</span> <span class="op">&lt;-</span> <span class="st">"https://api.platform.opentargets.org/api/v4/graphql"</span></span>
+<span><span class="va">variables</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"ensemblId"</span> <span class="op">=</span> <span class="va">gene_id</span><span class="op">)</span></span>
+<span><span class="va">post_body</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>query <span class="op">=</span> <span class="va">query_string</span>, variables <span class="op">=</span> <span class="va">variables</span><span class="op">)</span></span>
+<span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/POST.html" class="external-link">POST</a></span><span class="op">(</span>url<span class="op">=</span><span class="va">base_url</span>, body<span class="op">=</span><span class="va">post_body</span>, encode<span class="op">=</span><span class="st">'json'</span><span class="op">)</span></span>
+<span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/iconv.html" class="external-link">iconv</a></span><span class="op">(</span><span class="va">r</span>, <span class="st">"latin1"</span>, <span class="st">"ASCII"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; No encoding supplied: defaulting to UTF-8.</span></span>
+<span><span class="va">content</span> <span class="op">&lt;-</span> <span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://jeroen.r-universe.dev/jsonlite/reference/fromJSON.html" class="external-link">fromJSON</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span></code></pre></div>
+</div>
+</div>
+<div class="section level3" number="3.2">
+<h3 id="hwe">
+<span class="header-section-number">3.2</span> HWE<a class="anchor" aria-label="anchor" href="#hwe"></a>
+</h3>
+</div>
+<div class="section level3" number="3.3">
+<h3 id="basic-association">
+<span class="header-section-number">3.3</span> Basic association<a class="anchor" aria-label="anchor" href="#basic-association"></a>
+</h3>
+</div>
+<div class="section level3" number="3.4">
+<h3 id="haplotype-analysis">
+<span class="header-section-number">3.4</span> Haplotype analysis<a class="anchor" aria-label="anchor" href="#haplotype-analysis"></a>
+</h3>
+</div>
+<div class="section level3" number="3.5">
+<h3 id="gwas">
+<span class="header-section-number">3.5</span> GWAS<a class="anchor" aria-label="anchor" href="#gwas"></a>
+</h3>
+<p>This includes association modeling, annotation. Graphics, e.g., <code>inst/scripts/lz.R</code>.</p>
+</div>
+<div class="section level3" number="3.6">
+<h3 id="proteogenomics">
+<span class="header-section-number">3.6</span> Proteogenomics<a class="anchor" aria-label="anchor" href="#proteogenomics"></a>
+</h3>
+<p>An overview on the topic is found from the relevant paper<span class="citation"><sup>1</sup></span>.</p>
+</div>
 </div>
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
