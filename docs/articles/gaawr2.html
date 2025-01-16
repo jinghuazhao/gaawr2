@@ -1084,7 +1084,241 @@
 <span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/POST.html" class="external-link">POST</a></span><span class="op">(</span>url<span class="op">=</span><span class="va">base_url</span>, body<span class="op">=</span><span class="va">post_body</span>, encode<span class="op">=</span><span class="st">'json'</span><span class="op">)</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/iconv.html" class="external-link">iconv</a></span><span class="op">(</span><span class="va">r</span>, <span class="st">"latin1"</span>, <span class="st">"ASCII"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; No encoding supplied: defaulting to UTF-8.</span></span>
-<span><span class="va">content</span> <span class="op">&lt;-</span> <span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://jeroen.r-universe.dev/jsonlite/reference/fromJSON.html" class="external-link">fromJSON</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">content</span> <span class="op">&lt;-</span> <span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://jeroen.r-universe.dev/jsonlite/reference/fromJSON.html" class="external-link">fromJSON</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">content</span><span class="op">)</span></span></code></pre></div>
+<table class="table kable_wrapper"><tbody><tr>
+<td>
+<table class="table kable_wrapper"><tbody><tr>
+<td>
+<table class="table kable_wrapper"><tbody><tr>
+<td>
+<table class="table">
+<thead><tr class="header">
+<th align="left">x</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="left">ENSG00000164308</td>
+</tr></tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr class="header">
+<th align="left">x</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="left">ERAP2</td>
+</tr></tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr class="header">
+<th align="left">x</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="left">protein_coding</td>
+</tr></tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr class="header">
+<th align="left">constraintType</th>
+<th align="right">exp</th>
+<th align="right">obs</th>
+<th align="right">score</th>
+<th align="right">oe</th>
+<th align="right">oeLower</th>
+<th align="right">oeUpper</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">syn</td>
+<td align="right">185.590</td>
+<td align="right">183</td>
+<td align="right">0.14966</td>
+<td align="right">0.98603</td>
+<td align="right">0.873</td>
+<td align="right">1.115</td>
+</tr>
+<tr class="even">
+<td align="left">mis</td>
+<td align="right">496.520</td>
+<td align="right">501</td>
+<td align="right">-0.07147</td>
+<td align="right">1.00900</td>
+<td align="right">0.937</td>
+<td align="right">1.086</td>
+</tr>
+<tr class="odd">
+<td align="left">lof</td>
+<td align="right">48.461</td>
+<td align="right">45</td>
+<td align="right">0.00000</td>
+<td align="right">0.92859</td>
+<td align="right">0.730</td>
+<td align="right">1.191</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table">
+<thead><tr class="header">
+<th align="left">label</th>
+<th align="left">modality</th>
+<th align="left">value</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Approved Drug</td>
+<td align="left">SM</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="even">
+<td align="left">Advanced Clinical</td>
+<td align="left">SM</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">Phase 1 Clinical</td>
+<td align="left">SM</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="even">
+<td align="left">Structure with Ligand</td>
+<td align="left">SM</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">High-Quality Ligand</td>
+<td align="left">SM</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">High-Quality Pocket</td>
+<td align="left">SM</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="odd">
+<td align="left">Med-Quality Pocket</td>
+<td align="left">SM</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="even">
+<td align="left">Druggable Family</td>
+<td align="left">SM</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="odd">
+<td align="left">Approved Drug</td>
+<td align="left">AB</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="even">
+<td align="left">Advanced Clinical</td>
+<td align="left">AB</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="odd">
+<td align="left">Phase 1 Clinical</td>
+<td align="left">AB</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="even">
+<td align="left">UniProt loc high conf</td>
+<td align="left">AB</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="odd">
+<td align="left">GO CC high conf</td>
+<td align="left">AB</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="even">
+<td align="left">UniProt loc med conf</td>
+<td align="left">AB</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="odd">
+<td align="left">UniProt SigP or TMHMM</td>
+<td align="left">AB</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">GO CC med conf</td>
+<td align="left">AB</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="odd">
+<td align="left">Human Protein Atlas loc</td>
+<td align="left">AB</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="even">
+<td align="left">Approved Drug</td>
+<td align="left">PR</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="odd">
+<td align="left">Advanced Clinical</td>
+<td align="left">PR</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="even">
+<td align="left">Phase 1 Clinical</td>
+<td align="left">PR</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="odd">
+<td align="left">Literature</td>
+<td align="left">PR</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="even">
+<td align="left">UniProt Ubiquitination</td>
+<td align="left">PR</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="odd">
+<td align="left">Database Ubiquitination</td>
+<td align="left">PR</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">Half-life Data</td>
+<td align="left">PR</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">Small Molecule Binder</td>
+<td align="left">PR</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">Approved Drug</td>
+<td align="left">OC</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="odd">
+<td align="left">Advanced Clinical</td>
+<td align="left">OC</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="even">
+<td align="left">Phase 1 Clinical</td>
+<td align="left">OC</td>
+<td align="left">FALSE</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr></tbody></table>
+</td>
+</tr></tbody></table>
+</td>
+</tr></tbody></table>
 </div>
 </div>
 <div class="section level3" number="3.2">
