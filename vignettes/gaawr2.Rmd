@@ -64,7 +64,7 @@ We carry on adding files such as `NEWS.md` and `_pkgdown.yml`.
 
 ## EnsDb.Hsapiens.v75
 
-```{r}
+```{r ensdb}
 require(EnsDb.Hsapiens.v75)
 ensembldb::metadata(EnsDb.Hsapiens.v75)
 genes <- ensembldb::genes(EnsDb.Hsapiens.v75)
@@ -76,7 +76,7 @@ One can also use `exons_data <- ensembldb::exons(EnsDb.Hsapiens.v75);head(exons_
 
 ## biomaRt
 
-```{r}
+```{r biomart}
 library(biomaRt)
 listMarts()
 mart <- useMart("ENSEMBL_MART_FUNCGEN")
@@ -159,6 +159,25 @@ all_links <- entrez_link(dbfrom='pubmed', id=id, db='all')
 ```
 
 # HWE
+
+```{r hwe, fig.cap="SNP ternary plot", fig.height=15.07, fig.width=15.6}
+options(width=200)
+library(HardyWeinberg)
+SNP <- c(3,2,2)
+HardyWeinberg::maf(SNP)
+HardyWeinberg::HWTernaryPlot(SNP,region=0,hwcurve=FALSE,grid=TRUE,markercol="blue")
+HardyWeinberg::HWChisq(SNP, cc = 0, verbose = TRUE)
+SNP.X <- c(A=10,B=20,AA=30,AB=204,BB=10)
+HardyWeinberg::HWChisq(SNP.X,cc=0,x.linked=TRUE,verbose=TRUE)
+library(gap)
+DQR <- hla[,3:4]
+a1 <- DQR[1]
+a2 <- DQR[2]
+GenotypeCounts <- HardyWeinberg::AllelesToTriangular(a1,a2)
+knitr::kable(GenotypeCounts,caption="Genotype distribution of DQR")
+HardyWeinberg::HWPerm.mult(GenotypeCounts,nperm=1000)
+HardyWeinberg::HWStr(hla[,3:4],test="permutation",nperm=1000)
+```
 
 # Basic association
 
