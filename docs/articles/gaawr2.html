@@ -970,10 +970,10 @@
 <span><span class="co">#&gt; 236                   limit to genes with somatic variant sources</span></span></code></pre></div>
 </div>
 <div class="section level3" number="3.3">
-<h3 id="efo">
-<span class="header-section-number">3.3</span> EFO<a class="anchor" aria-label="anchor" href="#efo"></a>
+<h3 id="experimental-factor-ontology-efo">
+<span class="header-section-number">3.3</span> Experimental Factor Ontology (EFO)<a class="anchor" aria-label="anchor" href="#experimental-factor-ontology-efo"></a>
 </h3>
-<p>The ontology of traits/disease is available through Experimental Factor Ontology (EFO)<span class="citation"><sup><strong>malone10?</strong></sup></span>.</p>
+<p>The ontology of traits/disease is also available<span class="citation"><sup><strong>malone10?</strong></sup></span>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ontologyIndex</span><span class="op">)</span></span>
 <span></span>
@@ -1039,8 +1039,8 @@
 </div>
 </div>
 <div class="section level2" number="4">
-<h2 id="hwe">
-<span class="header-section-number">4</span> HWE<a class="anchor" aria-label="anchor" href="#hwe"></a>
+<h2 id="hardy-weinberg-equilibrium-hwe">
+<span class="header-section-number">4</span> Hardy-Weinberg equilibrium (HWE)<a class="anchor" aria-label="anchor" href="#hardy-weinberg-equilibrium-hwe"></a>
 </h2>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>width<span class="op">=</span><span class="fl">200</span><span class="op">)</span></span>
@@ -1092,10 +1092,10 @@ Figure 4.1: SNP ternary plot
 <span><span class="co">#&gt; Warning in HardyWeinberg::HWChisq(SNP, cc = 0, verbose = TRUE): Expected counts below 5: chi-square approximation may be incorrect</span></span>
 <span><span class="co">#&gt; Chi-square test for Hardy-Weinberg equilibrium (autosomal)</span></span>
 <span><span class="co">#&gt; Chi2 =  1.215278 DF =  1 p-value =  0.2702894 D =  -0.7142857 f =  0.4166667</span></span>
-<span><span class="va">SNP.X</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>A<span class="op">=</span><span class="fl">10</span>,B<span class="op">=</span><span class="fl">20</span>,AA<span class="op">=</span><span class="fl">30</span>,AB<span class="op">=</span><span class="fl">204</span>,BB<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span>
+<span><span class="va">SNP.X</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>A<span class="op">=</span><span class="fl">10</span>,B<span class="op">=</span><span class="fl">20</span>, AA<span class="op">=</span><span class="fl">30</span>,AB<span class="op">=</span><span class="fl">20</span>,BB<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span>
 <span><span class="fu">HardyWeinberg</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/HardyWeinberg/man/HWChisq.html" class="external-link">HWChisq</a></span><span class="op">(</span><span class="va">SNP.X</span>,cc<span class="op">=</span><span class="fl">0</span>,x.linked<span class="op">=</span><span class="cn">TRUE</span>,verbose<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Chi-square test for Hardy-Weinberg equilibrium (X-chromosomal)</span></span>
-<span><span class="co">#&gt; Chi2 =  117.9005 DF = 2 p-value =  2.501715e-26 D =  NA f =  -0.6834416</span></span>
+<span><span class="co">#&gt; Chi2 =  14.86111 DF = 2 p-value =  0.0005928581 D =  NA f =  0.25</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jinghuazhao/R" class="external-link">gap</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; Loading required package: gap.datasets</span></span>
 <span><span class="co">#&gt; gap version 1.6</span></span>
@@ -1892,8 +1892,8 @@ Figure 4.1: SNP ternary plot
 </h2>
 </div>
 <div class="section level2" number="7">
-<h2 id="gwas">
-<span class="header-section-number">7</span> GWAS<a class="anchor" aria-label="anchor" href="#gwas"></a>
+<h2 id="genomewide-association-study-gwas">
+<span class="header-section-number">7</span> Genomewide association study (GWAS)<a class="anchor" aria-label="anchor" href="#genomewide-association-study-gwas"></a>
 </h2>
 <p>This includes association modeling, annotation. Graphics, e.g., <code>inst/scripts/lz.R</code>.</p>
 </div>
