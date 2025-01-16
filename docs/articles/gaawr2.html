@@ -101,51 +101,7 @@
 <span class="header-section-number">3.1</span> EnsDb.Hsapiens.v75<a class="anchor" aria-label="anchor" href="#ensdb-hsapiens-v75"></a>
 </h3>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va">EnsDb.Hsapiens.v75</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Loading required package: EnsDb.Hsapiens.v75</span></span>
-<span><span class="co">#&gt; Loading required package: ensembldb</span></span>
-<span><span class="co">#&gt; Loading required package: BiocGenerics</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'BiocGenerics'</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     IQR, mad, sd, var, xtabs</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     anyDuplicated, aperm, append, as.data.frame, basename, cbind,</span></span>
-<span><span class="co">#&gt;     colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,</span></span>
-<span><span class="co">#&gt;     get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,</span></span>
-<span><span class="co">#&gt;     match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,</span></span>
-<span><span class="co">#&gt;     Position, rank, rbind, Reduce, rownames, sapply, setdiff, table,</span></span>
-<span><span class="co">#&gt;     tapply, union, unique, unsplit, which.max, which.min</span></span>
-<span><span class="co">#&gt; Loading required package: GenomicRanges</span></span>
-<span><span class="co">#&gt; Loading required package: stats4</span></span>
-<span><span class="co">#&gt; Loading required package: S4Vectors</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'S4Vectors'</span></span>
-<span><span class="co">#&gt; The following object is masked from 'package:utils':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     findMatches</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     expand.grid, I, unname</span></span>
-<span><span class="co">#&gt; Loading required package: IRanges</span></span>
-<span><span class="co">#&gt; Loading required package: GenomeInfoDb</span></span>
-<span><span class="co">#&gt; Loading required package: GenomicFeatures</span></span>
-<span><span class="co">#&gt; Loading required package: AnnotationDbi</span></span>
-<span><span class="co">#&gt; Loading required package: Biobase</span></span>
-<span><span class="co">#&gt; Welcome to Bioconductor</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     Vignettes contain introductory material; view with</span></span>
-<span><span class="co">#&gt;     'browseVignettes()'. To cite Bioconductor, see</span></span>
-<span><span class="co">#&gt;     'citation("Biobase")', and for packages 'citation("pkgname")'.</span></span>
-<span><span class="co">#&gt; Loading required package: AnnotationFilter</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'ensembldb'</span></span>
-<span><span class="co">#&gt; The following object is masked from 'package:stats':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     filter</span></span>
-<span><span class="fu">ensembldb</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Annotated-class.html" class="external-link">metadata</a></span><span class="op">(</span><span class="va">EnsDb.Hsapiens.v75</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu">ensembldb</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Annotated-class.html" class="external-link">metadata</a></span><span class="op">(</span><span class="va">EnsDb.Hsapiens.v75</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                  name                               value</span></span>
 <span><span class="co">#&gt; 1             Db type                               EnsDb</span></span>
 <span><span class="co">#&gt; 2     Type of Gene ID                     Ensembl Gene ID</span></span>
@@ -224,15 +180,14 @@
 <span class="header-section-number">3.2</span> biomaRt<a class="anchor" aria-label="anchor" href="#biomart"></a>
 </h3>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/grimbough/biomaRt" class="external-link">biomaRt</a></span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listMarts.html" class="external-link">listMarts</a></span><span class="op">(</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listMarts.html" class="external-link">listMarts</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                biomart                version</span></span>
 <span><span class="co">#&gt; 1 ENSEMBL_MART_ENSEMBL      Ensembl Genes 113</span></span>
 <span><span class="co">#&gt; 2   ENSEMBL_MART_MOUSE      Mouse strains 113</span></span>
 <span><span class="co">#&gt; 3     ENSEMBL_MART_SNP  Ensembl Variation 113</span></span>
 <span><span class="co">#&gt; 4 ENSEMBL_MART_FUNCGEN Ensembl Regulation 113</span></span>
-<span><span class="va">mart</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/useMart.html" class="external-link">useMart</a></span><span class="op">(</span><span class="st">"ENSEMBL_MART_FUNCGEN"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listDatasets.html" class="external-link">listDatasets</a></span><span class="op">(</span><span class="va">mart</span><span class="op">)</span></span>
+<span><span class="va">mart</span> <span class="op">&lt;-</span> <span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/useMart.html" class="external-link">useMart</a></span><span class="op">(</span><span class="st">"ENSEMBL_MART_FUNCGEN"</span><span class="op">)</span></span>
+<span><span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listDatasets.html" class="external-link">listDatasets</a></span><span class="op">(</span><span class="va">mart</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                          dataset                                 description</span></span>
 <span><span class="co">#&gt; 1      hsapiens_external_feature Human Other Regulatory Regions (GRCh38.p14)</span></span>
 <span><span class="co">#&gt; 2  hsapiens_mirna_target_feature     Human miRNA Target Regions (GRCh38.p14)</span></span>
@@ -247,8 +202,8 @@
 <span><span class="co">#&gt; 4     GRCm39</span></span>
 <span><span class="co">#&gt; 5     GRCm39</span></span>
 <span><span class="co">#&gt; 6     GRCm39</span></span>
-<span><span class="va">mart</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/useMart.html" class="external-link">useMart</a></span><span class="op">(</span><span class="st">"ensembl"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listDatasets.html" class="external-link">listDatasets</a></span><span class="op">(</span><span class="va">mart</span><span class="op">)</span></span>
+<span><span class="va">mart</span> <span class="op">&lt;-</span> <span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/useMart.html" class="external-link">useMart</a></span><span class="op">(</span><span class="st">"ensembl"</span><span class="op">)</span></span>
+<span><span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listDatasets.html" class="external-link">listDatasets</a></span><span class="op">(</span><span class="va">mart</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                            dataset</span></span>
 <span><span class="co">#&gt; 1     abrachyrhynchus_gene_ensembl</span></span>
 <span><span class="co">#&gt; 2         acalliptera_gene_ensembl</span></span>
@@ -894,14 +849,15 @@
 <span><span class="co">#&gt; 212      Xiphophorus_couchianus-4.0.1</span></span>
 <span><span class="co">#&gt; 213              X_maculatus-5.0-male</span></span>
 <span><span class="co">#&gt; 214                     UCB_Xtro_10.0</span></span>
-<span><span class="va">ensembl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/useMart.html" class="external-link">useMart</a></span><span class="op">(</span><span class="st">"ensembl"</span>, dataset<span class="op">=</span><span class="st">"hsapiens_gene_ensembl"</span>, host<span class="op">=</span><span class="st">"grch37.ensembl.org"</span>, path<span class="op">=</span><span class="st">"/biomart/martservice"</span><span class="op">)</span></span>
+<span><span class="va">ensembl</span> <span class="op">&lt;-</span> <span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/useMart.html" class="external-link">useMart</a></span><span class="op">(</span><span class="st">"ensembl"</span>, dataset<span class="op">=</span><span class="st">"hsapiens_gene_ensembl"</span>, host<span class="op">=</span><span class="st">"grch37.ensembl.org"</span>, path<span class="op">=</span><span class="st">"/biomart/martservice"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning: Ensembl will soon enforce the use of https.</span></span>
 <span><span class="co">#&gt; Ensure the 'host' argument includes "https://"</span></span>
-<span><span class="va">attr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listAttributes.html" class="external-link">listAttributes</a></span><span class="op">(</span><span class="va">ensembl</span><span class="op">)</span></span>
-<span><span class="va">attr_select</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'ensembl_gene_id'</span>, <span class="st">'chromosome_name'</span>, <span class="st">'start_position'</span>, <span class="st">'end_position'</span>, <span class="st">'description'</span>, <span class="st">'hgnc_symbol'</span>, <span class="st">'transcription_start_site'</span><span class="op">)</span></span>
-<span><span class="va">gene</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/getBM.html" class="external-link">getBM</a></span><span class="op">(</span>attributes <span class="op">=</span> <span class="va">attr_select</span>, mart <span class="op">=</span> <span class="va">ensembl</span><span class="op">)</span></span>
-<span><span class="va">filter</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listFilters.html" class="external-link">listFilters</a></span><span class="op">(</span><span class="va">ensembl</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listFilters.html" class="external-link">searchFilters</a></span><span class="op">(</span>mart <span class="op">=</span> <span class="va">ensembl</span>, pattern <span class="op">=</span> <span class="st">"gene"</span><span class="op">)</span></span>
+<span><span class="va">attr</span> <span class="op">&lt;-</span> <span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listAttributes.html" class="external-link">listAttributes</a></span><span class="op">(</span><span class="va">ensembl</span><span class="op">)</span></span>
+<span><span class="va">attr_select</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'ensembl_gene_id'</span>, <span class="st">'chromosome_name'</span>, <span class="st">'start_position'</span>, <span class="st">'end_position'</span>, <span class="st">'description'</span>, <span class="st">'hgnc_symbol'</span>,</span>
+<span>                 <span class="st">'transcription_start_site'</span><span class="op">)</span></span>
+<span><span class="va">gene</span> <span class="op">&lt;-</span> <span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/getBM.html" class="external-link">getBM</a></span><span class="op">(</span>attributes <span class="op">=</span> <span class="va">attr_select</span>, mart <span class="op">=</span> <span class="va">ensembl</span><span class="op">)</span></span>
+<span><span class="va">filter</span> <span class="op">&lt;-</span> <span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listFilters.html" class="external-link">listFilters</a></span><span class="op">(</span><span class="va">ensembl</span><span class="op">)</span></span>
+<span><span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listFilters.html" class="external-link">searchFilters</a></span><span class="op">(</span>mart <span class="op">=</span> <span class="va">ensembl</span>, pattern <span class="op">=</span> <span class="st">"gene"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                              name</span></span>
 <span><span class="co">#&gt; 13  with_clone_based_ensembl_gene</span></span>
 <span><span class="co">#&gt; 15     with_clone_based_vega_gene</span></span>
@@ -973,10 +929,9 @@
 <h3 id="experimental-factor-ontology-efo">
 <span class="header-section-number">3.3</span> Experimental Factor Ontology (EFO)<a class="anchor" aria-label="anchor" href="#experimental-factor-ontology-efo"></a>
 </h3>
-<p>The ontology of traits/disease is also available<span class="citation"><sup><strong>malone10?</strong></sup></span>.</p>
+<p>The ontology of traits/disease is formally available as this<span class="citation"><sup>1</sup></span>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ontologyIndex</span><span class="op">)</span></span>
-<span></span>
 <span><span class="va">id</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">ontology</span><span class="op">)</span></span>
 <span><span class="op">{</span></span>
 <span>  <span class="va">inflammatory</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="va">ontology</span><span class="op">$</span><span class="va">name</span>,pattern<span class="op">=</span><span class="st">"inflammatory"</span><span class="op">)</span></span>
@@ -1044,36 +999,6 @@
 </h2>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>width<span class="op">=</span><span class="fl">200</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.r-project.org" class="external-link">HardyWeinberg</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Loading required package: mice</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'mice'</span></span>
-<span><span class="co">#&gt; The following object is masked from 'package:ensembldb':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     filter</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:IRanges':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     cbind, rbind</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:S4Vectors':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     cbind, rbind</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:BiocGenerics':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     cbind, rbind</span></span>
-<span><span class="co">#&gt; The following object is masked from 'package:stats':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     filter</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     cbind, rbind</span></span>
-<span><span class="co">#&gt; Loading required package: nnet</span></span>
-<span><span class="co">#&gt; Loading required package: Rsolnp</span></span>
-<span><span class="co">#&gt; Loading required package: shape</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'HardyWeinberg'</span></span>
-<span><span class="co">#&gt; The following object is masked from 'package:S4Vectors':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     fold</span></span>
 <span><span class="va">SNP</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span></span>
 <span><span class="fu">HardyWeinberg</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/HardyWeinberg/man/maf.html" class="external-link">maf</a></span><span class="op">(</span><span class="va">SNP</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning in HardyWeinberg::maf(SNP): Genotype counts are not labelled, default sequence (AA,AB,BB) assumed.</span></span>
@@ -1901,22 +1826,14 @@ Figure 4.1: SNP ternary plot
 <h2 id="proteogenomics">
 <span class="header-section-number">8</span> Proteogenomics<a class="anchor" aria-label="anchor" href="#proteogenomics"></a>
 </h2>
-<p>An overview on the topic is found from the relevant paper<span class="citation"><sup>1</sup></span>.</p>
+<p>An overview on the topic is found from the relevant paper<span class="citation"><sup>2</sup></span>.</p>
 </div>
 <div class="section level2" number="9">
 <h2 id="opentargets">
 <span class="header-section-number">9</span> OpenTargets<a class="anchor" aria-label="anchor" href="#opentargets"></a>
 </h2>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://httr.r-lib.org/" class="external-link">httr</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'httr'</span></span>
-<span><span class="co">#&gt; The following object is masked from 'package:Biobase':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     content</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://jeroen.r-universe.dev/jsonlite" class="external-link">jsonlite</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">gene_id</span> <span class="op">&lt;-</span> <span class="st">"ENSG00000164308"</span></span>
+<code class="sourceCode R"><span><span class="va">gene_id</span> <span class="op">&lt;-</span> <span class="st">"ENSG00000164308"</span></span>
 <span><span class="va">query_string</span> <span class="op">=</span> <span class="st">"</span></span>
 <span><span class="st">  query target($ensemblId: String!){</span></span>
 <span><span class="st">    target(ensemblId: $ensemblId){</span></span>
@@ -1947,8 +1864,12 @@ Figure 4.1: SNP ternary plot
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/iconv.html" class="external-link">iconv</a></span><span class="op">(</span><span class="va">r</span>, <span class="st">"latin1"</span>, <span class="st">"ASCII"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; No encoding supplied: defaulting to UTF-8.</span></span>
 <span><span class="va">content</span> <span class="op">&lt;-</span> <span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://jeroen.r-universe.dev/jsonlite/reference/fromJSON.html" class="external-link">fromJSON</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">content</span><span class="op">)</span></span></code></pre></div>
-<table class="table kable_wrapper"><tbody><tr>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">content</span>, caption<span class="op">=</span><span class="st">"Query of ERAP2 from OpenTargets"</span><span class="op">)</span></span></code></pre></div>
+<table class="table kable_wrapper">
+<caption>
+<span id="tab:unnamed-chunk-2">Table 9.1: </span>Query of ERAP2 from OpenTargets
+</caption>
+<tbody><tr>
 <td>
 <table class="table kable_wrapper"><tbody><tr>
 <td>
@@ -2180,14 +2101,19 @@ Figure 4.1: SNP ternary plot
 </td>
 </tr></tbody></table>
 </td>
-</tr></tbody></table>
+</tr></tbody>
+</table>
 </div>
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
 <div id="refs" class="references csl-bib-body" line-spacing="2">
-<div id="ref-suhre20" class="csl-entry">
+<div id="ref-malone10" class="csl-entry">
 <div class="csl-left-margin">1. </div>
+<div class="csl-right-inline">Malone, J. <em>et al.</em> <a href="https://doi.org/10.1093/bioinformatics/btq099" class="external-link">Modeling sample variables with an experimental factor ontology</a>. <em>Bioinformatics</em> <strong>26</strong>, 1112–1118 (2010).</div>
+</div>
+<div id="ref-suhre20" class="csl-entry">
+<div class="csl-left-margin">2. </div>
 <div class="csl-right-inline">Suhre, K., McCarthy, M. I. &amp; Schwenk, J. M. Genetics meets proteomics: Perspectives for large population-based studies. <em>Nat Rev Genet</em> (2020) doi:<a href="https://doi.org/10.1038/s41576-020-0268-2" class="external-link">10.1038/s41576-020-0268-2</a>.</div>
 </div>
 </div>
