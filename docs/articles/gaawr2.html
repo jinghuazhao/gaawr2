@@ -93,17 +93,13 @@
 </h2>
 </div>
 <div class="section level2" number="3">
-<h2 id="examples">
-<span class="header-section-number">3</span> Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
+<h2 id="annotation">
+<span class="header-section-number">3</span> Annotation<a class="anchor" aria-label="anchor" href="#annotation"></a>
 </h2>
 <div class="section level3" number="3.1">
-<h3 id="annotation">
-<span class="header-section-number">3.1</span> Annotation<a class="anchor" aria-label="anchor" href="#annotation"></a>
+<h3 id="ensdb-hsapiens-v75">
+<span class="header-section-number">3.1</span> EnsDb.Hsapiens.v75<a class="anchor" aria-label="anchor" href="#ensdb-hsapiens-v75"></a>
 </h3>
-<div class="section level4" number="3.1.1">
-<h4 id="ensdb-hsapiens-v75">
-<span class="header-section-number">3.1.1</span> EnsDb.Hsapiens.v75<a class="anchor" aria-label="anchor" href="#ensdb-hsapiens-v75"></a>
-</h4>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va">EnsDb.Hsapiens.v75</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Loading required package: EnsDb.Hsapiens.v75</span></span>
@@ -223,10 +219,10 @@
 <span><span class="co">#&gt;   seqinfo: 273 sequences (1 circular) from GRCh37 genome</span></span></code></pre></div>
 <p>One can also use <code>exons_data &lt;- ensembldb::exons(EnsDb.Hsapiens.v75);head(exons_data)</code> but it is skipped for being considerably longer.</p>
 </div>
-<div class="section level4" number="3.1.2">
-<h4 id="biomart">
-<span class="header-section-number">3.1.2</span> biomaRt<a class="anchor" aria-label="anchor" href="#biomart"></a>
-</h4>
+<div class="section level3" number="3.2">
+<h3 id="biomart">
+<span class="header-section-number">3.2</span> biomaRt<a class="anchor" aria-label="anchor" href="#biomart"></a>
+</h3>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/grimbough/biomaRt" class="external-link">biomaRt</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listMarts.html" class="external-link">listMarts</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -973,10 +969,10 @@
 <span><span class="co">#&gt; 235             limit to genes with germline variant data sources</span></span>
 <span><span class="co">#&gt; 236                   limit to genes with somatic variant sources</span></span></code></pre></div>
 </div>
-<div class="section level4" number="3.1.3">
-<h4 id="efo">
-<span class="header-section-number">3.1.3</span> EFO<a class="anchor" aria-label="anchor" href="#efo"></a>
-</h4>
+<div class="section level3" number="3.3">
+<h3 id="efo">
+<span class="header-section-number">3.3</span> EFO<a class="anchor" aria-label="anchor" href="#efo"></a>
+</h3>
 <p>The ontology of traits/disease is available through Experimental Factor Ontology (EFO)<span class="citation"><sup><strong>malone10?</strong></sup></span>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ontologyIndex</span><span class="op">)</span></span>
@@ -1007,10 +1003,10 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ontologyPlot</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/ontologyPlot/man/onto_plot.html" class="external-link">onto_plot</a></span><span class="op">(</span><span class="va">efo</span>,<span class="va">efo_0000540</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level4" number="3.1.4">
-<h4 id="rentrez">
-<span class="header-section-number">3.1.4</span> rentrez<a class="anchor" aria-label="anchor" href="#rentrez"></a>
-</h4>
+<div class="section level3" number="3.4">
+<h3 id="rentrez">
+<span class="header-section-number">3.4</span> rentrez<a class="anchor" aria-label="anchor" href="#rentrez"></a>
+</h3>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/rentrez/" class="external-link">rentrez</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/entrez_dbs.html" class="external-link">entrez_dbs</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -1041,10 +1037,38 @@
 <span><span class="va">snp_links</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/entrez_link.html" class="external-link">entrez_link</a></span><span class="op">(</span>dbfrom<span class="op">=</span><span class="st">"clinvar"</span>, db<span class="op">=</span><span class="st">"snp"</span>, web_history<span class="op">=</span><span class="va">asthma_variants</span><span class="op">$</span><span class="va">web_histories</span><span class="op">$</span><span class="va">omim_clinvar</span>, cmd<span class="op">=</span><span class="st">"neighbor_history"</span><span class="op">)</span></span>
 <span><span class="va">all_links</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/entrez_link.html" class="external-link">entrez_link</a></span><span class="op">(</span>dbfrom<span class="op">=</span><span class="st">'pubmed'</span>, id<span class="op">=</span><span class="va">id</span>, db<span class="op">=</span><span class="st">'all'</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level4" number="3.1.5">
-<h4 id="opentargets">
-<span class="header-section-number">3.1.5</span> OpenTargets<a class="anchor" aria-label="anchor" href="#opentargets"></a>
-</h4>
+</div>
+<div class="section level2" number="4">
+<h2 id="hwe">
+<span class="header-section-number">4</span> HWE<a class="anchor" aria-label="anchor" href="#hwe"></a>
+</h2>
+</div>
+<div class="section level2" number="5">
+<h2 id="basic-association">
+<span class="header-section-number">5</span> Basic association<a class="anchor" aria-label="anchor" href="#basic-association"></a>
+</h2>
+</div>
+<div class="section level2" number="6">
+<h2 id="haplotype-analysis">
+<span class="header-section-number">6</span> Haplotype analysis<a class="anchor" aria-label="anchor" href="#haplotype-analysis"></a>
+</h2>
+</div>
+<div class="section level2" number="7">
+<h2 id="gwas">
+<span class="header-section-number">7</span> GWAS<a class="anchor" aria-label="anchor" href="#gwas"></a>
+</h2>
+<p>This includes association modeling, annotation. Graphics, e.g., <code>inst/scripts/lz.R</code>.</p>
+</div>
+<div class="section level2" number="8">
+<h2 id="proteogenomics">
+<span class="header-section-number">8</span> Proteogenomics<a class="anchor" aria-label="anchor" href="#proteogenomics"></a>
+</h2>
+<p>An overview on the topic is found from the relevant paper<span class="citation"><sup>1</sup></span>.</p>
+</div>
+<div class="section level2" number="9">
+<h2 id="opentargets">
+<span class="header-section-number">9</span> OpenTargets<a class="anchor" aria-label="anchor" href="#opentargets"></a>
+</h2>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://httr.r-lib.org/" class="external-link">httr</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -1319,35 +1343,6 @@
 </tr></tbody></table>
 </td>
 </tr></tbody></table>
-</div>
-</div>
-<div class="section level3" number="3.2">
-<h3 id="hwe">
-<span class="header-section-number">3.2</span> HWE<a class="anchor" aria-label="anchor" href="#hwe"></a>
-</h3>
-</div>
-<div class="section level3" number="3.3">
-<h3 id="basic-association">
-<span class="header-section-number">3.3</span> Basic association<a class="anchor" aria-label="anchor" href="#basic-association"></a>
-</h3>
-</div>
-<div class="section level3" number="3.4">
-<h3 id="haplotype-analysis">
-<span class="header-section-number">3.4</span> Haplotype analysis<a class="anchor" aria-label="anchor" href="#haplotype-analysis"></a>
-</h3>
-</div>
-<div class="section level3" number="3.5">
-<h3 id="gwas">
-<span class="header-section-number">3.5</span> GWAS<a class="anchor" aria-label="anchor" href="#gwas"></a>
-</h3>
-<p>This includes association modeling, annotation. Graphics, e.g., <code>inst/scripts/lz.R</code>.</p>
-</div>
-<div class="section level3" number="3.6">
-<h3 id="proteogenomics">
-<span class="header-section-number">3.6</span> Proteogenomics<a class="anchor" aria-label="anchor" href="#proteogenomics"></a>
-</h3>
-<p>An overview on the topic is found from the relevant paper<span class="citation"><sup>1</sup></span>.</p>
-</div>
 </div>
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
