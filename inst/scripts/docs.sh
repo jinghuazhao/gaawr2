@@ -19,6 +19,14 @@ Rscript -e '
 
 setup
 
+for d in gaawr2
+do
+    if [ -d vignettes/${d} ]; then
+       rm -rf docs/articles/${d}
+       mv vignettes/${d} docs/articles/
+    fi
+done
+
 for f in .github $(ls)
 do
   echo adding ${f}
