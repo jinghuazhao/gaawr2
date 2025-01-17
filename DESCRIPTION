@@ -7,8 +7,6 @@ Authors@R:
 Description: This package illustrates creation and maintenance of package used in genetic association analysis.
 License: MIT + file LICENSE
 Encoding: UTF-8
-Depends:
-    R (>= 3.5.0)
 Imports:  dplyr, gap, ggplot2, Rdpack
 RdMacros: Rdpack
 Suggests:
@@ -17,6 +15,7 @@ Suggests:
     SNPassoc,
     locuszoomr,
     pedigreemm,
+    powerEQTL,
     GMMAT,
     BLR,
     BGLR,
