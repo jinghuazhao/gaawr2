@@ -39,26 +39,61 @@ This package intends to gather information, meta-data and relevant scripts in ge
 
 The package is adapted from earlier package development work, particularly pQTLdata.
 
-# Outlines
+# "Hello, welcome to gaawr2!"
 
-As with other R packages, it includes data examples, customized functions, documentation and featured articles.
+We start this session with several ways of printting a welcome message.
 
-The relevant scripts are with `inst/scripts` directory in the source package. Briefly,
+## R
 
-- `gaawr2.R` creates the package in R.
-- `github.sh` creates `gaawr2` at GitHub from the command line.
-- `pkgdown.sh` makes a pkgdown-style package and this vignette is set to be processed with the `bookdown` package.
-- `docs.sh` adds, commits and pushes files to GitHub.
+The usual and the simplest way is to execte code from the R command line prompt,
 
-Note that for creation of the GitHub repository, a SSH key is already in place. In order for `pkgdown.sh` to function well, all required files such as `nature-genetics.csl` need to be available.
+```{r welcome}
+print("Hello, welcome to gaawr2!")
+```
 
-A GitHub login is still necessary to enable web pages, so that this can be accessed as <https://jinghuazhao.github.io/gaawr2/>.
+As we are now in a big data era, one might works from a Linux terminal,
 
-Upon use `pkgdown`, an article can be seen as <https://jinghuazhao.github.io/gaawr2/articles/index.html>.
+## Linux --> R
 
-We carry on adding files such as `NEWS.md` and `_pkgdown.yml`.
+```bash
+export message="Hello, welcome to gaawr2!"
+Rscript -e 'message=Sys.getenv("message");print(message)'
+```
 
-# Mode of execution
+so the message is wrapped in an environment variable called `message` and grabbed into R.
+
+## Linux --> R --> Linux
+
+This is somewhat unusal but I found extremely useful, notably in its use of R as part of a chain of commands, connected through the pipe
+operator (`|`) and in our case there are more than one of them therefore split into many lines while informing the Linux they are in the
+same chain, i.e., (`\`),
+
+```bash
+echo Hello, welcome to gaawr2 | \
+Rscript -e '
+   message <- scan("stdin", what = "", sep = "\n", quiet = TRUE);
+   write.table(message, col.names = FALSE, row.names = FALSE, quote = FALSE)
+' | \
+cat
+```
+
+Later, we will use some more useful examples on this.
+
+Note that R provides its own batch command to run an R script, i.e., `R CMD BATCH hello.R` assuming our message is contained `hello.R`.
+
+# Operators and packages
+
+The operators are intuitive in many ways, but we would like to highlight two of them,
+
+- `|>` which is a pipe operator enabling many commands piped in the same way as in Linux.
+- `%>%` popularized from R magritter package, essentially another yet more powerful pipe command.
+
+Two most often used approaches to make R packages available is through
+
+- `install.packages()` which is a standard way to install from the Comprehensive R Archive Network (CRAN) hosting many user-contributed packages.
+- `BiocManager::install() which is an updated command to install package from the Bioconductor project.`
+
+Note the scope operator (`::`) is useful since user executes command from a particular package without loading it, which is usually faster. With growing popularity of GitHub and also due to its less strict control over format from CRAN, it is customarily used but we will leave this aspect later on.
 
 # Annotation
 
@@ -75,13 +110,13 @@ One can also use `exons_data <- ensembldb::exons(EnsDb.Hsapiens.v75);head(exons_
 
 ## biomaRt
 
-```{r biomart, messages=FALSE}
+```r
 biomaRt::listMarts()
 mart <- biomaRt::useMart("ENSEMBL_MART_FUNCGEN")
 biomaRt::listDatasets(mart)
 mart <- biomaRt::useMart("ensembl")
 biomaRt::listDatasets(mart)
-ensembl <- biomaRt::useMart("ensembl", dataset="hsapiens_gene_ensembl", host="grch37.ensembl.org", path="/biomart/martservice")
+ensembl <- biomaRt::useMart(biomart="ensembl", dataset="hsapiens_gene_ensembl", host="grch37.ensembl.org", path="/biomart/martservice")
 attr <- biomaRt::listAttributes(ensembl)
 attr_select <- c('ensembl_gene_id', 'chromosome_name', 'start_position', 'end_position', 'description', 'hgnc_symbol',
                  'transcription_start_site')
@@ -223,5 +258,24 @@ data <- iconv(r, "latin1", "ASCII")
 content <- jsonlite::fromJSON(data)
 knitr::kable(content, caption="Query of ERAP2 from OpenTargets")
 ```
+
+# The setup
+
+As with other R packages, it includes data examples, customized functions, documentation and featured articles.
+
+The relevant scripts are with `inst/scripts` directory in the source package. Briefly,
+
+- `gaawr2.R` creates the package in R.
+- `github.sh` creates `gaawr2` at GitHub from the command line.
+- `pkgdown.sh` makes a pkgdown-style package and this vignette is set to be processed with the `bookdown` package.
+- `docs.sh` adds, commits and pushes files to GitHub.
+
+Note that for creation of the GitHub repository, an SSH key is already in place. In order for `pkgdown.sh` to function well, all required files such as `nature-genetics.csl` need to be available.
+
+A GitHub login is still necessary to enable web pages, so that this can be accessed as <https://jinghuazhao.github.io/gaawr2/>.
+
+Upon use `pkgdown`, an article can be seen as <https://jinghuazhao.github.io/gaawr2/articles/index.html>.
+
+We carry on adding files such as `NEWS.md` and `_pkgdown.yml`.
 
 # References
