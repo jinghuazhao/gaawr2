@@ -28,7 +28,8 @@ knitr::opts_chunk$set(
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-pkgs <- c("EnsDb.Hsapiens.v75","GMMAT","HardyWeinberg","MCMCglmm","biomaRt","gap","haplo.stats","pedigreemm","httr","jsonlite","knitr")
+pkgs <- c("EnsDb.Hsapiens.v75","GMMAT","HardyWeinberg","MCMCglmm","biomaRt","gap","haplo.stats","pedigreemm","httr","jsonlite","knitr",
+          "powerEQTL")
 for (p in pkgs) if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
     if (!requireNamespace(p)) warning(paste0("This vignette needs package `", p, "'; please install"))
 }
@@ -258,7 +259,30 @@ Python) include `tensorflow` (TensorFlow), `torch` (PyTorch), and `keras` (Keras
 - post-GWAS.
 
 
-Here is a demonstration of OpenTargets access.
+### powerEQTL
+
+```{r eqtl, fig.cap="Power Estimation for eQTL Studies of 240 SNPs", fig.height=6, fig.width=8, messages=FALSE}
+n.designs <- 6
+designs <- 1:n.designs
+N <- 50 * designs
+n.grids <- 100
+index <- 1:n.grids
+grids <- index / n.grids
+MAF <- seq(0.005, n.grids/2, by=0.5) / n.grids
+plot(MAF,grids,type="n",ylab="Power")
+mtext(expression(paste("(",alpha," = 0.05)")),1,line=4.5)
+colors <- grDevices::hcl.colors(n.designs)
+for (design in designs)
+{
+  power.SLR <- rep(NA,n.grids)
+  for (j in index) power.SLR[j] <- powerEQTL::powerEQTL.SLR(MAF = MAF[j], FWER = 0.05, nTests = 240, slope = 0.13,
+                                                            n = N[design], sigma.y = 0.13)
+  lines(MAF,power.SLR,col=colors[design])
+}
+legend("bottomright", inset=.02, title="Sample size (N)", paste(N), col=colors, horiz=FALSE, cex=0.8, lty=designs)
+```
+
+### OpenTargets
 
 ```{r, messages=FALSE}
 gene_id <- "ENSG00000164308"
@@ -310,7 +334,6 @@ Note that for creation of the GitHub repository, an SSH key is assumed in place.
 required files such as `nature-genetics.csl` need to be available.
 
 A GitHub login is still necessary to enable web pages, so that this can be accessed as <https://jinghuazhao.github.io/gaawr2/>.
-
 Upon use `pkgdown`, an article can be seen from the menu item `Articles`.
 
 We carry on adding files such as `NEWS.md` and `_pkgdown.yml`. In line with various analyses we have covered, their associate packages
@@ -326,7 +349,7 @@ Suggests:
     GMMAT,
     SAIGE,
     BLR,
-    BGLR
+    BGLR,
     MCMCglmm
 ```
 
