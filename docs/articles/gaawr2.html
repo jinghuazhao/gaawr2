@@ -70,7 +70,7 @@
 <p>The package is adapted from earlier package development work, particularly pQTLdata.</p>
 <div class="section level2" number="1">
 <h2 id="hello-welcome-to-gaawr2">
-<span class="header-section-number">1</span> “Hello, welcome to gaawr2!”<a class="anchor" aria-label="anchor" href="#hello-welcome-to-gaawr2"></a>
+<span class="header-section-number">1</span> Hello, welcome to gaawr2!<a class="anchor" aria-label="anchor" href="#hello-welcome-to-gaawr2"></a>
 </h2>
 <p>We start this session with several ways of printting a welcome message.</p>
 <div class="section level3" number="1.1">
@@ -297,16 +297,22 @@ same chain, i.e., (<code>\</code>),</p>
 </div>
 </div>
 <div class="section level2" number="4">
-<h2 id="hardy-weinberg-equilibrium-hwe">
-<span class="header-section-number">4</span> Hardy-Weinberg equilibrium (HWE)<a class="anchor" aria-label="anchor" href="#hardy-weinberg-equilibrium-hwe"></a>
+<h2 id="packages-for-genetic-data-analysis">
+<span class="header-section-number">4</span> Packages for genetic data analysis<a class="anchor" aria-label="anchor" href="#packages-for-genetic-data-analysis"></a>
 </h2>
+<div class="section level3" number="4.1">
+<h3 id="hardyweinberg">
+<span class="header-section-number">4.1</span> HardyWeinberg<a class="anchor" aria-label="anchor" href="#hardyweinberg"></a>
+</h3>
+<p>We set to run through the package for Hardy-Weinberg equilirium (HWE). Three data sources are used: MN blood group in the documentation,
+a chromosome X SNP and a HLA/DQR,</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>width<span class="op">=</span><span class="fl">200</span><span class="op">)</span></span>
-<span><span class="va">SNP</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span></span>
+<span><span class="co"># MN blood group</span></span>
+<span><span class="va">SNP</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>MM <span class="op">=</span> <span class="fl">298</span>, MN <span class="op">=</span> <span class="fl">489</span>, NN <span class="op">=</span> <span class="fl">213</span><span class="op">)</span></span>
 <span><span class="fu">HardyWeinberg</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/HardyWeinberg/man/maf.html" class="external-link">maf</a></span><span class="op">(</span><span class="va">SNP</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning in HardyWeinberg::maf(SNP): Genotype counts are not labelled, default sequence (AA,AB,BB) assumed.</span></span>
-<span><span class="co">#&gt;         B </span></span>
-<span><span class="co">#&gt; 0.4285714</span></span>
+<span><span class="co">#&gt;      N </span></span>
+<span><span class="co">#&gt; 0.4575</span></span>
 <span><span class="fu">HardyWeinberg</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/HardyWeinberg/man/HWTernaryPlot.html" class="external-link">HWTernaryPlot</a></span><span class="op">(</span><span class="va">SNP</span>,region<span class="op">=</span><span class="fl">0</span>,hwcurve<span class="op">=</span><span class="cn">FALSE</span>,grid<span class="op">=</span><span class="cn">TRUE</span>,markercol<span class="op">=</span><span class="st">"blue"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:hwe"></span>
@@ -316,14 +322,14 @@ Figure 4.1: SNP ternary plot
 </div>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">HardyWeinberg</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/HardyWeinberg/man/HWChisq.html" class="external-link">HWChisq</a></span><span class="op">(</span><span class="va">SNP</span>, cc <span class="op">=</span> <span class="fl">0</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning in order.auto(X): No genotype labels supplied; default order (AA,AB,BB) is assumed.</span></span>
-<span><span class="co">#&gt; Warning in HardyWeinberg::HWChisq(SNP, cc = 0, verbose = TRUE): Expected counts below 5: chi-square approximation may be incorrect</span></span>
 <span><span class="co">#&gt; Chi-square test for Hardy-Weinberg equilibrium (autosomal)</span></span>
-<span><span class="co">#&gt; Chi2 =  1.215278 DF =  1 p-value =  0.2702894 D =  -0.7142857 f =  0.4166667</span></span>
-<span><span class="va">SNP.X</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>A<span class="op">=</span><span class="fl">10</span>,B<span class="op">=</span><span class="fl">20</span>, AA<span class="op">=</span><span class="fl">30</span>,AB<span class="op">=</span><span class="fl">20</span>,BB<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span>
-<span><span class="fu">HardyWeinberg</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/HardyWeinberg/man/HWChisq.html" class="external-link">HWChisq</a></span><span class="op">(</span><span class="va">SNP.X</span>,cc<span class="op">=</span><span class="fl">0</span>,x.linked<span class="op">=</span><span class="cn">TRUE</span>,verbose<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Chi2 =  0.2214896 DF =  1 p-value =  0.6379073 D =  -3.69375 f =  0.01488253</span></span>
+<span><span class="co"># Chromosome X</span></span>
+<span><span class="va">xSNP</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>A<span class="op">=</span><span class="fl">10</span>, B<span class="op">=</span><span class="fl">20</span>, AA<span class="op">=</span><span class="fl">30</span>, AB<span class="op">=</span><span class="fl">20</span>, BB<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span>
+<span><span class="fu">HardyWeinberg</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/HardyWeinberg/man/HWChisq.html" class="external-link">HWChisq</a></span><span class="op">(</span><span class="va">xSNP</span>,cc<span class="op">=</span><span class="fl">0</span>,x.linked<span class="op">=</span><span class="cn">TRUE</span>,verbose<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Chi-square test for Hardy-Weinberg equilibrium (X-chromosomal)</span></span>
 <span><span class="co">#&gt; Chi2 =  14.86111 DF = 2 p-value =  0.0005928581 D =  NA f =  0.25</span></span>
+<span><span class="co"># HLA/DQR</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jinghuazhao/R" class="external-link">gap</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; Loading required package: gap.datasets</span></span>
 <span><span class="co">#&gt; gap version 1.6</span></span>
@@ -1109,32 +1115,44 @@ Figure 4.1: SNP ternary plot
 <span><span class="co">#&gt;      STR   N Nt     MinorAF   MajorAF        Ho        He       Hp  pval</span></span>
 <span><span class="co">#&gt; 1 DQR.a1 271 25 0.001845018 0.1494465 0.8856089 0.9097643 2.654949 0.026</span></span></code></pre></div>
 </div>
-<div class="section level2" number="5">
-<h2 id="basic-association">
-<span class="header-section-number">5</span> Basic association<a class="anchor" aria-label="anchor" href="#basic-association"></a>
-</h2>
+<div class="section level3" number="4.2">
+<h3 id="snpassoc">
+<span class="header-section-number">4.2</span> SNPassoc<a class="anchor" aria-label="anchor" href="#snpassoc"></a>
+</h3>
+<p>The package implements procedures which are appropriate for candidate gene association analysis, under a variety of genetic models.</p>
 </div>
-<div class="section level2" number="6">
-<h2 id="haplotype-analysis">
-<span class="header-section-number">6</span> Haplotype analysis<a class="anchor" aria-label="anchor" href="#haplotype-analysis"></a>
-</h2>
+<div class="section level3" number="4.3">
+<h3 id="haplo-stats">
+<span class="header-section-number">4.3</span> haplo.stats<a class="anchor" aria-label="anchor" href="#haplo-stats"></a>
+</h3>
+<p>This package considers haplotype estimation using EM-algorithms and genetic association under a generalized linear model (GLM).</p>
 </div>
-<div class="section level2" number="7">
-<h2 id="genomewide-association-study-gwas">
-<span class="header-section-number">7</span> Genomewide association study (GWAS)<a class="anchor" aria-label="anchor" href="#genomewide-association-study-gwas"></a>
-</h2>
+<div class="section level3" number="4.4">
+<h3 id="pedigreemm">
+<span class="header-section-number">4.4</span> pedigreemm<a class="anchor" aria-label="anchor" href="#pedigreemm"></a>
+</h3>
+</div>
+<div class="section level3" number="4.5">
+<h3 id="kinship2">
+<span class="header-section-number">4.5</span> kinship2<a class="anchor" aria-label="anchor" href="#kinship2"></a>
+</h3>
+</div>
+<div class="section level3" number="4.6">
+<h3 id="genomewide-association-study-gwas">
+<span class="header-section-number">4.6</span> Genomewide association study (GWAS)<a class="anchor" aria-label="anchor" href="#genomewide-association-study-gwas"></a>
+</h3>
 <p>This includes association modeling, annotation. Graphics, e.g., <code>inst/scripts/lz.R</code>.</p>
 </div>
-<div class="section level2" number="8">
-<h2 id="proteogenomics">
-<span class="header-section-number">8</span> Proteogenomics<a class="anchor" aria-label="anchor" href="#proteogenomics"></a>
-</h2>
+<div class="section level3" number="4.7">
+<h3 id="proteogenomics">
+<span class="header-section-number">4.7</span> Proteogenomics<a class="anchor" aria-label="anchor" href="#proteogenomics"></a>
+</h3>
 <p>An overview on the topic is found from the relevant paper<span class="citation"><sup>2</sup></span>.</p>
 </div>
-<div class="section level2" number="9">
-<h2 id="opentargets">
-<span class="header-section-number">9</span> OpenTargets<a class="anchor" aria-label="anchor" href="#opentargets"></a>
-</h2>
+<div class="section level3" number="4.8">
+<h3 id="opentargets">
+<span class="header-section-number">4.8</span> OpenTargets<a class="anchor" aria-label="anchor" href="#opentargets"></a>
+</h3>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gene_id</span> <span class="op">&lt;-</span> <span class="st">"ENSG00000164308"</span></span>
 <span><span class="va">query_string</span> <span class="op">=</span> <span class="st">"</span></span>
@@ -1170,7 +1188,7 @@ Figure 4.1: SNP ternary plot
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">content</span>, caption<span class="op">=</span><span class="st">"Query of ERAP2 from OpenTargets"</span><span class="op">)</span></span></code></pre></div>
 <table class="table kable_wrapper">
 <caption>
-<span id="tab:unnamed-chunk-2">Table 9.1: </span>Query of ERAP2 from OpenTargets
+<span id="tab:unnamed-chunk-2">Table 4.2: </span>Query of ERAP2 from OpenTargets
 </caption>
 <tbody><tr>
 <td>
@@ -1407,9 +1425,10 @@ Figure 4.1: SNP ternary plot
 </tr></tbody>
 </table>
 </div>
-<div class="section level2" number="10">
-<h2 id="the-setup">
-<span class="header-section-number">10</span> The setup<a class="anchor" aria-label="anchor" href="#the-setup"></a>
+</div>
+<div class="section level2" number="5">
+<h2 id="setup-of-gaawr2">
+<span class="header-section-number">5</span> Setup of gaawr2<a class="anchor" aria-label="anchor" href="#setup-of-gaawr2"></a>
 </h2>
 <p>As with other R packages, it includes data examples, customized functions, documentation and featured articles.</p>
 <p>The relevant scripts are with <code>inst/scripts</code> directory in the source package. Briefly,</p>
