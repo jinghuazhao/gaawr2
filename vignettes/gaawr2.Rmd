@@ -39,7 +39,7 @@ This package intends to gather information, meta-data and relevant scripts in ge
 
 The package is adapted from earlier package development work, particularly pQTLdata.
 
-# "Hello, welcome to gaawr2!"
+# Hello, welcome to gaawr2!
 
 We start this session with several ways of printting a welcome message.
 
@@ -191,16 +191,24 @@ snp_links <- entrez_link(dbfrom="clinvar", db="snp", web_history=asthma_variants
 all_links <- entrez_link(dbfrom='pubmed', id=id, db='all')
 ```
 
-# Hardy-Weinberg equilibrium (HWE)
+# Packages for genetic data analysis
+
+## HardyWeinberg
+
+We set to run through the package for Hardy-Weinberg equilirium (HWE). Three data sources are used: MN blood group in the documentation,
+a chromosome X SNP and a HLA/DQR,
 
 ```{r hwe, fig.cap="SNP ternary plot", fig.height=15.07, fig.width=15.6, messages=FALSE}
 options(width=200)
-SNP <- c(3,2,2)
+# MN blood group
+SNP <- c(MM = 298, MN = 489, NN = 213)
 HardyWeinberg::maf(SNP)
 HardyWeinberg::HWTernaryPlot(SNP,region=0,hwcurve=FALSE,grid=TRUE,markercol="blue")
 HardyWeinberg::HWChisq(SNP, cc = 0, verbose = TRUE)
-SNP.X <- c(A=10,B=20, AA=30,AB=20,BB=10)
-HardyWeinberg::HWChisq(SNP.X,cc=0,x.linked=TRUE,verbose=TRUE)
+# Chromosome X
+xSNP <- c(A=10, B=20, AA=30, AB=20, BB=10)
+HardyWeinberg::HWChisq(xSNP,cc=0,x.linked=TRUE,verbose=TRUE)
+# HLA/DQR
 library(gap)
 DQR <- hla[,3:4]
 a1 <- DQR[1]
@@ -211,19 +219,27 @@ HardyWeinberg::HWPerm.mult(GenotypeCounts,nperm=1000)
 HardyWeinberg::HWStr(hla[,3:4],test="permutation",nperm=1000)
 ```
 
-# Basic association
+## SNPassoc
 
-# Haplotype analysis
+The package implements procedures which are appropriate for candidate gene association analysis, under a variety of genetic models.
 
-# Genomewide association study (GWAS)
+## haplo.stats
+
+This package considers haplotype estimation using EM-algorithms and genetic association under a generalized linear model (GLM).
+
+## pedigreemm
+
+## kinship2
+
+## Genomewide association study (GWAS)
 
 This includes association modeling, annotation. Graphics, e.g., `inst/scripts/lz.R`.
 
-# Proteogenomics
+## Proteogenomics
 
 An overview on the topic is found from the relevant paper @suhre20.
 
-# OpenTargets
+## OpenTargets
 
 ```{r, messages=FALSE}
 gene_id <- "ENSG00000164308"
@@ -259,7 +275,7 @@ content <- jsonlite::fromJSON(data)
 knitr::kable(content, caption="Query of ERAP2 from OpenTargets")
 ```
 
-# The setup
+# Setup of gaawr2
 
 As with other R packages, it includes data examples, customized functions, documentation and featured articles.
 
