@@ -1156,8 +1156,41 @@ Python) include <code>tensorflow</code> (TensorFlow), <code>torch</code> (PyTorc
 <li>Omics. Proteomics such as <code>MsCoreUtils</code>, <code>MSStats</code>, <code>scp</code>. An overview on the topic is found from the relevant paper<span class="citation"><sup>2</sup></span>.</li>
 <li>post-GWAS.</li>
 </ul>
-<p>Here is a demonstration of OpenTargets access.</p>
+<div class="section level4" number="4.7.1">
+<h4 id="powereqtl">
+<span class="header-section-number">4.7.1</span> powerEQTL<a class="anchor" aria-label="anchor" href="#powereqtl"></a>
+</h4>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">n.designs</span> <span class="op">&lt;-</span> <span class="fl">6</span></span>
+<span><span class="va">designs</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="va">n.designs</span></span>
+<span><span class="va">N</span> <span class="op">&lt;-</span> <span class="fl">50</span> <span class="op">*</span> <span class="va">designs</span></span>
+<span><span class="va">n.grids</span> <span class="op">&lt;-</span> <span class="fl">100</span></span>
+<span><span class="va">index</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="va">n.grids</span></span>
+<span><span class="va">grids</span> <span class="op">&lt;-</span> <span class="va">index</span> <span class="op">/</span> <span class="va">n.grids</span></span>
+<span><span class="va">MAF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.005</span>, <span class="va">n.grids</span><span class="op">/</span><span class="fl">2</span>, by<span class="op">=</span><span class="fl">0.5</span><span class="op">)</span> <span class="op">/</span> <span class="va">n.grids</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">MAF</span>,<span class="va">grids</span>,type<span class="op">=</span><span class="st">"n"</span>,ylab<span class="op">=</span><span class="st">"Power"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/mtext.html" class="external-link">mtext</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"("</span>,<span class="va">alpha</span>,<span class="st">" = 0.05)"</span><span class="op">)</span><span class="op">)</span>,<span class="fl">1</span>,line<span class="op">=</span><span class="fl">4.5</span><span class="op">)</span></span>
+<span><span class="va">colors</span> <span class="op">&lt;-</span> <span class="fu">grDevices</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">hcl.colors</a></span><span class="op">(</span><span class="va">n.designs</span><span class="op">)</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">design</span> <span class="kw">in</span> <span class="va">designs</span><span class="op">)</span></span>
+<span><span class="op">{</span></span>
+<span>  <span class="va">power.SLR</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="cn">NA</span>,<span class="va">n.grids</span><span class="op">)</span></span>
+<span>  <span class="kw">for</span> <span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="va">index</span><span class="op">)</span> <span class="va">power.SLR</span><span class="op">[</span><span class="va">j</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu">powerEQTL</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/powerEQTL/man/powerEQTL.SLR.html" class="external-link">powerEQTL.SLR</a></span><span class="op">(</span>MAF <span class="op">=</span> <span class="va">MAF</span><span class="op">[</span><span class="va">j</span><span class="op">]</span>, FWER <span class="op">=</span> <span class="fl">0.05</span>, nTests <span class="op">=</span> <span class="fl">240</span>, slope <span class="op">=</span> <span class="fl">0.13</span>,</span>
+<span>                                                            n <span class="op">=</span> <span class="va">N</span><span class="op">[</span><span class="va">design</span><span class="op">]</span>, sigma.y <span class="op">=</span> <span class="fl">0.13</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">MAF</span>,<span class="va">power.SLR</span>,col<span class="op">=</span><span class="va">colors</span><span class="op">[</span><span class="va">design</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="st">"bottomright"</span>, inset<span class="op">=</span><span class="fl">.02</span>, title<span class="op">=</span><span class="st">"Sample size (N)"</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">N</span><span class="op">)</span>, col<span class="op">=</span><span class="va">colors</span>, horiz<span class="op">=</span><span class="cn">FALSE</span>, cex<span class="op">=</span><span class="fl">0.8</span>, lty<span class="op">=</span><span class="va">designs</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:eqtl"></span>
+<img src="gaawr2%2Feqtl-1.png" alt="Power Estimation for eQTL Studies of 240 SNPs" width="768" style="display:block; margin: auto"><p class="caption">
+Figure 4.2: Power Estimation for eQTL Studies of 240 SNPs
+</p>
+</div>
+</div>
+<div class="section level4" number="4.7.2">
+<h4 id="opentargets">
+<span class="header-section-number">4.7.2</span> OpenTargets<a class="anchor" aria-label="anchor" href="#opentargets"></a>
+</h4>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gene_id</span> <span class="op">&lt;-</span> <span class="st">"ENSG00000164308"</span></span>
 <span><span class="va">query_string</span> <span class="op">=</span> <span class="st">"</span></span>
 <span><span class="st">  query target($ensemblId: String!){</span></span>
@@ -1430,6 +1463,7 @@ Python) include <code>tensorflow</code> (TensorFlow), <code>torch</code> (PyTorc
 </table>
 </div>
 </div>
+</div>
 <div class="section level2" number="5">
 <h2 id="gaawr2">
 <span class="header-section-number">5</span> gaawr2<a class="anchor" aria-label="anchor" href="#gaawr2"></a>
@@ -1449,8 +1483,8 @@ documentation and featured articles.</p>
 </ul>
 <p>Note that for creation of the GitHub repository, an SSH key is assumed in place. In order for <code>pkgdown.sh</code> to function well, all
 required files such as <code>nature-genetics.csl</code> need to be available.</p>
-<p>A GitHub login is still necessary to enable web pages, so that this can be accessed as <a href="https://jinghuazhao.github.io/gaawr2/" class="uri">https://jinghuazhao.github.io/gaawr2/</a>.</p>
-<p>Upon use <code>pkgdown</code>, an article can be seen from the menu item <code>Articles</code>.</p>
+<p>A GitHub login is still necessary to enable web pages, so that this can be accessed as <a href="https://jinghuazhao.github.io/gaawr2/" class="uri">https://jinghuazhao.github.io/gaawr2/</a>.
+Upon use <code>pkgdown</code>, an article can be seen from the menu item <code>Articles</code>.</p>
 <p>We carry on adding files such as <code>NEWS.md</code> and <code>_pkgdown.yml</code>. In line with various analyses we have covered, their associate packages
 are also added to the suggested list of packages in DESCRIPTION:</p>
 <pre><code>Suggests:
@@ -1462,7 +1496,7 @@ are also added to the suggested list of packages in DESCRIPTION:</p>
     GMMAT,
     SAIGE,
     BLR,
-    BGLR
+    BGLR,
     MCMCglmm</code></pre>
 </div>
 <div class="section level2">
