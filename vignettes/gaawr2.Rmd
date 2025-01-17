@@ -254,11 +254,11 @@ Python) include `tensorflow` (TensorFlow), `torch` (PyTorch), and `keras` (Keras
 - Parallel computing.
 - Data. `SeqArray` format GDS from PLINK, whose code for handling binary encoded data (bed) are widely adopted. Customized packages for databases include RSQLite, RMySQL.
 - Graphics, the list includes `Rgraphviz` and `magick` for the the extremely popular `graphviz` and `ImageMagick`.
-- Omics. Proteomics such as `MsCoreUtils`, `MSStats`, `scp`.
+- Omics. Proteomics such as `MsCoreUtils`, `MSStats`, `scp`. An overview on the topic is found from the relevant paper @suhre20.
+- post-GWAS.
 
-An overview on the topic is found from the relevant paper @suhre20.
 
-## OpenTargets
+Here is a demonstration of OpenTargets access.
 
 ```{r, messages=FALSE}
 gene_id <- "ENSG00000164308"
@@ -294,9 +294,10 @@ content <- jsonlite::fromJSON(data)
 knitr::kable(content, caption="Query of ERAP2 from OpenTargets")
 ```
 
-# Setup of gaawr2
+# gaawr2
 
-As with other R packages, it includes data examples, customized functions, documentation and featured articles.
+While created as a showcase of modern package development, like other R packages it includes data examples, customized functions,
+documentation and featured articles.
 
 The relevant scripts are with `inst/scripts` directory in the source package. Briefly,
 
@@ -305,13 +306,15 @@ The relevant scripts are with `inst/scripts` directory in the source package. Br
 - `pkgdown.sh` makes a pkgdown-style package and this vignette is set to be processed with the `bookdown` package.
 - `docs.sh` adds, commits and pushes files to GitHub.
 
-Note that for creation of the GitHub repository, an SSH key is already in place. In order for `pkgdown.sh` to function well, all required files such as `nature-genetics.csl` need to be available.
+Note that for creation of the GitHub repository, an SSH key is assumed in place. In order for `pkgdown.sh` to function well, all
+required files such as `nature-genetics.csl` need to be available.
 
 A GitHub login is still necessary to enable web pages, so that this can be accessed as <https://jinghuazhao.github.io/gaawr2/>.
 
-Upon use `pkgdown`, an article can be seen as <https://jinghuazhao.github.io/gaawr2/articles/index.html>.
+Upon use `pkgdown`, an article can be seen from the menu item `Articles`.
 
-We carry on adding files such as `NEWS.md` and `_pkgdown.yml`. In line with various analyses we have covered, their associate packages are also added to the suggested list of packages in DESCRIPTION:
+We carry on adding files such as `NEWS.md` and `_pkgdown.yml`. In line with various analyses we have covered, their associate packages
+are also added to the suggested list of packages in DESCRIPTION:
 
 ```
 Suggests:
