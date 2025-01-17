@@ -41,6 +41,8 @@ navbar:
         - text: "Vignettes:"
         - text: Genetic Association Analysis with R (II)
           href: articles/gaawr2.html
+        - text: ---------
+        - text: "Articles:"
         - text: Web facilities
           href: articles/web.html
     reference:
