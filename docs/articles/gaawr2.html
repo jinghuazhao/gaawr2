@@ -128,8 +128,8 @@ same chain, i.e., (<code>\</code>),</p>
 <p>Note the scope operator (<code>::</code>) is useful since user executes command from a particular package without loading it, which is usually faster. With growing popularity of GitHub and also due to its less strict control over format from CRAN, it is customarily used but we will leave this aspect later on.</p>
 </div>
 <div class="section level2" number="3">
-<h2 id="annotation">
-<span class="header-section-number">3</span> Annotation<a class="anchor" aria-label="anchor" href="#annotation"></a>
+<h2 id="annotations">
+<span class="header-section-number">3</span> Annotations<a class="anchor" aria-label="anchor" href="#annotations"></a>
 </h2>
 <div class="section level3" number="3.1">
 <h3 id="ensdb-hsapiens-v75">
@@ -297,14 +297,18 @@ same chain, i.e., (<code>\</code>),</p>
 </div>
 </div>
 <div class="section level2" number="4">
-<h2 id="packages-for-genetic-data-analysis">
-<span class="header-section-number">4</span> Packages for genetic data analysis<a class="anchor" aria-label="anchor" href="#packages-for-genetic-data-analysis"></a>
+<h2 id="data-analysis">
+<span class="header-section-number">4</span> Data analysis<a class="anchor" aria-label="anchor" href="#data-analysis"></a>
 </h2>
+<p>Topics vary from those heavily featured in candidate gene studies, such as Hardy-Weinberg equilirium (HWE), to their counterparts in
+Genomewide association study (GWAS) such as various types of association statistics, QQ/Manhattan/local association plots.</p>
+<p>There has been a lot of interests in machine learning (ML), artificial language (AI), including deep learning (DL), just to add one more
+acronym, the bulk of which is also readily available.</p>
 <div class="section level3" number="4.1">
 <h3 id="hardyweinberg">
 <span class="header-section-number">4.1</span> HardyWeinberg<a class="anchor" aria-label="anchor" href="#hardyweinberg"></a>
 </h3>
-<p>We set to run through the package for Hardy-Weinberg equilirium (HWE). Three data sources are used: MN blood group in the documentation,
+<p>We set to run through the package for HWE. Three data sources are used: MN blood group in the documentation,
 a chromosome X SNP and a HLA/DQR,</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>width<span class="op">=</span><span class="fl">200</span><span class="op">)</span></span>
@@ -331,13 +335,6 @@ Figure 4.1: SNP ternary plot
 <span><span class="co">#&gt; Chi2 =  14.86111 DF = 2 p-value =  0.0005928581 D =  NA f =  0.25</span></span>
 <span><span class="co"># HLA/DQR</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jinghuazhao/R" class="external-link">gap</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Loading required package: gap.datasets</span></span>
-<span><span class="co">#&gt; gap version 1.6</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'gap'</span></span>
-<span><span class="co">#&gt; The following object is masked from 'package:HardyWeinberg':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     qqunif</span></span>
 <span><span class="va">DQR</span> <span class="op">&lt;-</span> <span class="va">hla</span><span class="op">[</span>,<span class="fl">3</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span>
 <span><span class="va">a1</span> <span class="op">&lt;-</span> <span class="va">DQR</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
 <span><span class="va">a2</span> <span class="op">&lt;-</span> <span class="va">DQR</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span>
@@ -1131,22 +1128,33 @@ Figure 4.1: SNP ternary plot
 <h3 id="pedigreemm">
 <span class="header-section-number">4.4</span> pedigreemm<a class="anchor" aria-label="anchor" href="#pedigreemm"></a>
 </h3>
+<p>kinship2, especially with its <code>lmekin</code>.</p>
 </div>
 <div class="section level3" number="4.5">
-<h3 id="kinship2">
-<span class="header-section-number">4.5</span> kinship2<a class="anchor" aria-label="anchor" href="#kinship2"></a>
-</h3>
-</div>
-<div class="section level3" number="4.6">
-<h3 id="genomewide-association-study-gwas">
-<span class="header-section-number">4.6</span> Genomewide association study (GWAS)<a class="anchor" aria-label="anchor" href="#genomewide-association-study-gwas"></a>
+<h3 id="gwas">
+<span class="header-section-number">4.5</span> GWAS<a class="anchor" aria-label="anchor" href="#gwas"></a>
 </h3>
 <p>This includes association modeling, annotation. Graphics, e.g., <code>inst/scripts/lz.R</code>.</p>
+<p>The following packages are notable, <code>GWASExactHW</code>, <code>GMMAT</code>, <code>GWAStools</code>, <code>SAIGE</code>, <code>qqman</code>.</p>
+</div>
+<div class="section level3" number="4.6">
+<h3 id="ml-ai">
+<span class="header-section-number">4.6</span> ML &amp; AI<a class="anchor" aria-label="anchor" href="#ml-ai"></a>
+</h3>
+<p>For ML, it glmnet is worthy of note. For AI, some pedagogic implementation such as <code>nnet</code> which has long been in R’s list of recommended
+packages , <code>neuralnet</code>, <code>RSNNS</code> which is ported from the standalone package, as well as production packages (parallel developments to
+Python) include <code>tensorflow</code> (TensorFlow), <code>torch</code> (PyTorch), and <code>keras</code> (Keras).</p>
 </div>
 <div class="section level3" number="4.7">
-<h3 id="proteogenomics">
-<span class="header-section-number">4.7</span> Proteogenomics<a class="anchor" aria-label="anchor" href="#proteogenomics"></a>
+<h3 id="miscellaneous-topics">
+<span class="header-section-number">4.7</span> Miscellaneous topics<a class="anchor" aria-label="anchor" href="#miscellaneous-topics"></a>
 </h3>
+<ul>
+<li>Parallel computing.</li>
+<li>Data. <code>SeqArray</code> format GDS from PLINK, whose code for handling binary encoded data (bed) are widely adopted. Customized packages for databases include RSQLite, RMySQL.</li>
+<li>Graphics, the list includes <code>Rgraphviz</code> and <code>magick</code> for the the extremely popular <code>graphviz</code> and <code>ImageMagick</code>.</li>
+<li>Omics. Proteomics such as <code>MsCoreUtils</code>, <code>MSStats</code>, <code>scp</code>.</li>
+</ul>
 <p>An overview on the topic is found from the relevant paper<span class="citation"><sup>2</sup></span>.</p>
 </div>
 <div class="section level3" number="4.8">
@@ -1445,7 +1453,18 @@ Figure 4.1: SNP ternary plot
 <p>Note that for creation of the GitHub repository, an SSH key is already in place. In order for <code>pkgdown.sh</code> to function well, all required files such as <code>nature-genetics.csl</code> need to be available.</p>
 <p>A GitHub login is still necessary to enable web pages, so that this can be accessed as <a href="https://jinghuazhao.github.io/gaawr2/" class="uri">https://jinghuazhao.github.io/gaawr2/</a>.</p>
 <p>Upon use <code>pkgdown</code>, an article can be seen as <a href="https://jinghuazhao.github.io/gaawr2/articles/index.html" class="uri">https://jinghuazhao.github.io/gaawr2/articles/index.html</a>.</p>
-<p>We carry on adding files such as <code>NEWS.md</code> and <code>_pkgdown.yml</code>.</p>
+<p>We carry on adding files such as <code>NEWS.md</code> and <code>_pkgdown.yml</code>. In line with various analyses we have covered, their associate packages are also added to the suggested list of packages in DESCRIPTION:</p>
+<pre><code>Suggests:
+    HardyWeinberg,
+    haplo.stats,
+    SNPassoc,
+    locuszoomr,
+    pedigreemm,
+    GMMAT,
+    SAIGE,
+    BLR,
+    BGLR
+    MCMCglmm</code></pre>
 </div>
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
