@@ -27,6 +27,31 @@ knitr::opts_chunk$set(
   dev = "png")
 ```
 
+Perhaps this is the simplest way to start from the Linux command line, nevertheless with Python,
+
+```python
+python3 -m http.server 8000
+firefox http://127.0.0.1:8000
+```
+
+which works even with `python3 -m http.server` when the port number 8000 is available.
+
+However we leave this as a benchmark, and our focus here is R with the following script,
+
+```r
+startServer("0.0.0.0", 8000, list(
+  call = function(req) {
+    list(
+      status = 200L,
+      headers = list("Content-Type" = "text/plain"),
+      body = "Hello, world!"
+    )
+  })
+)
+```
+
+upon access http://127.0.0.1:8000, we see the message "Hello, world!". 
+
 # plumber
 
 It is `an API generator in R`, which has been tested through Caprion data as follows.
@@ -131,21 +156,7 @@ Note also that only selected columns (as in 4) are kept. The simplest way to hav
 
 # httpuv
 
-This is alternative to `plumber`, the following script sets up port 8000,
-
-```r
-startServer("0.0.0.0", 8000, list(
-  call = function(req) {
-    list(
-      status = 200L,
-      headers = list("Content-Type" = "text/plain"),
-      body = "Hello, world!"
-    )
-  })
-)
-```
-
-upon access http://127.0.0.1:8000, we see the message "Hello, world!". A somewhat more involved version is as follows,
+A somewhat more involved version is as follows,
 
 ```r
 s <- startServer("0.0.0.0", 5000,

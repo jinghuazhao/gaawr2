@@ -28,8 +28,8 @@ knitr::opts_chunk$set(
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-pkgs <- c("EnsDb.Hsapiens.v75","GMMAT","HardyWeinberg","MCMCglmm","biomaRt","gap","haplo.stats","pedigreemm","httr","jsonlite","knitr",
-          "powerEQTL")
+pkgs <- c("EnsDb.Hsapiens.v75","GMMAT","HardyWeinberg","MCMCglmm","biomaRt","gap","haplo.stats","pedigreemm",
+           "dplyr","ggplot2","httr","jsonlite","knitr","powerEQTL")
 for (p in pkgs) if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
     if (!requireNamespace(p)) warning(paste0("This vignette needs package `", p, "'; please install"))
 }
@@ -84,17 +84,32 @@ Note that R provides its own batch command to run an R script, i.e., `R CMD BATC
 
 # Operators and packages
 
-The operators are intuitive in many ways, but we would like to highlight two of them,
+The operators are intuitive in many ways, but we would like to highlight two types of them,
 
-- `|>` which is a pipe operator enabling many commands piped in the same way as in Linux.
-- `%>%` popularized from R magritter package, essentially another yet more powerful pipe command.
+- the scope operator (`::`) is useful since user executes command from a particular package without loading it, which is usually faster.
+- the native (`|>`) and contributed (`%>%`) pipe operators which enable a chained of operations, the latter popularized from R **magrittr** and **dplyr** packages
+
+```{r ops, fig.height=6, fig.with=8}
+sumstats <- mtcars %>%
+  dplyr::filter(mpg > 20) %>%
+  dplyr::group_by(cyl) %>%
+  dplyr::summarize(avg_hp = mean(hp), avg_wt = mean(wt))
+knitr::kable(sumstats,caption="")
+ggplot2::ggplot(sumstats, ggplot2::aes(x = factor(cyl), y = avg_hp, fill = factor(cyl))) +
+ggplot2::geom_bar(stat = "identity") +
+ggplot2::labs(
+    title = "Average Horsepower by Cylinder Count (mpg > 20)",
+    x = "Number of Cylinders",
+    y = "Average Horsepower"
+  ) +
+ggplot2::theme_minimal() +
+ggplot2::scale_fill_brewer(palette = "Set2", name = "Cylinders")
+```
 
 Two most often used approaches to make R packages available is through
 
 - `install.packages()` which is a standard way to install from the Comprehensive R Archive Network (CRAN) hosting many user-contributed packages.
 - `BiocManager::install() which is an updated command to install package from the Bioconductor project.`
-
-Note the scope operator (`::`) is useful since user executes command from a particular package without loading it, which is usually faster. With growing popularity of GitHub and also due to its less strict control over format from CRAN, it is customarily used but we will leave this aspect later on.
 
 # Annotations
 
