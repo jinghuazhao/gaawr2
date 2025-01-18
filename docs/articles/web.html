@@ -66,13 +66,29 @@
 
     
     
+<p>Perhaps this is the simplest way to start from the Linux command line, nevertheless with Python,</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>python3 <span class="op">-</span>m http.server <span class="dv">8000</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>firefox http:<span class="op">//</span><span class="fl">127.0.0.1</span>:<span class="dv">8000</span></span></code></pre></div>
+<p>which works even with <code>python3 -m http.server</code> when the port number 8000 is available.</p>
+<p>However we leave this as a benchmark, and our focus here is R with the following script,</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">startServer</span><span class="op">(</span><span class="st">"0.0.0.0"</span>, <span class="fl">8000</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>  call <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">req</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>      status <span class="op">=</span> <span class="fl">200L</span>,</span>
+<span>      headers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"Content-Type"</span> <span class="op">=</span> <span class="st">"text/plain"</span><span class="op">)</span>,</span>
+<span>      body <span class="op">=</span> <span class="st">"Hello, world!"</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">}</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>upon access <a href="http://127.0.0.1:8000" class="external-link uri">http://127.0.0.1:8000</a>, we see the message “Hello, world!”.</p>
 <div class="section level2" number="1">
 <h2 id="plumber">
 <span class="header-section-number">1</span> plumber<a class="anchor" aria-label="anchor" href="#plumber"></a>
 </h2>
 <p>It is <code>an API generator in R</code>, which has been tested through Caprion data as follows.</p>
 <p>As noted elsewhere, <code>libsodium</code> is required for installation of the R package.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.rplumber.io" class="external-link">plumber</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://zhanxw.github.io/seqminer/" class="external-link">seqminer</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://jeroen.r-universe.dev/jsonlite" class="external-link">jsonlite</a></span><span class="op">)</span></span>
@@ -130,15 +146,15 @@ Running swagger Docs at http://127.0.0.1:8001/__docs__/</code></pre>
 <strong>curl</strong>: curl “<a href="http://localhost:8001/data?protein=IL.18R1&amp;region=2:102700000-103800000" class="external-link uri">http://localhost:8001/data?protein=IL.18R1&amp;region=2:102700000-103800000</a>”</li>
 </ul>
 <p>Additional work required to get output from <code>curl</code> to a tab-delimited data,</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="st">"http://localhost:8001/data?protein=IL.18R1&amp;region=2:102700000-103800000"</span> <span class="kw">|</span> <span class="dt">\</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">jq</span> <span class="at">-r</span> <span class="st">'.[0] |</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="st">   fromjson |</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="st">   .[] |</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="st">   [</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="st">     .Chromosome, .Position, .MarkerName, .Allele1, .Allele2, .Freq1,</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="st">     .Effect, .StdErr, .logP, .Direction, .HetISq, .HetChiSq, .HetDf, .logHetP, .N</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="st">   ] |</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="st">   @tsv'</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="st">"http://localhost:8001/data?protein=IL.18R1&amp;region=2:102700000-103800000"</span> <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">jq</span> <span class="at">-r</span> <span class="st">'.[0] |</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="st">   fromjson |</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="st">   .[] |</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="st">   [</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="st">     .Chromosome, .Position, .MarkerName, .Allele1, .Allele2, .Freq1,</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="st">     .Effect, .StdErr, .logP, .Direction, .HetISq, .HetChiSq, .HetDf, .logHetP, .N</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="st">   ] |</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="st">   @tsv'</span></span></code></pre></div>
 <p>where</p>
 <ol style="list-style-type: decimal">
 <li>
@@ -153,29 +169,18 @@ Running swagger Docs at http://127.0.0.1:8001/__docs__/</code></pre>
 <strong><span class="citation"><sup><strong>tsv?</strong></sup></span></strong>: Convert the array into tab-separated values.</li>
 </ol>
 <p>Note also that only selected columns (as in 4) are kept. The simplest way to have the header is add it manually,</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">echo</span> <span class="st">"Chromosome|Position|MarkerName|Allele1|Allele2|Freq1|Effect|StdErr|logP|Direction|HetISq|HetChiSq|HetDf|logHetP|N"</span> <span class="kw">|</span> <span class="dt">\</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sed</span> <span class="st">'s/|/\t/g'</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">curl</span> command as above.</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">echo</span> <span class="st">"Chromosome|Position|MarkerName|Allele1|Allele2|Freq1|Effect|StdErr|logP|Direction|HetISq|HetChiSq|HetDf|logHetP|N"</span> <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sed</span> <span class="st">'s/|/\t/g'</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">curl</span> command as above.</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">)</span></span></code></pre></div>
 </div>
 <div class="section level2" number="2">
 <h2 id="httpuv">
 <span class="header-section-number">2</span> httpuv<a class="anchor" aria-label="anchor" href="#httpuv"></a>
 </h2>
-<p>This is alternative to <code>plumber</code>, the following script sets up port 8000,</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">startServer</span><span class="op">(</span><span class="st">"0.0.0.0"</span>, <span class="fl">8000</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>  call <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">req</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>      status <span class="op">=</span> <span class="fl">200L</span>,</span>
-<span>      headers <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"Content-Type"</span> <span class="op">=</span> <span class="st">"text/plain"</span><span class="op">)</span>,</span>
-<span>      body <span class="op">=</span> <span class="st">"Hello, world!"</span></span>
-<span>    <span class="op">)</span></span>
-<span>  <span class="op">}</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<p>upon access <a href="http://127.0.0.1:8000" class="external-link uri">http://127.0.0.1:8000</a>, we see the message “Hello, world!”. A somewhat more involved version is as follows,</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<p>A somewhat more involved version is as follows,</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu">startServer</span><span class="op">(</span><span class="st">"0.0.0.0"</span>, <span class="fl">5000</span>,</span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>    call <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">req</span><span class="op">)</span> <span class="op">{</span></span>
