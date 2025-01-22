@@ -1048,15 +1048,13 @@ Figure 3.1: SNP ternary plot
 </table>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
-<span><span class="va">snpCols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="st">"^rs"</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">asthma</span><span class="op">)</span>, value<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span>
+<span><span class="va">snpCols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="st">"^rs"</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">asthma</span><span class="op">)</span>, value<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span>
 <span><span class="va">snps</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/setupSNP.html" class="external-link">setupSNP</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">asthma</span><span class="op">[</span><span class="va">snpCols</span><span class="op">]</span>, colSNPs<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">snpCols</span><span class="op">)</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">snps</span>, print<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="co">#&gt;            alleles major.allele.freq HWE  missing (%)</span></span>
-<span><span class="co">#&gt; rs4490198  A/G     59                0.17 0.6        </span></span>
-<span><span class="co">#&gt; rs4849332  G/T     62                0.52 0.1        </span></span>
-<span><span class="co">#&gt; rs1367179  G/C     81                0.74 1.0        </span></span>
-<span><span class="co">#&gt; rs11123242 C/T     82                0.93 0.6        </span></span>
-<span><span class="co">#&gt; rs13014858 G/A     58                0.35 0.1</span></span>
+<span><span class="co">#&gt;           alleles major.allele.freq HWE  missing (%)</span></span>
+<span><span class="co">#&gt; rs4490198 A/G     59                0.17 0.6        </span></span>
+<span><span class="co">#&gt; rs4849332 G/T     62                0.52 0.1        </span></span>
+<span><span class="co">#&gt; rs1367179 G/C     81                0.74 1.0</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">snps</span>, <span class="va">head</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $rs4490198</span></span>
 <span><span class="co">#&gt; [1] G/G G/G G/G A/G A/G A/G</span></span>
@@ -1071,17 +1069,7 @@ Figure 3.1: SNP ternary plot
 <span><span class="co">#&gt; $rs1367179</span></span>
 <span><span class="co">#&gt; [1] G/C G/C G/C G/G G/G G/G</span></span>
 <span><span class="co">#&gt; Genotypes: G/G G/C C/C</span></span>
-<span><span class="co">#&gt; Alleles:  G C </span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $rs11123242</span></span>
-<span><span class="co">#&gt; [1] C/T C/T C/T C/C C/C C/C</span></span>
-<span><span class="co">#&gt; Genotypes: C/C C/T T/T</span></span>
-<span><span class="co">#&gt; Alleles:  C T </span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $rs13014858</span></span>
-<span><span class="co">#&gt; [1] A/A G/A A/A G/A G/G G/A</span></span>
-<span><span class="co">#&gt; Genotypes: G/G G/A A/A</span></span>
-<span><span class="co">#&gt; Alleles:  A G</span></span>
+<span><span class="co">#&gt; Alleles:  G C</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">snps</span>, <span class="va">summary</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $rs4490198</span></span>
 <span><span class="co">#&gt; Genotypes: </span></span>
@@ -1129,46 +1117,12 @@ Figure 3.1: SNP ternary plot
 <span><span class="co">#&gt; C          581         19</span></span>
 <span><span class="co">#&gt; NA's        30           </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; HWE (p value): 0.74 </span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $rs11123242</span></span>
-<span><span class="co">#&gt; Genotypes: </span></span>
-<span><span class="co">#&gt;      frequency percentage</span></span>
-<span><span class="co">#&gt; C/C       1047       66.7</span></span>
-<span><span class="co">#&gt; C/T        469       29.9</span></span>
-<span><span class="co">#&gt; T/T         53        3.4</span></span>
-<span><span class="co">#&gt; NA's         9           </span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Alleles: </span></span>
-<span><span class="co">#&gt;      frequency percentage</span></span>
-<span><span class="co">#&gt; C         2563         82</span></span>
-<span><span class="co">#&gt; T          575         18</span></span>
-<span><span class="co">#&gt; NA's        18           </span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; HWE (p value): 0.93 </span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $rs13014858</span></span>
-<span><span class="co">#&gt; Genotypes: </span></span>
-<span><span class="co">#&gt;      frequency percentage</span></span>
-<span><span class="co">#&gt; G/G        545         35</span></span>
-<span><span class="co">#&gt; G/A        748         47</span></span>
-<span><span class="co">#&gt; A/A        283         18</span></span>
-<span><span class="co">#&gt; NA's         2           </span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Alleles: </span></span>
-<span><span class="co">#&gt;      frequency percentage</span></span>
-<span><span class="co">#&gt; A         1314         42</span></span>
-<span><span class="co">#&gt; G         1838         58</span></span>
-<span><span class="co">#&gt; NA's         4           </span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; HWE (p value): 0.35</span></span>
+<span><span class="co">#&gt; HWE (p value): 0.74</span></span>
 <span><span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/tableHWE.html" class="external-link">tableHWE</a></span><span class="op">(</span><span class="va">snps</span><span class="op">)</span></span>
-<span><span class="co">#&gt;            HWE (p value) flag</span></span>
-<span><span class="co">#&gt; rs4490198  0.17              </span></span>
-<span><span class="co">#&gt; rs4849332  0.52              </span></span>
-<span><span class="co">#&gt; rs1367179  0.74              </span></span>
-<span><span class="co">#&gt; rs11123242 0.93              </span></span>
-<span><span class="co">#&gt; rs13014858 0.35</span></span></code></pre></div>
+<span><span class="co">#&gt;           HWE (p value) flag</span></span>
+<span><span class="co">#&gt; rs4490198 0.17              </span></span>
+<span><span class="co">#&gt; rs4849332 0.52              </span></span>
+<span><span class="co">#&gt; rs1367179 0.74</span></span></code></pre></div>
 <p>We then turn to genetic models for a specific SNP,</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">asthma.snps</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/setupSNP.html" class="external-link">setupSNP</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">asthma</span>, colSNPs<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="st">"^rs"</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">asthma</span><span class="op">)</span><span class="op">)</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
