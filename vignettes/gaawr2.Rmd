@@ -157,7 +157,7 @@ data(asthma, package = "SNPassoc")
 str(asthma, list.len=9)
 knitr::kable(asthma[1:3,1:8],caption="First three records & two SNPs")
 
-snpCols <- grep("^rs", colnames(asthma), value=TRUE)[1:5]
+snpCols <- grep("^rs", colnames(asthma), value=TRUE)[1:3]
 snps <- SNPassoc::setupSNP(data=asthma[snpCols], colSNPs=1:length(snpCols), sep="")
 summary(snps, print=FALSE)
 lapply(snps, head)
