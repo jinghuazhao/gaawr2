@@ -458,4 +458,7 @@ Suggests:
     MCMCglmm
 ```
 
+Note that the `devtools::document()` in `pkgdown.sh` automatically updates NAMESPACE and regenerates function documentation file(.Rd),
+which can be picked up through `pkgdown::build_reference()`.
+
 # References
