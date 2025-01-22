@@ -75,7 +75,7 @@ get_data <- function(filename, region)
 }
 
 options(width = 200)
-filename <- file.path("data","IL.18R1-1.tbl.gz")
+filename <- file.path("tests","IL.18R1-1.tbl.gz")
 region <- "2:102700000-103800000"
 data <- get_data(filename, region)
 head(data,1)
@@ -88,7 +88,7 @@ plbr$handle("GET", "/data", function(req, res) {
     res$status <- 400
     return(list(error = "Both 'protein' and 'region' must be provided"))
   }
-  filename <- file.path("data",paste0(protein,"-1.tbl.gz"))
+  filename <- file.path("tests",paste0(protein,"-1.tbl.gz"))
   print(filename)
   if (!file.exists(filename)) {
     res$status <- 404
