@@ -2,7 +2,7 @@
 % Please edit documentation in R/Welcome.R
 \name{Welcome}
 \alias{Welcome}
-\title{FUNCTION_TITLE}
+\title{An enhanced welcome}
 \usage{
 Welcome(n)
 }

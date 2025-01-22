@@ -11,18 +11,8 @@ This package illustrates creation and maintenance of package used in genetic ass
 \details{
 Available data are listed in the following table.\tabular{ll}{
    Objects \tab Description \cr
-   \strong{Datasets} \tab   \cr
-   \code{\link{biomaRt}} \tab Curated data from biomaRt \cr
-}
-
-
-Some generic description for the datasets are as follows.
-\itemize{
-\item chr Chromosome.
-\item start Start position.
-\item end End position.
-\item gene Gene name.
-\item UniProt UniProt ID.
+   \strong{Functions} \tab   \cr
+   \code{\link{Welcome}} \tab An enhanced welcome \cr
 }
 }
 \section{Usage}{
@@ -35,9 +25,7 @@ Vignettes on package usage:
 }
 
 \examples{
-\dontrun{
-head(biomaRt)
-}
+Welcome(3)
 }
 \author{
 Jing Hua Zhao in collaboration with other colleagues.
