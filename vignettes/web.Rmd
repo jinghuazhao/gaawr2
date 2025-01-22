@@ -39,7 +39,7 @@ which works even with `python3 -m http.server` when the port number 8000 is avai
 However we leave this as a benchmark, and our focus here is R with the following script,
 
 ```r
-startServer("0.0.0.0", 8000, list(
+httpuv::startServer("0.0.0.0", 8000, list(
   call = function(req) {
     list(
       status = 200L,

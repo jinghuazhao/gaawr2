@@ -28,7 +28,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-pkgs <- c("EnsDb.Hsapiens.v75","GMMAT","HardyWeinberg","MCMCglmm","biomaRt","gap","haplo.stats","pedigreemm",
+pkgs <- c("EnsDb.Hsapiens.v75","GMMAT","HardyWeinberg","MCMCglmm","SNPassoc","biomaRt","gap","haplo.stats","pedigreemm",
            "dplyr","ggplot2","httr","jsonlite","knitr","powerEQTL")
 for (p in pkgs) if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
     if (!requireNamespace(p)) warning(paste0("This vignette needs package `", p, "'; please install"))
@@ -94,7 +94,7 @@ sumstats <- mtcars %>%
   dplyr::filter(mpg > 20) %>%
   dplyr::group_by(cyl) %>%
   dplyr::summarize(avg_hp = mean(hp), avg_wt = mean(wt))
-knitr::kable(sumstats,caption="")
+knitr::kable(sumstats,caption="Mean horse power and weight by Cylinder for mpg over 20")
 ggplot2::ggplot(sumstats, ggplot2::aes(x = factor(cyl), y = avg_hp, fill = factor(cyl))) +
 ggplot2::geom_bar(stat = "identity") +
 ggplot2::labs(
@@ -110,6 +110,219 @@ Two most often used approaches to make R packages available is through
 
 - `install.packages()` which is a standard way to install from the Comprehensive R Archive Network (CRAN) hosting many user-contributed packages.
 - `BiocManager::install() which is an updated command to install package from the Bioconductor project.`
+
+# Data analysis
+
+Topics vary from those heavily featured in candidate gene studies, such as Hardy-Weinberg equilirium (HWE), to their counterparts in
+Genomewide association study (GWAS) such as various types of association statistics, QQ/Manhattan/local association plots.
+
+There has been a lot of interests in machine learning (ML), artificial language (AI), including deep learning (DL), just to add one more
+acronym, the bulk of which is also readily available.
+
+## HardyWeinberg
+
+We set to run through the package for HWE. Three data sources are used: MN blood group in the documentation,
+a chromosome X SNP and a HLA/DQR,
+
+```{r hwe, fig.cap="SNP ternary plot", fig.height=15.07, fig.width=15.6, messages=FALSE}
+options(width=200)
+# MN blood group
+SNP <- c(MM = 298, MN = 489, NN = 213)
+HardyWeinberg::maf(SNP)
+HardyWeinberg::HWTernaryPlot(SNP,region=0,hwcurve=FALSE,grid=TRUE,markercol="blue")
+HardyWeinberg::HWChisq(SNP, cc = 0, verbose = TRUE)
+# Chromosome X
+xSNP <- c(A=10, B=20, AA=30, AB=20, BB=10)
+HardyWeinberg::HWChisq(xSNP,cc=0,x.linked=TRUE,verbose=TRUE)
+# HLA/DQR
+library(gap)
+DQR <- hla[,3:4]
+a1 <- DQR[1]
+a2 <- DQR[2]
+GenotypeCounts <- HardyWeinberg::AllelesToTriangular(a1,a2)
+knitr::kable(GenotypeCounts,caption="Genotype distribution of DQR")
+HardyWeinberg::HWPerm.mult(GenotypeCounts,nperm=1000)
+HardyWeinberg::HWStr(hla[,3:4],test="permutation",nperm=1000)
+```
+
+## SNPassoc
+
+The package implements procedures which are appropriate for candidate gene association analysis, under a variety of genetic models.
+
+Fist we look at some meta-data, include HWE.
+
+```{r snpassoc1}
+options(width=200,digits=2)
+data(asthma, package = "SNPassoc")
+str(asthma, list.len=9)
+knitr::kable(asthma[1:3,1:8],caption="First three records & two SNPs")
+
+snpCols <- grep("^rs", colnames(asthma), value=TRUE)[1:5]
+snps <- SNPassoc::setupSNP(data=asthma[snpCols], colSNPs=1:length(snpCols), sep="")
+summary(snps, print=FALSE)
+lapply(snps, head)
+lapply(snps, summary)
+SNPassoc::tableHWE(snps)
+```
+
+We then turn to genetic models for a specific SNP,
+
+```{r snpassoc2}
+asthma.snps <- SNPassoc::setupSNP(data=asthma, colSNPs=grep("^rs", colnames(asthma)), sep="") %>%
+               dplyr::rename(cc=casecontrol) %>%
+               dplyr::select(1:11)
+SNPassoc::association(bmi ~ rs4490198, asthma.snps)
+SNPassoc::association(cc ~ rs4490198, data=asthma.snps)
+SNPassoc::association(cc ~ rs4490198 + country + smoke, asthma.snps)
+SNPassoc::association(cc ~ rs4490198 + survival::strata(gender), asthma.snps)
+SNPassoc::association(cc ~ rs4490198, asthma.snps, subset=country=="Spain")
+SNPassoc::association(cc ~ dominant(rs4490198)*factor(smoke), data=asthma.snps)
+SNPassoc::association(cc ~ rs4490198*factor(rs11123242), data=asthma.snps, model.interaction = "dominant" )
+```
+
+## haplo.stats
+
+This package considers haplotype estimation using EM-algorithms and genetic association under a generalized linear model (GLM).
+
+```{r haplo.stats}
+data(asthma, package = "SNPassoc")
+asthma.snps <- SNPassoc::setupSNP(data=asthma, colSNPs=grep("^rs", colnames(asthma)), sep="")
+asthma.snps <- SNPassoc::setupSNP(data=asthma, colSNPs=grep("^rs", colnames(asthma)), sep="") %>%
+               dplyr::rename(cc=casecontrol)
+library(haplo.stats)
+snpsH <- c("rs714588", "rs1023555",  "rs898070")
+genoH <- SNPassoc::make.geno(asthma.snps, snpsH)
+em <- haplo.stats::haplo.em(genoH, locus.label = snpsH, miss.val = c(0, NA))
+em
+knitr::kable(cbind(em$haplotype,em$hap.prob),caption="Haplotypes of rs714588, rs1023555, rs898070")
+
+mod <- haplo.stats::haplo.glm(cc ~ genoH, data=asthma.snps,
+                              family="binomial",
+                              locus.label=snpsH,
+                              allele.lev=attributes(genoH)$unique.alleles,
+                              control = haplo.stats::haplo.glm.control(haplo.freq.min=0.05))
+mod
+SNPassoc::intervals(mod)
+snpsH2 <- labels(asthma.snps)[6:15]
+genoH2 <- SNPassoc::make.geno(asthma.snps, snpsH2)
+haplo.score <- list()
+for (i in 1:4) haplo.score[[i]] <- haplo.stats::haplo.score.slide(asthma.snps$cc, genoH2,
+                                         trait.type="binomial",
+                                         n.slide=i+3,
+                                         simulate=TRUE,
+                                         sim.control=haplo.stats::score.sim.control(min.sim=100,
+                                         max.sim=200)) 
+par(mfrow=c(2,2))
+for (i in 1:4) {
+    plot(haplo.score[[i]])
+    title(paste("Sliding Window=", i+3, sep=""))
+}
+snpsH3 <- snpsH2[4:7]
+genoH3 <- make.geno(asthma.snps, snpsH3)
+mod <- haplo.stats::haplo.glm(cc~genoH3, data=asthma.snps,
+             family="binomial",
+             locus.label=snpsH3,
+             allele.lev=attributes(genoH3)$unique.alleles,
+             control = haplo.stats::haplo.glm.control(haplo.freq.min=0.05))
+mod
+SNPassoc::intervals(mod)
+mod.adj.ref <- glm(cc ~ smoke, data=asthma.snps, family="binomial")
+mod.adj <- haplo.glm(cc ~ genoH3 + smoke, data=asthma.snps,
+                 family="binomial",
+                 locus.label=snpsH3,
+                 allele.lev=attributes(genoH3)$unique.alleles,
+                 control = haplo.stats::haplo.glm.control(haplo.freq.min=0.05))
+mod.adj
+lrt.adj <- mod.adj.ref$deviance - mod.adj$deviance
+pchisq(lrt.adj, mod.adj$lrt$df, lower=FALSE)
+```
+
+## pedigreemm
+
+kinship2, especially with its `lmekin`.
+
+## Proteogenomics
+
+An overview on the proteomics is found from the relevant paper @suhre20.
+
+
+## GWAS
+
+We return to the asthma data used in **SNPassoc**.
+
+```r
+assoc <- SNPassoc::WGassociation(cc, data=asthma.snps, mc.cores=1)
+assoc %>%
+as.data.frame() %>%
+dplyr::select(-comments) %>%
+knitr::kable(caption="SNP association")
+assoc.adj <- SNPassoc::WGassociation(cc ~ country + smoke, asthma.snps, mc.cores=1)
+assoc.adj %>%
+as.data.frame() %>%
+dplyr::select(-comments) %>%
+knitr::kable(caption="with adjustment for contountry & smoking")
+assoc.maxstat <- SNPassoc::maxstat(asthma.snps, cc)
+knitr::kable(t(assoc.maxstat[,]),caption="Max stat association statistics")
+```
+
+## powerEQTL
+
+```{r eqtl, fig.cap="Power Estimation for eQTL Studies of 240 SNPs", fig.height=6, fig.width=8, messages=FALSE}
+n.designs <- 6
+designs <- 1:n.designs
+N <- 50 * designs
+n.grids <- 100
+index <- 1:n.grids
+grids <- index / n.grids
+MAF <- seq(0.005, n.grids/2, by=0.5) / n.grids
+plot(MAF,grids,type="n",ylab="Power")
+mtext(expression(paste("(",alpha," = 0.05)")),1,line=4.5)
+colors <- grDevices::hcl.colors(n.designs)
+for (design in designs)
+{
+  power.SLR <- rep(NA,n.grids)
+  for (j in index) power.SLR[j] <- powerEQTL::powerEQTL.SLR(MAF = MAF[j], FWER = 0.05, nTests = 240, slope = 0.13,
+                                                            n = N[design], sigma.y = 0.13)
+  lines(MAF,power.SLR,col=colors[design])
+}
+legend("bottomright", inset=.02, title="Sample size (N)", paste(N), col=colors, horiz=FALSE, cex=0.8, lty=designs)
+```
+
+### OpenTargets
+
+```{r, messages=FALSE}
+gene_id <- "ENSG00000164308"
+query_string = "
+  query target($ensemblId: String!){
+    target(ensemblId: $ensemblId){
+      id
+      approvedSymbol
+      biotype
+      geneticConstraint {
+        constraintType
+        exp
+        obs
+        score
+        oe
+        oeLower
+        oeUpper
+      }
+      tractability {
+        label
+        modality
+        value
+      }
+    }
+  }
+"
+base_url <- "https://api.platform.opentargets.org/api/v4/graphql"
+variables <- list("ensemblId" = gene_id)
+post_body <- list(query = query_string, variables = variables)
+r <- httr::POST(url=base_url, body=post_body, encode='json')
+data <- iconv(r, "latin1", "ASCII")
+content <- jsonlite::fromJSON(data)
+knitr::kable(content, caption="Query of ERAP2 from OpenTargets")
+```
 
 # Annotations
 
@@ -127,18 +340,21 @@ One can also use `exons_data <- ensembldb::exons(EnsDb.Hsapiens.v75);head(exons_
 ## biomaRt
 
 ```r
+library(biomaRt)
+if (!biomaRt::martBMCheck(mart)) {
+  stop("The BioMart service is currently unavailable.")
+}
 biomaRt::listMarts()
-mart <- biomaRt::useMart("ENSEMBL_MART_FUNCGEN")
-biomaRt::listDatasets(mart)
-mart <- biomaRt::useMart("ensembl")
-biomaRt::listDatasets(mart)
-ensembl <- biomaRt::useMart(biomart="ensembl", dataset="hsapiens_gene_ensembl", host="grch37.ensembl.org", path="/biomart/martservice")
+ensembl <- biomaRt::useMart("ensembl", dataset="hsapiens_gene_ensembl", host="grch37.ensembl.org", path="/biomart/martservice")
+biomaRt::listDatasets(ensembl)
 attr <- biomaRt::listAttributes(ensembl)
 attr_select <- c('ensembl_gene_id', 'chromosome_name', 'start_position', 'end_position', 'description', 'hgnc_symbol',
                  'transcription_start_site')
 gene <- biomaRt::getBM(attributes = attr_select, mart = ensembl)
 filter <- biomaRt::listFilters(ensembl)
 biomaRt::searchFilters(mart = ensembl, pattern = "gene")
+# GRCh38
+ensembl <- biomaRt::useMart("ensembl", dataset="hsapiens_gene_ensembl")
 ```
 
 ## Experimental Factor Ontology (EFO)
@@ -205,132 +421,6 @@ asthma_variants <- entrez_link(dbfrom="omim", db="clinvar", cmd="neighbor_histor
 asthma_variants
 snp_links <- entrez_link(dbfrom="clinvar", db="snp", web_history=asthma_variants$web_histories$omim_clinvar, cmd="neighbor_history")
 all_links <- entrez_link(dbfrom='pubmed', id=id, db='all')
-```
-
-# Data analysis
-
-Topics vary from those heavily featured in candidate gene studies, such as Hardy-Weinberg equilirium (HWE), to their counterparts in
-Genomewide association study (GWAS) such as various types of association statistics, QQ/Manhattan/local association plots.
-
-There has been a lot of interests in machine learning (ML), artificial language (AI), including deep learning (DL), just to add one more
-acronym, the bulk of which is also readily available.
-
-## HardyWeinberg
-
-We set to run through the package for HWE. Three data sources are used: MN blood group in the documentation,
-a chromosome X SNP and a HLA/DQR,
-
-```{r hwe, fig.cap="SNP ternary plot", fig.height=15.07, fig.width=15.6, messages=FALSE}
-options(width=200)
-# MN blood group
-SNP <- c(MM = 298, MN = 489, NN = 213)
-HardyWeinberg::maf(SNP)
-HardyWeinberg::HWTernaryPlot(SNP,region=0,hwcurve=FALSE,grid=TRUE,markercol="blue")
-HardyWeinberg::HWChisq(SNP, cc = 0, verbose = TRUE)
-# Chromosome X
-xSNP <- c(A=10, B=20, AA=30, AB=20, BB=10)
-HardyWeinberg::HWChisq(xSNP,cc=0,x.linked=TRUE,verbose=TRUE)
-# HLA/DQR
-library(gap)
-DQR <- hla[,3:4]
-a1 <- DQR[1]
-a2 <- DQR[2]
-GenotypeCounts <- HardyWeinberg::AllelesToTriangular(a1,a2)
-knitr::kable(GenotypeCounts,caption="Genotype distribution of DQR")
-HardyWeinberg::HWPerm.mult(GenotypeCounts,nperm=1000)
-HardyWeinberg::HWStr(hla[,3:4],test="permutation",nperm=1000)
-```
-
-## SNPassoc
-
-The package implements procedures which are appropriate for candidate gene association analysis, under a variety of genetic models.
-
-## haplo.stats
-
-This package considers haplotype estimation using EM-algorithms and genetic association under a generalized linear model (GLM).
-
-## pedigreemm
-
-kinship2, especially with its `lmekin`.
-
-## GWAS
-
-This includes association modeling, annotation. Graphics, e.g., `inst/scripts/lz.R`.
-
-The following packages are notable, `GWASExactHW`, `GMMAT`, `GWAStools`, `SAIGE`, `qqman`.
-
-## ML & AI
-
-For ML, it glmnet is worthy of note. For AI, some pedagogic implementation such as `nnet` which has long been in R's list of recommended
-packages , `neuralnet`, `RSNNS` which is ported from the standalone package, as well as production packages (parallel developments to
-Python) include `tensorflow` (TensorFlow), `torch` (PyTorch), and `keras` (Keras).
-
-## Miscellaneous topics
-
-- Parallel computing.
-- Data. `SeqArray` format GDS from PLINK, whose code for handling binary encoded data (bed) are widely adopted. Customized packages for databases include RSQLite, RMySQL.
-- Graphics, the list includes `Rgraphviz` and `magick` for the the extremely popular `graphviz` and `ImageMagick`.
-- Omics. Proteomics such as `MsCoreUtils`, `MSStats`, `scp`. An overview on the topic is found from the relevant paper @suhre20.
-- post-GWAS.
-
-
-### powerEQTL
-
-```{r eqtl, fig.cap="Power Estimation for eQTL Studies of 240 SNPs", fig.height=6, fig.width=8, messages=FALSE}
-n.designs <- 6
-designs <- 1:n.designs
-N <- 50 * designs
-n.grids <- 100
-index <- 1:n.grids
-grids <- index / n.grids
-MAF <- seq(0.005, n.grids/2, by=0.5) / n.grids
-plot(MAF,grids,type="n",ylab="Power")
-mtext(expression(paste("(",alpha," = 0.05)")),1,line=4.5)
-colors <- grDevices::hcl.colors(n.designs)
-for (design in designs)
-{
-  power.SLR <- rep(NA,n.grids)
-  for (j in index) power.SLR[j] <- powerEQTL::powerEQTL.SLR(MAF = MAF[j], FWER = 0.05, nTests = 240, slope = 0.13,
-                                                            n = N[design], sigma.y = 0.13)
-  lines(MAF,power.SLR,col=colors[design])
-}
-legend("bottomright", inset=.02, title="Sample size (N)", paste(N), col=colors, horiz=FALSE, cex=0.8, lty=designs)
-```
-
-### OpenTargets
-
-```{r, messages=FALSE}
-gene_id <- "ENSG00000164308"
-query_string = "
-  query target($ensemblId: String!){
-    target(ensemblId: $ensemblId){
-      id
-      approvedSymbol
-      biotype
-      geneticConstraint {
-        constraintType
-        exp
-        obs
-        score
-        oe
-        oeLower
-        oeUpper
-      }
-      tractability {
-        label
-        modality
-        value
-      }
-    }
-  }
-"
-base_url <- "https://api.platform.opentargets.org/api/v4/graphql"
-variables <- list("ensemblId" = gene_id)
-post_body <- list(query = query_string, variables = variables)
-r <- httr::POST(url=base_url, body=post_body, encode='json')
-data <- iconv(r, "latin1", "ASCII")
-content <- jsonlite::fromJSON(data)
-knitr::kable(content, caption="Query of ERAP2 from OpenTargets")
 ```
 
 # gaawr2
