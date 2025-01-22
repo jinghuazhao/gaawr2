@@ -122,9 +122,10 @@ same chain, i.e., (<code>\</code>),</p>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">&gt;</span> <span class="fl">20</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarize</a></span><span class="op">(</span>avg_hp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">hp</span><span class="op">)</span>, avg_wt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">wt</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">sumstats</span>,caption<span class="op">=</span><span class="st">""</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">sumstats</span>,caption<span class="op">=</span><span class="st">"Mean horse power and weight by Cylinder for mpg over 20"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
-<caption><span id="tab:ops">Table 2.1: </span></caption>
+<caption>
+<span id="tab:ops">Table 2.1: </span>Mean horse power and weight by Cylinder for mpg over 20</caption>
 <thead><tr class="header">
 <th align="right">cyl</th>
 <th align="right">avg_hp</th>
@@ -162,189 +163,20 @@ same chain, i.e., (<code>\</code>),</p>
 </ul>
 </div>
 <div class="section level2" number="3">
-<h2 id="annotations">
-<span class="header-section-number">3</span> Annotations<a class="anchor" aria-label="anchor" href="#annotations"></a>
-</h2>
-<div class="section level3" number="3.1">
-<h3 id="ensdb-hsapiens-v75">
-<span class="header-section-number">3.1</span> EnsDb.Hsapiens.v75<a class="anchor" aria-label="anchor" href="#ensdb-hsapiens-v75"></a>
-</h3>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">ensembldb</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Annotated-class.html" class="external-link">metadata</a></span><span class="op">(</span><span class="va">EnsDb.Hsapiens.v75</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                  name                               value</span></span>
-<span><span class="co">#&gt; 1             Db type                               EnsDb</span></span>
-<span><span class="co">#&gt; 2     Type of Gene ID                     Ensembl Gene ID</span></span>
-<span><span class="co">#&gt; 3  Supporting package                           ensembldb</span></span>
-<span><span class="co">#&gt; 4       Db created by ensembldb package from Bioconductor</span></span>
-<span><span class="co">#&gt; 5      script_version                               0.3.0</span></span>
-<span><span class="co">#&gt; 6       Creation time            Thu May 18 09:15:45 2017</span></span>
-<span><span class="co">#&gt; 7     ensembl_version                                  75</span></span>
-<span><span class="co">#&gt; 8        ensembl_host                           localhost</span></span>
-<span><span class="co">#&gt; 9            Organism                        homo_sapiens</span></span>
-<span><span class="co">#&gt; 10        taxonomy_id                                9606</span></span>
-<span><span class="co">#&gt; 11       genome_build                              GRCh37</span></span>
-<span><span class="co">#&gt; 12    DBSCHEMAVERSION                                 2.0</span></span>
-<span><span class="va">genes</span> <span class="op">&lt;-</span> <span class="fu">ensembldb</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GenomicFeatures/man/transcripts.html" class="external-link">genes</a></span><span class="op">(</span><span class="va">EnsDb.Hsapiens.v75</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">genes</span><span class="op">)</span></span>
-<span><span class="co">#&gt; GRanges object with 6 ranges and 6 metadata columns:</span></span>
-<span><span class="co">#&gt;                   seqnames      ranges strand |         gene_id   gene_name</span></span>
-<span><span class="co">#&gt;                      &lt;Rle&gt;   &lt;IRanges&gt;  &lt;Rle&gt; |     &lt;character&gt; &lt;character&gt;</span></span>
-<span><span class="co">#&gt;   ENSG00000223972        1 11869-14412      + | ENSG00000223972     DDX11L1</span></span>
-<span><span class="co">#&gt;   ENSG00000227232        1 14363-29806      - | ENSG00000227232      WASH7P</span></span>
-<span><span class="co">#&gt;   ENSG00000243485        1 29554-31109      + | ENSG00000243485  MIR1302-10</span></span>
-<span><span class="co">#&gt;   ENSG00000237613        1 34554-36081      - | ENSG00000237613     FAM138A</span></span>
-<span><span class="co">#&gt;   ENSG00000268020        1 52473-54936      + | ENSG00000268020      OR4G4P</span></span>
-<span><span class="co">#&gt;   ENSG00000240361        1 62948-63887      + | ENSG00000240361     OR4G11P</span></span>
-<span><span class="co">#&gt;                   gene_biotype seq_coord_system      symbol</span></span>
-<span><span class="co">#&gt;                    &lt;character&gt;      &lt;character&gt; &lt;character&gt;</span></span>
-<span><span class="co">#&gt;   ENSG00000223972   pseudogene       chromosome     DDX11L1</span></span>
-<span><span class="co">#&gt;   ENSG00000227232   pseudogene       chromosome      WASH7P</span></span>
-<span><span class="co">#&gt;   ENSG00000243485      lincRNA       chromosome  MIR1302-10</span></span>
-<span><span class="co">#&gt;   ENSG00000237613      lincRNA       chromosome     FAM138A</span></span>
-<span><span class="co">#&gt;   ENSG00000268020   pseudogene       chromosome      OR4G4P</span></span>
-<span><span class="co">#&gt;   ENSG00000240361   pseudogene       chromosome     OR4G11P</span></span>
-<span><span class="co">#&gt;                                            entrezid</span></span>
-<span><span class="co">#&gt;                                              &lt;list&gt;</span></span>
-<span><span class="co">#&gt;   ENSG00000223972               100287596,100287102</span></span>
-<span><span class="co">#&gt;   ENSG00000227232                  100287171,653635</span></span>
-<span><span class="co">#&gt;   ENSG00000243485 100422919,100422834,100422831,...</span></span>
-<span><span class="co">#&gt;   ENSG00000237613              654835,645520,641702</span></span>
-<span><span class="co">#&gt;   ENSG00000268020                              &lt;NA&gt;</span></span>
-<span><span class="co">#&gt;   ENSG00000240361                              &lt;NA&gt;</span></span>
-<span><span class="co">#&gt;   -------</span></span>
-<span><span class="co">#&gt;   seqinfo: 273 sequences (1 circular) from GRCh37 genome</span></span>
-<span><span class="va">transcripts_data</span> <span class="op">&lt;-</span> <span class="fu">ensembldb</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GenomicFeatures/man/transcripts.html" class="external-link">transcripts</a></span><span class="op">(</span><span class="va">EnsDb.Hsapiens.v75</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">transcripts_data</span><span class="op">)</span></span>
-<span><span class="co">#&gt; GRanges object with 6 ranges and 6 metadata columns:</span></span>
-<span><span class="co">#&gt;                   seqnames      ranges strand |           tx_id</span></span>
-<span><span class="co">#&gt;                      &lt;Rle&gt;   &lt;IRanges&gt;  &lt;Rle&gt; |     &lt;character&gt;</span></span>
-<span><span class="co">#&gt;   ENST00000456328        1 11869-14409      + | ENST00000456328</span></span>
-<span><span class="co">#&gt;   ENST00000515242        1 11872-14412      + | ENST00000515242</span></span>
-<span><span class="co">#&gt;   ENST00000518655        1 11874-14409      + | ENST00000518655</span></span>
-<span><span class="co">#&gt;   ENST00000450305        1 12010-13670      + | ENST00000450305</span></span>
-<span><span class="co">#&gt;   ENST00000438504        1 14363-29370      - | ENST00000438504</span></span>
-<span><span class="co">#&gt;   ENST00000541675        1 14363-24886      - | ENST00000541675</span></span>
-<span><span class="co">#&gt;                               tx_biotype tx_cds_seq_start tx_cds_seq_end</span></span>
-<span><span class="co">#&gt;                              &lt;character&gt;        &lt;integer&gt;      &lt;integer&gt;</span></span>
-<span><span class="co">#&gt;   ENST00000456328   processed_transcript             &lt;NA&gt;           &lt;NA&gt;</span></span>
-<span><span class="co">#&gt;   ENST00000515242 transcribed_unproces..             &lt;NA&gt;           &lt;NA&gt;</span></span>
-<span><span class="co">#&gt;   ENST00000518655 transcribed_unproces..             &lt;NA&gt;           &lt;NA&gt;</span></span>
-<span><span class="co">#&gt;   ENST00000450305 transcribed_unproces..             &lt;NA&gt;           &lt;NA&gt;</span></span>
-<span><span class="co">#&gt;   ENST00000438504 unprocessed_pseudogene             &lt;NA&gt;           &lt;NA&gt;</span></span>
-<span><span class="co">#&gt;   ENST00000541675 unprocessed_pseudogene             &lt;NA&gt;           &lt;NA&gt;</span></span>
-<span><span class="co">#&gt;                           gene_id         tx_name</span></span>
-<span><span class="co">#&gt;                       &lt;character&gt;     &lt;character&gt;</span></span>
-<span><span class="co">#&gt;   ENST00000456328 ENSG00000223972 ENST00000456328</span></span>
-<span><span class="co">#&gt;   ENST00000515242 ENSG00000223972 ENST00000515242</span></span>
-<span><span class="co">#&gt;   ENST00000518655 ENSG00000223972 ENST00000518655</span></span>
-<span><span class="co">#&gt;   ENST00000450305 ENSG00000223972 ENST00000450305</span></span>
-<span><span class="co">#&gt;   ENST00000438504 ENSG00000227232 ENST00000438504</span></span>
-<span><span class="co">#&gt;   ENST00000541675 ENSG00000227232 ENST00000541675</span></span>
-<span><span class="co">#&gt;   -------</span></span>
-<span><span class="co">#&gt;   seqinfo: 273 sequences (1 circular) from GRCh37 genome</span></span></code></pre></div>
-<p>One can also use <code>exons_data &lt;- ensembldb::exons(EnsDb.Hsapiens.v75);head(exons_data)</code> but it is skipped for being considerably longer.</p>
-</div>
-<div class="section level3" number="3.2">
-<h3 id="biomart">
-<span class="header-section-number">3.2</span> biomaRt<a class="anchor" aria-label="anchor" href="#biomart"></a>
-</h3>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listMarts.html" class="external-link">listMarts</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">mart</span> <span class="op">&lt;-</span> <span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/useMart.html" class="external-link">useMart</a></span><span class="op">(</span><span class="st">"ENSEMBL_MART_FUNCGEN"</span><span class="op">)</span></span>
-<span><span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listDatasets.html" class="external-link">listDatasets</a></span><span class="op">(</span><span class="va">mart</span><span class="op">)</span></span>
-<span><span class="va">mart</span> <span class="op">&lt;-</span> <span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/useMart.html" class="external-link">useMart</a></span><span class="op">(</span><span class="st">"ensembl"</span><span class="op">)</span></span>
-<span><span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listDatasets.html" class="external-link">listDatasets</a></span><span class="op">(</span><span class="va">mart</span><span class="op">)</span></span>
-<span><span class="va">ensembl</span> <span class="op">&lt;-</span> <span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/useMart.html" class="external-link">useMart</a></span><span class="op">(</span>biomart<span class="op">=</span><span class="st">"ensembl"</span>, dataset<span class="op">=</span><span class="st">"hsapiens_gene_ensembl"</span>, host<span class="op">=</span><span class="st">"grch37.ensembl.org"</span>, path<span class="op">=</span><span class="st">"/biomart/martservice"</span><span class="op">)</span></span>
-<span><span class="va">attr</span> <span class="op">&lt;-</span> <span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listAttributes.html" class="external-link">listAttributes</a></span><span class="op">(</span><span class="va">ensembl</span><span class="op">)</span></span>
-<span><span class="va">attr_select</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'ensembl_gene_id'</span>, <span class="st">'chromosome_name'</span>, <span class="st">'start_position'</span>, <span class="st">'end_position'</span>, <span class="st">'description'</span>, <span class="st">'hgnc_symbol'</span>,</span>
-<span>                 <span class="st">'transcription_start_site'</span><span class="op">)</span></span>
-<span><span class="va">gene</span> <span class="op">&lt;-</span> <span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/getBM.html" class="external-link">getBM</a></span><span class="op">(</span>attributes <span class="op">=</span> <span class="va">attr_select</span>, mart <span class="op">=</span> <span class="va">ensembl</span><span class="op">)</span></span>
-<span><span class="va">filter</span> <span class="op">&lt;-</span> <span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listFilters.html" class="external-link">listFilters</a></span><span class="op">(</span><span class="va">ensembl</span><span class="op">)</span></span>
-<span><span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listFilters.html" class="external-link">searchFilters</a></span><span class="op">(</span>mart <span class="op">=</span> <span class="va">ensembl</span>, pattern <span class="op">=</span> <span class="st">"gene"</span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level3" number="3.3">
-<h3 id="experimental-factor-ontology-efo">
-<span class="header-section-number">3.3</span> Experimental Factor Ontology (EFO)<a class="anchor" aria-label="anchor" href="#experimental-factor-ontology-efo"></a>
-</h3>
-<p>The ontology of traits/disease is formally available as this<span class="citation"><sup>1</sup></span>.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ontologyIndex</span><span class="op">)</span></span>
-<span><span class="va">id</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">ontology</span><span class="op">)</span></span>
-<span><span class="op">{</span></span>
-<span>  <span class="va">inflammatory</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="va">ontology</span><span class="op">$</span><span class="va">name</span>,pattern<span class="op">=</span><span class="st">"inflammatory"</span><span class="op">)</span></span>
-<span>  <span class="va">immune</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="va">ontology</span><span class="op">$</span><span class="va">name</span>,pattern<span class="op">=</span><span class="st">"immune"</span><span class="op">)</span></span>
-<span>  <span class="va">inf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sets.html" class="external-link">union</a></span><span class="op">(</span><span class="va">inflammatory</span>,<span class="va">immune</span><span class="op">)</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>id<span class="op">=</span><span class="va">ontology</span><span class="op">$</span><span class="va">id</span><span class="op">[</span><span class="va">inf</span><span class="op">]</span>,name<span class="op">=</span><span class="va">ontology</span><span class="op">$</span><span class="va">name</span><span class="op">[</span><span class="va">inf</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span><span class="co"># GO</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">go</span><span class="op">)</span></span>
-<span><span class="va">goidname</span> <span class="op">&lt;-</span> <span class="fu">id</span><span class="op">(</span><span class="va">go</span><span class="op">)</span></span>
-<span><span class="co"># EFO</span></span>
-<span><span class="va">file</span> <span class="op">&lt;-</span> <span class="st">"efo.obo"</span> <span class="co"># efo-3.26.0</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/ontologyIndex/man/get_relation_names.html" class="external-link">get_relation_names</a></span><span class="op">(</span><span class="va">file</span><span class="op">)</span></span>
-<span><span class="va">efo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ontologyIndex/man/get_ontology.html" class="external-link">get_ontology</a></span><span class="op">(</span><span class="va">file</span>, extract_tags<span class="op">=</span><span class="st">"everything"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">efo</span><span class="op">)</span> <span class="co"># 89</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">efo</span><span class="op">$</span><span class="va">id</span><span class="op">)</span> <span class="co"># 27962</span></span>
-<span><span class="va">efoidname</span> <span class="op">&lt;-</span> <span class="fu">id</span><span class="op">(</span><span class="va">efo</span><span class="op">)</span></span>
-<span><span class="va">diseases</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ontologyIndex/man/get_descendants.html" class="external-link">get_descendants</a></span><span class="op">(</span><span class="va">efo</span>,<span class="st">"EFO:0000408"</span><span class="op">)</span></span>
-<span><span class="va">efo_0000540</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ontologyIndex/man/get_descendants.html" class="external-link">get_descendants</a></span><span class="op">(</span><span class="va">efo</span>,<span class="st">"EFO:0000540"</span><span class="op">)</span></span>
-<span><span class="va">efo_0000540name</span> <span class="op">&lt;-</span> <span class="va">efo</span><span class="op">$</span><span class="va">name</span><span class="op">[</span><span class="va">efo_0000540</span><span class="op">]</span></span>
-<span><span class="va">isd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">efo_0000540</span>,<span class="va">efo_0000540name</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/save.html" class="external-link">save</a></span><span class="op">(</span><span class="va">efo</span>,<span class="va">diseases</span>,<span class="va">isd</span>,<span class="va">efoidname</span>,<span class="va">goidname</span>, file<span class="op">=</span><span class="st">"efo.rda"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.table</a></span><span class="op">(</span><span class="va">isd</span>,file<span class="op">=</span><span class="st">"efo_0000540.csv"</span>,col.names<span class="op">=</span><span class="cn">FALSE</span>,row.names<span class="op">=</span><span class="cn">FALSE</span>,sep<span class="op">=</span><span class="st">","</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ontologyPlot</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/ontologyPlot/man/onto_plot.html" class="external-link">onto_plot</a></span><span class="op">(</span><span class="va">efo</span>,<span class="va">efo_0000540</span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level3" number="3.4">
-<h3 id="rentrez">
-<span class="header-section-number">3.4</span> rentrez<a class="anchor" aria-label="anchor" href="#rentrez"></a>
-</h3>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/rentrez/" class="external-link">rentrez</a></span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/entrez_dbs.html" class="external-link">entrez_dbs</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/entrez_db_links.html" class="external-link">entrez_db_links</a></span><span class="op">(</span><span class="st">"pubmed"</span><span class="op">)</span></span>
-<span><span class="va">pubmed_fields</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/entrez_db_searchable.html" class="external-link">entrez_db_searchable</a></span><span class="op">(</span><span class="st">"pubmed"</span><span class="op">)</span></span>
-<span><span class="co"># set_entrez_key("")</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"ENTREZ_KEY"</span><span class="op">)</span></span>
-<span><span class="va">term</span> <span class="op">&lt;-</span> <span class="st">"pQTLs OR (protein AND quantitative AND trait AND loci) AND human [MH] AND (plasma OR Serum)"</span></span>
-<span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/entrez_search.html" class="external-link">entrez_search</a></span><span class="op">(</span>db<span class="op">=</span><span class="st">"pubmed"</span>,term<span class="op">=</span><span class="va">term</span>,use_history<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">r</span>,<span class="va">web_history</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"pubmed"</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"fetch"</span>,<span class="st">"summary"</span><span class="op">)</span>,sep<span class="op">=</span><span class="st">"."</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">fields</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"uid"</span>, <span class="st">"pubdate"</span>, <span class="st">"sortfirstauthor"</span>, <span class="st">"title"</span>, <span class="st">"source"</span>, <span class="st">"volume"</span>, <span class="st">"pages"</span><span class="op">)</span></span>
-<span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">r</span>,<span class="va">count</span><span class="op">)</span>,<span class="fl">50</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="va">i</span><span class="op">+</span><span class="fl">49</span>, <span class="st">"records downloaded\r"</span><span class="op">)</span></span>
-<span>  <span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/entrez_fetch.html" class="external-link">entrez_fetch</a></span><span class="op">(</span>db<span class="op">=</span><span class="st">"pubmed"</span>, web_history<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">r</span>,<span class="va">web_history</span><span class="op">)</span>, rettype<span class="op">=</span><span class="st">"text"</span>, retmax<span class="op">=</span><span class="fl">50</span>, retstart<span class="op">=</span><span class="va">i</span><span class="op">)</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.table</a></span><span class="op">(</span><span class="va">f</span>, col.names<span class="op">=</span><span class="cn">FALSE</span>, row.names<span class="op">=</span><span class="cn">FALSE</span>, file<span class="op">=</span><span class="st">"pubmed.fetch"</span>, append<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
-<span>  <span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/entrez_summary.html" class="external-link">entrez_summary</a></span><span class="op">(</span>db<span class="op">=</span><span class="st">"pubmed"</span>, web_history<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">r</span>,<span class="va">web_history</span><span class="op">)</span>, rettype<span class="op">=</span><span class="st">"text"</span>, retmax<span class="op">=</span><span class="fl">50</span>, retstart<span class="op">=</span><span class="va">i</span><span class="op">)</span></span>
-<span>  <span class="va">e</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/extract_from_esummary.html" class="external-link">extract_from_esummary</a></span><span class="op">(</span><span class="va">s</span>, <span class="va">fields</span><span class="op">)</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">e</span><span class="op">)</span>, col.names<span class="op">=</span><span class="cn">FALSE</span>, row.names<span class="op">=</span><span class="cn">FALSE</span>, file<span class="op">=</span><span class="st">"pubmed.summary"</span>, append<span class="op">=</span><span class="cn">TRUE</span>, sep<span class="op">=</span><span class="st">"\t"</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span><span class="va">id</span> <span class="op">&lt;-</span> <span class="fl">600807</span></span>
-<span><span class="va">upload</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/entrez_post.html" class="external-link">entrez_post</a></span><span class="op">(</span>db<span class="op">=</span><span class="st">"omim"</span>, id<span class="op">=</span><span class="va">id</span><span class="op">)</span></span>
-<span><span class="va">asthma_variants</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/entrez_link.html" class="external-link">entrez_link</a></span><span class="op">(</span>dbfrom<span class="op">=</span><span class="st">"omim"</span>, db<span class="op">=</span><span class="st">"clinvar"</span>, cmd<span class="op">=</span><span class="st">"neighbor_history"</span>, web_history<span class="op">=</span><span class="va">upload</span><span class="op">)</span></span>
-<span><span class="va">asthma_variants</span></span>
-<span><span class="va">snp_links</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/entrez_link.html" class="external-link">entrez_link</a></span><span class="op">(</span>dbfrom<span class="op">=</span><span class="st">"clinvar"</span>, db<span class="op">=</span><span class="st">"snp"</span>, web_history<span class="op">=</span><span class="va">asthma_variants</span><span class="op">$</span><span class="va">web_histories</span><span class="op">$</span><span class="va">omim_clinvar</span>, cmd<span class="op">=</span><span class="st">"neighbor_history"</span><span class="op">)</span></span>
-<span><span class="va">all_links</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/entrez_link.html" class="external-link">entrez_link</a></span><span class="op">(</span>dbfrom<span class="op">=</span><span class="st">'pubmed'</span>, id<span class="op">=</span><span class="va">id</span>, db<span class="op">=</span><span class="st">'all'</span><span class="op">)</span></span></code></pre></div>
-</div>
-</div>
-<div class="section level2" number="4">
 <h2 id="data-analysis">
-<span class="header-section-number">4</span> Data analysis<a class="anchor" aria-label="anchor" href="#data-analysis"></a>
+<span class="header-section-number">3</span> Data analysis<a class="anchor" aria-label="anchor" href="#data-analysis"></a>
 </h2>
 <p>Topics vary from those heavily featured in candidate gene studies, such as Hardy-Weinberg equilirium (HWE), to their counterparts in
 Genomewide association study (GWAS) such as various types of association statistics, QQ/Manhattan/local association plots.</p>
 <p>There has been a lot of interests in machine learning (ML), artificial language (AI), including deep learning (DL), just to add one more
 acronym, the bulk of which is also readily available.</p>
-<div class="section level3" number="4.1">
+<div class="section level3" number="3.1">
 <h3 id="hardyweinberg">
-<span class="header-section-number">4.1</span> HardyWeinberg<a class="anchor" aria-label="anchor" href="#hardyweinberg"></a>
+<span class="header-section-number">3.1</span> HardyWeinberg<a class="anchor" aria-label="anchor" href="#hardyweinberg"></a>
 </h3>
 <p>We set to run through the package for HWE. Three data sources are used: MN blood group in the documentation,
 a chromosome X SNP and a HLA/DQR,</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>width<span class="op">=</span><span class="fl">200</span><span class="op">)</span></span>
 <span><span class="co"># MN blood group</span></span>
 <span><span class="va">SNP</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>MM <span class="op">=</span> <span class="fl">298</span>, MN <span class="op">=</span> <span class="fl">489</span>, NN <span class="op">=</span> <span class="fl">213</span><span class="op">)</span></span>
@@ -355,10 +187,10 @@ a chromosome X SNP and a HLA/DQR,</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:hwe"></span>
 <img src="gaawr2%2Fhwe-1.png" alt="SNP ternary plot" width="1497.6" style="display:block; margin: auto"><p class="caption">
-Figure 4.1: SNP ternary plot
+Figure 3.1: SNP ternary plot
 </p>
 </div>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">HardyWeinberg</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/HardyWeinberg/man/HWChisq.html" class="external-link">HWChisq</a></span><span class="op">(</span><span class="va">SNP</span>, cc <span class="op">=</span> <span class="fl">0</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Chi-square test for Hardy-Weinberg equilibrium (autosomal)</span></span>
 <span><span class="co">#&gt; Chi2 =  0.2214896 DF =  1 p-value =  0.6379073 D =  -3.69375 f =  0.01488253</span></span>
@@ -376,7 +208,7 @@ Figure 4.1: SNP ternary plot
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">GenotypeCounts</span>,caption<span class="op">=</span><span class="st">"Genotype distribution of DQR"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>
-<span id="tab:hwe">Table 4.1: </span>Genotype distribution of DQR</caption>
+<span id="tab:hwe">Table 3.1: </span>Genotype distribution of DQR</caption>
 <colgroup>
 <col width="4%">
 <col width="3%">
@@ -1136,7 +968,7 @@ Figure 4.1: SNP ternary plot
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">HardyWeinberg</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/HardyWeinberg/man/HWPerm.mult.html" class="external-link">HWPerm.mult</a></span><span class="op">(</span><span class="va">GenotypeCounts</span>,nperm<span class="op">=</span><span class="fl">1000</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Permutation test for Hardy-Weinberg equilibrium (autosomal).</span></span>
 <span><span class="co">#&gt; 25 alleles detected.</span></span>
@@ -1146,55 +978,646 @@ Figure 4.1: SNP ternary plot
 <span><span class="co">#&gt;      STR   N Nt     MinorAF   MajorAF        Ho        He       Hp  pval</span></span>
 <span><span class="co">#&gt; 1 DQR.a1 271 25 0.001845018 0.1494465 0.8856089 0.9097643 2.654949 0.026</span></span></code></pre></div>
 </div>
-<div class="section level3" number="4.2">
+<div class="section level3" number="3.2">
 <h3 id="snpassoc">
-<span class="header-section-number">4.2</span> SNPassoc<a class="anchor" aria-label="anchor" href="#snpassoc"></a>
+<span class="header-section-number">3.2</span> SNPassoc<a class="anchor" aria-label="anchor" href="#snpassoc"></a>
 </h3>
 <p>The package implements procedures which are appropriate for candidate gene association analysis, under a variety of genetic models.</p>
+<p>Fist we look at some meta-data, include HWE.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>width<span class="op">=</span><span class="fl">200</span>,digits<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">asthma</span>, package <span class="op">=</span> <span class="st">"SNPassoc"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">asthma</span>, list.len<span class="op">=</span><span class="fl">9</span><span class="op">)</span></span>
+<span><span class="co">#&gt; 'data.frame':    1578 obs. of  57 variables:</span></span>
+<span><span class="co">#&gt;  $ country    : Factor w/ 10 levels "Australia","Belgium",..: 5 5 5 5 5 5 5 5 5 5 ...</span></span>
+<span><span class="co">#&gt;  $ gender     : Factor w/ 2 levels "Females","Males": 2 2 2 1 1 1 1 2 1 1 ...</span></span>
+<span><span class="co">#&gt;  $ age        : num  42.8 50.2 46.7 47.9 48.4 ...</span></span>
+<span><span class="co">#&gt;  $ bmi        : num  20.1 24.7 27.7 33.3 25.2 ...</span></span>
+<span><span class="co">#&gt;  $ smoke      : int  1 0 0 0 0 1 0 0 0 0 ...</span></span>
+<span><span class="co">#&gt;  $ casecontrol: int  0 0 0 0 1 0 0 0 0 0 ...</span></span>
+<span><span class="co">#&gt;  $ rs4490198  : Factor w/ 3 levels "AA","AG","GG": 3 3 3 2 2 2 3 2 2 2 ...</span></span>
+<span><span class="co">#&gt;  $ rs4849332  : Factor w/ 3 levels "GG","GT","TT": 3 2 3 2 1 2 3 3 2 1 ...</span></span>
+<span><span class="co">#&gt;  $ rs1367179  : Factor w/ 3 levels "CC","GC","GG": 2 2 2 3 3 3 2 3 3 3 ...</span></span>
+<span><span class="co">#&gt;   [list output truncated]</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">asthma</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">8</span><span class="op">]</span>,caption<span class="op">=</span><span class="st">"First three records &amp; two SNPs"</span><span class="op">)</span></span></code></pre></div>
+<table class="table">
+<caption>
+<span id="tab:snpassoc1">Table 3.2: </span>First three records &amp; two SNPs</caption>
+<thead><tr class="header">
+<th align="left">country</th>
+<th align="left">gender</th>
+<th align="right">age</th>
+<th align="right">bmi</th>
+<th align="right">smoke</th>
+<th align="right">casecontrol</th>
+<th align="left">rs4490198</th>
+<th align="left">rs4849332</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Germany</td>
+<td align="left">Males</td>
+<td align="right">43</td>
+<td align="right">20</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="left">GG</td>
+<td align="left">TT</td>
+</tr>
+<tr class="even">
+<td align="left">Germany</td>
+<td align="left">Males</td>
+<td align="right">50</td>
+<td align="right">25</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="left">GG</td>
+<td align="left">GT</td>
+</tr>
+<tr class="odd">
+<td align="left">Germany</td>
+<td align="left">Males</td>
+<td align="right">47</td>
+<td align="right">28</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="left">GG</td>
+<td align="left">TT</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="va">snpCols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="st">"^rs"</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">asthma</span><span class="op">)</span>, value<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span>
+<span><span class="va">snps</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/setupSNP.html" class="external-link">setupSNP</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">asthma</span><span class="op">[</span><span class="va">snpCols</span><span class="op">]</span>, colSNPs<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">snpCols</span><span class="op">)</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">snps</span>, print<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co">#&gt;            alleles major.allele.freq HWE  missing (%)</span></span>
+<span><span class="co">#&gt; rs4490198  A/G     59                0.17 0.6        </span></span>
+<span><span class="co">#&gt; rs4849332  G/T     62                0.52 0.1        </span></span>
+<span><span class="co">#&gt; rs1367179  G/C     81                0.74 1.0        </span></span>
+<span><span class="co">#&gt; rs11123242 C/T     82                0.93 0.6        </span></span>
+<span><span class="co">#&gt; rs13014858 G/A     58                0.35 0.1</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">snps</span>, <span class="va">head</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $rs4490198</span></span>
+<span><span class="co">#&gt; [1] G/G G/G G/G A/G A/G A/G</span></span>
+<span><span class="co">#&gt; Genotypes: A/A A/G G/G</span></span>
+<span><span class="co">#&gt; Alleles:  G A </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $rs4849332</span></span>
+<span><span class="co">#&gt; [1] T/T G/T T/T G/T G/G G/T</span></span>
+<span><span class="co">#&gt; Genotypes: G/G G/T T/T</span></span>
+<span><span class="co">#&gt; Alleles:  T G </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $rs1367179</span></span>
+<span><span class="co">#&gt; [1] G/C G/C G/C G/G G/G G/G</span></span>
+<span><span class="co">#&gt; Genotypes: G/G G/C C/C</span></span>
+<span><span class="co">#&gt; Alleles:  G C </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $rs11123242</span></span>
+<span><span class="co">#&gt; [1] C/T C/T C/T C/C C/C C/C</span></span>
+<span><span class="co">#&gt; Genotypes: C/C C/T T/T</span></span>
+<span><span class="co">#&gt; Alleles:  C T </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $rs13014858</span></span>
+<span><span class="co">#&gt; [1] A/A G/A A/A G/A G/G G/A</span></span>
+<span><span class="co">#&gt; Genotypes: G/G G/A A/A</span></span>
+<span><span class="co">#&gt; Alleles:  A G</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">snps</span>, <span class="va">summary</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $rs4490198</span></span>
+<span><span class="co">#&gt; Genotypes: </span></span>
+<span><span class="co">#&gt;      frequency percentage</span></span>
+<span><span class="co">#&gt; A/A        562         36</span></span>
+<span><span class="co">#&gt; A/G        731         47</span></span>
+<span><span class="co">#&gt; G/G        275         18</span></span>
+<span><span class="co">#&gt; NA's        10           </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Alleles: </span></span>
+<span><span class="co">#&gt;      frequency percentage</span></span>
+<span><span class="co">#&gt; G         1281         41</span></span>
+<span><span class="co">#&gt; A         1855         59</span></span>
+<span><span class="co">#&gt; NA's        20           </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; HWE (p value): 0.17 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $rs4849332</span></span>
+<span><span class="co">#&gt; Genotypes: </span></span>
+<span><span class="co">#&gt;      frequency percentage</span></span>
+<span><span class="co">#&gt; G/G        609         39</span></span>
+<span><span class="co">#&gt; G/T        732         46</span></span>
+<span><span class="co">#&gt; T/T        236         15</span></span>
+<span><span class="co">#&gt; NA's         1           </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Alleles: </span></span>
+<span><span class="co">#&gt;      frequency percentage</span></span>
+<span><span class="co">#&gt; T         1204         38</span></span>
+<span><span class="co">#&gt; G         1950         62</span></span>
+<span><span class="co">#&gt; NA's         2           </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; HWE (p value): 0.52 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $rs1367179</span></span>
+<span><span class="co">#&gt; Genotypes: </span></span>
+<span><span class="co">#&gt;      frequency percentage</span></span>
+<span><span class="co">#&gt; G/G       1038       66.4</span></span>
+<span><span class="co">#&gt; G/C        469       30.0</span></span>
+<span><span class="co">#&gt; C/C         56        3.6</span></span>
+<span><span class="co">#&gt; NA's        15           </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Alleles: </span></span>
+<span><span class="co">#&gt;      frequency percentage</span></span>
+<span><span class="co">#&gt; G         2545         81</span></span>
+<span><span class="co">#&gt; C          581         19</span></span>
+<span><span class="co">#&gt; NA's        30           </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; HWE (p value): 0.74 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $rs11123242</span></span>
+<span><span class="co">#&gt; Genotypes: </span></span>
+<span><span class="co">#&gt;      frequency percentage</span></span>
+<span><span class="co">#&gt; C/C       1047       66.7</span></span>
+<span><span class="co">#&gt; C/T        469       29.9</span></span>
+<span><span class="co">#&gt; T/T         53        3.4</span></span>
+<span><span class="co">#&gt; NA's         9           </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Alleles: </span></span>
+<span><span class="co">#&gt;      frequency percentage</span></span>
+<span><span class="co">#&gt; C         2563         82</span></span>
+<span><span class="co">#&gt; T          575         18</span></span>
+<span><span class="co">#&gt; NA's        18           </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; HWE (p value): 0.93 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $rs13014858</span></span>
+<span><span class="co">#&gt; Genotypes: </span></span>
+<span><span class="co">#&gt;      frequency percentage</span></span>
+<span><span class="co">#&gt; G/G        545         35</span></span>
+<span><span class="co">#&gt; G/A        748         47</span></span>
+<span><span class="co">#&gt; A/A        283         18</span></span>
+<span><span class="co">#&gt; NA's         2           </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Alleles: </span></span>
+<span><span class="co">#&gt;      frequency percentage</span></span>
+<span><span class="co">#&gt; A         1314         42</span></span>
+<span><span class="co">#&gt; G         1838         58</span></span>
+<span><span class="co">#&gt; NA's         4           </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; HWE (p value): 0.35</span></span>
+<span><span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/tableHWE.html" class="external-link">tableHWE</a></span><span class="op">(</span><span class="va">snps</span><span class="op">)</span></span>
+<span><span class="co">#&gt;            HWE (p value) flag</span></span>
+<span><span class="co">#&gt; rs4490198  0.17              </span></span>
+<span><span class="co">#&gt; rs4849332  0.52              </span></span>
+<span><span class="co">#&gt; rs1367179  0.74              </span></span>
+<span><span class="co">#&gt; rs11123242 0.93              </span></span>
+<span><span class="co">#&gt; rs13014858 0.35</span></span></code></pre></div>
+<p>We then turn to genetic models for a specific SNP,</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">asthma.snps</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/setupSNP.html" class="external-link">setupSNP</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">asthma</span>, colSNPs<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="st">"^rs"</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">asthma</span><span class="op">)</span><span class="op">)</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>               <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>cc<span class="op">=</span><span class="va">casecontrol</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>               <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">11</span><span class="op">)</span></span>
+<span><span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/association.html" class="external-link">association</a></span><span class="op">(</span><span class="va">bmi</span> <span class="op">~</span> <span class="va">rs4490198</span>, <span class="va">asthma.snps</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; SNP: rs4490198  adjusted by: </span></span>
+<span><span class="co">#&gt;                 n   me    se     dif  lower upper p-value  AIC</span></span>
+<span><span class="co">#&gt; Codominant                                                    </span></span>
+<span><span class="co">#&gt; A/A           558 25.5 0.176  0.0000                0.885 9015</span></span>
+<span><span class="co">#&gt; A/G           725 25.6 0.174  0.0217 -0.461 0.505             </span></span>
+<span><span class="co">#&gt; G/G           273 25.4 0.237 -0.1299 -0.763 0.504             </span></span>
+<span><span class="co">#&gt; Dominant                                                      </span></span>
+<span><span class="co">#&gt; A/A           558 25.5 0.176  0.0000                0.932 9013</span></span>
+<span><span class="co">#&gt; A/G-G/G       998 25.5 0.142 -0.0198 -0.473 0.434             </span></span>
+<span><span class="co">#&gt; Recessive                                                     </span></span>
+<span><span class="co">#&gt; A/A-A/G      1283 25.6 0.125  0.0000                0.626 9013</span></span>
+<span><span class="co">#&gt; G/G           273 25.4 0.237 -0.1421 -0.714 0.429             </span></span>
+<span><span class="co">#&gt; Overdominant                                                  </span></span>
+<span><span class="co">#&gt; A/A-G/G       831 25.5 0.142  0.0000                0.772 9013</span></span>
+<span><span class="co">#&gt; A/G           725 25.6 0.174  0.0643 -0.371 0.500             </span></span>
+<span><span class="co">#&gt; log-Additive                                                  </span></span>
+<span><span class="co">#&gt; 0,1,2                        -0.0502 -0.357 0.257   0.749 9013</span></span>
+<span><span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/association.html" class="external-link">association</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="va">rs4490198</span>, data<span class="op">=</span><span class="va">asthma.snps</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; SNP: rs4490198  adjusted by: </span></span>
+<span><span class="co">#&gt;                 0    %   1    %   OR lower upper p-value  AIC</span></span>
+<span><span class="co">#&gt; Codominant                                                   </span></span>
+<span><span class="co">#&gt; A/A           449 36.5 113 33.4 1.00               0.528 1639</span></span>
+<span><span class="co">#&gt; A/G           565 45.9 166 49.1 1.17  0.89  1.53             </span></span>
+<span><span class="co">#&gt; G/G           216 17.6  59 17.5 1.09  0.76  1.55             </span></span>
+<span><span class="co">#&gt; Dominant                                                     </span></span>
+<span><span class="co">#&gt; A/A           449 36.5 113 33.4 1.00               0.295 1638</span></span>
+<span><span class="co">#&gt; A/G-G/G       781 63.5 225 66.6 1.14  0.89  1.48             </span></span>
+<span><span class="co">#&gt; Recessive                                                    </span></span>
+<span><span class="co">#&gt; A/A-A/G      1014 82.4 279 82.5 1.00               0.964 1639</span></span>
+<span><span class="co">#&gt; G/G           216 17.6  59 17.5 0.99  0.72  1.36             </span></span>
+<span><span class="co">#&gt; Overdominant                                                 </span></span>
+<span><span class="co">#&gt; A/A-G/G       665 54.1 172 50.9 1.00               0.300 1638</span></span>
+<span><span class="co">#&gt; A/G           565 45.9 166 49.1 1.14  0.89  1.45             </span></span>
+<span><span class="co">#&gt; log-Additive                                                 </span></span>
+<span><span class="co">#&gt; 0,1,2        1230 78.4 338 21.6 1.06  0.90  1.26   0.495 1638</span></span>
+<span><span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/association.html" class="external-link">association</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="va">rs4490198</span> <span class="op">+</span> <span class="va">country</span> <span class="op">+</span> <span class="va">smoke</span>, <span class="va">asthma.snps</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in terms.formula(formula, data = data): 'varlist' has changed (from nvar=3) to new 4 after EncodeVars() -- should no longer happen!</span></span>
+<span><span class="co">#&gt; Warning in terms.formula(formula, data = data): 'varlist' has changed (from nvar=3) to new 4 after EncodeVars() -- should no longer happen!</span></span>
+<span><span class="co">#&gt; Warning in terms.formula(formula, data = data): 'varlist' has changed (from nvar=3) to new 4 after EncodeVars() -- should no longer happen!</span></span>
+<span><span class="co">#&gt; Warning in terms.formula(formula, data = data): 'varlist' has changed (from nvar=3) to new 4 after EncodeVars() -- should no longer happen!</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; SNP: rs4490198  adjusted by: country smoke </span></span>
+<span><span class="co">#&gt;                 0    %   1    %   OR lower upper p-value  AIC</span></span>
+<span><span class="co">#&gt; Codominant                                                   </span></span>
+<span><span class="co">#&gt; A/A           448 36.6 112 33.2 1.00               0.541 1403</span></span>
+<span><span class="co">#&gt; A/G           563 46.0 166 49.3 1.18  0.88  1.59             </span></span>
+<span><span class="co">#&gt; G/G           213 17.4  59 17.5 1.08  0.73  1.60             </span></span>
+<span><span class="co">#&gt; Dominant                                                     </span></span>
+<span><span class="co">#&gt; A/A           448 36.6 112 33.2 1.00               0.317 1401</span></span>
+<span><span class="co">#&gt; A/G-G/G       776 63.4 225 66.8 1.15  0.87  1.52             </span></span>
+<span><span class="co">#&gt; Recessive                                                    </span></span>
+<span><span class="co">#&gt; A/A-A/G      1011 82.6 278 82.5 1.00               0.909 1402</span></span>
+<span><span class="co">#&gt; G/G           213 17.4  59 17.5 0.98  0.69  1.39             </span></span>
+<span><span class="co">#&gt; Overdominant                                                 </span></span>
+<span><span class="co">#&gt; A/A-G/G       661 54.0 171 50.7 1.00               0.298 1401</span></span>
+<span><span class="co">#&gt; A/G           563 46.0 166 49.3 1.15  0.88  1.50             </span></span>
+<span><span class="co">#&gt; log-Additive                                                 </span></span>
+<span><span class="co">#&gt; 0,1,2        1224 78.4 337 21.6 1.06  0.88  1.28   0.538 1402</span></span>
+<span><span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/association.html" class="external-link">association</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="va">rs4490198</span> <span class="op">+</span> <span class="fu">survival</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/strata.html" class="external-link">strata</a></span><span class="op">(</span><span class="va">gender</span><span class="op">)</span>, <span class="va">asthma.snps</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in terms.formula(formula, data = data): 'varlist' has changed (from nvar=2) to new 3 after EncodeVars() -- should no longer happen!</span></span>
+<span><span class="co">#&gt; Warning in terms.formula(formula, data = data): 'varlist' has changed (from nvar=2) to new 3 after EncodeVars() -- should no longer happen!</span></span>
+<span><span class="co">#&gt; Warning in terms.formula(formula, data = data): 'varlist' has changed (from nvar=2) to new 3 after EncodeVars() -- should no longer happen!</span></span>
+<span><span class="co">#&gt; Warning in terms.formula(formula, data = data): 'varlist' has changed (from nvar=2) to new 3 after EncodeVars() -- should no longer happen!</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; SNP: rs4490198  adjusted by: survival::strata(gender) </span></span>
+<span><span class="co">#&gt;                 0    %   1    %   OR lower upper p-value  AIC</span></span>
+<span><span class="co">#&gt; Codominant                                                   </span></span>
+<span><span class="co">#&gt; A/A           449 36.5 113 33.4 1.00               0.552 1630</span></span>
+<span><span class="co">#&gt; A/G           565 45.9 166 49.1 1.16  0.89  1.52             </span></span>
+<span><span class="co">#&gt; G/G           216 17.6  59 17.5 1.10  0.77  1.57             </span></span>
+<span><span class="co">#&gt; Dominant                                                     </span></span>
+<span><span class="co">#&gt; A/A           449 36.5 113 33.4 1.00               0.295 1629</span></span>
+<span><span class="co">#&gt; A/G-G/G       781 63.5 225 66.6 1.15  0.89  1.48             </span></span>
+<span><span class="co">#&gt; Recessive                                                    </span></span>
+<span><span class="co">#&gt; A/A-A/G      1014 82.4 279 82.5 1.00               0.942 1630</span></span>
+<span><span class="co">#&gt; G/G           216 17.6  59 17.5 1.01  0.74  1.39             </span></span>
+<span><span class="co">#&gt; Overdominant                                                 </span></span>
+<span><span class="co">#&gt; A/A-G/G       665 54.1 172 50.9 1.00               0.344 1629</span></span>
+<span><span class="co">#&gt; A/G           565 45.9 166 49.1 1.12  0.88  1.43             </span></span>
+<span><span class="co">#&gt; log-Additive                                                 </span></span>
+<span><span class="co">#&gt; 0,1,2        1230 78.4 338 21.6 1.07  0.90  1.27   0.455 1629</span></span>
+<span><span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/association.html" class="external-link">association</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="va">rs4490198</span>, <span class="va">asthma.snps</span>, subset<span class="op">=</span><span class="va">country</span><span class="op">==</span><span class="st">"Spain"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; SNP: rs4490198  adjusted by: </span></span>
+<span><span class="co">#&gt;                0    %  1    %   OR lower upper p-value AIC</span></span>
+<span><span class="co">#&gt; Codominant                                                </span></span>
+<span><span class="co">#&gt; A/A          141 43.3 18 37.5 1.00               0.626 292</span></span>
+<span><span class="co">#&gt; A/G          145 44.5 22 45.8 1.19  0.61  2.31            </span></span>
+<span><span class="co">#&gt; G/G           40 12.3  8 16.7 1.57  0.63  3.87            </span></span>
+<span><span class="co">#&gt; Dominant                                                  </span></span>
+<span><span class="co">#&gt; A/A          141 43.3 18 37.5 1.00               0.449 290</span></span>
+<span><span class="co">#&gt; A/G-G/G      185 56.7 30 62.5 1.27  0.68  2.37            </span></span>
+<span><span class="co">#&gt; Recessive                                                 </span></span>
+<span><span class="co">#&gt; A/A-A/G      286 87.7 40 83.3 1.00               0.410 290</span></span>
+<span><span class="co">#&gt; G/G           40 12.3  8 16.7 1.43  0.62  3.27            </span></span>
+<span><span class="co">#&gt; Overdominant                                              </span></span>
+<span><span class="co">#&gt; A/A-G/G      181 55.5 26 54.2 1.00               0.860 291</span></span>
+<span><span class="co">#&gt; A/G          145 44.5 22 45.8 1.06  0.57  1.94            </span></span>
+<span><span class="co">#&gt; log-Additive                                              </span></span>
+<span><span class="co">#&gt; 0,1,2        326 87.2 48 12.8 1.24  0.80  1.91   0.339 290</span></span>
+<span><span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/association.html" class="external-link">association</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="fu">dominant</span><span class="op">(</span><span class="va">rs4490198</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">smoke</span><span class="op">)</span>, data<span class="op">=</span><span class="va">asthma.snps</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;       SNP: dominant(rs4490198  adjusted by: </span></span>
+<span><span class="co">#&gt;  Interaction </span></span>
+<span><span class="co">#&gt; ---------------------</span></span>
+<span><span class="co">#&gt;           0       OR lower upper   1      OR lower upper</span></span>
+<span><span class="co">#&gt; A/A     293  84 1.00    NA    NA 155 28 0.63  0.39  1.01</span></span>
+<span><span class="co">#&gt; A/G-G/G 539 172 1.11  0.83   1.5 237 53 0.78  0.53  1.15</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; p interaction: 0.7 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;  factor(smoke) within dominant(rs4490198 </span></span>
+<span><span class="co">#&gt; ---------------------</span></span>
+<span><span class="co">#&gt; A/A </span></span>
+<span><span class="co">#&gt;     0  1   OR lower upper</span></span>
+<span><span class="co">#&gt; 0 293 84 1.00    NA    NA</span></span>
+<span><span class="co">#&gt; 1 155 28 0.63  0.39  1.01</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; A/G-G/G </span></span>
+<span><span class="co">#&gt;     0   1  OR lower upper</span></span>
+<span><span class="co">#&gt; 0 539 172 1.0    NA    NA</span></span>
+<span><span class="co">#&gt; 1 237  53 0.7   0.5  0.99</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; p trend: 0.7 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;  dominant(rs4490198 within factor(smoke) </span></span>
+<span><span class="co">#&gt; ---------------------</span></span>
+<span><span class="co">#&gt; 0 </span></span>
+<span><span class="co">#&gt;           0   1   OR lower upper</span></span>
+<span><span class="co">#&gt; A/A     293  84 1.00    NA    NA</span></span>
+<span><span class="co">#&gt; A/G-G/G 539 172 1.11  0.83   1.5</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 1 </span></span>
+<span><span class="co">#&gt;           0  1   OR lower upper</span></span>
+<span><span class="co">#&gt; A/A     155 28 1.00    NA    NA</span></span>
+<span><span class="co">#&gt; A/G-G/G 237 53 1.24  0.75  2.04</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; p trend: 0.7</span></span>
+<span><span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/association.html" class="external-link">association</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="va">rs4490198</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">rs11123242</span><span class="op">)</span>, data<span class="op">=</span><span class="va">asthma.snps</span>, model.interaction <span class="op">=</span> <span class="st">"dominant"</span> <span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;       SNP: rs4490198  adjusted by: </span></span>
+<span><span class="co">#&gt;  Interaction </span></span>
+<span><span class="co">#&gt; ---------------------</span></span>
+<span><span class="co">#&gt;         C/C       OR lower upper C/T       OR lower upper  0  1  T/T lower upper</span></span>
+<span><span class="co">#&gt; A/A     448 113 1.00    NA    NA   1   0 0.00  0.00    NA  0  0   NA    NA    NA</span></span>
+<span><span class="co">#&gt; A/G-G/G 371 109 1.16  0.87  1.57 365 102 1.11  0.82   1.5 39 14 1.42  0.75  2.71</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; p interaction: 0.5 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;  factor(rs11123242) within rs4490198 </span></span>
+<span><span class="co">#&gt; ---------------------</span></span>
+<span><span class="co">#&gt; A/A </span></span>
+<span><span class="co">#&gt;       0   1 OR lower upper</span></span>
+<span><span class="co">#&gt; C/C 448 113  1    NA    NA</span></span>
+<span><span class="co">#&gt; C/T   1   0  0     0    NA</span></span>
+<span><span class="co">#&gt; T/T   0   0 NA    NA    NA</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; A/G-G/G </span></span>
+<span><span class="co">#&gt;       0   1   OR lower upper</span></span>
+<span><span class="co">#&gt; C/C 371 109 1.00    NA    NA</span></span>
+<span><span class="co">#&gt; C/T 365 102 0.95  0.70  1.29</span></span>
+<span><span class="co">#&gt; T/T  39  14 1.22  0.64  2.33</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; p trend: 0.5 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;  rs4490198 within factor(rs11123242) </span></span>
+<span><span class="co">#&gt; ---------------------</span></span>
+<span><span class="co">#&gt; C/C </span></span>
+<span><span class="co">#&gt;           0   1   OR lower upper</span></span>
+<span><span class="co">#&gt; A/A     448 113 1.00    NA    NA</span></span>
+<span><span class="co">#&gt; A/G-G/G 371 109 1.16  0.87  1.57</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; C/T </span></span>
+<span><span class="co">#&gt;           0   1 OR lower upper</span></span>
+<span><span class="co">#&gt; A/A       1   0  1    NA    NA</span></span>
+<span><span class="co">#&gt; A/G-G/G 365 102 NA     0    NA</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; T/T </span></span>
+<span><span class="co">#&gt;          0  1 OR lower upper</span></span>
+<span><span class="co">#&gt; A/A      0  0  1    NA    NA</span></span>
+<span><span class="co">#&gt; A/G-G/G 39 14 NA    NA    NA</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; p trend: 0.5</span></span></code></pre></div>
 </div>
-<div class="section level3" number="4.3">
+<div class="section level3" number="3.3">
 <h3 id="haplo-stats">
-<span class="header-section-number">4.3</span> haplo.stats<a class="anchor" aria-label="anchor" href="#haplo-stats"></a>
+<span class="header-section-number">3.3</span> haplo.stats<a class="anchor" aria-label="anchor" href="#haplo-stats"></a>
 </h3>
 <p>This package considers haplotype estimation using EM-algorithms and genetic association under a generalized linear model (GLM).</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">asthma</span>, package <span class="op">=</span> <span class="st">"SNPassoc"</span><span class="op">)</span></span>
+<span><span class="va">asthma.snps</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/setupSNP.html" class="external-link">setupSNP</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">asthma</span>, colSNPs<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="st">"^rs"</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">asthma</span><span class="op">)</span><span class="op">)</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span></span>
+<span><span class="va">asthma.snps</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/setupSNP.html" class="external-link">setupSNP</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">asthma</span>, colSNPs<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="st">"^rs"</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">asthma</span><span class="op">)</span><span class="op">)</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>               <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>cc<span class="op">=</span><span class="va">casecontrol</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://analytictools.mayo.edu/research/haplo-stats/" class="external-link">haplo.stats</a></span><span class="op">)</span></span>
+<span><span class="va">snpsH</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"rs714588"</span>, <span class="st">"rs1023555"</span>,  <span class="st">"rs898070"</span><span class="op">)</span></span>
+<span><span class="va">genoH</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/makegeno.html" class="external-link">make.geno</a></span><span class="op">(</span><span class="va">asthma.snps</span>, <span class="va">snpsH</span><span class="op">)</span></span>
+<span><span class="va">em</span> <span class="op">&lt;-</span> <span class="fu">haplo.stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/haplo.stats/man/haplo.em.html" class="external-link">haplo.em</a></span><span class="op">(</span><span class="va">genoH</span>, locus.label <span class="op">=</span> <span class="va">snpsH</span>, miss.val <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">em</span></span>
+<span><span class="co">#&gt; ======================================================================================================================================================================================================== </span></span>
+<span><span class="co">#&gt;                                                                                                Haplotypes                                                                                                </span></span>
+<span><span class="co">#&gt; ======================================================================================================================================================================================================== </span></span>
+<span><span class="co">#&gt;   rs714588 rs1023555 rs898070 hap.freq</span></span>
+<span><span class="co">#&gt; 1        1         1        1    0.041</span></span>
+<span><span class="co">#&gt; 2        1         1        2    0.024</span></span>
+<span><span class="co">#&gt; 3        1         2        1    0.043</span></span>
+<span><span class="co">#&gt; 4        1         2        2    0.440</span></span>
+<span><span class="co">#&gt; 5        2         1        1    0.083</span></span>
+<span><span class="co">#&gt; 6        2         1        2    0.084</span></span>
+<span><span class="co">#&gt; 7        2         2        1    0.208</span></span>
+<span><span class="co">#&gt; 8        2         2        2    0.077</span></span>
+<span><span class="co">#&gt; ======================================================================================================================================================================================================== </span></span>
+<span><span class="co">#&gt;                                                                                                 Details                                                                                                  </span></span>
+<span><span class="co">#&gt; ======================================================================================================================================================================================================== </span></span>
+<span><span class="co">#&gt; lnlike =  -4103 </span></span>
+<span><span class="co">#&gt; lr stat for no LD =  775 , df =  4 , p-val =  0</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">em</span><span class="op">$</span><span class="va">haplotype</span>,<span class="va">em</span><span class="op">$</span><span class="va">hap.prob</span><span class="op">)</span>,caption<span class="op">=</span><span class="st">"Haplotypes of rs714588, rs1023555, rs898070"</span><span class="op">)</span></span></code></pre></div>
+<table class="table">
+<caption>(#tab:haplo.stats)Haplotypes of rs714588, rs1023555, rs898070</caption>
+<thead><tr class="header">
+<th align="left">rs714588</th>
+<th align="left">rs1023555</th>
+<th align="left">rs898070</th>
+<th align="right">em$hap.prob</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="right">0.04</td>
+</tr>
+<tr class="even">
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">2</td>
+<td align="right">0.02</td>
+</tr>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">2</td>
+<td align="left">1</td>
+<td align="right">0.04</td>
+</tr>
+<tr class="even">
+<td align="left">1</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="right">0.44</td>
+</tr>
+<tr class="odd">
+<td align="left">2</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="right">0.08</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="left">1</td>
+<td align="left">2</td>
+<td align="right">0.08</td>
+</tr>
+<tr class="odd">
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">1</td>
+<td align="right">0.21</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="right">0.08</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu">haplo.stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/haplo.stats/man/haplo.glm.html" class="external-link">haplo.glm</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="va">genoH</span>, data<span class="op">=</span><span class="va">asthma.snps</span>,</span>
+<span>                              family<span class="op">=</span><span class="st">"binomial"</span>,</span>
+<span>                              locus.label<span class="op">=</span><span class="va">snpsH</span>,</span>
+<span>                              allele.lev<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/attributes.html" class="external-link">attributes</a></span><span class="op">(</span><span class="va">genoH</span><span class="op">)</span><span class="op">$</span><span class="va">unique.alleles</span>,</span>
+<span>                              control <span class="op">=</span> <span class="fu">haplo.stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/haplo.stats/man/haplo.glm.control.html" class="external-link">haplo.glm.control</a></span><span class="op">(</span>haplo.freq.min<span class="op">=</span><span class="fl">0.05</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">mod</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Call:  haplo.stats::haplo.glm(formula = cc ~ genoH, family = "binomial", </span></span>
+<span><span class="co">#&gt;     data = asthma.snps, locus.label = snpsH, control = haplo.stats::haplo.glm.control(haplo.freq.min = 0.05), </span></span>
+<span><span class="co">#&gt;     allele.lev = attributes(genoH)$unique.alleles)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Coefficients:</span></span>
+<span><span class="co">#&gt; (Intercept)      genoH.5      genoH.6      genoH.7      genoH.8   genoH.rare  </span></span>
+<span><span class="co">#&gt;  -1.3741805    0.0900879   -0.0082069    0.0560710    0.0882132    0.1396095  </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Haplotypes:</span></span>
+<span><span class="co">#&gt;            rs714588 rs1023555 rs898070 hap.freq</span></span>
+<span><span class="co">#&gt; genoH.5           G         A        A 0.082685</span></span>
+<span><span class="co">#&gt; genoH.6           G         A        G 0.084073</span></span>
+<span><span class="co">#&gt; genoH.7           G         T        A 0.207956</span></span>
+<span><span class="co">#&gt; genoH.8           G         T        G 0.076886</span></span>
+<span><span class="co">#&gt; genoH.rare        *         *        * 0.107905</span></span>
+<span><span class="co">#&gt; haplo.base        A         T        G 0.440495</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Degrees of Freedom:  1577 Total (i.e. Null);  1572 Residual</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;      Null Deviance:  1645 </span></span>
+<span><span class="co">#&gt;  Residual Deviance:  1643 </span></span>
+<span><span class="co">#&gt;                AIC:  1655</span></span>
+<span><span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/intervals.html" class="external-link">intervals</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                freq   or   95%   C.I.   P-val </span></span>
+<span><span class="co">#&gt;          ATG 0.4405   1.00 Reference haplotype </span></span>
+<span><span class="co">#&gt;          GAA 0.0827   1.09 (   0.77 -   1.56 )  0.6160 </span></span>
+<span><span class="co">#&gt;          GAG 0.0841   0.99 (   0.69 -   1.42 )  0.9642 </span></span>
+<span><span class="co">#&gt;          GTA 0.2080   1.06 (   0.84 -   1.34 )  0.6379 </span></span>
+<span><span class="co">#&gt;          GTG 0.0769   1.09 (   0.76 -   1.58 )  0.6367 </span></span>
+<span><span class="co">#&gt;   genoH.rare 0.1079   1.15 (   0.83 -   1.59 )  0.3968</span></span>
+<span><span class="va">snpsH2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/labels.html" class="external-link">labels</a></span><span class="op">(</span><span class="va">asthma.snps</span><span class="op">)</span><span class="op">[</span><span class="fl">6</span><span class="op">:</span><span class="fl">15</span><span class="op">]</span></span>
+<span><span class="va">genoH2</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/makegeno.html" class="external-link">make.geno</a></span><span class="op">(</span><span class="va">asthma.snps</span>, <span class="va">snpsH2</span><span class="op">)</span></span>
+<span><span class="va">haplo.score</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span> <span class="va">haplo.score</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu">haplo.stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/haplo.stats/man/haplo.score.slide.html" class="external-link">haplo.score.slide</a></span><span class="op">(</span><span class="va">asthma.snps</span><span class="op">$</span><span class="va">cc</span>, <span class="va">genoH2</span>,</span>
+<span>                                         trait.type<span class="op">=</span><span class="st">"binomial"</span>,</span>
+<span>                                         n.slide<span class="op">=</span><span class="va">i</span><span class="op">+</span><span class="fl">3</span>,</span>
+<span>                                         simulate<span class="op">=</span><span class="cn">TRUE</span>,</span>
+<span>                                         sim.control<span class="op">=</span><span class="fu">haplo.stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/haplo.stats/man/score.sim.control.html" class="external-link">score.sim.control</a></span><span class="op">(</span>min.sim<span class="op">=</span><span class="fl">100</span>,</span>
+<span>                                         max.sim<span class="op">=</span><span class="fl">200</span><span class="op">)</span><span class="op">)</span> </span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">haplo.score</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Sliding Window="</span>, <span class="va">i</span><span class="op">+</span><span class="fl">3</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<p><img src="gaawr2%2Fhaplo.stats-1.png" width="672" style="display:block; margin: auto"></p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">snpsH3</span> <span class="op">&lt;-</span> <span class="va">snpsH2</span><span class="op">[</span><span class="fl">4</span><span class="op">:</span><span class="fl">7</span><span class="op">]</span></span>
+<span><span class="va">genoH3</span> <span class="op">&lt;-</span> <span class="fu">make.geno</span><span class="op">(</span><span class="va">asthma.snps</span>, <span class="va">snpsH3</span><span class="op">)</span></span>
+<span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu">haplo.stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/haplo.stats/man/haplo.glm.html" class="external-link">haplo.glm</a></span><span class="op">(</span><span class="va">cc</span><span class="op">~</span><span class="va">genoH3</span>, data<span class="op">=</span><span class="va">asthma.snps</span>,</span>
+<span>             family<span class="op">=</span><span class="st">"binomial"</span>,</span>
+<span>             locus.label<span class="op">=</span><span class="va">snpsH3</span>,</span>
+<span>             allele.lev<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/attributes.html" class="external-link">attributes</a></span><span class="op">(</span><span class="va">genoH3</span><span class="op">)</span><span class="op">$</span><span class="va">unique.alleles</span>,</span>
+<span>             control <span class="op">=</span> <span class="fu">haplo.stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/haplo.stats/man/haplo.glm.control.html" class="external-link">haplo.glm.control</a></span><span class="op">(</span>haplo.freq.min<span class="op">=</span><span class="fl">0.05</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">mod</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Call:  haplo.stats::haplo.glm(formula = cc ~ genoH3, family = "binomial", </span></span>
+<span><span class="co">#&gt;     data = asthma.snps, locus.label = snpsH3, control = haplo.stats::haplo.glm.control(haplo.freq.min = 0.05), </span></span>
+<span><span class="co">#&gt;     allele.lev = attributes(genoH3)$unique.alleles)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Coefficients:</span></span>
+<span><span class="co">#&gt; (Intercept)     genoH3.2     genoH3.9    genoH3.11  genoH3.rare  </span></span>
+<span><span class="co">#&gt;  -1.2880793    0.0067873   -0.1146385    0.1099134   -0.2505565  </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Haplotypes:</span></span>
+<span><span class="co">#&gt;             rs1430090 rs6737251 rs11685217 rs1430097 hap.freq</span></span>
+<span><span class="co">#&gt; genoH3.2            G         C          C         C  0.29632</span></span>
+<span><span class="co">#&gt; genoH3.9            T         T          C         A  0.11839</span></span>
+<span><span class="co">#&gt; genoH3.11           T         T          T         A  0.18302</span></span>
+<span><span class="co">#&gt; genoH3.rare         *         *          *         *  0.05021</span></span>
+<span><span class="co">#&gt; haplo.base          T         C          C         C  0.35206</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Degrees of Freedom:  1577 Total (i.e. Null);  1573 Residual</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;      Null Deviance:  1645 </span></span>
+<span><span class="co">#&gt;  Residual Deviance:  1641 </span></span>
+<span><span class="co">#&gt;                AIC:  1651</span></span>
+<span><span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/intervals.html" class="external-link">intervals</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                freq   or   95%   C.I.   P-val </span></span>
+<span><span class="co">#&gt;         TCCC 0.3521   1.00 Reference haplotype </span></span>
+<span><span class="co">#&gt;         GCCC 0.2963   1.01 (   0.82 -   1.24 )  0.9495 </span></span>
+<span><span class="co">#&gt;         TTCA 0.1184   0.89 (   0.67 -   1.20 )  0.4433 </span></span>
+<span><span class="co">#&gt;         TTTA 0.1830   1.12 (   0.87 -   1.43 )  0.3796 </span></span>
+<span><span class="co">#&gt;  genoH3.rare 0.0502   0.78 (   0.50 -   1.22 )  0.2750</span></span>
+<span><span class="va">mod.adj.ref</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="va">smoke</span>, data<span class="op">=</span><span class="va">asthma.snps</span>, family<span class="op">=</span><span class="st">"binomial"</span><span class="op">)</span></span>
+<span><span class="va">mod.adj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/haplo.stats/man/haplo.glm.html" class="external-link">haplo.glm</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="va">genoH3</span> <span class="op">+</span> <span class="va">smoke</span>, data<span class="op">=</span><span class="va">asthma.snps</span>,</span>
+<span>                 family<span class="op">=</span><span class="st">"binomial"</span>,</span>
+<span>                 locus.label<span class="op">=</span><span class="va">snpsH3</span>,</span>
+<span>                 allele.lev<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/attributes.html" class="external-link">attributes</a></span><span class="op">(</span><span class="va">genoH3</span><span class="op">)</span><span class="op">$</span><span class="va">unique.alleles</span>,</span>
+<span>                 control <span class="op">=</span> <span class="fu">haplo.stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/haplo.stats/man/haplo.glm.control.html" class="external-link">haplo.glm.control</a></span><span class="op">(</span>haplo.freq.min<span class="op">=</span><span class="fl">0.05</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">mod.adj</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Call:  haplo.glm(formula = cc ~ genoH3 + smoke, family = "binomial", </span></span>
+<span><span class="co">#&gt;     data = asthma.snps, locus.label = snpsH3, control = haplo.stats::haplo.glm.control(haplo.freq.min = 0.05), </span></span>
+<span><span class="co">#&gt;     allele.lev = attributes(genoH3)$unique.alleles)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Coefficients:</span></span>
+<span><span class="co">#&gt; (Intercept)     genoH3.2     genoH3.9    genoH3.11  genoH3.rare        smoke  </span></span>
+<span><span class="co">#&gt;   -1.189508     0.019374    -0.097111     0.113149    -0.253046    -0.393112  </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Haplotypes:</span></span>
+<span><span class="co">#&gt;             rs1430090 rs6737251 rs11685217 rs1430097 hap.freq</span></span>
+<span><span class="co">#&gt; genoH3.2            G         C          C         C  0.29539</span></span>
+<span><span class="co">#&gt; genoH3.9            T         T          C         A  0.11860</span></span>
+<span><span class="co">#&gt; genoH3.11           T         T          T         A  0.18319</span></span>
+<span><span class="co">#&gt; genoH3.rare         *         *          *         *  0.05044</span></span>
+<span><span class="co">#&gt; haplo.base          T         C          C         C  0.35238</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Degrees of Freedom:  1570 Total (i.e. Null);  1565 Residual</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Subjects removed by NAs in y or x, or all NA in geno</span></span>
+<span><span class="co">#&gt;   yxmiss genomiss </span></span>
+<span><span class="co">#&gt;        7        0 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;      Null Deviance:  1639 </span></span>
+<span><span class="co">#&gt;  Residual Deviance:  1627 </span></span>
+<span><span class="co">#&gt;                AIC:  1639</span></span>
+<span><span class="va">lrt.adj</span> <span class="op">&lt;-</span> <span class="va">mod.adj.ref</span><span class="op">$</span><span class="va">deviance</span> <span class="op">-</span> <span class="va">mod.adj</span><span class="op">$</span><span class="va">deviance</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/Chisquare.html" class="external-link">pchisq</a></span><span class="op">(</span><span class="va">lrt.adj</span>, <span class="va">mod.adj</span><span class="op">$</span><span class="va">lrt</span><span class="op">$</span><span class="va">df</span>, lower<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.65</span></span></code></pre></div>
 </div>
-<div class="section level3" number="4.4">
+<div class="section level3" number="3.4">
 <h3 id="pedigreemm">
-<span class="header-section-number">4.4</span> pedigreemm<a class="anchor" aria-label="anchor" href="#pedigreemm"></a>
+<span class="header-section-number">3.4</span> pedigreemm<a class="anchor" aria-label="anchor" href="#pedigreemm"></a>
 </h3>
 <p>kinship2, especially with its <code>lmekin</code>.</p>
 </div>
-<div class="section level3" number="4.5">
+<div class="section level3" number="3.5">
+<h3 id="proteogenomics">
+<span class="header-section-number">3.5</span> Proteogenomics<a class="anchor" aria-label="anchor" href="#proteogenomics"></a>
+</h3>
+<p>An overview on the proteomics is found from the relevant paper<span class="citation"><sup>1</sup></span>.</p>
+</div>
+<div class="section level3" number="3.6">
 <h3 id="gwas">
-<span class="header-section-number">4.5</span> GWAS<a class="anchor" aria-label="anchor" href="#gwas"></a>
+<span class="header-section-number">3.6</span> GWAS<a class="anchor" aria-label="anchor" href="#gwas"></a>
 </h3>
-<p>This includes association modeling, annotation. Graphics, e.g., <code>inst/scripts/lz.R</code>.</p>
-<p>The following packages are notable, <code>GWASExactHW</code>, <code>GMMAT</code>, <code>GWAStools</code>, <code>SAIGE</code>, <code>qqman</code>.</p>
+<p>We return to the asthma data used in <strong>SNPassoc</strong>.</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">assoc</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/WGassociation.html" class="external-link">WGassociation</a></span><span class="op">(</span><span class="va">cc</span>, data<span class="op">=</span><span class="va">asthma.snps</span>, mc.cores<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">assoc</span> <span class="op">%&gt;%</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">comments</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span>caption<span class="op">=</span><span class="st">"SNP association"</span><span class="op">)</span></span>
+<span><span class="va">assoc.adj</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/WGassociation.html" class="external-link">WGassociation</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="va">country</span> <span class="op">+</span> <span class="va">smoke</span>, <span class="va">asthma.snps</span>, mc.cores<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">assoc.adj</span> <span class="op">%&gt;%</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">comments</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span>caption<span class="op">=</span><span class="st">"with adjustment for contountry &amp; smoking"</span><span class="op">)</span></span>
+<span><span class="va">assoc.maxstat</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/maxstat.html" class="external-link">maxstat</a></span><span class="op">(</span><span class="va">asthma.snps</span>, <span class="va">cc</span><span class="op">)</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">assoc.maxstat</span><span class="op">[</span>,<span class="op">]</span><span class="op">)</span>,caption<span class="op">=</span><span class="st">"Max stat association statistics"</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level3" number="4.6">
-<h3 id="ml-ai">
-<span class="header-section-number">4.6</span> ML &amp; AI<a class="anchor" aria-label="anchor" href="#ml-ai"></a>
+<div class="section level3" number="3.7">
+<h3 id="powereqtl">
+<span class="header-section-number">3.7</span> powerEQTL<a class="anchor" aria-label="anchor" href="#powereqtl"></a>
 </h3>
-<p>For ML, it glmnet is worthy of note. For AI, some pedagogic implementation such as <code>nnet</code> which has long been in R’s list of recommended
-packages , <code>neuralnet</code>, <code>RSNNS</code> which is ported from the standalone package, as well as production packages (parallel developments to
-Python) include <code>tensorflow</code> (TensorFlow), <code>torch</code> (PyTorch), and <code>keras</code> (Keras).</p>
-</div>
-<div class="section level3" number="4.7">
-<h3 id="miscellaneous-topics">
-<span class="header-section-number">4.7</span> Miscellaneous topics<a class="anchor" aria-label="anchor" href="#miscellaneous-topics"></a>
-</h3>
-<ul>
-<li>Parallel computing.</li>
-<li>Data. <code>SeqArray</code> format GDS from PLINK, whose code for handling binary encoded data (bed) are widely adopted. Customized packages for databases include RSQLite, RMySQL.</li>
-<li>Graphics, the list includes <code>Rgraphviz</code> and <code>magick</code> for the the extremely popular <code>graphviz</code> and <code>ImageMagick</code>.</li>
-<li>Omics. Proteomics such as <code>MsCoreUtils</code>, <code>MSStats</code>, <code>scp</code>. An overview on the topic is found from the relevant paper<span class="citation"><sup>2</sup></span>.</li>
-<li>post-GWAS.</li>
-</ul>
-<div class="section level4" number="4.7.1">
-<h4 id="powereqtl">
-<span class="header-section-number">4.7.1</span> powerEQTL<a class="anchor" aria-label="anchor" href="#powereqtl"></a>
-</h4>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">n.designs</span> <span class="op">&lt;-</span> <span class="fl">6</span></span>
 <span><span class="va">designs</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="va">n.designs</span></span>
 <span><span class="va">N</span> <span class="op">&lt;-</span> <span class="fl">50</span> <span class="op">*</span> <span class="va">designs</span></span>
@@ -1216,15 +1639,14 @@ Python) include <code>tensorflow</code> (TensorFlow), <code>torch</code> (PyTorc
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:eqtl"></span>
 <img src="gaawr2%2Feqtl-1.png" alt="Power Estimation for eQTL Studies of 240 SNPs" width="768" style="display:block; margin: auto"><p class="caption">
-Figure 4.2: Power Estimation for eQTL Studies of 240 SNPs
+Figure 3.2: Power Estimation for eQTL Studies of 240 SNPs
 </p>
 </div>
-</div>
-<div class="section level4" number="4.7.2">
+<div class="section level4" number="3.7.1">
 <h4 id="opentargets">
-<span class="header-section-number">4.7.2</span> OpenTargets<a class="anchor" aria-label="anchor" href="#opentargets"></a>
+<span class="header-section-number">3.7.1</span> OpenTargets<a class="anchor" aria-label="anchor" href="#opentargets"></a>
 </h4>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gene_id</span> <span class="op">&lt;-</span> <span class="st">"ENSG00000164308"</span></span>
 <span><span class="va">query_string</span> <span class="op">=</span> <span class="st">"</span></span>
 <span><span class="st">  query target($ensemblId: String!){</span></span>
@@ -1259,7 +1681,7 @@ Figure 4.2: Power Estimation for eQTL Studies of 240 SNPs
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">content</span>, caption<span class="op">=</span><span class="st">"Query of ERAP2 from OpenTargets"</span><span class="op">)</span></span></code></pre></div>
 <table class="table kable_wrapper">
 <caption>
-<span id="tab:unnamed-chunk-2">Table 4.2: </span>Query of ERAP2 from OpenTargets
+<span id="tab:unnamed-chunk-2">Table 3.3: </span>Query of ERAP2 from OpenTargets
 </caption>
 <tbody><tr>
 <td>
@@ -1310,30 +1732,30 @@ Figure 4.2: Power Estimation for eQTL Studies of 240 SNPs
 <tbody>
 <tr class="odd">
 <td align="left">syn</td>
-<td align="right">185.590</td>
+<td align="right">186</td>
 <td align="right">183</td>
-<td align="right">0.14966</td>
-<td align="right">0.98603</td>
-<td align="right">0.873</td>
-<td align="right">1.115</td>
+<td align="right">0.15</td>
+<td align="right">0.99</td>
+<td align="right">0.87</td>
+<td align="right">1.1</td>
 </tr>
 <tr class="even">
 <td align="left">mis</td>
-<td align="right">496.520</td>
+<td align="right">497</td>
 <td align="right">501</td>
-<td align="right">-0.07147</td>
-<td align="right">1.00900</td>
-<td align="right">0.937</td>
-<td align="right">1.086</td>
+<td align="right">-0.07</td>
+<td align="right">1.01</td>
+<td align="right">0.94</td>
+<td align="right">1.1</td>
 </tr>
 <tr class="odd">
 <td align="left">lof</td>
-<td align="right">48.461</td>
+<td align="right">48</td>
 <td align="right">45</td>
-<td align="right">0.00000</td>
-<td align="right">0.92859</td>
-<td align="right">0.730</td>
-<td align="right">1.191</td>
+<td align="right">0.00</td>
+<td align="right">0.93</td>
+<td align="right">0.73</td>
+<td align="right">1.2</td>
 </tr>
 </tbody>
 </table>
@@ -1498,6 +1920,146 @@ Figure 4.2: Power Estimation for eQTL Studies of 240 SNPs
 </div>
 </div>
 </div>
+<div class="section level2" number="4">
+<h2 id="annotations">
+<span class="header-section-number">4</span> Annotations<a class="anchor" aria-label="anchor" href="#annotations"></a>
+</h2>
+<div class="section level3" number="4.1">
+<h3 id="ensdb-hsapiens-v75">
+<span class="header-section-number">4.1</span> EnsDb.Hsapiens.v75<a class="anchor" aria-label="anchor" href="#ensdb-hsapiens-v75"></a>
+</h3>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">ensembldb</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Annotated-class.html" class="external-link">metadata</a></span><span class="op">(</span><span class="va">EnsDb.Hsapiens.v75</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                  name                               value</span></span>
+<span><span class="co">#&gt; 1             Db type                               EnsDb</span></span>
+<span><span class="co">#&gt; 2     Type of Gene ID                     Ensembl Gene ID</span></span>
+<span><span class="co">#&gt; 3  Supporting package                           ensembldb</span></span>
+<span><span class="co">#&gt; 4       Db created by ensembldb package from Bioconductor</span></span>
+<span><span class="co">#&gt; 5      script_version                               0.3.0</span></span>
+<span><span class="co">#&gt; 6       Creation time            Thu May 18 09:15:45 2017</span></span>
+<span><span class="co">#&gt; 7     ensembl_version                                  75</span></span>
+<span><span class="co">#&gt; 8        ensembl_host                           localhost</span></span>
+<span><span class="co">#&gt; 9            Organism                        homo_sapiens</span></span>
+<span><span class="co">#&gt; 10        taxonomy_id                                9606</span></span>
+<span><span class="co">#&gt; 11       genome_build                              GRCh37</span></span>
+<span><span class="co">#&gt; 12    DBSCHEMAVERSION                                 2.0</span></span>
+<span><span class="va">genes</span> <span class="op">&lt;-</span> <span class="fu">ensembldb</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GenomicFeatures/man/transcripts.html" class="external-link">genes</a></span><span class="op">(</span><span class="va">EnsDb.Hsapiens.v75</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">genes</span><span class="op">)</span></span>
+<span><span class="co">#&gt; GRanges object with 6 ranges and 6 metadata columns:</span></span>
+<span><span class="co">#&gt;                   seqnames      ranges strand |         gene_id   gene_name gene_biotype seq_coord_system      symbol                          entrezid</span></span>
+<span><span class="co">#&gt;                      &lt;Rle&gt;   &lt;IRanges&gt;  &lt;Rle&gt; |     &lt;character&gt; &lt;character&gt;  &lt;character&gt;      &lt;character&gt; &lt;character&gt;                            &lt;list&gt;</span></span>
+<span><span class="co">#&gt;   ENSG00000223972        1 11869-14412      + | ENSG00000223972     DDX11L1   pseudogene       chromosome     DDX11L1               100287596,100287102</span></span>
+<span><span class="co">#&gt;   ENSG00000227232        1 14363-29806      - | ENSG00000227232      WASH7P   pseudogene       chromosome      WASH7P                  100287171,653635</span></span>
+<span><span class="co">#&gt;   ENSG00000243485        1 29554-31109      + | ENSG00000243485  MIR1302-10      lincRNA       chromosome  MIR1302-10 100422919,100422834,100422831,...</span></span>
+<span><span class="co">#&gt;   ENSG00000237613        1 34554-36081      - | ENSG00000237613     FAM138A      lincRNA       chromosome     FAM138A              654835,645520,641702</span></span>
+<span><span class="co">#&gt;   ENSG00000268020        1 52473-54936      + | ENSG00000268020      OR4G4P   pseudogene       chromosome      OR4G4P                              &lt;NA&gt;</span></span>
+<span><span class="co">#&gt;   ENSG00000240361        1 62948-63887      + | ENSG00000240361     OR4G11P   pseudogene       chromosome     OR4G11P                              &lt;NA&gt;</span></span>
+<span><span class="co">#&gt;   -------</span></span>
+<span><span class="co">#&gt;   seqinfo: 273 sequences (1 circular) from GRCh37 genome</span></span>
+<span><span class="va">transcripts_data</span> <span class="op">&lt;-</span> <span class="fu">ensembldb</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GenomicFeatures/man/transcripts.html" class="external-link">transcripts</a></span><span class="op">(</span><span class="va">EnsDb.Hsapiens.v75</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">transcripts_data</span><span class="op">)</span></span>
+<span><span class="co">#&gt; GRanges object with 6 ranges and 6 metadata columns:</span></span>
+<span><span class="co">#&gt;                   seqnames      ranges strand |           tx_id             tx_biotype tx_cds_seq_start tx_cds_seq_end         gene_id         tx_name</span></span>
+<span><span class="co">#&gt;                      &lt;Rle&gt;   &lt;IRanges&gt;  &lt;Rle&gt; |     &lt;character&gt;            &lt;character&gt;        &lt;integer&gt;      &lt;integer&gt;     &lt;character&gt;     &lt;character&gt;</span></span>
+<span><span class="co">#&gt;   ENST00000456328        1 11869-14409      + | ENST00000456328   processed_transcript             &lt;NA&gt;           &lt;NA&gt; ENSG00000223972 ENST00000456328</span></span>
+<span><span class="co">#&gt;   ENST00000515242        1 11872-14412      + | ENST00000515242 transcribed_unproces..             &lt;NA&gt;           &lt;NA&gt; ENSG00000223972 ENST00000515242</span></span>
+<span><span class="co">#&gt;   ENST00000518655        1 11874-14409      + | ENST00000518655 transcribed_unproces..             &lt;NA&gt;           &lt;NA&gt; ENSG00000223972 ENST00000518655</span></span>
+<span><span class="co">#&gt;   ENST00000450305        1 12010-13670      + | ENST00000450305 transcribed_unproces..             &lt;NA&gt;           &lt;NA&gt; ENSG00000223972 ENST00000450305</span></span>
+<span><span class="co">#&gt;   ENST00000438504        1 14363-29370      - | ENST00000438504 unprocessed_pseudogene             &lt;NA&gt;           &lt;NA&gt; ENSG00000227232 ENST00000438504</span></span>
+<span><span class="co">#&gt;   ENST00000541675        1 14363-24886      - | ENST00000541675 unprocessed_pseudogene             &lt;NA&gt;           &lt;NA&gt; ENSG00000227232 ENST00000541675</span></span>
+<span><span class="co">#&gt;   -------</span></span>
+<span><span class="co">#&gt;   seqinfo: 273 sequences (1 circular) from GRCh37 genome</span></span></code></pre></div>
+<p>One can also use <code>exons_data &lt;- ensembldb::exons(EnsDb.Hsapiens.v75);head(exons_data)</code> but it is skipped for being considerably longer.</p>
+</div>
+<div class="section level3" number="4.2">
+<h3 id="biomart">
+<span class="header-section-number">4.2</span> biomaRt<a class="anchor" aria-label="anchor" href="#biomart"></a>
+</h3>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/grimbough/biomaRt" class="external-link">biomaRt</a></span><span class="op">)</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu">biomaRt</span><span class="fu">::</span><span class="fu">martBMCheck</span><span class="op">(</span><span class="va">mart</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/stop.html" class="external-link">stop</a></span><span class="op">(</span><span class="st">"The BioMart service is currently unavailable."</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listMarts.html" class="external-link">listMarts</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">ensembl</span> <span class="op">&lt;-</span> <span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/useMart.html" class="external-link">useMart</a></span><span class="op">(</span><span class="st">"ensembl"</span>, dataset<span class="op">=</span><span class="st">"hsapiens_gene_ensembl"</span>, host<span class="op">=</span><span class="st">"grch37.ensembl.org"</span>, path<span class="op">=</span><span class="st">"/biomart/martservice"</span><span class="op">)</span></span>
+<span><span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listDatasets.html" class="external-link">listDatasets</a></span><span class="op">(</span><span class="va">ensembl</span><span class="op">)</span></span>
+<span><span class="va">attr</span> <span class="op">&lt;-</span> <span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listAttributes.html" class="external-link">listAttributes</a></span><span class="op">(</span><span class="va">ensembl</span><span class="op">)</span></span>
+<span><span class="va">attr_select</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'ensembl_gene_id'</span>, <span class="st">'chromosome_name'</span>, <span class="st">'start_position'</span>, <span class="st">'end_position'</span>, <span class="st">'description'</span>, <span class="st">'hgnc_symbol'</span>,</span>
+<span>                 <span class="st">'transcription_start_site'</span><span class="op">)</span></span>
+<span><span class="va">gene</span> <span class="op">&lt;-</span> <span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/getBM.html" class="external-link">getBM</a></span><span class="op">(</span>attributes <span class="op">=</span> <span class="va">attr_select</span>, mart <span class="op">=</span> <span class="va">ensembl</span><span class="op">)</span></span>
+<span><span class="va">filter</span> <span class="op">&lt;-</span> <span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listFilters.html" class="external-link">listFilters</a></span><span class="op">(</span><span class="va">ensembl</span><span class="op">)</span></span>
+<span><span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listFilters.html" class="external-link">searchFilters</a></span><span class="op">(</span>mart <span class="op">=</span> <span class="va">ensembl</span>, pattern <span class="op">=</span> <span class="st">"gene"</span><span class="op">)</span></span>
+<span><span class="co"># GRCh38</span></span>
+<span><span class="va">ensembl</span> <span class="op">&lt;-</span> <span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/useMart.html" class="external-link">useMart</a></span><span class="op">(</span><span class="st">"ensembl"</span>, dataset<span class="op">=</span><span class="st">"hsapiens_gene_ensembl"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3" number="4.3">
+<h3 id="experimental-factor-ontology-efo">
+<span class="header-section-number">4.3</span> Experimental Factor Ontology (EFO)<a class="anchor" aria-label="anchor" href="#experimental-factor-ontology-efo"></a>
+</h3>
+<p>The ontology of traits/disease is formally available as this<span class="citation"><sup>2</sup></span>.</p>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ontologyIndex</span><span class="op">)</span></span>
+<span><span class="va">id</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">ontology</span><span class="op">)</span></span>
+<span><span class="op">{</span></span>
+<span>  <span class="va">inflammatory</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="va">ontology</span><span class="op">$</span><span class="va">name</span>,pattern<span class="op">=</span><span class="st">"inflammatory"</span><span class="op">)</span></span>
+<span>  <span class="va">immune</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="va">ontology</span><span class="op">$</span><span class="va">name</span>,pattern<span class="op">=</span><span class="st">"immune"</span><span class="op">)</span></span>
+<span>  <span class="va">inf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sets.html" class="external-link">union</a></span><span class="op">(</span><span class="va">inflammatory</span>,<span class="va">immune</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>id<span class="op">=</span><span class="va">ontology</span><span class="op">$</span><span class="va">id</span><span class="op">[</span><span class="va">inf</span><span class="op">]</span>,name<span class="op">=</span><span class="va">ontology</span><span class="op">$</span><span class="va">name</span><span class="op">[</span><span class="va">inf</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="co"># GO</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">go</span><span class="op">)</span></span>
+<span><span class="va">goidname</span> <span class="op">&lt;-</span> <span class="fu">id</span><span class="op">(</span><span class="va">go</span><span class="op">)</span></span>
+<span><span class="co"># EFO</span></span>
+<span><span class="va">file</span> <span class="op">&lt;-</span> <span class="st">"efo.obo"</span> <span class="co"># efo-3.26.0</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/ontologyIndex/man/get_relation_names.html" class="external-link">get_relation_names</a></span><span class="op">(</span><span class="va">file</span><span class="op">)</span></span>
+<span><span class="va">efo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ontologyIndex/man/get_ontology.html" class="external-link">get_ontology</a></span><span class="op">(</span><span class="va">file</span>, extract_tags<span class="op">=</span><span class="st">"everything"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">efo</span><span class="op">)</span> <span class="co"># 89</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">efo</span><span class="op">$</span><span class="va">id</span><span class="op">)</span> <span class="co"># 27962</span></span>
+<span><span class="va">efoidname</span> <span class="op">&lt;-</span> <span class="fu">id</span><span class="op">(</span><span class="va">efo</span><span class="op">)</span></span>
+<span><span class="va">diseases</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ontologyIndex/man/get_descendants.html" class="external-link">get_descendants</a></span><span class="op">(</span><span class="va">efo</span>,<span class="st">"EFO:0000408"</span><span class="op">)</span></span>
+<span><span class="va">efo_0000540</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ontologyIndex/man/get_descendants.html" class="external-link">get_descendants</a></span><span class="op">(</span><span class="va">efo</span>,<span class="st">"EFO:0000540"</span><span class="op">)</span></span>
+<span><span class="va">efo_0000540name</span> <span class="op">&lt;-</span> <span class="va">efo</span><span class="op">$</span><span class="va">name</span><span class="op">[</span><span class="va">efo_0000540</span><span class="op">]</span></span>
+<span><span class="va">isd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">efo_0000540</span>,<span class="va">efo_0000540name</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/save.html" class="external-link">save</a></span><span class="op">(</span><span class="va">efo</span>,<span class="va">diseases</span>,<span class="va">isd</span>,<span class="va">efoidname</span>,<span class="va">goidname</span>, file<span class="op">=</span><span class="st">"efo.rda"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.table</a></span><span class="op">(</span><span class="va">isd</span>,file<span class="op">=</span><span class="st">"efo_0000540.csv"</span>,col.names<span class="op">=</span><span class="cn">FALSE</span>,row.names<span class="op">=</span><span class="cn">FALSE</span>,sep<span class="op">=</span><span class="st">","</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ontologyPlot</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/ontologyPlot/man/onto_plot.html" class="external-link">onto_plot</a></span><span class="op">(</span><span class="va">efo</span>,<span class="va">efo_0000540</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3" number="4.4">
+<h3 id="rentrez">
+<span class="header-section-number">4.4</span> rentrez<a class="anchor" aria-label="anchor" href="#rentrez"></a>
+</h3>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/rentrez/" class="external-link">rentrez</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/entrez_dbs.html" class="external-link">entrez_dbs</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/entrez_db_links.html" class="external-link">entrez_db_links</a></span><span class="op">(</span><span class="st">"pubmed"</span><span class="op">)</span></span>
+<span><span class="va">pubmed_fields</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/entrez_db_searchable.html" class="external-link">entrez_db_searchable</a></span><span class="op">(</span><span class="st">"pubmed"</span><span class="op">)</span></span>
+<span><span class="co"># set_entrez_key("")</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"ENTREZ_KEY"</span><span class="op">)</span></span>
+<span><span class="va">term</span> <span class="op">&lt;-</span> <span class="st">"pQTLs OR (protein AND quantitative AND trait AND loci) AND human [MH] AND (plasma OR Serum)"</span></span>
+<span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/entrez_search.html" class="external-link">entrez_search</a></span><span class="op">(</span>db<span class="op">=</span><span class="st">"pubmed"</span>,term<span class="op">=</span><span class="va">term</span>,use_history<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">r</span>,<span class="va">web_history</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"pubmed"</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"fetch"</span>,<span class="st">"summary"</span><span class="op">)</span>,sep<span class="op">=</span><span class="st">"."</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">fields</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"uid"</span>, <span class="st">"pubdate"</span>, <span class="st">"sortfirstauthor"</span>, <span class="st">"title"</span>, <span class="st">"source"</span>, <span class="st">"volume"</span>, <span class="st">"pages"</span><span class="op">)</span></span>
+<span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">r</span>,<span class="va">count</span><span class="op">)</span>,<span class="fl">50</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="va">i</span><span class="op">+</span><span class="fl">49</span>, <span class="st">"records downloaded\r"</span><span class="op">)</span></span>
+<span>  <span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/entrez_fetch.html" class="external-link">entrez_fetch</a></span><span class="op">(</span>db<span class="op">=</span><span class="st">"pubmed"</span>, web_history<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">r</span>,<span class="va">web_history</span><span class="op">)</span>, rettype<span class="op">=</span><span class="st">"text"</span>, retmax<span class="op">=</span><span class="fl">50</span>, retstart<span class="op">=</span><span class="va">i</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.table</a></span><span class="op">(</span><span class="va">f</span>, col.names<span class="op">=</span><span class="cn">FALSE</span>, row.names<span class="op">=</span><span class="cn">FALSE</span>, file<span class="op">=</span><span class="st">"pubmed.fetch"</span>, append<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  <span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/entrez_summary.html" class="external-link">entrez_summary</a></span><span class="op">(</span>db<span class="op">=</span><span class="st">"pubmed"</span>, web_history<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">r</span>,<span class="va">web_history</span><span class="op">)</span>, rettype<span class="op">=</span><span class="st">"text"</span>, retmax<span class="op">=</span><span class="fl">50</span>, retstart<span class="op">=</span><span class="va">i</span><span class="op">)</span></span>
+<span>  <span class="va">e</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/extract_from_esummary.html" class="external-link">extract_from_esummary</a></span><span class="op">(</span><span class="va">s</span>, <span class="va">fields</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">e</span><span class="op">)</span>, col.names<span class="op">=</span><span class="cn">FALSE</span>, row.names<span class="op">=</span><span class="cn">FALSE</span>, file<span class="op">=</span><span class="st">"pubmed.summary"</span>, append<span class="op">=</span><span class="cn">TRUE</span>, sep<span class="op">=</span><span class="st">"\t"</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="va">id</span> <span class="op">&lt;-</span> <span class="fl">600807</span></span>
+<span><span class="va">upload</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/entrez_post.html" class="external-link">entrez_post</a></span><span class="op">(</span>db<span class="op">=</span><span class="st">"omim"</span>, id<span class="op">=</span><span class="va">id</span><span class="op">)</span></span>
+<span><span class="va">asthma_variants</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/entrez_link.html" class="external-link">entrez_link</a></span><span class="op">(</span>dbfrom<span class="op">=</span><span class="st">"omim"</span>, db<span class="op">=</span><span class="st">"clinvar"</span>, cmd<span class="op">=</span><span class="st">"neighbor_history"</span>, web_history<span class="op">=</span><span class="va">upload</span><span class="op">)</span></span>
+<span><span class="va">asthma_variants</span></span>
+<span><span class="va">snp_links</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/entrez_link.html" class="external-link">entrez_link</a></span><span class="op">(</span>dbfrom<span class="op">=</span><span class="st">"clinvar"</span>, db<span class="op">=</span><span class="st">"snp"</span>, web_history<span class="op">=</span><span class="va">asthma_variants</span><span class="op">$</span><span class="va">web_histories</span><span class="op">$</span><span class="va">omim_clinvar</span>, cmd<span class="op">=</span><span class="st">"neighbor_history"</span><span class="op">)</span></span>
+<span><span class="va">all_links</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rentrez/reference/entrez_link.html" class="external-link">entrez_link</a></span><span class="op">(</span>dbfrom<span class="op">=</span><span class="st">'pubmed'</span>, id<span class="op">=</span><span class="va">id</span>, db<span class="op">=</span><span class="st">'all'</span><span class="op">)</span></span></code></pre></div>
+</div>
+</div>
 <div class="section level2" number="5">
 <h2 id="gaawr2">
 <span class="header-section-number">5</span> gaawr2<a class="anchor" aria-label="anchor" href="#gaawr2"></a>
@@ -1537,13 +2099,13 @@ are also added to the suggested list of packages in DESCRIPTION:</p>
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
 <div id="refs" class="references csl-bib-body" line-spacing="2">
-<div id="ref-malone10" class="csl-entry">
-<div class="csl-left-margin">1. </div>
-<div class="csl-right-inline">Malone, J. <em>et al.</em> <a href="https://doi.org/10.1093/bioinformatics/btq099" class="external-link">Modeling sample variables with an experimental factor ontology</a>. <em>Bioinformatics</em> <strong>26</strong>, 1112–1118 (2010).</div>
-</div>
 <div id="ref-suhre20" class="csl-entry">
-<div class="csl-left-margin">2. </div>
+<div class="csl-left-margin">1. </div>
 <div class="csl-right-inline">Suhre, K., McCarthy, M. I. &amp; Schwenk, J. M. Genetics meets proteomics: Perspectives for large population-based studies. <em>Nat Rev Genet</em> (2020) doi:<a href="https://doi.org/10.1038/s41576-020-0268-2" class="external-link">10.1038/s41576-020-0268-2</a>.</div>
+</div>
+<div id="ref-malone10" class="csl-entry">
+<div class="csl-left-margin">2. </div>
+<div class="csl-right-inline">Malone, J. <em>et al.</em> <a href="https://doi.org/10.1093/bioinformatics/btq099" class="external-link">Modeling sample variables with an experimental factor ontology</a>. <em>Bioinformatics</em> <strong>26</strong>, 1112–1118 (2010).</div>
 </div>
 </div>
 </div>
