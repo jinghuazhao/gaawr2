@@ -17,7 +17,7 @@ Rscript -e '
 # pandoc README.md --citeproc --mathjax -s --self-contained -o index.html
 }
 
-setup
+# setup
 
 for d in gaawr2
 do
