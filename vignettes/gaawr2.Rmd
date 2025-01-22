@@ -151,7 +151,7 @@ The package implements procedures which are appropriate for candidate gene assoc
 
 Fist we look at some meta-data, include HWE.
 
-```{r snpassoc1}
+```{r snpassoc1, warning=FALSE}
 options(width=200,digits=2)
 data(asthma, package = "SNPassoc")
 str(asthma, list.len=8)
@@ -169,7 +169,7 @@ where variable `snpCols` skips six columns non-SNP data for two SNPs.
 
 We then turn to genetic models for the first one,
 
-```{r snpassoc2}
+```{r snpassoc2, warning=FALSE}
 asthma.snps <- asthma %>%
                dplyr::rename(cc=casecontrol) %>%
                SNPassoc::setupSNP(colSNPs=7:ncol(.), sep="")
@@ -253,8 +253,8 @@ An overview on the proteomics is found from the relevant paper @suhre20.
 We return to the asthma data used in **SNPassoc**.
 
 ```r
-assoc <- SNPassoc::WGassociation(cc, data=asthma.snps, mc.cores=5)
-assoc.adj <- SNPassoc::WGassociation(cc ~ country + smoke, asthma.snps, mc.cores=5)
+assoc <- SNPassoc::WGassociation(cc, data=asthma.snps)
+assoc.adj <- SNPassoc::WGassociation(cc ~ country + smoke, asthma.snps)
 assoc.maxstat <- SNPassoc::maxstat(asthma.snps, cc)
 assoc %>%
   as.data.frame() %>%
@@ -270,7 +270,7 @@ assoc.maxstat %>%
   knitr::kable(caption = "Max stat association statistics")
 ```
 
-There appears problematic to knit though and assoc.maxstat is coerced into a matrix later.
+where assoc.maxstat is coerced into a matrix later, but there appears problematic to knit though.
 
 ## powerEQTL
 
