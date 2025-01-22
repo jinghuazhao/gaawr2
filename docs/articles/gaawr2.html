@@ -987,7 +987,7 @@ Figure 3.1: SNP ternary plot
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>width<span class="op">=</span><span class="fl">200</span>,digits<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">asthma</span>, package <span class="op">=</span> <span class="st">"SNPassoc"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">asthma</span>, list.len<span class="op">=</span><span class="fl">9</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">asthma</span>, list.len<span class="op">=</span><span class="fl">8</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 'data.frame':    1578 obs. of  57 variables:</span></span>
 <span><span class="co">#&gt;  $ country    : Factor w/ 10 levels "Australia","Belgium",..: 5 5 5 5 5 5 5 5 5 5 ...</span></span>
 <span><span class="co">#&gt;  $ gender     : Factor w/ 2 levels "Females","Males": 2 2 2 1 1 1 1 2 1 1 ...</span></span>
@@ -997,7 +997,6 @@ Figure 3.1: SNP ternary plot
 <span><span class="co">#&gt;  $ casecontrol: int  0 0 0 0 1 0 0 0 0 0 ...</span></span>
 <span><span class="co">#&gt;  $ rs4490198  : Factor w/ 3 levels "AA","AG","GG": 3 3 3 2 2 2 3 2 2 2 ...</span></span>
 <span><span class="co">#&gt;  $ rs4849332  : Factor w/ 3 levels "GG","GT","TT": 3 2 3 2 1 2 3 3 2 1 ...</span></span>
-<span><span class="co">#&gt;  $ rs1367179  : Factor w/ 3 levels "CC","GC","GG": 2 2 2 3 3 3 2 3 3 3 ...</span></span>
 <span><span class="co">#&gt;   [list output truncated]</span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">asthma</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">8</span><span class="op">]</span>,caption<span class="op">=</span><span class="st">"First three records &amp; two SNPs"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
@@ -1048,13 +1047,12 @@ Figure 3.1: SNP ternary plot
 </table>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
-<span><span class="va">snpCols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="st">"^rs"</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">asthma</span><span class="op">)</span>, value<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span>
+<span><span class="va">snpCols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">asthma</span><span class="op">)</span><span class="op">[</span><span class="fl">6</span><span class="op">+</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="va">snps</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/setupSNP.html" class="external-link">setupSNP</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">asthma</span><span class="op">[</span><span class="va">snpCols</span><span class="op">]</span>, colSNPs<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">snpCols</span><span class="op">)</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">snps</span>, print<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="co">#&gt;           alleles major.allele.freq HWE  missing (%)</span></span>
 <span><span class="co">#&gt; rs4490198 A/G     59                0.17 0.6        </span></span>
-<span><span class="co">#&gt; rs4849332 G/T     62                0.52 0.1        </span></span>
-<span><span class="co">#&gt; rs1367179 G/C     81                0.74 1.0</span></span>
+<span><span class="co">#&gt; rs4849332 G/T     62                0.52 0.1</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">snps</span>, <span class="va">head</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $rs4490198</span></span>
 <span><span class="co">#&gt; [1] G/G G/G G/G A/G A/G A/G</span></span>
@@ -1064,12 +1062,7 @@ Figure 3.1: SNP ternary plot
 <span><span class="co">#&gt; $rs4849332</span></span>
 <span><span class="co">#&gt; [1] T/T G/T T/T G/T G/G G/T</span></span>
 <span><span class="co">#&gt; Genotypes: G/G G/T T/T</span></span>
-<span><span class="co">#&gt; Alleles:  T G </span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $rs1367179</span></span>
-<span><span class="co">#&gt; [1] G/C G/C G/C G/G G/G G/G</span></span>
-<span><span class="co">#&gt; Genotypes: G/G G/C C/C</span></span>
-<span><span class="co">#&gt; Alleles:  G C</span></span>
+<span><span class="co">#&gt; Alleles:  T G</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">snps</span>, <span class="va">summary</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $rs4490198</span></span>
 <span><span class="co">#&gt; Genotypes: </span></span>
@@ -1101,33 +1094,17 @@ Figure 3.1: SNP ternary plot
 <span><span class="co">#&gt; G         1950         62</span></span>
 <span><span class="co">#&gt; NA's         2           </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; HWE (p value): 0.52 </span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $rs1367179</span></span>
-<span><span class="co">#&gt; Genotypes: </span></span>
-<span><span class="co">#&gt;      frequency percentage</span></span>
-<span><span class="co">#&gt; G/G       1038       66.4</span></span>
-<span><span class="co">#&gt; G/C        469       30.0</span></span>
-<span><span class="co">#&gt; C/C         56        3.6</span></span>
-<span><span class="co">#&gt; NA's        15           </span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Alleles: </span></span>
-<span><span class="co">#&gt;      frequency percentage</span></span>
-<span><span class="co">#&gt; G         2545         81</span></span>
-<span><span class="co">#&gt; C          581         19</span></span>
-<span><span class="co">#&gt; NA's        30           </span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; HWE (p value): 0.74</span></span>
+<span><span class="co">#&gt; HWE (p value): 0.52</span></span>
 <span><span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/tableHWE.html" class="external-link">tableHWE</a></span><span class="op">(</span><span class="va">snps</span><span class="op">)</span></span>
 <span><span class="co">#&gt;           HWE (p value) flag</span></span>
 <span><span class="co">#&gt; rs4490198 0.17              </span></span>
-<span><span class="co">#&gt; rs4849332 0.52              </span></span>
-<span><span class="co">#&gt; rs1367179 0.74</span></span></code></pre></div>
-<p>We then turn to genetic models for a specific SNP,</p>
+<span><span class="co">#&gt; rs4849332 0.52</span></span></code></pre></div>
+<p>where variable <code>snpCols</code> skips six columns non-SNP data for two SNPs.</p>
+<p>We then turn to genetic models for the first one,</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">asthma.snps</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/setupSNP.html" class="external-link">setupSNP</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">asthma</span>, colSNPs<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="st">"^rs"</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">asthma</span><span class="op">)</span><span class="op">)</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<code class="sourceCode R"><span><span class="va">asthma.snps</span> <span class="op">&lt;-</span> <span class="va">asthma</span> <span class="op">%&gt;%</span></span>
 <span>               <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>cc<span class="op">=</span><span class="va">casecontrol</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>               <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">11</span><span class="op">)</span></span>
+<span>               <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/setupSNP.html" class="external-link">setupSNP</a></span><span class="op">(</span>colSNPs<span class="op">=</span><span class="fl">7</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span></span>
 <span><span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/association.html" class="external-link">association</a></span><span class="op">(</span><span class="va">bmi</span> <span class="op">~</span> <span class="va">rs4490198</span>, <span class="va">asthma.snps</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; SNP: rs4490198  adjusted by: </span></span>
@@ -1231,9 +1208,9 @@ Figure 3.1: SNP ternary plot
 <span><span class="co">#&gt; A/G          145 44.5 22 45.8 1.06  0.57  1.94            </span></span>
 <span><span class="co">#&gt; log-Additive                                              </span></span>
 <span><span class="co">#&gt; 0,1,2        326 87.2 48 12.8 1.24  0.80  1.91   0.339 290</span></span>
-<span><span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/association.html" class="external-link">association</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="fu">dominant</span><span class="op">(</span><span class="va">rs4490198</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">smoke</span><span class="op">)</span>, data<span class="op">=</span><span class="va">asthma.snps</span><span class="op">)</span></span>
+<span><span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/association.html" class="external-link">association</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/inheritance.html" class="external-link">dominant</a></span><span class="op">(</span><span class="va">rs4490198</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">smoke</span><span class="op">)</span>, data<span class="op">=</span><span class="va">asthma.snps</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;       SNP: dominant(rs4490198  adjusted by: </span></span>
+<span><span class="co">#&gt;       SNP: SNPassoc::dominant(rs4490198  adjusted by: </span></span>
 <span><span class="co">#&gt;  Interaction </span></span>
 <span><span class="co">#&gt; ---------------------</span></span>
 <span><span class="co">#&gt;           0       OR lower upper   1      OR lower upper</span></span>
@@ -1242,7 +1219,7 @@ Figure 3.1: SNP ternary plot
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; p interaction: 0.7 </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  factor(smoke) within dominant(rs4490198 </span></span>
+<span><span class="co">#&gt;  factor(smoke) within SNPassoc::dominant(rs4490198 </span></span>
 <span><span class="co">#&gt; ---------------------</span></span>
 <span><span class="co">#&gt; A/A </span></span>
 <span><span class="co">#&gt;     0  1   OR lower upper</span></span>
@@ -1256,7 +1233,7 @@ Figure 3.1: SNP ternary plot
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; p trend: 0.7 </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  dominant(rs4490198 within factor(smoke) </span></span>
+<span><span class="co">#&gt;  SNPassoc::dominant(rs4490198 within factor(smoke) </span></span>
 <span><span class="co">#&gt; ---------------------</span></span>
 <span><span class="co">#&gt; 0 </span></span>
 <span><span class="co">#&gt;           0   1   OR lower upper</span></span>
@@ -1554,18 +1531,22 @@ Figure 3.1: SNP ternary plot
 </h3>
 <p>We return to the asthma data used in <strong>SNPassoc</strong>.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">assoc</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/WGassociation.html" class="external-link">WGassociation</a></span><span class="op">(</span><span class="va">cc</span>, data<span class="op">=</span><span class="va">asthma.snps</span>, mc.cores<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
-<span><span class="va">assoc</span> <span class="op">%&gt;%</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">comments</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span>caption<span class="op">=</span><span class="st">"SNP association"</span><span class="op">)</span></span>
-<span><span class="va">assoc.adj</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/WGassociation.html" class="external-link">WGassociation</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="va">country</span> <span class="op">+</span> <span class="va">smoke</span>, <span class="va">asthma.snps</span>, mc.cores<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
-<span><span class="va">assoc.adj</span> <span class="op">%&gt;%</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">comments</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span>caption<span class="op">=</span><span class="st">"with adjustment for contountry &amp; smoking"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">assoc</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/WGassociation.html" class="external-link">WGassociation</a></span><span class="op">(</span><span class="va">cc</span>, data<span class="op">=</span><span class="va">asthma.snps</span>, mc.cores<span class="op">=</span><span class="fl">5</span><span class="op">)</span></span>
+<span><span class="va">assoc.adj</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/WGassociation.html" class="external-link">WGassociation</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="va">country</span> <span class="op">+</span> <span class="va">smoke</span>, <span class="va">asthma.snps</span>, mc.cores<span class="op">=</span><span class="fl">5</span><span class="op">)</span></span>
 <span><span class="va">assoc.maxstat</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/maxstat.html" class="external-link">maxstat</a></span><span class="op">(</span><span class="va">asthma.snps</span>, <span class="va">cc</span><span class="op">)</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">assoc.maxstat</span><span class="op">[</span>,<span class="op">]</span><span class="op">)</span>,caption<span class="op">=</span><span class="st">"Max stat association statistics"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">assoc</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">comments</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span>caption<span class="op">=</span><span class="st">"SNP association"</span><span class="op">)</span></span>
+<span><span class="va">assoc.adj</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">comments</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span>caption<span class="op">=</span><span class="st">"with adjustment for contountry &amp; smoking"</span><span class="op">)</span></span>
+<span><span class="va">assoc.maxstat</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">`[`</span><span class="op">(</span>,<span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span>caption <span class="op">=</span> <span class="st">"Max stat association statistics"</span><span class="op">)</span></span></code></pre></div>
+<p>There appears problematic to knit though and assoc.maxstat is coerced into a matrix later.</p>
 </div>
 <div class="section level3" number="3.7">
 <h3 id="powereqtl">
