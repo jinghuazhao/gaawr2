@@ -1144,10 +1144,6 @@ Figure 3.1: SNP ternary plot
 <span><span class="co">#&gt; log-Additive                                                 </span></span>
 <span><span class="co">#&gt; 0,1,2        1230 78.4 338 21.6 1.06  0.90  1.26   0.495 1638</span></span>
 <span><span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/association.html" class="external-link">association</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="va">rs4490198</span> <span class="op">+</span> <span class="va">country</span> <span class="op">+</span> <span class="va">smoke</span>, <span class="va">asthma.snps</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning in terms.formula(formula, data = data): 'varlist' has changed (from nvar=3) to new 4 after EncodeVars() -- should no longer happen!</span></span>
-<span><span class="co">#&gt; Warning in terms.formula(formula, data = data): 'varlist' has changed (from nvar=3) to new 4 after EncodeVars() -- should no longer happen!</span></span>
-<span><span class="co">#&gt; Warning in terms.formula(formula, data = data): 'varlist' has changed (from nvar=3) to new 4 after EncodeVars() -- should no longer happen!</span></span>
-<span><span class="co">#&gt; Warning in terms.formula(formula, data = data): 'varlist' has changed (from nvar=3) to new 4 after EncodeVars() -- should no longer happen!</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; SNP: rs4490198  adjusted by: country smoke </span></span>
 <span><span class="co">#&gt;                 0    %   1    %   OR lower upper p-value  AIC</span></span>
@@ -1167,10 +1163,6 @@ Figure 3.1: SNP ternary plot
 <span><span class="co">#&gt; log-Additive                                                 </span></span>
 <span><span class="co">#&gt; 0,1,2        1224 78.4 337 21.6 1.06  0.88  1.28   0.538 1402</span></span>
 <span><span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/association.html" class="external-link">association</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="va">rs4490198</span> <span class="op">+</span> <span class="fu">survival</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/strata.html" class="external-link">strata</a></span><span class="op">(</span><span class="va">gender</span><span class="op">)</span>, <span class="va">asthma.snps</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning in terms.formula(formula, data = data): 'varlist' has changed (from nvar=2) to new 3 after EncodeVars() -- should no longer happen!</span></span>
-<span><span class="co">#&gt; Warning in terms.formula(formula, data = data): 'varlist' has changed (from nvar=2) to new 3 after EncodeVars() -- should no longer happen!</span></span>
-<span><span class="co">#&gt; Warning in terms.formula(formula, data = data): 'varlist' has changed (from nvar=2) to new 3 after EncodeVars() -- should no longer happen!</span></span>
-<span><span class="co">#&gt; Warning in terms.formula(formula, data = data): 'varlist' has changed (from nvar=2) to new 3 after EncodeVars() -- should no longer happen!</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; SNP: rs4490198  adjusted by: survival::strata(gender) </span></span>
 <span><span class="co">#&gt;                 0    %   1    %   OR lower upper p-value  AIC</span></span>
@@ -1531,8 +1523,8 @@ Figure 3.1: SNP ternary plot
 </h3>
 <p>We return to the asthma data used in <strong>SNPassoc</strong>.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">assoc</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/WGassociation.html" class="external-link">WGassociation</a></span><span class="op">(</span><span class="va">cc</span>, data<span class="op">=</span><span class="va">asthma.snps</span>, mc.cores<span class="op">=</span><span class="fl">5</span><span class="op">)</span></span>
-<span><span class="va">assoc.adj</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/WGassociation.html" class="external-link">WGassociation</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="va">country</span> <span class="op">+</span> <span class="va">smoke</span>, <span class="va">asthma.snps</span>, mc.cores<span class="op">=</span><span class="fl">5</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">assoc</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/WGassociation.html" class="external-link">WGassociation</a></span><span class="op">(</span><span class="va">cc</span>, data<span class="op">=</span><span class="va">asthma.snps</span><span class="op">)</span></span>
+<span><span class="va">assoc.adj</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/WGassociation.html" class="external-link">WGassociation</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="va">country</span> <span class="op">+</span> <span class="va">smoke</span>, <span class="va">asthma.snps</span><span class="op">)</span></span>
 <span><span class="va">assoc.maxstat</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/maxstat.html" class="external-link">maxstat</a></span><span class="op">(</span><span class="va">asthma.snps</span>, <span class="va">cc</span><span class="op">)</span></span>
 <span><span class="va">assoc</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
@@ -1546,7 +1538,7 @@ Figure 3.1: SNP ternary plot
 <span>  <span class="fu">`[`</span><span class="op">(</span>,<span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span>caption <span class="op">=</span> <span class="st">"Max stat association statistics"</span><span class="op">)</span></span></code></pre></div>
-<p>There appears problematic to knit though and assoc.maxstat is coerced into a matrix later.</p>
+<p>where assoc.maxstat is coerced into a matrix later, but there appears problematic to knit though.</p>
 </div>
 <div class="section level3" number="3.7">
 <h3 id="powereqtl">
