@@ -9,15 +9,8 @@
 #'
 #' Objects                   |  Description
 #' --------------------------|------------------------------------
-#' **Datasets**              |   &nbsp;
-#' [`biomaRt`]               |   Curated data from biomaRt
-#'
-#' Some generic description for the datasets are as follows.
-#' -  chr Chromosome.
-#' -  start Start position.
-#' -  end End position.
-#' -  gene Gene name.
-#' -  UniProt UniProt ID.
+#' **Functions**             |   &nbsp;
+#' [`Welcome`]               |   An enhanced welcome
 #'
 #' @section Usage:
 #' Vignettes on package usage:
@@ -31,8 +24,6 @@
 #' @author Jing Hua Zhao in collaboration with other colleagues.
 #' @keywords internal
 #' @examples
-#' \dontrun{
-#' head(biomaRt)
-#' }
+#' Welcome(3)
 
 "_PACKAGE"

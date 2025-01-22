@@ -1,4 +1,4 @@
-#' @title FUNCTION_TITLE
+#' @title An enhanced welcome
 #' @description A hello, world extension.
 #' @param n a counter.
 #'
