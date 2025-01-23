@@ -60,7 +60,7 @@
       <h1>Genetic Association Analysis with R (II)</h1>
             
       
-
+      <small class="dont-index">Source: <a href="https://github.com/jinghuazhao/gaawr2/blob/HEAD/vignettes/gaawr2.Rmd" class="external-link"><code>vignettes/gaawr2.Rmd</code></a></small>
       <div class="d-none name"><code>gaawr2.Rmd</code></div>
     </div>
 
@@ -1513,23 +1513,22 @@ Figure 3.1: SNP ternary plot
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">example</span>,package<span class="op">=</span><span class="st">"GMMAT"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/attach.html" class="external-link">attach</a></span><span class="op">(</span><span class="va">example</span><span class="op">)</span></span>
-<span><span class="va">model0</span> <span class="op">&lt;-</span> <span class="fu">glmmkin</span><span class="op">(</span><span class="va">disease</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">pheno</span>, kins <span class="op">=</span> <span class="va">GRM</span>,</span>
-<span>          id <span class="op">=</span> <span class="st">"id"</span>, family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html" class="external-link">binomial</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"logit"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">model1</span> <span class="op">&lt;-</span> <span class="fu">glmmkin</span><span class="op">(</span>fixed <span class="op">=</span> <span class="va">trait</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">pheno</span>, kins <span class="op">=</span> <span class="va">GRM</span>,</span>
-<span>          id <span class="op">=</span> <span class="st">"id"</span>, family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html" class="external-link">gaussian</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"identity"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">model2</span> <span class="op">&lt;-</span> <span class="fu">glmmkin</span><span class="op">(</span>fixed <span class="op">=</span> <span class="va">trait</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">pheno</span>, kins <span class="op">=</span> <span class="va">GRM</span>,</span>
-<span>          id <span class="op">=</span> <span class="st">"id"</span>, groups <span class="op">=</span> <span class="st">"disease"</span>, </span>
-<span>          family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html" class="external-link">gaussian</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"identity"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">model0</span> <span class="op">&lt;-</span> <span class="fu">GMMAT</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GMMAT/man/glmmkin.html" class="external-link">glmmkin</a></span><span class="op">(</span><span class="va">disease</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">pheno</span>, kins <span class="op">=</span> <span class="va">GRM</span>,</span>
+<span>                         id <span class="op">=</span> <span class="st">"id"</span>, family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html" class="external-link">binomial</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"logit"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">model1</span> <span class="op">&lt;-</span> <span class="fu">GMMAT</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GMMAT/man/glmmkin.html" class="external-link">glmmkin</a></span><span class="op">(</span>fixed <span class="op">=</span> <span class="va">trait</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">pheno</span>, kins <span class="op">=</span> <span class="va">GRM</span>,</span>
+<span>                         id <span class="op">=</span> <span class="st">"id"</span>, family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html" class="external-link">gaussian</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"identity"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">model2</span> <span class="op">&lt;-</span> <span class="fu">GMMAT</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GMMAT/man/glmmkin.html" class="external-link">glmmkin</a></span><span class="op">(</span>fixed <span class="op">=</span> <span class="va">trait</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">pheno</span>, kins <span class="op">=</span> <span class="va">GRM</span>,</span>
+<span>                         id <span class="op">=</span> <span class="st">"id"</span>, groups <span class="op">=</span> <span class="st">"disease"</span>,</span>
+<span>                         family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html" class="external-link">gaussian</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"identity"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">snps</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SNP10"</span>, <span class="st">"SNP25"</span>, <span class="st">"SNP1"</span>, <span class="st">"SNP0"</span><span class="op">)</span></span>
 <span><span class="va">geno.file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"geno.bgen"</span>, package <span class="op">=</span> <span class="st">"GMMAT"</span><span class="op">)</span></span>
 <span><span class="va">samplefile</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"geno.sample"</span>, package <span class="op">=</span> <span class="st">"GMMAT"</span><span class="op">)</span></span>
 <span><span class="va">outfile</span> <span class="op">&lt;-</span> <span class="st">"glmm.score.txt"</span></span>
-<span><span class="fu">glmm.score</span><span class="op">(</span><span class="va">model0</span>, infile <span class="op">=</span> <span class="va">geno.file</span>, </span>
-<span>           BGEN.samplefile <span class="op">=</span> <span class="va">samplefile</span>,</span>
-<span>           outfile <span class="op">=</span> <span class="va">outfile</span><span class="op">)</span></span>
+<span><span class="fu">GMMAT</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GMMAT/man/glmm.score.html" class="external-link">glmm.score</a></span><span class="op">(</span><span class="va">model0</span>, infile <span class="op">=</span> <span class="va">geno.file</span>, BGEN.samplefile <span class="op">=</span> <span class="va">samplefile</span>,</span>
+<span>                  outfile <span class="op">=</span> <span class="va">outfile</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.delim</a></span><span class="op">(</span><span class="va">outfile</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">4</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span>caption<span class="op">=</span><span class="st">"Score tests under GLMM on four SNPs"</span>,digits<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<span>     <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">4</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>     <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span>caption<span class="op">=</span><span class="st">"Score tests under GLMM on four SNPs"</span>,digits<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>
 <span id="tab:gmmat">Table 3.3: </span>Score tests under GLMM on four SNPs</caption>
@@ -1605,9 +1604,9 @@ Figure 3.1: SNP ternary plot
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="va">outfile</span><span class="op">)</span></span>
 <span><span class="va">bed.file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"geno.bed"</span>, package <span class="op">=</span> <span class="st">"GMMAT"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>            <span class="fu">tools</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/tools/fileutils.html" class="external-link">file_path_sans_ext</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">model.wald</span> <span class="op">&lt;-</span> <span class="fu">glmm.wald</span><span class="op">(</span>fixed <span class="op">=</span> <span class="va">disease</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">pheno</span>,</span>
-<span>                        kins <span class="op">=</span> <span class="va">GRM</span>, id <span class="op">=</span> <span class="st">"id"</span>, family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html" class="external-link">binomial</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"logit"</span><span class="op">)</span>,</span>
-<span>                        infile <span class="op">=</span> <span class="va">bed.file</span>, snps <span class="op">=</span> <span class="va">snps</span><span class="op">)</span></span>
+<span><span class="va">model.wald</span> <span class="op">&lt;-</span> <span class="fu">GMMAT</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GMMAT/man/glmm.wald.html" class="external-link">glmm.wald</a></span><span class="op">(</span>fixed <span class="op">=</span> <span class="va">disease</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">pheno</span>,</span>
+<span>                               kins <span class="op">=</span> <span class="va">GRM</span>, id <span class="op">=</span> <span class="st">"id"</span>, family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html" class="external-link">binomial</a></span><span class="op">(</span>link <span class="op">=</span> <span class="st">"logit"</span><span class="op">)</span>,</span>
+<span>                               infile <span class="op">=</span> <span class="va">bed.file</span>, snps <span class="op">=</span> <span class="va">snps</span><span class="op">)</span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">model.wald</span>,caption<span class="op">=</span><span class="st">"Wald tests under GLMM on four SNPs"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>
@@ -2340,16 +2339,24 @@ Upon use <code>pkgdown</code>, an article can be seen from the menu item <code>A
 <p>We carry on adding files such as <code>NEWS.md</code> and <code>_pkgdown.yml</code>. In line with various analyses we have covered, their associate packages
 are also added to the suggested list of packages in DESCRIPTION:</p>
 <pre><code>Suggests:
-    HardyWeinberg,
-    haplo.stats,
-    SNPassoc,
-    locuszoomr,
-    pedigreemm,
-    GMMAT,
-    SAIGE,
     BLR,
     BGLR,
-    MCMCglmm</code></pre>
+    biomaRt,
+    bookdown,
+    GMMAT,
+    HardyWeinberg,
+    haplo.stats,
+    httr,
+    httpuv,
+    jsonlite,
+    knitr,
+    MCMCglmm,
+    plumber,
+    powerEQTL,
+    regress,
+    SAIGE,
+    seqminer,
+    SNPassoc</code></pre>
 <p>Note that the <code><a href="https://devtools.r-lib.org/reference/document.html" class="external-link">devtools::document()</a></code> in <code>pkgdown.sh</code> automatically updates NAMESPACE and regenerates function documentation file(.Rd),
 which can be picked up through <code><a href="https://pkgdown.r-lib.org/reference/build_reference.html" class="external-link">pkgdown::build_reference()</a></code>.</p>
 </div>

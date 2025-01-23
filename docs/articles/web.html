@@ -60,7 +60,7 @@
       <h1>Web facilities</h1>
             
       
-
+      <small class="dont-index">Source: <a href="https://github.com/jinghuazhao/gaawr2/blob/HEAD/vignettes/web.Rmd" class="external-link"><code>vignettes/web.Rmd</code></a></small>
       <div class="d-none name"><code>web.Rmd</code></div>
     </div>
 
@@ -82,6 +82,7 @@
 <span>  <span class="op">}</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>upon access <a href="http://127.0.0.1:8000" class="external-link uri">http://127.0.0.1:8000</a>, we see the message “Hello, world!”.</p>
+<p>Below, we assume that our working directory is <code>inst/</code> in the <strong>gaawr2</strong> source package.</p>
 <div class="section level2" number="1">
 <h2 id="plumber">
 <span class="header-section-number">1</span> plumber<a class="anchor" aria-label="anchor" href="#plumber"></a>
@@ -89,11 +90,7 @@
 <p>It is <code>an API generator in R</code>, which has been tested through Caprion data as follows.</p>
 <p>As noted elsewhere, <code>libsodium</code> is required for installation of the R package.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.rplumber.io" class="external-link">plumber</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://zhanxw.github.io/seqminer/" class="external-link">seqminer</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://jeroen.r-universe.dev/jsonlite" class="external-link">jsonlite</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">get_data</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">filename</span>, <span class="va">region</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">get_data</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">filename</span>, <span class="va">region</span><span class="op">)</span></span>
 <span><span class="op">{</span></span>
 <span>  <span class="va">query_result</span> <span class="op">&lt;-</span> <span class="fu">seqminer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/seqminer/man/tabix.read.html" class="external-link">tabix.read</a></span><span class="op">(</span><span class="va">filename</span>, <span class="va">region</span><span class="op">)</span></span>
 <span>  <span class="va">hdr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Chromosome"</span>, <span class="st">"Position"</span>,</span>
@@ -104,14 +101,8 @@
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">200</span><span class="op">)</span></span>
-<span><span class="va">filename</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="st">"tests"</span>,<span class="st">"IL.18R1-1.tbl.gz"</span><span class="op">)</span></span>
-<span><span class="va">region</span> <span class="op">&lt;-</span> <span class="st">"2:102700000-103800000"</span></span>
-<span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">get_data</span><span class="op">(</span><span class="va">filename</span>, <span class="va">region</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">data</span>,<span class="fl">1</span><span class="op">)</span></span>
-<span></span>
 <span><span class="va">plbr</span> <span class="op">&lt;-</span> <span class="fu">plumber</span><span class="fu">::</span><span class="va"><a href="https://www.rplumber.io/reference/Plumber.html" class="external-link">Plumber</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">plbr</span><span class="op">$</span><span class="fu">handle</span><span class="op">(</span><span class="st">"GET"</span>, <span class="st">"/data"</span>, <span class="kw">function</span><span class="op">(</span><span class="va">req</span>, <span class="va">res</span><span class="op">)</span> <span class="op">{</span></span>
+<span><span class="va">plbr</span><span class="op">$</span><span class="fu">handle</span><span class="op">(</span><span class="st">"GET"</span>, <span class="st">"/tests"</span>, <span class="kw">function</span><span class="op">(</span><span class="va">req</span>, <span class="va">res</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">protein</span> <span class="op">&lt;-</span> <span class="va">req</span><span class="op">$</span><span class="va">args</span><span class="op">$</span><span class="va">protein</span></span>
 <span>  <span class="va">region</span> <span class="op">&lt;-</span> <span class="va">req</span><span class="op">$</span><span class="va">args</span><span class="op">$</span><span class="va">region</span></span>
 <span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="va">protein</span><span class="op">)</span> <span class="op">||</span> <span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="va">region</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
@@ -125,13 +116,17 @@
 <span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>error <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"File for"</span>, <span class="va">protein</span>, <span class="st">"not found"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="op">}</span></span>
 <span>  <span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">get_data</span><span class="op">(</span><span class="va">filename</span>, <span class="va">region</span><span class="op">)</span></span>
-<span>  <span class="va">json_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://jeroen.r-universe.dev/jsonlite/reference/fromJSON.html" class="external-link">toJSON</a></span><span class="op">(</span><span class="va">data</span>, dataframe <span class="op">=</span> <span class="st">"rows"</span>, na <span class="op">=</span> <span class="st">"null"</span><span class="op">)</span></span>
+<span>  <span class="va">json_data</span> <span class="op">&lt;-</span> <span class="fu">toJSON</span><span class="op">(</span><span class="va">data</span>, dataframe <span class="op">=</span> <span class="st">"rows"</span>, na <span class="op">=</span> <span class="st">"null"</span><span class="op">)</span></span>
 <span>  <span class="va">res</span><span class="op">$</span><span class="fu">setHeader</span><span class="op">(</span><span class="st">"Content-Type"</span>, <span class="st">"application/json"</span><span class="op">)</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">json_data</span><span class="op">)</span></span>
 <span><span class="op">}</span><span class="op">)</span></span>
 <span><span class="va">plbr</span><span class="op">$</span><span class="fu">run</span><span class="op">(</span>port <span class="op">=</span> <span class="fl">8001</span><span class="op">)</span></span></code></pre></div>
-<p>We see that,</p>
-<pre><code>&gt; head(data,1)
+<p>We can see that,</p>
+<pre><code>&gt; options(width = 200)
+&gt; filename &lt;- file.path("tests","IL.18R1-1.tbl.gz")
+&gt; region &lt;- "2:102700000-103800000"
+&gt; data &lt;- get_data(filename, region)
+&gt; head(data,1)
   Chromosome  Position         MarkerName Allele1 Allele2 Freq1 FreqSE MinFreq MaxFreq  Effect StdErr  logP   Direction HetISq HetChiSq HetDf logHetP     N
 1          2 102700138 chr2:102700138_A_G       a       g 0.087 0.0207  0.0641  0.1376 -0.0566 0.0239 -1.75 -?-+n-?--n+   78.2   36.757     8  -4.894 12799</code></pre>
 <p>and</p>
@@ -140,13 +135,13 @@ Running swagger Docs at http://127.0.0.1:8001/__docs__/</code></pre>
 <p>So we get query results in JSON format from</p>
 <ul>
 <li>
-<strong>browser</strong>: <a href="http://localhost:8001/data?protein=IL.18R1&amp;region=2:102700000-103800000" class="external-link uri">http://localhost:8001/data?protein=IL.18R1&amp;region=2:102700000-103800000</a>
+<strong>browser</strong>: <a href="http://localhost:8001/tests?protein=IL.18R1&amp;region=2:102700000-103800000" class="external-link uri">http://localhost:8001/tests?protein=IL.18R1&amp;region=2:102700000-103800000</a>
 </li>
 <li>
-<strong>curl</strong>: curl “<a href="http://localhost:8001/data?protein=IL.18R1&amp;region=2:102700000-103800000" class="external-link uri">http://localhost:8001/data?protein=IL.18R1&amp;region=2:102700000-103800000</a>”</li>
+<strong>curl</strong>: curl “<a href="http://localhost:8001/tests?protein=IL.18R1&amp;region=2:102700000-103800000" class="external-link uri">http://localhost:8001/tests?protein=IL.18R1&amp;region=2:102700000-103800000</a>”</li>
 </ul>
 <p>Additional work required to get output from <code>curl</code> to a tab-delimited data,</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="st">"http://localhost:8001/data?protein=IL.18R1&amp;region=2:102700000-103800000"</span> <span class="kw">|</span> <span class="dt">\</span></span>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="st">"http://localhost:8001/tests?protein=IL.18R1&amp;region=2:102700000-103800000"</span> <span class="kw">|</span> <span class="dt">\</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">jq</span> <span class="at">-r</span> <span class="st">'.[0] |</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="st">   fromjson |</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="st">   .[] |</span></span>
@@ -181,8 +176,12 @@ Running swagger Docs at http://127.0.0.1:8001/__docs__/</code></pre>
 </h2>
 <p>A somewhat more involved version is as follows,</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu">startServer</span><span class="op">(</span><span class="st">"0.0.0.0"</span>, <span class="fl">5000</span>,</span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span><span class="st">"content/assets"</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span><span class="st">"content/lib"</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu">httpuv</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/httpuv/man/startServer.html" class="external-link">startServer</a></span><span class="op">(</span></span>
+<span>  host <span class="op">=</span> <span class="st">"0.0.0.0"</span>, </span>
+<span>  port <span class="op">=</span> <span class="fl">5000</span>,</span>
+<span>  app <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>    call <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">req</span><span class="op">)</span> <span class="op">{</span></span>
 <span>      <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>        status <span class="op">=</span> <span class="fl">200L</span>,</span>
@@ -196,18 +195,14 @@ Running swagger Docs at http://127.0.0.1:8001/__docs__/</code></pre>
 <span>      <span class="op">)</span></span>
 <span>    <span class="op">}</span>,</span>
 <span>    staticPaths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>      <span class="st">"/assets"</span> <span class="op">=</span> <span class="st">"content/assets/"</span>,</span>
-<span>      <span class="st">"/lib"</span> <span class="op">=</span> <span class="fu">staticPath</span><span class="op">(</span></span>
-<span>        <span class="st">"content/lib"</span>,</span>
-<span>        indexhtml <span class="op">=</span> <span class="cn">FALSE</span></span>
-<span>      <span class="op">)</span>,</span>
-<span>      <span class="st">"/lib/dynamic"</span> <span class="op">=</span> <span class="fu">excludeStaticPath</span><span class="op">(</span><span class="op">)</span></span>
+<span>      <span class="st">"/assets"</span> <span class="op">=</span> <span class="st">"content/assets/"</span>, <span class="co"># Static assets</span></span>
+<span>      <span class="st">"/lib"</span> <span class="op">=</span> <span class="fu">httpuv</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/httpuv/man/staticPath.html" class="external-link">staticPath</a></span><span class="op">(</span><span class="st">"content/lib"</span>, indexhtml <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,</span>
+<span>      <span class="st">"/lib/dynamic"</span> <span class="op">=</span> <span class="fu">httpuv</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/httpuv/man/staticPath.html" class="external-link">excludeStaticPath</a></span><span class="op">(</span><span class="op">)</span></span>
 <span>    <span class="op">)</span>,</span>
-<span>    staticPathOptions <span class="op">=</span> <span class="fu">staticPathOptions</span><span class="op">(</span></span>
-<span>      indexhtml <span class="op">=</span> <span class="cn">TRUE</span></span>
-<span>    <span class="op">)</span></span>
+<span>    staticPathOptions <span class="op">=</span> <span class="fu">httpuv</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/httpuv/man/staticPathOptions.html" class="external-link">staticPathOptions</a></span><span class="op">(</span>indexhtml <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Server running at http://0.0.0.0:5000\n"</span><span class="op">)</span></span>
 <span><span class="va">s</span><span class="op">$</span><span class="kw">stop</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2" number="3">
