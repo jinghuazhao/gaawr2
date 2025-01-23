@@ -240,14 +240,46 @@ lrt.adj <- mod.adj.ref$deviance - mod.adj$deviance
 pchisq(lrt.adj, mod.adj$lrt$df, lower=FALSE)
 ```
 
-## pedigreemm
+## GMMAT
 
-kinship2, especially with its `lmekin`.
+The following is modified slightly from the package vignette,
+
+```{r gmmat, message=FALSE}
+data(example,package="GMMAT")
+attach(example)
+model0 <- glmmkin(disease ~ age + sex, data = pheno, kins = GRM,
+          id = "id", family = binomial(link = "logit"))
+model1 <- glmmkin(fixed = trait ~ age + sex, data = pheno, kins = GRM,
+          id = "id", family = gaussian(link = "identity"))
+model2 <- glmmkin(fixed = trait ~ age + sex, data = pheno, kins = GRM,
+          id = "id", groups = "disease", 
+          family = gaussian(link = "identity"))
+snps <- c("SNP10", "SNP25", "SNP1", "SNP0")
+geno.file <- system.file("extdata", "geno.bgen", package = "GMMAT")
+samplefile <- system.file("extdata", "geno.sample", package = "GMMAT")
+outfile <- "glmm.score.txt"
+glmm.score(model0, infile = geno.file, 
+           BGEN.samplefile = samplefile,
+           outfile = outfile)
+read.delim(outfile) |>
+  head(n=4) |>
+  knitr::kable(caption="Score tests under GLMM on four SNPs",digits=2)
+unlink(outfile)
+bed.file <- system.file("extdata", "geno.bed", package = "GMMAT") |>
+            tools::file_path_sans_ext()
+model.wald <- glmm.wald(fixed = disease ~ age + sex, data = pheno,
+                        kins = GRM, id = "id", family = binomial(link = "logit"),
+                        infile = bed.file, snps = snps)
+knitr::kable(model.wald,caption="Wald tests under GLMM on four SNPs")
+detach(example)
+```
+
+where both BGEN and PLINK binary file are illustrated.
+
 
 ## Proteogenomics
 
-An overview on the proteomics is found from the relevant paper @suhre20.
-
+See <https://jinghuazhao.github.io/pQTLtools/>. An overview on the proteomics is found from the relevant paper @suhre20.
 
 ## GWAS
 
