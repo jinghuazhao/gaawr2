@@ -2,4 +2,4 @@
 
 (2025/1/23)
 
-* This is a first release
+* A first release
