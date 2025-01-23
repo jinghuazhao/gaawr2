@@ -27,6 +27,14 @@ knitr::opts_chunk$set(
   dev = "png")
 ```
 
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+pkgs <- c("httr","httpuv","jsonlite","plumber","seqminer")
+for (p in pkgs) if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
+    if (!requireNamespace(p)) warning(paste0("This vignette needs package `", p, "'; please install"))
+}
+invisible(suppressMessages(lapply(pkgs, require, character.only = TRUE)))
+```
+
 Perhaps this is the simplest way to start from the Linux command line, nevertheless with Python,
 
 ```python
@@ -52,6 +60,8 @@ httpuv::startServer("0.0.0.0", 8000, list(
 
 upon access http://127.0.0.1:8000, we see the message "Hello, world!". 
 
+Below, we assume that our working directory is `inst/` in the **gaawr2** source package.
+
 # plumber
 
 It is `an API generator in R`, which has been tested through Caprion data as follows.
@@ -59,10 +69,6 @@ It is `an API generator in R`, which has been tested through Caprion data as fol
 As noted elsewhere, `libsodium` is required for installation of the R package.
 
 ```r
-library(plumber)
-library(seqminer)
-library(jsonlite)
-
 get_data <- function(filename, region)
 {
   query_result <- seqminer::tabix.read(filename, region)
@@ -74,14 +80,8 @@ get_data <- function(filename, region)
   return(df)
 }
 
-options(width = 200)
-filename <- file.path("tests","IL.18R1-1.tbl.gz")
-region <- "2:102700000-103800000"
-data <- get_data(filename, region)
-head(data,1)
-
 plbr <- plumber::Plumber$new()
-plbr$handle("GET", "/data", function(req, res) {
+plbr$handle("GET", "/tests", function(req, res) {
   protein <- req$args$protein
   region <- req$args$region
   if (is.null(protein) || is.null(region)) {
@@ -102,9 +102,13 @@ plbr$handle("GET", "/data", function(req, res) {
 plbr$run(port = 8001)
 ```
 
-We see that,
+We can see that,
 
 ```
+> options(width = 200)
+> filename <- file.path("tests","IL.18R1-1.tbl.gz")
+> region <- "2:102700000-103800000"
+> data <- get_data(filename, region)
 > head(data,1)
   Chromosome  Position         MarkerName Allele1 Allele2 Freq1 FreqSE MinFreq MaxFreq  Effect StdErr  logP   Direction HetISq HetChiSq HetDf logHetP     N
 1          2 102700138 chr2:102700138_A_G       a       g 0.087 0.0207  0.0641  0.1376 -0.0566 0.0239 -1.75 -?-+n-?--n+   78.2   36.757     8  -4.894 12799
@@ -119,13 +123,13 @@ Running swagger Docs at http://127.0.0.1:8001/__docs__/
 
 So we get query results in JSON format from
 
-- **browser**: http://localhost:8001/data?protein=IL.18R1&region=2:102700000-103800000
-- **curl**: curl "http://localhost:8001/data?protein=IL.18R1&region=2:102700000-103800000"
+- **browser**: http://localhost:8001/tests?protein=IL.18R1&region=2:102700000-103800000
+- **curl**: curl "http://localhost:8001/tests?protein=IL.18R1&region=2:102700000-103800000"
 
 Additional work required to get output from `curl` to a tab-delimited data,
 
 ```bash
-curl "http://localhost:8001/data?protein=IL.18R1&region=2:102700000-103800000" | \
+curl "http://localhost:8001/tests?protein=IL.18R1&region=2:102700000-103800000" | \
 jq -r '.[0] |
    fromjson |
    .[] |
@@ -159,8 +163,12 @@ Note also that only selected columns (as in 4) are kept. The simplest way to hav
 A somewhat more involved version is as follows,
 
 ```r
-s <- startServer("0.0.0.0", 5000,
-  list(
+dir.create("content/assets", recursive = TRUE)
+dir.create("content/lib", recursive = TRUE)
+s <- httpuv::startServer(
+  host = "0.0.0.0", 
+  port = 5000,
+  app = list(
     call = function(req) {
       list(
         status = 200L,
@@ -174,18 +182,14 @@ s <- startServer("0.0.0.0", 5000,
       )
     },
     staticPaths = list(
-      "/assets" = "content/assets/",
-      "/lib" = staticPath(
-        "content/lib",
-        indexhtml = FALSE
-      ),
-      "/lib/dynamic" = excludeStaticPath()
+      "/assets" = "content/assets/", # Static assets
+      "/lib" = httpuv::staticPath("content/lib", indexhtml = FALSE),
+      "/lib/dynamic" = httpuv::excludeStaticPath()
     ),
-    staticPathOptions = staticPathOptions(
-      indexhtml = TRUE
-    )
+    staticPathOptions = httpuv::staticPathOptions(indexhtml = TRUE)
   )
 )
+cat("Server running at http://0.0.0.0:5000\n")
 s$stop()
 ```
 

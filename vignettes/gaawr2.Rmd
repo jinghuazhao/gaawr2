@@ -29,7 +29,7 @@ knitr::opts_chunk$set(
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 pkgs <- c("EnsDb.Hsapiens.v75","GMMAT","HardyWeinberg","MCMCglmm","SNPassoc","biomaRt",
-           "gap","gap.datasets","haplo.stats","pedigreemm","powerEQTL","regress",
+           "gap","gap.datasets","haplo.stats","powerEQTL","regress",
            "dplyr","ggplot2","httr","jsonlite","knitr")
 for (p in pkgs) if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
     if (!requireNamespace(p)) warning(paste0("This vignette needs package `", p, "'; please install"))
@@ -247,29 +247,28 @@ The following is modified slightly from the package vignette,
 ```{r gmmat, message=FALSE}
 data(example,package="GMMAT")
 attach(example)
-model0 <- glmmkin(disease ~ age + sex, data = pheno, kins = GRM,
-          id = "id", family = binomial(link = "logit"))
-model1 <- glmmkin(fixed = trait ~ age + sex, data = pheno, kins = GRM,
-          id = "id", family = gaussian(link = "identity"))
-model2 <- glmmkin(fixed = trait ~ age + sex, data = pheno, kins = GRM,
-          id = "id", groups = "disease", 
-          family = gaussian(link = "identity"))
+model0 <- GMMAT::glmmkin(disease ~ age + sex, data = pheno, kins = GRM,
+                         id = "id", family = binomial(link = "logit"))
+model1 <- GMMAT::glmmkin(fixed = trait ~ age + sex, data = pheno, kins = GRM,
+                         id = "id", family = gaussian(link = "identity"))
+model2 <- GMMAT::glmmkin(fixed = trait ~ age + sex, data = pheno, kins = GRM,
+                         id = "id", groups = "disease",
+                         family = gaussian(link = "identity"))
 snps <- c("SNP10", "SNP25", "SNP1", "SNP0")
 geno.file <- system.file("extdata", "geno.bgen", package = "GMMAT")
 samplefile <- system.file("extdata", "geno.sample", package = "GMMAT")
 outfile <- "glmm.score.txt"
-glmm.score(model0, infile = geno.file, 
-           BGEN.samplefile = samplefile,
-           outfile = outfile)
+GMMAT::glmm.score(model0, infile = geno.file, BGEN.samplefile = samplefile,
+                  outfile = outfile)
 read.delim(outfile) |>
-  head(n=4) |>
-  knitr::kable(caption="Score tests under GLMM on four SNPs",digits=2)
+     head(n=4) |>
+     knitr::kable(caption="Score tests under GLMM on four SNPs",digits=2)
 unlink(outfile)
 bed.file <- system.file("extdata", "geno.bed", package = "GMMAT") |>
             tools::file_path_sans_ext()
-model.wald <- glmm.wald(fixed = disease ~ age + sex, data = pheno,
-                        kins = GRM, id = "id", family = binomial(link = "logit"),
-                        infile = bed.file, snps = snps)
+model.wald <- GMMAT::glmm.wald(fixed = disease ~ age + sex, data = pheno,
+                               kins = GRM, id = "id", family = binomial(link = "logit"),
+                               infile = bed.file, snps = snps)
 knitr::kable(model.wald,caption="Wald tests under GLMM on four SNPs")
 detach(example)
 ```
@@ -509,16 +508,24 @@ are also added to the suggested list of packages in DESCRIPTION:
 
 ```
 Suggests:
-    HardyWeinberg,
-    haplo.stats,
-    SNPassoc,
-    locuszoomr,
-    pedigreemm,
-    GMMAT,
-    SAIGE,
     BLR,
     BGLR,
-    MCMCglmm
+    biomaRt,
+    bookdown,
+    GMMAT,
+    HardyWeinberg,
+    haplo.stats,
+    httr,
+    httpuv,
+    jsonlite,
+    knitr,
+    MCMCglmm,
+    plumber,
+    powerEQTL,
+    regress,
+    SAIGE,
+    seqminer,
+    SNPassoc
 ```
 
 Note that the `devtools::document()` in `pkgdown.sh` automatically updates NAMESPACE and regenerates function documentation file(.Rd),
