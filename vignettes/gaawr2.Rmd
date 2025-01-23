@@ -28,8 +28,9 @@ knitr::opts_chunk$set(
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-pkgs <- c("EnsDb.Hsapiens.v75","GMMAT","HardyWeinberg","MCMCglmm","SNPassoc","biomaRt","gap","haplo.stats","pedigreemm",
-           "dplyr","ggplot2","httr","jsonlite","knitr","powerEQTL")
+pkgs <- c("EnsDb.Hsapiens.v75","GMMAT","HardyWeinberg","MCMCglmm","SNPassoc","biomaRt",
+           "gap","gap.datasets","haplo.stats","pedigreemm","powerEQTL","regress",
+           "dplyr","ggplot2","httr","jsonlite","knitr")
 for (p in pkgs) if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
     if (!requireNamespace(p)) warning(paste0("This vignette needs package `", p, "'; please install"))
 }
@@ -272,6 +273,29 @@ assoc.maxstat %>%
 
 where assoc.maxstat is coerced into a matrix later, but there appears problematic to knit though.
 
+## h2.jags
+
+```{r jags, message=FALSE}
+set.seed(1234567)
+meyer <- within(meyer,{
+         y[is.na(y)] <- rnorm(length(y[is.na(y)]),mean(y,na.rm=TRUE),sd(y,na.rm=TRUE))
+         g1 <- ifelse(generation==1,1,0)
+         g2 <- ifelse(generation==2,1,0)
+         id <- animal
+         animal <- ifelse(!is.na(animal),animal,0)
+         dam <- ifelse(!is.na(dam),dam,0)
+         sire <- ifelse(!is.na(sire),sire,0)
+     })
+G <- gap::kin.morgan(meyer)$kin.matrix*2
+r <- regress::regress(y~-1+g1+g2,~G,data=meyer)
+r
+with(r,gap::h2G(sigma,sigma.cov))
+eps <- 0.001
+y <- with(meyer,y)
+x <- with(meyer,cbind(g1,g2))
+ex <- gap::h2.jags(y,x,G,sigma.p=0.03,sigma.r=0.014)
+knitr::kable(ex$BUGSoutput$summary,digits=2,caption="MCMC results for the Meyer data")
+```
 ## powerEQTL
 
 ```{r eqtl, fig.cap="Power Estimation for eQTL Studies of 240 SNPs", fig.height=6, fig.width=8, messages=FALSE}
