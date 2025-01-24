@@ -2231,8 +2231,7 @@ Figure 3.2: Power Estimation for eQTL Studies of 240 SNPs
 <span class="header-section-number">4.2</span> biomaRt<a class="anchor" aria-label="anchor" href="#biomart"></a>
 </h3>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/grimbough/biomaRt" class="external-link">biomaRt</a></span><span class="op">)</span></span>
-<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu">biomaRt</span><span class="fu">::</span><span class="fu">martBMCheck</span><span class="op">(</span><span class="va">mart</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu">biomaRt</span><span class="fu">::</span><span class="fu">martBMCheck</span><span class="op">(</span><span class="va">mart</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/stop.html" class="external-link">stop</a></span><span class="op">(</span><span class="st">"The BioMart service is currently unavailable."</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span><span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listMarts.html" class="external-link">listMarts</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -2343,6 +2342,7 @@ are also added to the suggested list of packages in DESCRIPTION:</p>
     BGLR,
     biomaRt,
     bookdown,
+    ensembldb,
     GMMAT,
     HardyWeinberg,
     haplo.stats,
