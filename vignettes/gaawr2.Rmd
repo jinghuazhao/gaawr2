@@ -523,7 +523,6 @@ Suggests:
     plumber,
     powerEQTL,
     regress,
-    SAIGE,
     seqminer,
     SNPassoc
 ```
