@@ -16,6 +16,7 @@ Suggests:
     BGLR,
     biomaRt,
     bookdown,
+    EnsDb.Hsapiens.v75,
     ensembldb,
     GMMAT,
     HardyWeinberg,
