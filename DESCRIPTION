@@ -27,7 +27,6 @@ Suggests:
     plumber,
     powerEQTL,
     regress,
-    SAIGE,
     seqminer,
     SNPassoc
 Roxygen: list(markdown = TRUE)
