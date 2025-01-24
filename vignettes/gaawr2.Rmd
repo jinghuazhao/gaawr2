@@ -530,6 +530,7 @@ Suggests:
 ```
 
 Note that the `devtools::document()` in `pkgdown.sh` automatically updates NAMESPACE and regenerates function documentation file(.Rd),
-which can be picked up through `pkgdown::build_reference()`. The refinement is greatly facilitated by GitHub `R-CMD-check.yaml` workflow.
+which can be picked up through `pkgdown::build_reference()`. The refinement is greatly facilitated by GitHub `R-CMD-check.yaml`
+workflow, namely, <https://github.com/jinghuazhao/gaawr2/actions/workflows/R-CMD-check.yaml>.
 
 # References
