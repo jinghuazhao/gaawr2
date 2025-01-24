@@ -1,0 +1,10 @@
+pandoc: 3.1.11
+pkgdown: 2.1.1
+pkgdown_sha: ~
+articles:
+  gaawr2: gaawr2.html
+  web: web.html
+last_built: 2025-01-24T10:24Z
+urls:
+  reference: https://jinghuazhao.github.io/gaawr2/reference
+  article: https://jinghuazhao.github.io/gaawr2/articles
