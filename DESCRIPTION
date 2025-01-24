@@ -16,6 +16,7 @@ Suggests:
     BGLR,
     biomaRt,
     bookdown,
+    ensembldb,
     GMMAT,
     HardyWeinberg,
     haplo.stats,
