@@ -29,7 +29,7 @@ knitr::opts_chunk$set(
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 pkgs <- c("EnsDb.Hsapiens.v75","GMMAT","HardyWeinberg","MCMCglmm","SNPassoc","biomaRt",
-           "gap","gap.datasets","haplo.stats","powerEQTL","regress",
+           "gap","gap.datasets","haplo.stats","powerEQTL","R2jags","regress",
            "dplyr","ggplot2","httr","jsonlite","knitr")
 for (p in pkgs) if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
     if (!requireNamespace(p)) warning(paste0("This vignette needs package `", p, "'; please install"))
@@ -522,12 +522,13 @@ Suggests:
     MCMCglmm,
     plumber,
     powerEQTL,
+    R2jags,
     regress,
     seqminer,
     SNPassoc
 ```
 
 Note that the `devtools::document()` in `pkgdown.sh` automatically updates NAMESPACE and regenerates function documentation file(.Rd),
-which can be picked up through `pkgdown::build_reference()`.
+which can be picked up through `pkgdown::build_reference()`. The refinement is greatly facilitated by GitHub `R-CMD-check.yaml` workflow.
 
 # References
