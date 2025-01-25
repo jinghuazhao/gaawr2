@@ -57,7 +57,7 @@ As we are now in a big data era, one might works from a Linux terminal,
 
 ## Linux --> R
 
-```bash
+```{bash rscript}
 export message="Hello, welcome to gaawr2!"
 Rscript -e 'message=Sys.getenv("message");print(message)'
 ```
@@ -70,7 +70,7 @@ This is somewhat unusal but I found extremely useful, notably in its use of R as
 operator (`|`) and in our case there are more than one of them therefore split into many lines while informing the Linux they are in the
 same chain, i.e., (`\`),
 
-```bash
+```{bash pipes}
 echo Hello, welcome to gaawr2 | \
 Rscript -e '
    message <- scan("stdin", what = "", sep = "\n", quiet = TRUE);
