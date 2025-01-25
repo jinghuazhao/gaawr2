@@ -329,6 +329,9 @@ knitr::kable(ex$BUGSoutput$summary,digits=2,caption="MCMC results for the Meyer 
 ```
 ## powerEQTL
 
+Consider `powereQTL.SLR` (simple linear regression) for a sample size of 50-300 by 50, minor allele frequencies
+0.005~0.5, $\alpha$=0.05. We have,
+
 ```{r eqtl, fig.cap="Power Estimation for eQTL Studies of 240 SNPs", fig.height=6, fig.width=8, messages=FALSE}
 n.designs <- 6
 designs <- 1:n.designs
@@ -349,6 +352,8 @@ for (design in designs)
 }
 legend("bottomright", inset=.02, title="Sample size (N)", paste(N), col=colors, horiz=FALSE, cex=0.8, lty=designs)
 ```
+
+The counterpart for single-cell RNA-Seq design is via `powerEQTL.scRNAseq`.
 
 ### OpenTargets
 
