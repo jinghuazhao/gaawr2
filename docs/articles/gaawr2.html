@@ -88,7 +88,8 @@
 <span class="header-section-number">1.2</span> Linux –&gt; R<a class="anchor" aria-label="anchor" href="#linux-r"></a>
 </h3>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">message</span><span class="op">=</span><span class="st">"Hello, welcome to gaawr2!"</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'message=Sys.getenv("message");print(message)'</span></span></code></pre></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'message=Sys.getenv("message");print(message)'</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Hello, welcome to gaawr2!"</span></span></code></pre></div>
 <p>so the message is wrapped in an environment variable called <code>message</code> and grabbed into R.</p>
 </div>
 <div class="section level3" number="1.3">
@@ -103,7 +104,8 @@ same chain, i.e., (<code>\</code>),</p>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="st">   message &lt;- scan("stdin", what = "", sep = "\n", quiet = TRUE);</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="st">   write.table(message, col.names = FALSE, row.names = FALSE, quote = FALSE)</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="st">'</span> <span class="kw">|</span> <span class="dt">\</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span></span></code></pre></div>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Hello, welcome to gaawr2</span></span></code></pre></div>
 <p>Later, we will use some more useful examples on this.</p>
 <p>Note that R provides its own batch command to run an R script, i.e., <code>R CMD BATCH hello.R</code> assuming our message is contained <code>hello.R</code>.</p>
 </div>
