@@ -1872,6 +1872,8 @@ Figure 3.1: SNP ternary plot
 <h3 id="powereqtl">
 <span class="header-section-number">3.8</span> powerEQTL<a class="anchor" aria-label="anchor" href="#powereqtl"></a>
 </h3>
+<p>Consider <code>powereQTL.SLR</code> (simple linear regression) for a sample size of 50-300 by 50, minor allele frequencies
+0.005~0.5, <span class="math inline">\(\alpha\)</span>=0.05. We have,</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">n.designs</span> <span class="op">&lt;-</span> <span class="fl">6</span></span>
 <span><span class="va">designs</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="va">n.designs</span></span>
@@ -1897,6 +1899,7 @@ Figure 3.1: SNP ternary plot
 Figure 3.2: Power Estimation for eQTL Studies of 240 SNPs
 </p>
 </div>
+<p>The counterpart for single-cell RNA-Seq design is via <code>powerEQTL.scRNAseq</code>.</p>
 <div class="section level4" number="3.8.1">
 <h4 id="opentargets">
 <span class="header-section-number">3.8.1</span> OpenTargets<a class="anchor" aria-label="anchor" href="#opentargets"></a>
