@@ -47,30 +47,25 @@ We start this session with several ways of printting a welcome message.
 
 ## R
 
-The usual and the simplest way is to execte code from the R command line prompt,
+It is customary to use an R command line interface (CLI) or graphical user interface (GUI),
 
 ```{r welcome}
 print("Hello, welcome to gaawr2!")
 ```
 
-As we are now in a big data era, one might works from a Linux terminal,
+## Linux
 
-## Linux --> R
+We can embed R in a Linux script,
 
-```{bash rscript}
+```{bash linux}
+# environment variable
 export message="Hello, welcome to gaawr2!"
 Rscript -e 'message=Sys.getenv("message");print(message)'
-```
-
-so the message is wrapped in an environment variable called `message` and grabbed into R.
-
-## Linux --> R --> Linux
-
-This is somewhat unusal but I found extremely useful, notably in its use of R as part of a chain of commands, connected through the pipe
-operator (`|`) and in our case there are more than one of them therefore split into many lines while informing the Linux they are in the
-same chain, i.e., (`\`),
-
-```{bash pipes}
+# a code chunk
+R --no-save -q <<END
+print("Hello, welcome to gaawr2!")
+END
+# a processor
 echo Hello, welcome to gaawr2 | \
 Rscript -e '
    message <- scan("stdin", what = "", sep = "\n", quiet = TRUE);
@@ -78,10 +73,6 @@ Rscript -e '
 ' | \
 cat
 ```
-
-Later, we will use some more useful examples on this.
-
-Note that R provides its own batch command to run an R script, i.e., `R CMD BATCH hello.R` assuming our message is contained `hello.R`.
 
 # Operators and packages
 
