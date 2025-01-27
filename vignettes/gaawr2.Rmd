@@ -465,8 +465,10 @@ required files such as `nature-genetics.csl` need to be available.
 A GitHub login is still necessary to enable web pages, so that this can be accessed as <https://jinghuazhao.github.io/gaawr2/>.
 Upon use `pkgdown`, an article can be seen from the menu item `Articles`.
 
-We carry on adding files such as `NEWS.md` and `_pkgdown.yml`. In line with various analyses we have covered, their associate packages
-are also added to the suggested list of packages in DESCRIPTION:
+We carry on adding files such as `NEWS.md` and `_pkgdown.yml`. In particular, this needs to be in the generated .html for MathJax.
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+In line with various analyses we have covered, their associate packages are also added to the suggested list of packages in DESCRIPTION:
 
 ```
 Suggests:
