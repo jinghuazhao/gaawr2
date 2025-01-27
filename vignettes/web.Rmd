@@ -42,9 +42,9 @@ python3 -m http.server 8000
 firefox http://127.0.0.1:8000
 ```
 
-which works even with `python3 -m http.server` when the port number 8000 is available.
+which works with `python3 -m http.server` by default when the port number 8000 is available.
 
-However we leave this as a benchmark, and our focus here is R with the following script,
+Consider this as a benchmark, and our focus here is R with the following script.
 
 ```r
 httpuv::startServer("0.0.0.0", 8000, list(
@@ -195,3 +195,5 @@ s <- httpuv::startServer(
 cat("Server running at http://0.0.0.0:5000\n")
 s$stop()
 ```
+
+so mappings are created from `content/[assets, lib]` to `assets` and `lib`, while `httpuv::excludeStaticPath()` indicates that requests to `/lib/dynamic` will not be served as static files but could be handled dynamically by the app logic.
