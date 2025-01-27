@@ -69,8 +69,8 @@
 <p>Perhaps this is the simplest way to start from the Linux command line, nevertheless with Python,</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>python3 <span class="op">-</span>m http.server <span class="dv">8000</span></span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>firefox http:<span class="op">//</span><span class="fl">127.0.0.1</span>:<span class="dv">8000</span></span></code></pre></div>
-<p>which works even with <code>python3 -m http.server</code> when the port number 8000 is available.</p>
-<p>However we leave this as a benchmark, and our focus here is R with the following script,</p>
+<p>which works with <code>python3 -m http.server</code> by default when the port number 8000 is available.</p>
+<p>Consider this as a benchmark, and our focus here is R with the following script.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">httpuv</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/httpuv/man/startServer.html" class="external-link">startServer</a></span><span class="op">(</span><span class="st">"0.0.0.0"</span>, <span class="fl">8000</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>  call <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">req</span><span class="op">)</span> <span class="op">{</span></span>
@@ -209,6 +209,7 @@ Running swagger Docs at http://127.0.0.1:8001/__docs__/</code></pre>
 <span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Server running at http://0.0.0.0:5000\n"</span><span class="op">)</span></span>
 <span><span class="va">s</span><span class="op">$</span><span class="kw">stop</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>so mappings are created from <code>content/[assets, lib]</code> to <code>assets</code> and <code>lib</code>, while <code><a href="https://rdrr.io/pkg/httpuv/man/staticPath.html" class="external-link">httpuv::excludeStaticPath()</a></code> indicates that requests to <code>/lib/dynamic</code> will not be served as static files but could be handled dynamically by the app logic.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
