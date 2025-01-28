@@ -35,6 +35,10 @@ for (p in pkgs) if (length(grep(paste("^package:", p, "$", sep=""), search())) =
 invisible(suppressMessages(lapply(pkgs, require, character.only = TRUE)))
 ```
 
+# Hello, world!
+
+## Python
+
 Perhaps this is the simplest way to start from the Linux command line, nevertheless with Python,
 
 ```python
@@ -44,7 +48,9 @@ firefox http://127.0.0.1:8000
 
 which works with `python3 -m http.server` by default when the port number 8000 is available.
 
-Consider this as a benchmark, and our focus here is R with the following script.
+## R
+
+Our focus here is R with the following script.
 
 ```r
 httpuv::startServer("0.0.0.0", 8000, list(
@@ -65,7 +71,50 @@ Below, we assume that our working directory is either of this,
 - `inst/` in the **gaawr2** source package.
 - the directory for the installed package.
 
-# plumber
+# Data source
+
+We envisage a server from which data can be obtained, and two R packages **plumber** and **httpuv** are considered here.
+
+## A meta-analysis output
+
+The compressed data `IL.18R1-1.tbl.gz` was generated from METAL @willer10, involving study-[1|2|3] as follows,
+
+```
+SEPARATOR TAB
+COLUMNCOUNTING STRICT
+CHROMOSOMELABEL CHR
+POSITIONLABEL POS
+CUSTOMVARIABLE N
+LABEL N as N
+TRACKPOSITIONS ON
+AVERAGEFREQ ON
+MINMAXFREQ ON
+ADDFILTER AF1 >= 0.001
+ADDFILTER AF1 <= 0.999
+MARKERLABEL SNP
+ALLELELABELS A1 A2
+EFFECTLABEL BETA
+PVALUELABEL P
+WEIGHTLABEL N
+FREQLABEL AF1
+STDERRLABEL SE
+SCHEME STDERR
+EFFECT_PRINT_PRECISION 8
+STDERR_PRINT_PRECISION 8
+GENOMICCONTROL OFF
+LOGPVALUE ON
+OUTFILE IL18R1B_dr- .tbl
+PROCESS study-1-IL18R1B.fastGWA.gz
+PROCESS study-2-IL18R1B.fastGWA.gz
+PROCESS study-3-IL18R1B.fastGWA.gz
+PROCESS study-1-IL18R1B-chrX.fastGWA.gz
+PROCESS study-2-IL18R1B-chrX.fastGWA.gz
+PROCESS study-3-IL18R1B-chrX.fastGWA.gz
+ANALYZE HETEROGENEITY
+CLEAR
+```
+
+## plumber
 
 It is `an API generator in R`, which has been tested through Caprion data as follows.
 
@@ -98,14 +147,14 @@ plbr$handle("GET", "/tests", function(req, res) {
     return(list(error = paste("File for", protein, "not found")))
   }
   data <- get_data(filename, region)
-  json_data <- toJSON(data, dataframe = "rows", na = "null")
+  json_data <- jsonlite::toJSON(data, dataframe = "rows", na = "null")
   res$setHeader("Content-Type", "application/json")
   return(json_data)
 })
 plbr$run(port = 8001)
 ```
 
-We can see that,
+Indeed we can see that,
 
 ```
 > options(width = 200)
@@ -123,6 +172,10 @@ and
 Running plumber API at http://127.0.0.1:8001
 Running swagger Docs at http://127.0.0.1:8001/__docs__/
 ```
+
+## Data access
+
+### Browser/console
 
 So we get query results in JSON format from
 
@@ -161,7 +214,19 @@ Note also that only selected columns (as in 4) are kept. The simplest way to hav
 )
 ```
 
-# httpuv
+### R
+
+The query above is easily furnished with **curl**:
+
+```r
+tmp <- tempfile()
+curl::curl_download("http://localhost:8001/tests?protein=IL.18R1&region=2:102700000-103800000", tmp)
+df <- jsonlite::fromJSON(readLines(tmp)) |>
+      jsonlite::fromJSON(flatten=TRUE) |>
+      as.data.frame()
+```
+
+## httpuv
 
 A somewhat more involved version is as follows,
 
@@ -197,3 +262,5 @@ s$stop()
 ```
 
 so mappings are created from `content/[assets, lib]` to `assets` and `lib`, while `httpuv::excludeStaticPath()` indicates that requests to `/lib/dynamic` will not be served as static files but could be handled dynamically by the app logic.
+
+# References

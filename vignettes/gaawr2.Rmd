@@ -499,3 +499,6 @@ which can be picked up through `pkgdown::build_reference()`. The refinement is g
 workflow, namely, <https://github.com/jinghuazhao/gaawr2/actions/workflows/R-CMD-check.yaml>.
 
 # References
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
