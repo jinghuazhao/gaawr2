@@ -64,7 +64,7 @@ httpuv::startServer("0.0.0.0", 8000, list(
 )
 ```
 
-upon access http://127.0.0.1:8000, we see the message "Hello, world!". 
+upon accessing http://127.0.0.1:8000, we see the message "Hello, world!". 
 
 Below, we assume that our working directory is either of this,
 
