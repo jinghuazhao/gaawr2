@@ -144,6 +144,16 @@ PROCESS study-2-IL18R1B-chrX.fastGWA.gz
 PROCESS study-3-IL18R1B-chrX.fastGWA.gz
 ANALYZE HETEROGENEITY
 CLEAR</code></pre>
+<p>Assuming the script is named IL.18R1.metal, IL.18R1-1.tbl.gz is generated from htslib, <a href="https://www.htslib.org/download/" class="external-link uri">https://www.htslib.org/download/</a>, as follows,</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="bu">export</span> <span class="va">protein</span><span class="op">=</span>IL.18R1</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="ex">metal</span> <span class="va">${protein}</span>.metal <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span> <span class="kw">|</span> <span class="fu">tee</span> <span class="va">${protein}</span>-1.tbl.log</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="fu">cat</span> <span class="op">&lt;(</span><span class="fu">head</span> <span class="at">-1</span> <span class="va">${protein}</span>-1.tbl<span class="op">)</span> <span class="dt">\</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>    <span class="op">&lt;(</span><span class="fu">sed</span> <span class="st">'1d'</span> <span class="va">${protein}</span>-1.tbl <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="fu">sort</span> <span class="at">-k1,1n</span> <span class="at">-k2,2n</span><span class="op">)</span> <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="ex">bgzip</span> <span class="at">-f</span> <span class="op">&gt;</span> <span class="va">${protein}</span>-1.tbl.gz</span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="ex">tabix</span> <span class="at">-S1</span> <span class="at">-s1</span> <span class="at">-b2</span> <span class="at">-e2</span> <span class="at">-f</span> <span class="va">${protein}</span>-1.tbl.gz</span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="fu">rm</span> <span class="va">${protein}</span>-1.tbl</span></code></pre></div>
+<p>The bgzipped data allows for access by genomic region as shown below.</p>
 </div>
 <div class="section level3" number="2.2">
 <h3 id="plumber">
@@ -151,7 +161,7 @@ CLEAR</code></pre>
 </h3>
 <p>Software library <code>libsodium</code>, <a href="https://doc.libsodium.org/" class="external-link uri">https://doc.libsodium.org/</a>, is required for its installation.</p>
 <p>It is <code>an API generator in R</code>, which has been tested as follows.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">get_data</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">filename</span>, <span class="va">region</span><span class="op">)</span></span>
 <span><span class="op">{</span></span>
 <span>  <span class="va">query_result</span> <span class="op">&lt;-</span> <span class="fu">seqminer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/seqminer/man/tabix.read.html" class="external-link">tabix.read</a></span><span class="op">(</span><span class="va">filename</span>, <span class="va">region</span><span class="op">)</span></span>
@@ -212,15 +222,15 @@ Running swagger Docs at http://127.0.0.1:8001/__docs__/</code></pre>
 <strong>curl</strong>: curl “<a href="http://localhost:8001/tests?protein=IL.18R1&amp;region=2:102700000-103800000" class="external-link uri">http://localhost:8001/tests?protein=IL.18R1&amp;region=2:102700000-103800000</a>”</li>
 </ul>
 <p>Additional work required to get output from <code>curl</code> to a tab-delimited data,</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">curl</span> <span class="st">"http://localhost:8001/tests?protein=IL.18R1&amp;region=2:102700000-103800000"</span> <span class="kw">|</span> <span class="dt">\</span></span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="ex">jq</span> <span class="at">-r</span> <span class="st">'.[0] |</span></span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="st">   fromjson |</span></span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="st">   .[] |</span></span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="st">   [</span></span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="st">     .Chromosome, .Position, .MarkerName, .Allele1, .Allele2, .Freq1,</span></span>
-<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="st">     .Effect, .StdErr, .logP, .Direction, .HetISq, .HetChiSq, .HetDf, .logHetP, .N</span></span>
-<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="st">   ] |</span></span>
-<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="st">   @tsv'</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">curl</span> <span class="st">"http://localhost:8001/tests?protein=IL.18R1&amp;region=2:102700000-103800000"</span> <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="ex">jq</span> <span class="at">-r</span> <span class="st">'.[0] |</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="st">   fromjson |</span></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="st">   .[] |</span></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="st">   [</span></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="st">     .Chromosome, .Position, .MarkerName, .Allele1, .Allele2, .Freq1,</span></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="st">     .Effect, .StdErr, .logP, .Direction, .HetISq, .HetChiSq, .HetDf, .logHetP, .N</span></span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="st">   ] |</span></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a><span class="st">   @tsv'</span></span></code></pre></div>
 <p>where</p>
 <ol style="list-style-type: decimal">
 <li>
@@ -235,18 +245,18 @@ Running swagger Docs at http://127.0.0.1:8001/__docs__/</code></pre>
 <strong><span class="citation"><sup><strong>tsv?</strong></sup></span></strong>: Convert the array into tab-separated values.</li>
 </ol>
 <p>Note also that only selected columns (as in 4) are kept. The simplest way to have the header is add it manually,</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="kw">(</span></span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>  <span class="bu">echo</span> <span class="st">"Chromosome|Position|MarkerName|Allele1|Allele2|Freq1|Effect|StdErr|logP|Direction|HetISq|HetChiSq|HetDf|logHetP|N"</span> <span class="kw">|</span> <span class="dt">\</span></span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>  <span class="fu">sed</span> <span class="st">'s/|/\t/g'</span></span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>  <span class="ex">curl</span> command as above.</span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="kw">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="kw">(</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>  <span class="bu">echo</span> <span class="st">"Chromosome|Position|MarkerName|Allele1|Allele2|Freq1|Effect|StdErr|logP|Direction|HetISq|HetChiSq|HetDf|logHetP|N"</span> <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>  <span class="fu">sed</span> <span class="st">'s/|/\t/g'</span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>  <span class="ex">curl</span> command as above.</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="kw">)</span></span></code></pre></div>
 </div>
 <div class="section level4" number="2.3.2">
 <h4 id="r-1">
 <span class="header-section-number">2.3.2</span> R<a class="anchor" aria-label="anchor" href="#r-1"></a>
 </h4>
 <p>The query above is easily furnished with <strong>curl</strong>:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu">curl</span><span class="fu">::</span><span class="fu"><a href="https://jeroen.r-universe.dev/curl/reference/curl_download.html" class="external-link">curl_download</a></span><span class="op">(</span><span class="st">"http://localhost:8001/tests?protein=IL.18R1&amp;region=2:102700000-103800000"</span>, <span class="va">tmp</span><span class="op">)</span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://jeroen.r-universe.dev/jsonlite/reference/fromJSON.html" class="external-link">fromJSON</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -262,7 +272,7 @@ Running swagger Docs at http://127.0.0.1:8001/__docs__/</code></pre>
 <span class="header-section-number">2.4</span> httpuv<a class="anchor" aria-label="anchor" href="#httpuv"></a>
 </h3>
 <p>The package gives a somewhat more involved version as follows,</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span><span class="st">"content/assets"</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span><span class="st">"content/lib"</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu">httpuv</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/httpuv/man/startServer.html" class="external-link">startServer</a></span><span class="op">(</span></span>
