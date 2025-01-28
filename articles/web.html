@@ -93,7 +93,7 @@
 <span>    <span class="op">)</span></span>
 <span>  <span class="op">}</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p>upon accessing <a href="http://127.0.0.1:8000" class="external-link uri">http://127.0.0.1:8000</a>, we see the message “Hello, world!”.</p>
+<p>Upon accessing <a href="http://127.0.0.1:8000" class="external-link uri">http://127.0.0.1:8000</a>, we see the message “Hello, world!”.</p>
 <p>Below, we assume that our working directory is either of this,</p>
 <ul>
 <li>
@@ -108,8 +108,8 @@
 </h2>
 <p>We envisage a server from which data can be obtained, and two R packages <strong>plumber</strong> and <strong>httpuv</strong> are considered here.</p>
 <div class="section level3" number="2.1">
-<h3 id="a-meta-analysis-output">
-<span class="header-section-number">2.1</span> A meta-analysis output<a class="anchor" aria-label="anchor" href="#a-meta-analysis-output"></a>
+<h3 id="a-meta-analysis">
+<span class="header-section-number">2.1</span> A meta-analysis<a class="anchor" aria-label="anchor" href="#a-meta-analysis"></a>
 </h3>
 <p>The compressed data <code>IL.18R1-1.tbl.gz</code> is based on METAL<span class="citation"><sup>1</sup></span>, involving study-[1|2|3] as follows,</p>
 <pre><code>SEPARATOR TAB
@@ -149,8 +149,8 @@ CLEAR</code></pre>
 <h3 id="plumber">
 <span class="header-section-number">2.2</span> plumber<a class="anchor" aria-label="anchor" href="#plumber"></a>
 </h3>
+<p>Software library <code>libsodium</code>, <a href="https://doc.libsodium.org/" class="external-link uri">https://doc.libsodium.org/</a>, is required for its installation.</p>
 <p>It is <code>an API generator in R</code>, which has been tested as follows.</p>
-<p>Software library <code>libsodium</code>, <a href="https://doc.libsodium.org/" class="external-link uri">https://doc.libsodium.org/</a>, is required for installation of the R package.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">get_data</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">filename</span>, <span class="va">region</span><span class="op">)</span></span>
 <span><span class="op">{</span></span>
@@ -261,7 +261,7 @@ Running swagger Docs at http://127.0.0.1:8001/__docs__/</code></pre>
 <h3 id="httpuv">
 <span class="header-section-number">2.4</span> httpuv<a class="anchor" aria-label="anchor" href="#httpuv"></a>
 </h3>
-<p>A somewhat more involved version is as follows,</p>
+<p>The package gives a somewhat more involved version as follows,</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span><span class="st">"content/assets"</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span><span class="st">"content/lib"</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -291,7 +291,8 @@ Running swagger Docs at http://127.0.0.1:8001/__docs__/</code></pre>
 <span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Server running at http://0.0.0.0:5000\n"</span><span class="op">)</span></span>
 <span><span class="va">s</span><span class="op">$</span><span class="kw">stop</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>so mappings are created from <code>content/[assets, lib]</code> to <code>assets</code> and <code>lib</code>, while <code><a href="https://rdrr.io/pkg/httpuv/man/staticPath.html" class="external-link">httpuv::excludeStaticPath()</a></code> indicates that requests to <code>/lib/dynamic</code> will not be served as static files but could be handled dynamically by the app logic.</p>
+<p>so mappings are created from <code>content/[assets, lib]</code> to <code>assets</code> and <code>lib</code>, while <code><a href="https://rdrr.io/pkg/httpuv/man/staticPath.html" class="external-link">httpuv::excludeStaticPath()</a></code> indicates that requests
+to <code>/lib/dynamic</code> will not be served as static files but could be handled dynamically by the app logic.</p>
 </div>
 </div>
 <div class="section level2">
