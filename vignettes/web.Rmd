@@ -196,7 +196,7 @@ Running swagger Docs at http://127.0.0.1:8001/__docs__/
 So we get query results in JSON format from
 
 - **browser**: http://localhost:8001/tests?protein=IL.18R1&region=2:102700000-103800000
-- **curl**: curl "http://localhost:8001/tests?protein=IL.18R1&region=2:102700000-103800000"
+- **command line interface**: curl "http://localhost:8001/tests?protein=IL.18R1&region=2:102700000-103800000"
 
 Additional work required to get output from `curl` to a tab-delimited data,
 
