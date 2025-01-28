@@ -114,6 +114,21 @@ ANALYZE HETEROGENEITY
 CLEAR
 ```
 
+Assuming the script is named IL.18R1.metal, IL.18R1-1.tbl.gz is generated from htslib, <https://www.htslib.org/download/>, as follows,
+
+```bash
+export protein=IL.18R1
+metal ${protein}.metal 2>&1 | tee ${protein}-1.tbl.log
+cat <(head -1 ${protein}-1.tbl) \
+    <(sed '1d' ${protein}-1.tbl | \
+sort -k1,1n -k2,2n) | \
+bgzip -f > ${protein}-1.tbl.gz
+tabix -S1 -s1 -b2 -e2 -f ${protein}-1.tbl.gz
+rm ${protein}-1.tbl
+```
+
+The bgzipped data allows for access by genomic region as shown below.
+
 ## plumber
 
 Software library `libsodium`, <https://doc.libsodium.org/>, is required for its installation.
