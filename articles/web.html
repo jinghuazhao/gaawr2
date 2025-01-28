@@ -65,11 +65,24 @@
 
     
     
+<div class="section level2" number="1">
+<h2 id="hello-world">
+<span class="header-section-number">1</span> Hello, world!<a class="anchor" aria-label="anchor" href="#hello-world"></a>
+</h2>
+<div class="section level3" number="1.1">
+<h3 id="python">
+<span class="header-section-number">1.1</span> Python<a class="anchor" aria-label="anchor" href="#python"></a>
+</h3>
 <p>Perhaps this is the simplest way to start from the Linux command line, nevertheless with Python,</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>python3 <span class="op">-</span>m http.server <span class="dv">8000</span></span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>firefox http:<span class="op">//</span><span class="fl">127.0.0.1</span>:<span class="dv">8000</span></span></code></pre></div>
 <p>which works with <code>python3 -m http.server</code> by default when the port number 8000 is available.</p>
-<p>Consider this as a benchmark, and our focus here is R with the following script.</p>
+</div>
+<div class="section level3" number="1.2">
+<h3 id="r">
+<span class="header-section-number">1.2</span> R<a class="anchor" aria-label="anchor" href="#r"></a>
+</h3>
+<p>Our focus here is R with the following script.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">httpuv</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/httpuv/man/startServer.html" class="external-link">startServer</a></span><span class="op">(</span><span class="st">"0.0.0.0"</span>, <span class="fl">8000</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>  call <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">req</span><span class="op">)</span> <span class="op">{</span></span>
@@ -87,13 +100,58 @@
 <code>inst/</code> in the <strong>gaawr2</strong> source package.</li>
 <li>the directory for the installed package.</li>
 </ul>
-<div class="section level2" number="1">
-<h2 id="plumber">
-<span class="header-section-number">1</span> plumber<a class="anchor" aria-label="anchor" href="#plumber"></a>
+</div>
+</div>
+<div class="section level2" number="2">
+<h2 id="data-source">
+<span class="header-section-number">2</span> Data source<a class="anchor" aria-label="anchor" href="#data-source"></a>
 </h2>
+<p>We envisage a server from which data can be obtained, and two R packages <strong>plumber</strong> and <strong>httpuv</strong> are considered here.</p>
+<div class="section level3" number="2.1">
+<h3 id="a-meta-analysis-output">
+<span class="header-section-number">2.1</span> A meta-analysis output<a class="anchor" aria-label="anchor" href="#a-meta-analysis-output"></a>
+</h3>
+<p>The compressed data <code>IL.18R1-1.tbl.gz</code> was generated from METAL<span class="citation"><sup>1</sup></span>, involving study-[1|2|3] as follows,</p>
+<pre><code>SEPARATOR TAB
+COLUMNCOUNTING STRICT
+CHROMOSOMELABEL CHR
+POSITIONLABEL POS
+CUSTOMVARIABLE N
+LABEL N as N
+TRACKPOSITIONS ON
+AVERAGEFREQ ON
+MINMAXFREQ ON
+ADDFILTER AF1 &gt;= 0.001
+ADDFILTER AF1 &lt;= 0.999
+MARKERLABEL SNP
+ALLELELABELS A1 A2
+EFFECTLABEL BETA
+PVALUELABEL P
+WEIGHTLABEL N
+FREQLABEL AF1
+STDERRLABEL SE
+SCHEME STDERR
+EFFECT_PRINT_PRECISION 8
+STDERR_PRINT_PRECISION 8
+GENOMICCONTROL OFF
+LOGPVALUE ON
+OUTFILE IL18R1B_dr- .tbl
+PROCESS study-1-IL18R1B.fastGWA.gz
+PROCESS study-2-IL18R1B.fastGWA.gz
+PROCESS study-3-IL18R1B.fastGWA.gz
+PROCESS study-1-IL18R1B-chrX.fastGWA.gz
+PROCESS study-2-IL18R1B-chrX.fastGWA.gz
+PROCESS study-3-IL18R1B-chrX.fastGWA.gz
+ANALYZE HETEROGENEITY
+CLEAR</code></pre>
+</div>
+<div class="section level3" number="2.2">
+<h3 id="plumber">
+<span class="header-section-number">2.2</span> plumber<a class="anchor" aria-label="anchor" href="#plumber"></a>
+</h3>
 <p>It is <code>an API generator in R</code>, which has been tested through Caprion data as follows.</p>
 <p>As noted elsewhere, <code>libsodium</code> is required for installation of the R package.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">get_data</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">filename</span>, <span class="va">region</span><span class="op">)</span></span>
 <span><span class="op">{</span></span>
 <span>  <span class="va">query_result</span> <span class="op">&lt;-</span> <span class="fu">seqminer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/seqminer/man/tabix.read.html" class="external-link">tabix.read</a></span><span class="op">(</span><span class="va">filename</span>, <span class="va">region</span><span class="op">)</span></span>
@@ -120,12 +178,12 @@
 <span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>error <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"File for"</span>, <span class="va">protein</span>, <span class="st">"not found"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="op">}</span></span>
 <span>  <span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">get_data</span><span class="op">(</span><span class="va">filename</span>, <span class="va">region</span><span class="op">)</span></span>
-<span>  <span class="va">json_data</span> <span class="op">&lt;-</span> <span class="fu">toJSON</span><span class="op">(</span><span class="va">data</span>, dataframe <span class="op">=</span> <span class="st">"rows"</span>, na <span class="op">=</span> <span class="st">"null"</span><span class="op">)</span></span>
+<span>  <span class="va">json_data</span> <span class="op">&lt;-</span> <span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://jeroen.r-universe.dev/jsonlite/reference/fromJSON.html" class="external-link">toJSON</a></span><span class="op">(</span><span class="va">data</span>, dataframe <span class="op">=</span> <span class="st">"rows"</span>, na <span class="op">=</span> <span class="st">"null"</span><span class="op">)</span></span>
 <span>  <span class="va">res</span><span class="op">$</span><span class="fu">setHeader</span><span class="op">(</span><span class="st">"Content-Type"</span>, <span class="st">"application/json"</span><span class="op">)</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">json_data</span><span class="op">)</span></span>
 <span><span class="op">}</span><span class="op">)</span></span>
 <span><span class="va">plbr</span><span class="op">$</span><span class="fu">run</span><span class="op">(</span>port <span class="op">=</span> <span class="fl">8001</span><span class="op">)</span></span></code></pre></div>
-<p>We can see that,</p>
+<p>Indeed we can see that,</p>
 <pre><code>&gt; options(width = 200)
 &gt; filename &lt;- file.path("tests","IL.18R1-1.tbl.gz")
 &gt; region &lt;- "2:102700000-103800000"
@@ -136,6 +194,15 @@
 <p>and</p>
 <pre><code>Running plumber API at http://127.0.0.1:8001
 Running swagger Docs at http://127.0.0.1:8001/__docs__/</code></pre>
+</div>
+<div class="section level3" number="2.3">
+<h3 id="data-access">
+<span class="header-section-number">2.3</span> Data access<a class="anchor" aria-label="anchor" href="#data-access"></a>
+</h3>
+<div class="section level4" number="2.3.1">
+<h4 id="browserconsole">
+<span class="header-section-number">2.3.1</span> Browser/console<a class="anchor" aria-label="anchor" href="#browserconsole"></a>
+</h4>
 <p>So we get query results in JSON format from</p>
 <ul>
 <li>
@@ -145,15 +212,15 @@ Running swagger Docs at http://127.0.0.1:8001/__docs__/</code></pre>
 <strong>curl</strong>: curl “<a href="http://localhost:8001/tests?protein=IL.18R1&amp;region=2:102700000-103800000" class="external-link uri">http://localhost:8001/tests?protein=IL.18R1&amp;region=2:102700000-103800000</a>”</li>
 </ul>
 <p>Additional work required to get output from <code>curl</code> to a tab-delimited data,</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">curl</span> <span class="st">"http://localhost:8001/tests?protein=IL.18R1&amp;region=2:102700000-103800000"</span> <span class="kw">|</span> <span class="dt">\</span></span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="ex">jq</span> <span class="at">-r</span> <span class="st">'.[0] |</span></span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="st">   fromjson |</span></span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="st">   .[] |</span></span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="st">   [</span></span>
-<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="st">     .Chromosome, .Position, .MarkerName, .Allele1, .Allele2, .Freq1,</span></span>
-<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="st">     .Effect, .StdErr, .logP, .Direction, .HetISq, .HetChiSq, .HetDf, .logHetP, .N</span></span>
-<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="st">   ] |</span></span>
-<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="st">   @tsv'</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">curl</span> <span class="st">"http://localhost:8001/tests?protein=IL.18R1&amp;region=2:102700000-103800000"</span> <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="ex">jq</span> <span class="at">-r</span> <span class="st">'.[0] |</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="st">   fromjson |</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="st">   .[] |</span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="st">   [</span></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="st">     .Chromosome, .Position, .MarkerName, .Allele1, .Allele2, .Freq1,</span></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="st">     .Effect, .StdErr, .logP, .Direction, .HetISq, .HetChiSq, .HetDf, .logHetP, .N</span></span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="st">   ] |</span></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="st">   @tsv'</span></span></code></pre></div>
 <p>where</p>
 <ol style="list-style-type: decimal">
 <li>
@@ -168,18 +235,31 @@ Running swagger Docs at http://127.0.0.1:8001/__docs__/</code></pre>
 <strong><span class="citation"><sup><strong>tsv?</strong></sup></span></strong>: Convert the array into tab-separated values.</li>
 </ol>
 <p>Note also that only selected columns (as in 4) are kept. The simplest way to have the header is add it manually,</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="kw">(</span></span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>  <span class="bu">echo</span> <span class="st">"Chromosome|Position|MarkerName|Allele1|Allele2|Freq1|Effect|StdErr|logP|Direction|HetISq|HetChiSq|HetDf|logHetP|N"</span> <span class="kw">|</span> <span class="dt">\</span></span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  <span class="fu">sed</span> <span class="st">'s/|/\t/g'</span></span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>  <span class="ex">curl</span> command as above.</span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="kw">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="kw">(</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>  <span class="bu">echo</span> <span class="st">"Chromosome|Position|MarkerName|Allele1|Allele2|Freq1|Effect|StdErr|logP|Direction|HetISq|HetChiSq|HetDf|logHetP|N"</span> <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>  <span class="fu">sed</span> <span class="st">'s/|/\t/g'</span></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>  <span class="ex">curl</span> command as above.</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="kw">)</span></span></code></pre></div>
 </div>
-<div class="section level2" number="2">
-<h2 id="httpuv">
-<span class="header-section-number">2</span> httpuv<a class="anchor" aria-label="anchor" href="#httpuv"></a>
-</h2>
+<div class="section level4" number="2.3.2">
+<h4 id="r-1">
+<span class="header-section-number">2.3.2</span> R<a class="anchor" aria-label="anchor" href="#r-1"></a>
+</h4>
+<p>The query above is easily furnished with <strong>curl</strong>:</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">curl</span><span class="fu">::</span><span class="fu"><a href="https://jeroen.r-universe.dev/curl/reference/curl_download.html" class="external-link">curl_download</a></span><span class="op">(</span><span class="st">"http://localhost:8001/tests?protein=IL.18R1&amp;region=2:102700000-103800000"</span>, <span class="va">tmp</span><span class="op">)</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://jeroen.r-universe.dev/jsonlite/reference/fromJSON.html" class="external-link">fromJSON</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>      <span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://jeroen.r-universe.dev/jsonlite/reference/fromJSON.html" class="external-link">fromJSON</a></span><span class="op">(</span>flatten<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+</div>
+</div>
+<div class="section level3" number="2.4">
+<h3 id="httpuv">
+<span class="header-section-number">2.4</span> httpuv<a class="anchor" aria-label="anchor" href="#httpuv"></a>
+</h3>
 <p>A somewhat more involved version is as follows,</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span><span class="st">"content/assets"</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span><span class="st">"content/lib"</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu">httpuv</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/httpuv/man/startServer.html" class="external-link">startServer</a></span><span class="op">(</span></span>
@@ -209,6 +289,17 @@ Running swagger Docs at http://127.0.0.1:8001/__docs__/</code></pre>
 <span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Server running at http://0.0.0.0:5000\n"</span><span class="op">)</span></span>
 <span><span class="va">s</span><span class="op">$</span><span class="kw">stop</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>so mappings are created from <code>content/[assets, lib]</code> to <code>assets</code> and <code>lib</code>, while <code><a href="https://rdrr.io/pkg/httpuv/man/staticPath.html" class="external-link">httpuv::excludeStaticPath()</a></code> indicates that requests to <code>/lib/dynamic</code> will not be served as static files but could be handled dynamically by the app logic.</p>
+</div>
+</div>
+<div class="section level2">
+<h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h2>
+<div id="refs" class="references csl-bib-body" entry-spacing="0" line-spacing="2">
+<div id="ref-willer10" class="csl-entry">
+<div class="csl-left-margin">1. </div>
+<div class="csl-right-inline">Willer, C. J., Li, Y. &amp; Abecasis, G. R. <a href="https://doi.org/10.1093/bioinformatics/btq340" class="external-link">METAL: Fast and efficient meta-analysis of genomewide association scans</a>. <em>Bioinformatics</em> <strong>26</strong>, 2190–1 (2010).</div>
+</div>
+</div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
