@@ -111,7 +111,7 @@
 <h3 id="a-meta-analysis-output">
 <span class="header-section-number">2.1</span> A meta-analysis output<a class="anchor" aria-label="anchor" href="#a-meta-analysis-output"></a>
 </h3>
-<p>The compressed data <code>IL.18R1-1.tbl.gz</code> was generated from METAL<span class="citation"><sup><strong>willer10?</strong></sup></span>, involving study-[1|2|3] as follows,</p>
+<p>The compressed data <code>IL.18R1-1.tbl.gz</code> was generated from METAL<span class="citation"><sup>1</sup></span>, involving study-[1|2|3] as follows,</p>
 <pre><code>SEPARATOR TAB
 COLUMNCOUNTING STRICT
 CHROMOSOMELABEL CHR
@@ -150,7 +150,7 @@ CLEAR</code></pre>
 <span class="header-section-number">2.2</span> plumber<a class="anchor" aria-label="anchor" href="#plumber"></a>
 </h3>
 <p>It is <code>an API generator in R</code>, which has been tested as follows.</p>
-<p>As noted elsewhere, <code>libsodium</code> is required for installation of the R package.</p>
+<p>Software library <code>libsodium</code>, <a href="https://doc.libsodium.org/" class="external-link uri">https://doc.libsodium.org/</a> is required for installation of the R package.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">get_data</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">filename</span>, <span class="va">region</span><span class="op">)</span></span>
 <span><span class="op">{</span></span>
@@ -291,10 +291,15 @@ Running swagger Docs at http://127.0.0.1:8001/__docs__/</code></pre>
 <p>so mappings are created from <code>content/[assets, lib]</code> to <code>assets</code> and <code>lib</code>, while <code><a href="https://rdrr.io/pkg/httpuv/man/staticPath.html" class="external-link">httpuv::excludeStaticPath()</a></code> indicates that requests to <code>/lib/dynamic</code> will not be served as static files but could be handled dynamically by the app logic.</p>
 </div>
 </div>
-<div class="section level2" number="3">
-<h2 id="references">
-<span class="header-section-number">3</span> References<a class="anchor" aria-label="anchor" href="#references"></a>
+<div class="section level2">
+<h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
+<div id="refs" class="references csl-bib-body" line-spacing="2">
+<div id="ref-willer10" class="csl-entry">
+<div class="csl-left-margin">1. </div>
+<div class="csl-right-inline">Willer, C. J., Li, Y. &amp; Abecasis, G. R. <a href="https://doi.org/10.1093/bioinformatics/btq340" class="external-link">METAL: Fast and efficient meta-analysis of genomewide association scans</a>. <em>Bioinformatics</em> <strong>26</strong>, 2190–1 (2010).</div>
+</div>
+</div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
