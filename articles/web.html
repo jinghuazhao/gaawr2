@@ -144,15 +144,16 @@ PROCESS study-2-IL18R1B-chrX.fastGWA.gz
 PROCESS study-3-IL18R1B-chrX.fastGWA.gz
 ANALYZE HETEROGENEITY
 CLEAR</code></pre>
-<p>Assuming the script is named IL.18R1.metal, IL.18R1-1.tbl.gz is generated from htslib, <a href="https://www.htslib.org/download/" class="external-link uri">https://www.htslib.org/download/</a>, as follows,</p>
+<p>Assuming the script is named <code>IL.18R1.metal</code>, <code>IL.18R1-1.tbl.gz</code> is generated from <strong>htslib</strong>, <a href="https://www.htslib.org/download/" class="external-link uri">https://www.htslib.org/download/</a>, as follows,</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="bu">export</span> <span class="va">protein</span><span class="op">=</span>IL.18R1</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="ex">metal</span> <span class="va">${protein}</span>.metal <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span> <span class="kw">|</span> <span class="fu">tee</span> <span class="va">${protein}</span>-1.tbl.log</span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="fu">cat</span> <span class="op">&lt;(</span><span class="fu">head</span> <span class="at">-1</span> <span class="va">${protein}</span>-1.tbl<span class="op">)</span> <span class="dt">\</span></span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>    <span class="op">&lt;(</span><span class="fu">sed</span> <span class="st">'1d'</span> <span class="va">${protein}</span>-1.tbl <span class="kw">|</span> <span class="dt">\</span></span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="fu">sort</span> <span class="at">-k1,1n</span> <span class="at">-k2,2n</span><span class="op">)</span> <span class="kw">|</span> <span class="dt">\</span></span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="ex">bgzip</span> <span class="at">-f</span> <span class="op">&gt;</span> <span class="va">${protein}</span>-1.tbl.gz</span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="ex">tabix</span> <span class="at">-S1</span> <span class="at">-s1</span> <span class="at">-b2</span> <span class="at">-e2</span> <span class="at">-f</span> <span class="va">${protein}</span>-1.tbl.gz</span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="fu">rm</span> <span class="va">${protein}</span>-1.tbl</span></code></pre></div>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="ex">metal</span> <span class="va">${protein}</span>.metal <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span> <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="fu">tee</span> <span class="va">${protein}</span>-1.tbl.log</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="fu">cat</span> <span class="op">&lt;(</span><span class="fu">head</span> <span class="at">-1</span> <span class="va">${protein}</span>-1.tbl<span class="op">)</span> <span class="dt">\</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>    <span class="op">&lt;(</span><span class="fu">sed</span> <span class="st">'1d'</span> <span class="va">${protein}</span>-1.tbl <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="fu">sort</span> <span class="at">-k1,1n</span> <span class="at">-k2,2n</span><span class="op">)</span> <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="ex">bgzip</span> <span class="at">-f</span> <span class="op">&gt;</span> <span class="va">${protein}</span>-1.tbl.gz</span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="ex">tabix</span> <span class="at">-S1</span> <span class="at">-s1</span> <span class="at">-b2</span> <span class="at">-e2</span> <span class="at">-f</span> <span class="va">${protein}</span>-1.tbl.gz</span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="fu">rm</span> <span class="va">${protein}</span>-1.tbl</span></code></pre></div>
 <p>The bgzipped data allows for access by genomic region as shown below.</p>
 </div>
 <div class="section level3" number="2.2">
