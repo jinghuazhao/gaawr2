@@ -118,7 +118,7 @@ CLEAR
 
 It is `an API generator in R`, which has been tested as follows.
 
-As noted elsewhere, `libsodium` is required for installation of the R package.
+Software library `libsodium`, <https://doc.libsodium.org/> is required for installation of the R package.
 
 ```r
 get_data <- function(filename, region)
