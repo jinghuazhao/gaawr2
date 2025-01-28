@@ -114,11 +114,12 @@ ANALYZE HETEROGENEITY
 CLEAR
 ```
 
-Assuming the script is named IL.18R1.metal, IL.18R1-1.tbl.gz is generated from htslib, <https://www.htslib.org/download/>, as follows,
+Assuming the script is named `IL.18R1.metal`, `IL.18R1-1.tbl.gz` is generated from **htslib**, <https://www.htslib.org/download/>, as follows,
 
 ```bash
 export protein=IL.18R1
-metal ${protein}.metal 2>&1 | tee ${protein}-1.tbl.log
+metal ${protein}.metal 2>&1 | \
+tee ${protein}-1.tbl.log
 cat <(head -1 ${protein}-1.tbl) \
     <(sed '1d' ${protein}-1.tbl | \
 sort -k1,1n -k2,2n) | \
