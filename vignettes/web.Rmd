@@ -116,7 +116,7 @@ CLEAR
 
 ## plumber
 
-It is `an API generator in R`, which has been tested through Caprion data as follows.
+It is `an API generator in R`, which has been tested as follows.
 
 As noted elsewhere, `libsodium` is required for installation of the R package.
 
