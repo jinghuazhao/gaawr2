@@ -64,7 +64,7 @@ httpuv::startServer("0.0.0.0", 8000, list(
 )
 ```
 
-Upon accessing http://127.0.0.1:8000, we see the message "Hello, world!".
+Upon accessing `http://127.0.0.1:8000`, we see the message "Hello, world!".
 
 Below, we assume that our working directory is either of this,
 
@@ -195,8 +195,8 @@ Running swagger Docs at http://127.0.0.1:8001/__docs__/
 
 So we get query results in JSON format from
 
-- **browser**: http://localhost:8001/tests?protein=IL.18R1&region=2:102700000-103800000
-- **command line interface**: curl "http://localhost:8001/tests?protein=IL.18R1&region=2:102700000-103800000"
+- **browser**: `http://localhost:8001/tests?protein=IL.18R1&region=2:102700000-103800000`
+- **command line interface**: `curl "http://localhost:8001/tests?protein=IL.18R1&region=2:102700000-103800000"`
 
 Additional work required to get output from `curl` to a tab-delimited data,
 
