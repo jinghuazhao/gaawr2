@@ -18,6 +18,7 @@
 #' - Web facilities, `vignette("web")`.
 #' @md
 #'
+#' @import dplyr gap ggplot2
 #' @importFrom Rdpack reprompt
 #'
 #' @author Jing Hua Zhao in collaboration with other colleagues.
