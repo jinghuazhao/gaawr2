@@ -317,7 +317,7 @@ with(r,gap::h2G(sigma,sigma.cov))
 eps <- 0.001
 y <- with(meyer,y)
 x <- with(meyer,cbind(g1,g2))
-ex <- gap::h2.jags(y,x,G,sigma.p=0.03,sigma.r=0.014)
+ex <- gap::h2.jags(y,x,G,sigma.p=0.03,sigma.r=0.014,n.chains=3,n.iter=200)
 knitr::kable(ex$BUGSoutput$summary,digits=2,caption="MCMC results for the Meyer data")
 ```
 ## powerEQTL
