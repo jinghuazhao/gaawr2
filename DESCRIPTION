@@ -1,15 +1,18 @@
 Package: gaawr2
 Title: Genetic Association Analysis with R (II)
 Version: 0.0.1
-Date: 2025-1-28
+Date: 2025-1-29
 Authors@R: 
     person("Jing Hua", "Zhao", , "jinghuazhao@hotmail.com", role = c("aut", "cre"))
+Author: Jing Hua Zhao [aut, cre] (<https://orcid.org/0000-0002-1463-5870>, 0000-0003-4930-3582)
+Maintainer: Jing Hua Zhao <jinghuazhao@hotmail.com>
 Description: This package illustrates creation and maintenance of package used in genetic association analysis.
 License: MIT + file LICENSE
 URL: https://jinghuazhao.github.io/gaawr2, https://github.com/jinghuazhao/gaawr2
 BugReports: https://github.com/jinghuazhao/gaawr2/issues
 Encoding: UTF-8
 Imports:  dplyr, gap, ggplot2, Rdpack
+VignetteBuilder: knitr
 RdMacros: Rdpack
 Suggests:
     BLR,
