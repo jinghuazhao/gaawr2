@@ -18,7 +18,6 @@
 #' - Web facilities, `vignette("web")`.
 #' @md
 #'
-#' @import knitr
 #' @importFrom Rdpack reprompt
 #'
 #' @author Jing Hua Zhao in collaboration with other colleagues.
