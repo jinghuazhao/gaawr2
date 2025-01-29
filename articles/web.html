@@ -93,7 +93,7 @@
 <span>    <span class="op">)</span></span>
 <span>  <span class="op">}</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p>Upon accessing <a href="http://127.0.0.1:8000" class="external-link uri">http://127.0.0.1:8000</a>, we see the message “Hello, world!”.</p>
+<p>Upon accessing <code>http://127.0.0.1:8000</code>, we see the message “Hello, world!”.</p>
 <p>Below, we assume that our working directory is either of this,</p>
 <ul>
 <li>
@@ -217,10 +217,11 @@ Running swagger Docs at http://127.0.0.1:8001/__docs__/</code></pre>
 <p>So we get query results in JSON format from</p>
 <ul>
 <li>
-<strong>browser</strong>: <a href="http://localhost:8001/tests?protein=IL.18R1&amp;region=2:102700000-103800000" class="external-link uri">http://localhost:8001/tests?protein=IL.18R1&amp;region=2:102700000-103800000</a>
+<strong>browser</strong>: <code>http://localhost:8001/tests?protein=IL.18R1&amp;region=2:102700000-103800000</code>
 </li>
 <li>
-<strong>command line interface</strong>: curl “<a href="http://localhost:8001/tests?protein=IL.18R1&amp;region=2:102700000-103800000" class="external-link uri">http://localhost:8001/tests?protein=IL.18R1&amp;region=2:102700000-103800000</a>”</li>
+<strong>command line interface</strong>: <code>curl "http://localhost:8001/tests?protein=IL.18R1&amp;region=2:102700000-103800000"</code>
+</li>
 </ul>
 <p>Additional work required to get output from <code>curl</code> to a tab-delimited data,</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">curl</span> <span class="st">"http://localhost:8001/tests?protein=IL.18R1&amp;region=2:102700000-103800000"</span> <span class="kw">|</span> <span class="dt">\</span></span>
