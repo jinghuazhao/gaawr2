@@ -135,9 +135,11 @@ a1 <- DQR[1]
 a2 <- DQR[2]
 GenotypeCounts <- HardyWeinberg::AllelesToTriangular(a1,a2)
 knitr::kable(GenotypeCounts,caption="Genotype distribution of DQR")
-HardyWeinberg::HWPerm.mult(GenotypeCounts,nperm=1000)
-HardyWeinberg::HWStr(hla[,3:4],test="permutation",nperm=1000)
+HardyWeinberg::HWPerm.mult(GenotypeCounts,nperm=300)
+HardyWeinberg::HWStr(hla[,3:4],test="permutation",nperm=300)
 ```
+
+Only 300 permutations are done to illustrate.
 
 ## SNPassoc
 
@@ -317,9 +319,13 @@ with(r,gap::h2G(sigma,sigma.cov))
 eps <- 0.001
 y <- with(meyer,y)
 x <- with(meyer,cbind(g1,g2))
-ex <- gap::h2.jags(y,x,G,sigma.p=0.03,sigma.r=0.014,n.chains=3,n.iter=200)
+ex <- gap::h2.jags(y,x,G,sigma.p=0.03,sigma.r=0.014,n.chains=1,n.iter=80)
 knitr::kable(ex$BUGSoutput$summary,digits=2,caption="MCMC results for the Meyer data")
 ```
+
+To avoid multithread and excessive time for CRAN checking, only one chain and 80 iterations are run, 40 of which are burn-ins and
+every iteraction is kept (n.thin=1).
+
 ## powerEQTL
 
 Consider `powereQTL.SLR` (simple linear regression) for a sample size of 50-300 by 50, minor allele frequencies
