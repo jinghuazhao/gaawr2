@@ -15,7 +15,7 @@ An R package companion to the titled Henry-Stewart talk, part 2.
 
 ## Description
 
-This package illustrates creation and maintenance of package used in genetic association analysis.
+An R package companion to the titled Henry-Stewart talk, part 2.
 
 ## Installation
 
