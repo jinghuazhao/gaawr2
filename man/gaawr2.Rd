@@ -6,7 +6,7 @@
 \alias{gaawr2-package}
 \title{Genetic Association Analysis with R (II)}
 \description{
-This package illustrates creation and maintenance of package used in genetic association analysis.
+An R package companion to the titled Henry-Stewart talk, part 2.
 }
 \details{
 Available data are listed in the following table.\tabular{ll}{
