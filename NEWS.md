@@ -1,5 +1,5 @@
 ## gaawr2 0.0.1
 
-(2025/1/29)
+(2025/1/30)
 
-* A first release
+* A first release which passes R CMD check --as-cran gaawr2_0.0.1.tar.gz
