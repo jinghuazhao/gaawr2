@@ -969,14 +969,15 @@ Figure 3.1: SNP ternary plot
 </tbody>
 </table>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">HardyWeinberg</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/HardyWeinberg/man/HWPerm.mult.html" class="external-link">HWPerm.mult</a></span><span class="op">(</span><span class="va">GenotypeCounts</span>,nperm<span class="op">=</span><span class="fl">1000</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu">HardyWeinberg</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/HardyWeinberg/man/HWPerm.mult.html" class="external-link">HWPerm.mult</a></span><span class="op">(</span><span class="va">GenotypeCounts</span>,nperm<span class="op">=</span><span class="fl">300</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Permutation test for Hardy-Weinberg equilibrium (autosomal).</span></span>
 <span><span class="co">#&gt; 25 alleles detected.</span></span>
-<span><span class="co">#&gt; Observed statistic: 1.461325e-84   1000 permutations. p-value: 0.023</span></span>
-<span><span class="fu">HardyWeinberg</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/HardyWeinberg/man/HWStr.html" class="external-link">HWStr</a></span><span class="op">(</span><span class="va">hla</span><span class="op">[</span>,<span class="fl">3</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>,test<span class="op">=</span><span class="st">"permutation"</span>,nperm<span class="op">=</span><span class="fl">1000</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Observed statistic: 1.461325e-84   300 permutations. p-value: 0.01</span></span>
+<span><span class="fu">HardyWeinberg</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/HardyWeinberg/man/HWStr.html" class="external-link">HWStr</a></span><span class="op">(</span><span class="va">hla</span><span class="op">[</span>,<span class="fl">3</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>,test<span class="op">=</span><span class="st">"permutation"</span>,nperm<span class="op">=</span><span class="fl">300</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 1 STRs detected.</span></span>
-<span><span class="co">#&gt;      STR   N Nt     MinorAF   MajorAF        Ho        He       Hp  pval</span></span>
-<span><span class="co">#&gt; 1 DQR.a1 271 25 0.001845018 0.1494465 0.8856089 0.9097643 2.654949 0.026</span></span></code></pre></div>
+<span><span class="co">#&gt;      STR   N Nt     MinorAF   MajorAF        Ho        He       Hp       pval</span></span>
+<span><span class="co">#&gt; 1 DQR.a1 271 25 0.001845018 0.1494465 0.8856089 0.9097643 2.654949 0.02666667</span></span></code></pre></div>
+<p>Only 300 permutations are done to illustrate.</p>
 </div>
 <div class="section level3" number="3.2">
 <h3 id="snpassoc">
@@ -1482,7 +1483,7 @@ Figure 3.1: SNP ternary plot
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Coefficients:</span></span>
 <span><span class="co">#&gt; (Intercept)     genoH3.2     genoH3.9    genoH3.11  genoH3.rare        smoke  </span></span>
-<span><span class="co">#&gt;   -1.189508     0.019374    -0.097111     0.113149    -0.253046    -0.393112  </span></span>
+<span><span class="co">#&gt;   -1.189508     0.019373    -0.097111     0.113148    -0.253046    -0.393112  </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Haplotypes:</span></span>
 <span><span class="co">#&gt;             rs1430090 rs6737251 rs11685217 rs1430097 hap.freq</span></span>
@@ -1754,7 +1755,7 @@ Figure 3.1: SNP ternary plot
 <span><span class="va">eps</span> <span class="op">&lt;-</span> <span class="fl">0.001</span></span>
 <span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">meyer</span>,<span class="va">y</span><span class="op">)</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">meyer</span>,<span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">g1</span>,<span class="va">g2</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">ex</span> <span class="op">&lt;-</span> <span class="fu">gap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gap/man/h2.jags.html" class="external-link">h2.jags</a></span><span class="op">(</span><span class="va">y</span>,<span class="va">x</span>,<span class="va">G</span>,sigma.p<span class="op">=</span><span class="fl">0.03</span>,sigma.r<span class="op">=</span><span class="fl">0.014</span>,n.chains<span class="op">=</span><span class="fl">3</span>,n.iter<span class="op">=</span><span class="fl">200</span><span class="op">)</span></span>
+<span><span class="va">ex</span> <span class="op">&lt;-</span> <span class="fu">gap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gap/man/h2.jags.html" class="external-link">h2.jags</a></span><span class="op">(</span><span class="va">y</span>,<span class="va">x</span>,<span class="va">G</span>,sigma.p<span class="op">=</span><span class="fl">0.03</span>,sigma.r<span class="op">=</span><span class="fl">0.014</span>,n.chains<span class="op">=</span><span class="fl">1</span>,n.iter<span class="op">=</span><span class="fl">80</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Compiling model graph</span></span>
 <span><span class="co">#&gt;    Resolving undeclared variables</span></span>
 <span><span class="co">#&gt;    Allocating nodes</span></span>
@@ -1768,18 +1769,6 @@ Figure 3.1: SNP ternary plot
 <table class="table">
 <caption>
 <span id="tab:jags">Table 3.4: </span>MCMC results for the Meyer data</caption>
-<colgroup>
-<col width="12%">
-<col width="10%">
-<col width="8%">
-<col width="10%">
-<col width="10%">
-<col width="10%">
-<col width="10%">
-<col width="10%">
-<col width="6%">
-<col width="8%">
-</colgroup>
 <thead><tr class="header">
 <th align="left"></th>
 <th align="right">mean</th>
@@ -1789,84 +1778,72 @@ Figure 3.1: SNP ternary plot
 <th align="right">50%</th>
 <th align="right">75%</th>
 <th align="right">97.5%</th>
-<th align="right">Rhat</th>
-<th align="right">n.eff</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">b[1]</td>
-<td align="right">222.18</td>
-<td align="right">1.50</td>
-<td align="right">219.47</td>
-<td align="right">221.18</td>
+<td align="right">222.2</td>
+<td align="right">1.30</td>
+<td align="right">219.79</td>
+<td align="right">221.81</td>
 <td align="right">222.13</td>
-<td align="right">223.05</td>
-<td align="right">225.34</td>
-<td align="right">1.0</td>
-<td align="right">120</td>
+<td align="right">222.79</td>
+<td align="right">224.78</td>
 </tr>
 <tr class="even">
 <td align="left">b[2]</td>
-<td align="right">237.38</td>
-<td align="right">1.75</td>
-<td align="right">234.13</td>
-<td align="right">236.36</td>
-<td align="right">237.36</td>
-<td align="right">238.53</td>
-<td align="right">240.85</td>
-<td align="right">1.0</td>
-<td align="right">230</td>
+<td align="right">237.6</td>
+<td align="right">1.67</td>
+<td align="right">234.67</td>
+<td align="right">236.62</td>
+<td align="right">237.46</td>
+<td align="right">238.76</td>
+<td align="right">240.59</td>
 </tr>
 <tr class="odd">
 <td align="left">deviance</td>
-<td align="right">2178.51</td>
-<td align="right">25.58</td>
-<td align="right">2120.53</td>
-<td align="right">2162.92</td>
-<td align="right">2181.17</td>
-<td align="right">2195.57</td>
-<td align="right">2223.53</td>
-<td align="right">1.0</td>
-<td align="right">54</td>
+<td align="right">2181.5</td>
+<td align="right">22.18</td>
+<td align="right">2141.86</td>
+<td align="right">2166.83</td>
+<td align="right">2181.90</td>
+<td align="right">2197.92</td>
+<td align="right">2218.65</td>
 </tr>
 <tr class="even">
 <td align="left">h2</td>
-<td align="right">0.31</td>
-<td align="right">0.09</td>
-<td align="right">0.15</td>
+<td align="right">0.3</td>
+<td align="right">0.07</td>
+<td align="right">0.19</td>
 <td align="right">0.25</td>
 <td align="right">0.31</td>
-<td align="right">0.37</td>
-<td align="right">0.49</td>
-<td align="right">1.1</td>
-<td align="right">45</td>
+<td align="right">0.36</td>
+<td align="right">0.44</td>
 </tr>
 <tr class="odd">
 <td align="left">p</td>
-<td align="right">33.75</td>
-<td align="right">11.54</td>
-<td align="right">15.38</td>
-<td align="right">25.55</td>
-<td align="right">32.13</td>
-<td align="right">39.82</td>
-<td align="right">58.84</td>
-<td align="right">1.1</td>
-<td align="right">47</td>
+<td align="right">32.0</td>
+<td align="right">8.48</td>
+<td align="right">19.03</td>
+<td align="right">25.03</td>
+<td align="right">32.30</td>
+<td align="right">38.19</td>
+<td align="right">43.51</td>
 </tr>
 <tr class="even">
 <td align="left">r</td>
-<td align="right">72.84</td>
-<td align="right">8.68</td>
-<td align="right">56.57</td>
-<td align="right">67.37</td>
-<td align="right">72.79</td>
-<td align="right">77.41</td>
-<td align="right">92.47</td>
-<td align="right">1.0</td>
-<td align="right">90</td>
+<td align="right">72.7</td>
+<td align="right">8.12</td>
+<td align="right">61.56</td>
+<td align="right">66.39</td>
+<td align="right">71.99</td>
+<td align="right">79.09</td>
+<td align="right">87.36</td>
 </tr>
 </tbody>
 </table>
+<p>To avoid multithread and excessive time for CRAN checking, only one chain and 80 iterations are run, 40 of which are burn-ins and
+every iteraction is kept (n.thin=1).</p>
 </div>
 <div class="section level3" number="3.8">
 <h3 id="powereqtl">
