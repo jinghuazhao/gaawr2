@@ -1921,6 +1921,7 @@ Figure 3.2: Power Estimation for eQTL Studies of 240 SNPs
 <span>  Field <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ID"</span>, <span class="st">"Approved Symbol"</span>, <span class="st">"Biotype"</span><span class="op">)</span>,</span>
 <span>  Value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">target</span><span class="op">$</span><span class="va">id</span>, <span class="va">target</span><span class="op">$</span><span class="va">approvedSymbol</span>, <span class="va">target</span><span class="op">$</span><span class="va">biotype</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
+<span><span class="va">tractability_data</span> <span class="op">&lt;-</span> <span class="va">target</span><span class="op">$</span><span class="va">tractability</span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">scalar_fields</span>, caption <span class="op">=</span> <span class="st">"Basic Information"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>bootstrap_options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"striped"</span>, <span class="st">"hover"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
@@ -2064,6 +2065,335 @@ lof
 </tr>
 </tbody>
 </table>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tractability_data</span>, caption <span class="op">=</span> <span class="st">"Tractability Information"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>bootstrap_options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"striped"</span>, <span class="st">"hover"</span><span class="op">)</span>, full_width <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<table class="table table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:ot2">Table 3.5: </span><span id="tab:ot2">Table 3.5: </span>Tractability Information
+</caption>
+<thead><tr>
+<th style="text-align:left;">
+label
+</th>
+<th style="text-align:left;">
+modality
+</th>
+<th style="text-align:left;">
+value
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Approved Drug
+</td>
+<td style="text-align:left;">
+SM
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Advanced Clinical
+</td>
+<td style="text-align:left;">
+SM
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Phase 1 Clinical
+</td>
+<td style="text-align:left;">
+SM
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Structure with Ligand
+</td>
+<td style="text-align:left;">
+SM
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+High-Quality Ligand
+</td>
+<td style="text-align:left;">
+SM
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+High-Quality Pocket
+</td>
+<td style="text-align:left;">
+SM
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Med-Quality Pocket
+</td>
+<td style="text-align:left;">
+SM
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Druggable Family
+</td>
+<td style="text-align:left;">
+SM
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Approved Drug
+</td>
+<td style="text-align:left;">
+AB
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Advanced Clinical
+</td>
+<td style="text-align:left;">
+AB
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Phase 1 Clinical
+</td>
+<td style="text-align:left;">
+AB
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+UniProt loc high conf
+</td>
+<td style="text-align:left;">
+AB
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GO CC high conf
+</td>
+<td style="text-align:left;">
+AB
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+UniProt loc med conf
+</td>
+<td style="text-align:left;">
+AB
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+UniProt SigP or TMHMM
+</td>
+<td style="text-align:left;">
+AB
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GO CC med conf
+</td>
+<td style="text-align:left;">
+AB
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Human Protein Atlas loc
+</td>
+<td style="text-align:left;">
+AB
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Approved Drug
+</td>
+<td style="text-align:left;">
+PR
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Advanced Clinical
+</td>
+<td style="text-align:left;">
+PR
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Phase 1 Clinical
+</td>
+<td style="text-align:left;">
+PR
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Literature
+</td>
+<td style="text-align:left;">
+PR
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+UniProt Ubiquitination
+</td>
+<td style="text-align:left;">
+PR
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Database Ubiquitination
+</td>
+<td style="text-align:left;">
+PR
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Half-life Data
+</td>
+<td style="text-align:left;">
+PR
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Small Molecule Binder
+</td>
+<td style="text-align:left;">
+PR
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Approved Drug
+</td>
+<td style="text-align:left;">
+OC
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Advanced Clinical
+</td>
+<td style="text-align:left;">
+OC
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Phase 1 Clinical
+</td>
+<td style="text-align:left;">
+OC
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -2075,7 +2405,7 @@ lof
 <h3 id="ensdb-hsapiens-v75">
 <span class="header-section-number">4.1</span> EnsDb.Hsapiens.v75<a class="anchor" aria-label="anchor" href="#ensdb-hsapiens-v75"></a>
 </h3>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">ensembldb</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Annotated-class.html" class="external-link">metadata</a></span><span class="op">(</span><span class="va">EnsDb.Hsapiens.v75</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                  name                               value</span></span>
 <span><span class="co">#&gt; 1             Db type                               EnsDb</span></span>
@@ -2122,7 +2452,7 @@ lof
 <h3 id="biomart">
 <span class="header-section-number">4.2</span> biomaRt<a class="anchor" aria-label="anchor" href="#biomart"></a>
 </h3>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu">biomaRt</span><span class="fu">::</span><span class="fu">martBMCheck</span><span class="op">(</span><span class="va">mart</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/stop.html" class="external-link">stop</a></span><span class="op">(</span><span class="st">"The BioMart service is currently unavailable."</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
@@ -2143,7 +2473,7 @@ lof
 <span class="header-section-number">4.3</span> Experimental Factor Ontology (EFO)<a class="anchor" aria-label="anchor" href="#experimental-factor-ontology-efo"></a>
 </h3>
 <p>The ontology of traits/disease is formally available as this<span class="citation"><sup>2</sup></span>. The script below assumes that efo-3.26.0 has been downloaded.</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ontologyIndex</span><span class="op">)</span></span>
 <span><span class="va">id</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">ontology</span><span class="op">)</span></span>
 <span><span class="op">{</span></span>
