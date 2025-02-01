@@ -12,7 +12,7 @@ An R package companion to the titled Henry-Stewart talk, part 2.
 Available data are listed in the following table.\tabular{ll}{
    Objects \tab Description \cr
    \strong{Functions} \tab   \cr
-   \code{\link{Welcome}} \tab An enhanced welcome \cr
+   \code{\link{welcome}} \tab An enhanced welcome \cr
 }
 }
 \section{Usage}{
@@ -25,7 +25,7 @@ Vignettes on package usage:
 }
 
 \examples{
-Welcome(3)
+welcome(3)
 }
 \seealso{
 Useful links:
