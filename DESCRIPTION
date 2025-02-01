@@ -1,7 +1,7 @@
 Package: gaawr2
 Title: Genetic Association Analysis with R (II)
 Version: 0.0.1
-Date: 2025-1-30
+Date: 2025-2-1
 Authors@R: 
     person("Jing Hua", "Zhao", , "jinghuazhao@hotmail.com", role = c("aut", "cre"))
 Author: Jing Hua Zhao [aut, cre] (<https://orcid.org/0000-0002-1463-5870>, 0000-0003-4930-3582)
@@ -11,7 +11,7 @@ License: MIT + file LICENSE
 URL: https://jinghuazhao.github.io/gaawr2, https://github.com/jinghuazhao/gaawr2
 BugReports: https://github.com/jinghuazhao/gaawr2/issues
 Encoding: UTF-8
-Imports:  dplyr, gap, ggplot2, Rdpack
+Imports:  dplyr, gap, ggplot2, survival, Rdpack
 VignetteBuilder: knitr
 RdMacros: Rdpack
 Suggests:
@@ -34,6 +34,7 @@ Suggests:
     R2jags,
     regress,
     seqminer,
-    SNPassoc
+    SNPassoc,
+    testthat
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
