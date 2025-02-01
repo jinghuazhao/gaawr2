@@ -1,1 +1,1 @@
-print("Hello, welcome to gaawr2!")
+cat("Hello, world!\n")
