@@ -41,16 +41,16 @@ This package intends to gather information, meta-data and relevant scripts in ge
 
 The package is adapted from earlier package development work, particularly pQTLdata.
 
-# Hello, welcome to gaawr2!
+# Hello, world!
 
-We start with several ways of printting a welcome message.
+We start with several ways of printting a `Hello, world!` message.
 
 ## R
 
 It is customary to use an R command line interface (CLI) or graphical user interface (GUI),
 
 ```{r welcome}
-print("Hello, welcome to gaawr2!")
+print("Hello, world!!")
 ```
 
 ## Linux
@@ -59,15 +59,15 @@ We more often embed R in a Linux script,
 
 ```{bash linux}
 # environment variable
-export message="Hello, welcome to gaawr2!"
+export message="Hello, world!"
 Rscript -e 'message=Sys.getenv("message");print(message)'
 # a code chunk
 R --no-save -q <<END
 options(echo=FALSE)
-print("Hello, welcome to gaawr2!")
+print("Hello, world!")
 END
 # a processor
-echo Hello, welcome to gaawr2 | \
+echo Hello, world! | \
 Rscript -e '
    message <- scan("stdin", what = "", sep = "\n", quiet = TRUE);
    write.table(message, col.names = FALSE, row.names = FALSE, quote = FALSE)
@@ -497,7 +497,8 @@ Suggests:
     R2jags,
     regress,
     seqminer,
-    SNPassoc
+    SNPassoc,
+    testthat
 ```
 
 Note that the `devtools::document()` in `pkgdown.sh` automatically updates NAMESPACE and regenerates function documentation file(.Rd),

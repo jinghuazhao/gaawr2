@@ -66,10 +66,7 @@ httpuv::startServer("0.0.0.0", 8000, list(
 
 Upon accessing `http://127.0.0.1:8000`, we see the message "Hello, world!".
 
-Below, we assume that our working directory is either of this,
-
-- `inst/` in the **gaawr2** source package.
-- the directory for the installed package.
+Below, we assume that our working directory is the source package,
 
 # Data source
 
