@@ -1,6 +1,6 @@
 #' welcome Function
 #'
-#' This function prints a welcome message, saying number of times.
+#' It prints a welcome message, saying number of times.
 #'
 #' @param n The number of times (>1 integer) to welcome the user.
 #' @return Prints a welcome message to the console.
