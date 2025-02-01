@@ -13,7 +13,7 @@ welcome(n)
 Prints a welcome message to the console.
 }
 \description{
-This function prints a welcome message, saying number of times.
+It prints a welcome message, saying number of times.
 }
 \examples{
 welcome(3)
