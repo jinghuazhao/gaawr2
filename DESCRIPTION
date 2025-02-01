@@ -27,6 +27,7 @@ Suggests:
     httr,
     httpuv,
     jsonlite,
+    kableExtra,
     knitr,
     MCMCglmm,
     plumber,
