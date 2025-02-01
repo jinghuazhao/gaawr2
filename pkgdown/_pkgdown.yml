@@ -19,7 +19,7 @@ authors:
   sidebar:
     roles: [aut, ctb]
     before: ""
-    after: "Welcome!"
+    after: "welcome!"
 
 url: https://jinghuazhao.github.io/gaawr2/
 template:
@@ -63,7 +63,7 @@ reference:
     - gaawr2
   - title: "Function"
     contents:
-    - Welcome
+    - welcome
 
 footer:
   structure:
