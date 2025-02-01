@@ -68,18 +68,18 @@
 <p>This package intends to gather information, meta-data and relevant scripts in genetic association analysis as a companion to a Henry-Stewart talk.</p>
 <p>The package is adapted from earlier package development work, particularly pQTLdata.</p>
 <div class="section level2" number="1">
-<h2 id="hello-welcome-to-gaawr2">
-<span class="header-section-number">1</span> Hello, welcome to gaawr2!<a class="anchor" aria-label="anchor" href="#hello-welcome-to-gaawr2"></a>
+<h2 id="hello-world">
+<span class="header-section-number">1</span> Hello, world!<a class="anchor" aria-label="anchor" href="#hello-world"></a>
 </h2>
-<p>We start with several ways of printting a welcome message.</p>
+<p>We start with several ways of printting a <code>Hello, world!</code> message.</p>
 <div class="section level3" number="1.1">
 <h3 id="r">
 <span class="header-section-number">1.1</span> R<a class="anchor" aria-label="anchor" href="#r"></a>
 </h3>
 <p>It is customary to use an R command line interface (CLI) or graphical user interface (GUI),</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="st">"Hello, welcome to gaawr2!"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "Hello, welcome to gaawr2!"</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="st">"Hello, world!!"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "Hello, world!!"</span></span></code></pre></div>
 </div>
 <div class="section level3" number="1.2">
 <h3 id="linux">
@@ -87,24 +87,24 @@
 </h3>
 <p>We more often embed R in a Linux script,</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># environment variable</span></span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="bu">export</span> <span class="va">message</span><span class="op">=</span><span class="st">"Hello, welcome to gaawr2!"</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="bu">export</span> <span class="va">message</span><span class="op">=</span><span class="st">"Hello, world!"</span></span>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'message=Sys.getenv("message");print(message)'</span></span>
 <span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="co"># a code chunk</span></span>
 <span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="ex">R</span> <span class="at">--no-save</span> <span class="at">-q</span> <span class="op">&lt;&lt;END</span></span>
 <span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="st">options(echo=FALSE)</span></span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="st">print("Hello, welcome to gaawr2!")</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="st">print("Hello, world!")</span></span>
 <span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="op">END</span></span>
 <span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co"># a processor</span></span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="bu">echo</span> Hello, welcome to gaawr2 <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="bu">echo</span> Hello, world! <span class="kw">|</span> <span class="dt">\</span></span>
 <span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'</span></span>
 <span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="st">   message &lt;- scan("stdin", what = "", sep = "\n", quiet = TRUE);</span></span>
 <span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="st">   write.table(message, col.names = FALSE, row.names = FALSE, quote = FALSE)</span></span>
 <span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="st">'</span> <span class="kw">|</span> <span class="dt">\</span></span>
 <span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="fu">cat</span></span>
-<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="co">#&gt; [1] "Hello, welcome to gaawr2!"</span></span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="co">#&gt; [1] "Hello, world!"</span></span>
 <span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a><span class="co">#&gt; &gt; options(echo=FALSE)</span></span>
-<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a><span class="co">#&gt; [1] "Hello, welcome to gaawr2!"</span></span>
-<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a><span class="co">#&gt; Hello, welcome to gaawr2</span></span></code></pre></div>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a><span class="co">#&gt; [1] "Hello, world!"</span></span>
+<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a><span class="co">#&gt; Hello, world!</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2" number="2">
@@ -2302,7 +2302,8 @@ Upon use <code>pkgdown</code>, an article can be seen from the menu item <code>A
     R2jags,
     regress,
     seqminer,
-    SNPassoc</code></pre>
+    SNPassoc,
+    testthat</code></pre>
 <p>Note that the <code>devtools::document()</code> in <code>pkgdown.sh</code> automatically updates NAMESPACE and regenerates function documentation file(.Rd),
 which can be picked up through <code><a href="https://pkgdown.r-lib.org/reference/build_reference.html" class="external-link">pkgdown::build_reference()</a></code>. The refinement is greatly facilitated by GitHub <code>R-CMD-check.yaml</code>
 workflow, namely, <a href="https://github.com/jinghuazhao/gaawr2/actions/workflows/R-CMD-check.yaml" class="external-link uri">https://github.com/jinghuazhao/gaawr2/actions/workflows/R-CMD-check.yaml</a>.</p>
