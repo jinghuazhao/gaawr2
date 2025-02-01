@@ -10,7 +10,7 @@
 #' Objects                   |  Description
 #' --------------------------|------------------------------------
 #' **Functions**             |   &nbsp;
-#' [`Welcome`]               |   An enhanced welcome
+#' [`welcome`]               |   An enhanced welcome
 #'
 #' @section Usage:
 #' Vignettes on package usage:
@@ -19,11 +19,12 @@
 #' @md
 #'
 #' @import dplyr gap ggplot2
+#' @importFrom survival strata
 #' @importFrom Rdpack reprompt
 #'
 #' @author Jing Hua Zhao in collaboration with other colleagues.
 #' @keywords internal
 #' @examples
-#' Welcome(3)
+#' welcome(3)
 
 "_PACKAGE"
