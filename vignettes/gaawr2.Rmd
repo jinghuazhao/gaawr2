@@ -30,7 +30,7 @@ knitr::opts_chunk$set(
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 pkgs <- c("EnsDb.Hsapiens.v75","ensembldb","GMMAT","HardyWeinberg","MCMCglmm","SNPassoc","biomaRt",
            "gap","gap.datasets","haplo.stats","powerEQTL","R2jags","regress",
-           "dplyr","ggplot2","httr","jsonlite","knitr")
+           "dplyr","ggplot2","httr","jsonlite","kableExtra","knitr")
 for (p in pkgs) if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
     if (!requireNamespace(p)) warning(paste0("This vignette needs package `", p, "'; please install"))
 }
@@ -356,7 +356,7 @@ The counterpart for single-cell RNA-Seq design is via `powerEQTL.scRNAseq`.
 
 ### OpenTargets
 
-```{r, messages=FALSE}
+```{r ot, messages=FALSE}
 gene_id <- "ENSG00000164308"
 query_string = "
   query target($ensemblId: String!){
@@ -385,9 +385,24 @@ base_url <- "https://api.platform.opentargets.org/api/v4/graphql"
 variables <- list("ensemblId" = gene_id)
 post_body <- list(query = query_string, variables = variables)
 r <- httr::POST(url=base_url, body=post_body, encode='json')
-data <- iconv(r, "latin1", "ASCII")
+data <- iconv(r, "", "ASCII")
 content <- jsonlite::fromJSON(data)
-knitr::kable(content, caption="Query of ERAP2 from OpenTargets")
+```
+
+where `jsonlite::fromJSON(content(r,"text",encoding="UTF-8"))` also works when R is nicely compiled with libiconv.
+
+A more sophisticated version is as follows,
+
+```{r ot2, messages=FALSE}
+target <- content$data$target
+scalar_fields <- data.frame(
+  Field = c("ID", "Approved Symbol", "Biotype"),
+  Value = c(target$id, target$approvedSymbol, target$biotype)
+)
+knitr::kable(scalar_fields, caption = "Basic Information") %>%
+  kableExtra::kable_styling(bootstrap_options = c("striped", "hover"))
+knitr::kable(target$geneticConstraint, caption = "Genetic Constraint Metrics") %>%
+  kableExtra::kable_styling(bootstrap_options = c("striped", "hover"))
 ```
 
 # Annotations
