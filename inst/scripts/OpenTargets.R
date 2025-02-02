@@ -1,5 +1,7 @@
 library(httr)
 library(jsonlite)
+library(knitr)
+library(kableExtra)
 
 gene_id <- "ENSG00000164308"
 query_string = "
@@ -31,3 +33,15 @@ post_body <- list(query = query_string, variables = variables)
 r <- httr::POST(url=base_url, body=post_body, encode='json')
 data <- iconv(r, "latin1", "ASCII")
 content <- jsonlite::fromJSON(data)
+target <- content$data$target
+scalar_fields <- data.frame(
+  Field = c("ID", "Approved Symbol", "Biotype"),
+  Value = c(target$id, target$approvedSymbol, target$biotype)
+)
+tractability_data <- target$tractability
+knitr::kable(scalar_fields, caption = "Basic Information") %>%
+  kableExtra::kable_styling(bootstrap_options = c("striped", "hover"))
+knitr::kable(target$geneticConstraint, caption = "Genetic Constraint Metrics") %>%
+  kableExtra::kable_styling(bootstrap_options = c("striped", "hover"))
+knitr::kable(tractability_data, caption = "Tractability Information") %>%
+  kableExtra::kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
