@@ -37,9 +37,9 @@ for (p in pkgs) if (length(grep(paste("^package:", p, "$", sep=""), search())) =
 invisible(suppressMessages(lapply(pkgs, require, character.only = TRUE)))
 ```
 
-This package intends to gather information, meta-data and relevant scripts in genetic association analysis as a companion to a Henry-Stewart talk.
+The package intends to gather information, meta-data and scripts in genetic association analysis as a companion to a Henry-Stewart talk.
 
-The package is adapted from earlier package development work, particularly pQTLdata.
+It is adapted from earlier package development work, particularly pQTLdata, <https://jinghuazhao.github.io/pQTLdata/>.
 
 # Hello, world!
 
@@ -50,7 +50,7 @@ We start with several ways of printting a `Hello, world!` message.
 It is customary to use an R command line interface (CLI) or graphical user interface (GUI),
 
 ```{r welcome}
-print("Hello, world!!")
+print("Hello, world!\n")
 ```
 
 ## Linux
@@ -492,6 +492,7 @@ Suggests:
     httpuv,
     jsonlite,
     knitr,
+    kableExtra,
     MCMCglmm,
     plumber,
     powerEQTL,
