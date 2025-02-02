@@ -25,4 +25,4 @@ rentrez.R  | **entrez** query
 SNPassoc.R | **SNPassoc** script
 tabix.sh*  | **tabix** script
 
-`cran.sh` makes a copy of the latest repository but drops files not needed by CRAN.
+`cran.sh` makes a copy of the latest repository but drops files not needed by CRAN. `MN.py` is a Python script for the MN locus analysis.
