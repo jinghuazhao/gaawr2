@@ -28,4 +28,4 @@ tabix.sh*  | **tabix** script
 Note that
 
 - `cran.sh` makes a copy of the latest repository but drops files not needed by CRAN.
-- `hwe_ternary_plotly.py` is a Python script using plotly for the HWE ternary plot whose ternary coordinates let the top vertex (the “a‑axis”) represent A1A2, the left vertex (the “b‑axis”) A1A2, and the right vertex (the “c‑axis”) A2A2.
+- `hwe_ternary_plotly.py` is a Python script using plotly for the HWE ternary plot whose top vertex (the “a‑axis”) represents A1A2, the left vertex (the “b‑axis”) A1A2, and the right vertex (the “c‑axis”) A2A2.
