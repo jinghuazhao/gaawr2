@@ -82,7 +82,7 @@ The operators are intuitive in many ways, but we would like to highlight two typ
 - the scope operator (`::`) is useful since user executes command from a particular package without loading it, which is usually faster.
 - the native (`|>`) and contributed (`%>%`) pipe operators which enable a chained of operations, the latter popularized from R **magrittr** and **dplyr** packages
 
-```{r ops, fig.height=6, fig.with=8}
+```{r ops, fig.cap="Average Horsepower by Cylinder Count (mpg > 20)", fig.height=6, fig.with=8}
 sumstats <- mtcars %>%
   dplyr::filter(mpg > 20) %>%
   dplyr::group_by(cyl) %>%
@@ -90,11 +90,7 @@ sumstats <- mtcars %>%
 knitr::kable(sumstats,caption="Mean horse power and weight by Cylinder for mpg over 20")
 ggplot2::ggplot(sumstats, ggplot2::aes(x = factor(cyl), y = avg_hp, fill = factor(cyl))) +
 ggplot2::geom_bar(stat = "identity") +
-ggplot2::labs(
-    title = "Average Horsepower by Cylinder Count (mpg > 20)",
-    x = "Number of Cylinders",
-    y = "Average Horsepower"
-  ) +
+ggplot2::labs(title = "", x = "Number of Cylinders", y = "Average Horsepower") +
 ggplot2::theme_minimal() +
 ggplot2::scale_fill_brewer(palette = "Set2", name = "Cylinders")
 ```
@@ -210,11 +206,6 @@ for (i in 1:4) haplo.score[[i]] <- haplo.stats::haplo.score.slide(asthma.snps$cc
                                          simulate=TRUE,
                                          sim.control=haplo.stats::score.sim.control(min.sim=100,
                                          max.sim=200)) 
-par(mfrow=c(2,2))
-for (i in 1:4) {
-    plot(haplo.score[[i]])
-    title(paste("Sliding Window=", i+3, sep=""))
-}
 snpsH3 <- snpsH2[4:7]
 genoH3 <- make.geno(asthma.snps, snpsH3)
 mod <- haplo.stats::haplo.glm(cc~genoH3, data=asthma.snps,
@@ -354,7 +345,7 @@ legend("bottomright", inset=.02, title="Sample size (N)", paste(N), col=colors, 
 
 The counterpart for single-cell RNA-Seq design is via `powerEQTL.scRNAseq`.
 
-### OpenTargets
+## OpenTargets
 
 ```{r ot, messages=FALSE}
 gene_id <- "ENSG00000164308"
@@ -387,26 +378,18 @@ post_body <- list(query = query_string, variables = variables)
 r <- httr::POST(url=base_url, body=post_body, encode='json')
 data <- iconv(r, "", "ASCII")
 content <- jsonlite::fromJSON(data)
-```
-
-where `jsonlite::fromJSON(content(r,"text",encoding="UTF-8"))` also works when R is nicely compiled with libiconv.
-
-A more sophisticated version is as follows,
-
-```{r ot2, messages=FALSE}
 target <- content$data$target
 scalar_fields <- data.frame(
   Field = c("ID", "Approved Symbol", "Biotype"),
   Value = c(target$id, target$approvedSymbol, target$biotype)
 )
 tractability_data <- target$tractability
-knitr::kable(scalar_fields, caption = "Basic Information") %>%
-  kableExtra::kable_styling(bootstrap_options = c("striped", "hover"))
-knitr::kable(target$geneticConstraint, caption = "Genetic Constraint Metrics") %>%
-  kableExtra::kable_styling(bootstrap_options = c("striped", "hover"))
-knitr::kable(tractability_data, caption = "Tractability Information") %>%
-  kableExtra::kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
+knitr::kable(scalar_fields, caption = "Basic Information")
+knitr::kable(target$geneticConstraint, caption = "Genetic Constraint Metrics")
+knitr::kable(tractability_data, caption = "Tractability Information")
 ```
+
+where `jsonlite::fromJSON(content(r,"text",encoding="UTF-8"))` also works when R is nicely compiled with libiconv.
 
 # Annotations
 
