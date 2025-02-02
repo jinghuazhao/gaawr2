@@ -146,14 +146,15 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">sumstats</span>, <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">avg_hp</span>, fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_bar</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"identity"</span><span class="op">)</span> <span class="op">+</span></span>
-<span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span></span>
-<span>    title <span class="op">=</span> <span class="st">"Average Horsepower by Cylinder Count (mpg &gt; 20)"</span>,</span>
-<span>    x <span class="op">=</span> <span class="st">"Number of Cylinders"</span>,</span>
-<span>    y <span class="op">=</span> <span class="st">"Average Horsepower"</span></span>
-<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">""</span>, x <span class="op">=</span> <span class="st">"Number of Cylinders"</span>, y <span class="op">=</span> <span class="st">"Average Horsepower"</span><span class="op">)</span> <span class="op">+</span></span>
 <span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html" class="external-link">scale_fill_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Set2"</span>, name <span class="op">=</span> <span class="st">"Cylinders"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="gaawr2%2Fops-1.png" width="672" style="display:block; margin: auto"></p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:ops"></span>
+<img src="gaawr2%2Fops-1.png" alt="Average Horsepower by Cylinder Count (mpg &gt; 20)" width="672" style="display:block; margin: auto"><p class="caption">
+Figure 2.1: Average Horsepower by Cylinder Count (mpg &gt; 20)
+</p>
+</div>
 <p>The Comprehensive R Archive Network (CRAN) host and Bioconductor host many fined-tuned user-contributed packages, their installation is furnished through</p>
 <ul>
 <li>
@@ -1425,14 +1426,7 @@ Figure 3.1: SNP ternary plot
 <span>                                         simulate<span class="op">=</span><span class="cn">TRUE</span>,</span>
 <span>                                         sim.control<span class="op">=</span><span class="fu">haplo.stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/haplo.stats/man/score.sim.control.html" class="external-link">score.sim.control</a></span><span class="op">(</span>min.sim<span class="op">=</span><span class="fl">100</span>,</span>
 <span>                                         max.sim<span class="op">=</span><span class="fl">200</span><span class="op">)</span><span class="op">)</span> </span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">haplo.score</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Sliding Window="</span>, <span class="va">i</span><span class="op">+</span><span class="fl">3</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div>
-<p><img src="gaawr2%2Fhaplo.stats-1.png" width="672" style="display:block; margin: auto"></p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">snpsH3</span> <span class="op">&lt;-</span> <span class="va">snpsH2</span><span class="op">[</span><span class="fl">4</span><span class="op">:</span><span class="fl">7</span><span class="op">]</span></span>
+<span><span class="va">snpsH3</span> <span class="op">&lt;-</span> <span class="va">snpsH2</span><span class="op">[</span><span class="fl">4</span><span class="op">:</span><span class="fl">7</span><span class="op">]</span></span>
 <span><span class="va">genoH3</span> <span class="op">&lt;-</span> <span class="fu">make.geno</span><span class="op">(</span><span class="va">asthma.snps</span>, <span class="va">snpsH3</span><span class="op">)</span></span>
 <span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu">haplo.stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/haplo.stats/man/haplo.glm.html" class="external-link">haplo.glm</a></span><span class="op">(</span><span class="va">cc</span><span class="op">~</span><span class="va">genoH3</span>, data<span class="op">=</span><span class="va">asthma.snps</span>,</span>
 <span>             family<span class="op">=</span><span class="st">"binomial"</span>,</span>
@@ -1511,7 +1505,7 @@ Figure 3.1: SNP ternary plot
 <span class="header-section-number">3.4</span> GMMAT<a class="anchor" aria-label="anchor" href="#gmmat"></a>
 </h3>
 <p>The following is modified slightly from the package vignette,</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">example</span>,package<span class="op">=</span><span class="st">"GMMAT"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/attach.html" class="external-link">attach</a></span><span class="op">(</span><span class="va">example</span><span class="op">)</span></span>
 <span><span class="va">model0</span> <span class="op">&lt;-</span> <span class="fu">GMMAT</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GMMAT/man/glmmkin.html" class="external-link">glmmkin</a></span><span class="op">(</span><span class="va">disease</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">pheno</span>, kins <span class="op">=</span> <span class="va">GRM</span>,</span>
@@ -1601,7 +1595,7 @@ Figure 3.1: SNP ternary plot
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="va">outfile</span><span class="op">)</span></span>
 <span><span class="va">bed.file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"geno.bed"</span>, package <span class="op">=</span> <span class="st">"GMMAT"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>            <span class="fu">tools</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/tools/fileutils.html" class="external-link">file_path_sans_ext</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -1685,7 +1679,7 @@ Figure 3.1: SNP ternary plot
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/detach.html" class="external-link">detach</a></span><span class="op">(</span><span class="va">example</span><span class="op">)</span></span></code></pre></div>
 <p>where both BGEN and PLINK binary file are illustrated.</p>
 </div>
@@ -1700,7 +1694,7 @@ Figure 3.1: SNP ternary plot
 <span class="header-section-number">3.6</span> GWAS<a class="anchor" aria-label="anchor" href="#gwas"></a>
 </h3>
 <p>We return to the asthma data used in <strong>SNPassoc</strong>.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">assoc</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/WGassociation.html" class="external-link">WGassociation</a></span><span class="op">(</span><span class="va">cc</span>, data<span class="op">=</span><span class="va">asthma.snps</span><span class="op">)</span></span>
 <span><span class="va">assoc.adj</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/WGassociation.html" class="external-link">WGassociation</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="va">country</span> <span class="op">+</span> <span class="va">smoke</span>, <span class="va">asthma.snps</span><span class="op">)</span></span>
 <span><span class="va">assoc.maxstat</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/maxstat.html" class="external-link">maxstat</a></span><span class="op">(</span><span class="va">asthma.snps</span>, <span class="va">cc</span><span class="op">)</span></span>
@@ -1722,7 +1716,7 @@ Figure 3.1: SNP ternary plot
 <h3 id="h2-jags">
 <span class="header-section-number">3.7</span> h2.jags<a class="anchor" aria-label="anchor" href="#h2-jags"></a>
 </h3>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1234567</span><span class="op">)</span></span>
 <span><span class="va">meyer</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">within</a></span><span class="op">(</span><span class="va">meyer</span>,<span class="op">{</span></span>
 <span>         <span class="va">y</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">y</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">y</span>,na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">y</span>,na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
@@ -1851,7 +1845,7 @@ every iteraction is kept (n.thin=1).</p>
 </h3>
 <p>Consider <code>powereQTL.SLR</code> (simple linear regression) for a sample size of 50-300 by 50, minor allele frequencies
 0.005~0.5, <span class="math inline">\(\alpha\)</span>=0.05. We have,</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">n.designs</span> <span class="op">&lt;-</span> <span class="fl">6</span></span>
 <span><span class="va">designs</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="va">n.designs</span></span>
 <span><span class="va">N</span> <span class="op">&lt;-</span> <span class="fl">50</span> <span class="op">*</span> <span class="va">designs</span></span>
@@ -1877,11 +1871,12 @@ Figure 3.2: Power Estimation for eQTL Studies of 240 SNPs
 </p>
 </div>
 <p>The counterpart for single-cell RNA-Seq design is via <code>powerEQTL.scRNAseq</code>.</p>
-<div class="section level4" number="3.8.1">
-<h4 id="opentargets">
-<span class="header-section-number">3.8.1</span> OpenTargets<a class="anchor" aria-label="anchor" href="#opentargets"></a>
-</h4>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+</div>
+<div class="section level3" number="3.9">
+<h3 id="opentargets">
+<span class="header-section-number">3.9</span> OpenTargets<a class="anchor" aria-label="anchor" href="#opentargets"></a>
+</h3>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gene_id</span> <span class="op">&lt;-</span> <span class="st">"ENSG00000164308"</span></span>
 <span><span class="va">query_string</span> <span class="op">=</span> <span class="st">"</span></span>
 <span><span class="st">  query target($ensemblId: String!){</span></span>
@@ -1912,489 +1907,234 @@ Figure 3.2: Power Estimation for eQTL Studies of 240 SNPs
 <span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/POST.html" class="external-link">POST</a></span><span class="op">(</span>url<span class="op">=</span><span class="va">base_url</span>, body<span class="op">=</span><span class="va">post_body</span>, encode<span class="op">=</span><span class="st">'json'</span><span class="op">)</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/iconv.html" class="external-link">iconv</a></span><span class="op">(</span><span class="va">r</span>, <span class="st">""</span>, <span class="st">"ASCII"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; No encoding supplied: defaulting to UTF-8.</span></span>
-<span><span class="va">content</span> <span class="op">&lt;-</span> <span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://jeroen.r-universe.dev/jsonlite/reference/fromJSON.html" class="external-link">fromJSON</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span></code></pre></div>
-<p>where <code>jsonlite::fromJSON(content(r,"text",encoding="UTF-8"))</code> also works when R is nicely compiled with libiconv.</p>
-<p>A more sophisticated version is as follows,</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">target</span> <span class="op">&lt;-</span> <span class="va">content</span><span class="op">$</span><span class="va">data</span><span class="op">$</span><span class="va">target</span></span>
+<span><span class="va">content</span> <span class="op">&lt;-</span> <span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://jeroen.r-universe.dev/jsonlite/reference/fromJSON.html" class="external-link">fromJSON</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span>
+<span><span class="va">target</span> <span class="op">&lt;-</span> <span class="va">content</span><span class="op">$</span><span class="va">data</span><span class="op">$</span><span class="va">target</span></span>
 <span><span class="va">scalar_fields</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
 <span>  Field <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ID"</span>, <span class="st">"Approved Symbol"</span>, <span class="st">"Biotype"</span><span class="op">)</span>,</span>
 <span>  Value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">target</span><span class="op">$</span><span class="va">id</span>, <span class="va">target</span><span class="op">$</span><span class="va">approvedSymbol</span>, <span class="va">target</span><span class="op">$</span><span class="va">biotype</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="va">tractability_data</span> <span class="op">&lt;-</span> <span class="va">target</span><span class="op">$</span><span class="va">tractability</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">scalar_fields</span>, caption <span class="op">=</span> <span class="st">"Basic Information"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>bootstrap_options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"striped"</span>, <span class="st">"hover"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table class="table table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">scalar_fields</span>, caption <span class="op">=</span> <span class="st">"Basic Information"</span><span class="op">)</span></span></code></pre></div>
+<table class="table">
 <caption>
-<span id="tab:ot2">Table 3.5: </span><span id="tab:ot2">Table 3.6: </span>Basic Information
-</caption>
-<thead><tr>
-<th style="text-align:left;">
-Field
-</th>
-<th style="text-align:left;">
-Value
-</th>
+<span id="tab:ot">Table 3.5: </span>Basic Information</caption>
+<thead><tr class="header">
+<th align="left">Field</th>
+<th align="left">Value</th>
 </tr></thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-ID
-</td>
-<td style="text-align:left;">
-ENSG00000164308
-</td>
+<tr class="odd">
+<td align="left">ID</td>
+<td align="left">ENSG00000164308</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Approved Symbol
-</td>
-<td style="text-align:left;">
-ERAP2
-</td>
+<tr class="even">
+<td align="left">Approved Symbol</td>
+<td align="left">ERAP2</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Biotype
-</td>
-<td style="text-align:left;">
-protein_coding
-</td>
+<tr class="odd">
+<td align="left">Biotype</td>
+<td align="left">protein_coding</td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">target</span><span class="op">$</span><span class="va">geneticConstraint</span>, caption <span class="op">=</span> <span class="st">"Genetic Constraint Metrics"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>bootstrap_options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"striped"</span>, <span class="st">"hover"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table class="table table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">target</span><span class="op">$</span><span class="va">geneticConstraint</span>, caption <span class="op">=</span> <span class="st">"Genetic Constraint Metrics"</span><span class="op">)</span></span></code></pre></div>
+<table class="table">
 <caption>
-<span id="tab:ot2">Table 3.5: </span><span id="tab:ot2">Table 3.5: </span>Genetic Constraint Metrics
-</caption>
-<thead><tr>
-<th style="text-align:left;">
-constraintType
-</th>
-<th style="text-align:right;">
-exp
-</th>
-<th style="text-align:right;">
-obs
-</th>
-<th style="text-align:right;">
-score
-</th>
-<th style="text-align:right;">
-oe
-</th>
-<th style="text-align:right;">
-oeLower
-</th>
-<th style="text-align:right;">
-oeUpper
-</th>
+<span id="tab:ot">Table 3.5: </span>Genetic Constraint Metrics</caption>
+<thead><tr class="header">
+<th align="left">constraintType</th>
+<th align="right">exp</th>
+<th align="right">obs</th>
+<th align="right">score</th>
+<th align="right">oe</th>
+<th align="right">oeLower</th>
+<th align="right">oeUpper</th>
 </tr></thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-syn
-</td>
-<td style="text-align:right;">
-186
-</td>
-<td style="text-align:right;">
-183
-</td>
-<td style="text-align:right;">
-0.15
-</td>
-<td style="text-align:right;">
-0.99
-</td>
-<td style="text-align:right;">
-0.87
-</td>
-<td style="text-align:right;">
-1.1
-</td>
+<tr class="odd">
+<td align="left">syn</td>
+<td align="right">186</td>
+<td align="right">183</td>
+<td align="right">0.15</td>
+<td align="right">0.99</td>
+<td align="right">0.87</td>
+<td align="right">1.1</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-mis
-</td>
-<td style="text-align:right;">
-497
-</td>
-<td style="text-align:right;">
-501
-</td>
-<td style="text-align:right;">
--0.07
-</td>
-<td style="text-align:right;">
-1.01
-</td>
-<td style="text-align:right;">
-0.94
-</td>
-<td style="text-align:right;">
-1.1
-</td>
+<tr class="even">
+<td align="left">mis</td>
+<td align="right">497</td>
+<td align="right">501</td>
+<td align="right">-0.07</td>
+<td align="right">1.01</td>
+<td align="right">0.94</td>
+<td align="right">1.1</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-lof
-</td>
-<td style="text-align:right;">
-48
-</td>
-<td style="text-align:right;">
-45
-</td>
-<td style="text-align:right;">
-0.00
-</td>
-<td style="text-align:right;">
-0.93
-</td>
-<td style="text-align:right;">
-0.73
-</td>
-<td style="text-align:right;">
-1.2
-</td>
+<tr class="odd">
+<td align="left">lof</td>
+<td align="right">48</td>
+<td align="right">45</td>
+<td align="right">0.00</td>
+<td align="right">0.93</td>
+<td align="right">0.73</td>
+<td align="right">1.2</td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tractability_data</span>, caption <span class="op">=</span> <span class="st">"Tractability Information"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>bootstrap_options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"striped"</span>, <span class="st">"hover"</span><span class="op">)</span>, full_width <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-<table class="table table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tractability_data</span>, caption <span class="op">=</span> <span class="st">"Tractability Information"</span><span class="op">)</span></span></code></pre></div>
+<table class="table">
 <caption>
-<span id="tab:ot2">Table 3.5: </span><span id="tab:ot2">Table 3.5: </span>Tractability Information
-</caption>
-<thead><tr>
-<th style="text-align:left;">
-label
-</th>
-<th style="text-align:left;">
-modality
-</th>
-<th style="text-align:left;">
-value
-</th>
+<span id="tab:ot">Table 3.5: </span>Tractability Information</caption>
+<thead><tr class="header">
+<th align="left">label</th>
+<th align="left">modality</th>
+<th align="left">value</th>
 </tr></thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-Approved Drug
-</td>
-<td style="text-align:left;">
-SM
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
+<tr class="odd">
+<td align="left">Approved Drug</td>
+<td align="left">SM</td>
+<td align="left">FALSE</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Advanced Clinical
-</td>
-<td style="text-align:left;">
-SM
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
+<tr class="even">
+<td align="left">Advanced Clinical</td>
+<td align="left">SM</td>
+<td align="left">TRUE</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Phase 1 Clinical
-</td>
-<td style="text-align:left;">
-SM
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
+<tr class="odd">
+<td align="left">Phase 1 Clinical</td>
+<td align="left">SM</td>
+<td align="left">FALSE</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Structure with Ligand
-</td>
-<td style="text-align:left;">
-SM
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
+<tr class="even">
+<td align="left">Structure with Ligand</td>
+<td align="left">SM</td>
+<td align="left">TRUE</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-High-Quality Ligand
-</td>
-<td style="text-align:left;">
-SM
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
+<tr class="odd">
+<td align="left">High-Quality Ligand</td>
+<td align="left">SM</td>
+<td align="left">TRUE</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-High-Quality Pocket
-</td>
-<td style="text-align:left;">
-SM
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
+<tr class="even">
+<td align="left">High-Quality Pocket</td>
+<td align="left">SM</td>
+<td align="left">FALSE</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Med-Quality Pocket
-</td>
-<td style="text-align:left;">
-SM
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
+<tr class="odd">
+<td align="left">Med-Quality Pocket</td>
+<td align="left">SM</td>
+<td align="left">FALSE</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Druggable Family
-</td>
-<td style="text-align:left;">
-SM
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
+<tr class="even">
+<td align="left">Druggable Family</td>
+<td align="left">SM</td>
+<td align="left">FALSE</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Approved Drug
-</td>
-<td style="text-align:left;">
-AB
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
+<tr class="odd">
+<td align="left">Approved Drug</td>
+<td align="left">AB</td>
+<td align="left">FALSE</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Advanced Clinical
-</td>
-<td style="text-align:left;">
-AB
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
+<tr class="even">
+<td align="left">Advanced Clinical</td>
+<td align="left">AB</td>
+<td align="left">FALSE</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Phase 1 Clinical
-</td>
-<td style="text-align:left;">
-AB
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
+<tr class="odd">
+<td align="left">Phase 1 Clinical</td>
+<td align="left">AB</td>
+<td align="left">FALSE</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-UniProt loc high conf
-</td>
-<td style="text-align:left;">
-AB
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
+<tr class="even">
+<td align="left">UniProt loc high conf</td>
+<td align="left">AB</td>
+<td align="left">FALSE</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-GO CC high conf
-</td>
-<td style="text-align:left;">
-AB
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
+<tr class="odd">
+<td align="left">GO CC high conf</td>
+<td align="left">AB</td>
+<td align="left">FALSE</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-UniProt loc med conf
-</td>
-<td style="text-align:left;">
-AB
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
+<tr class="even">
+<td align="left">UniProt loc med conf</td>
+<td align="left">AB</td>
+<td align="left">FALSE</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-UniProt SigP or TMHMM
-</td>
-<td style="text-align:left;">
-AB
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
+<tr class="odd">
+<td align="left">UniProt SigP or TMHMM</td>
+<td align="left">AB</td>
+<td align="left">TRUE</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-GO CC med conf
-</td>
-<td style="text-align:left;">
-AB
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
+<tr class="even">
+<td align="left">GO CC med conf</td>
+<td align="left">AB</td>
+<td align="left">FALSE</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Human Protein Atlas loc
-</td>
-<td style="text-align:left;">
-AB
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
+<tr class="odd">
+<td align="left">Human Protein Atlas loc</td>
+<td align="left">AB</td>
+<td align="left">FALSE</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Approved Drug
-</td>
-<td style="text-align:left;">
-PR
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
+<tr class="even">
+<td align="left">Approved Drug</td>
+<td align="left">PR</td>
+<td align="left">FALSE</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Advanced Clinical
-</td>
-<td style="text-align:left;">
-PR
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
+<tr class="odd">
+<td align="left">Advanced Clinical</td>
+<td align="left">PR</td>
+<td align="left">FALSE</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Phase 1 Clinical
-</td>
-<td style="text-align:left;">
-PR
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
+<tr class="even">
+<td align="left">Phase 1 Clinical</td>
+<td align="left">PR</td>
+<td align="left">FALSE</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Literature
-</td>
-<td style="text-align:left;">
-PR
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
+<tr class="odd">
+<td align="left">Literature</td>
+<td align="left">PR</td>
+<td align="left">FALSE</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-UniProt Ubiquitination
-</td>
-<td style="text-align:left;">
-PR
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
+<tr class="even">
+<td align="left">UniProt Ubiquitination</td>
+<td align="left">PR</td>
+<td align="left">FALSE</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Database Ubiquitination
-</td>
-<td style="text-align:left;">
-PR
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
+<tr class="odd">
+<td align="left">Database Ubiquitination</td>
+<td align="left">PR</td>
+<td align="left">TRUE</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Half-life Data
-</td>
-<td style="text-align:left;">
-PR
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
+<tr class="even">
+<td align="left">Half-life Data</td>
+<td align="left">PR</td>
+<td align="left">TRUE</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Small Molecule Binder
-</td>
-<td style="text-align:left;">
-PR
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
+<tr class="odd">
+<td align="left">Small Molecule Binder</td>
+<td align="left">PR</td>
+<td align="left">TRUE</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Approved Drug
-</td>
-<td style="text-align:left;">
-OC
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
+<tr class="even">
+<td align="left">Approved Drug</td>
+<td align="left">OC</td>
+<td align="left">FALSE</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Advanced Clinical
-</td>
-<td style="text-align:left;">
-OC
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
+<tr class="odd">
+<td align="left">Advanced Clinical</td>
+<td align="left">OC</td>
+<td align="left">FALSE</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Phase 1 Clinical
-</td>
-<td style="text-align:left;">
-OC
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
+<tr class="even">
+<td align="left">Phase 1 Clinical</td>
+<td align="left">OC</td>
+<td align="left">FALSE</td>
 </tr>
 </tbody>
 </table>
-</div>
+<p>where <code>jsonlite::fromJSON(content(r,"text",encoding="UTF-8"))</code> also works when R is nicely compiled with libiconv.</p>
 </div>
 </div>
 <div class="section level2" number="4">
@@ -2405,7 +2145,7 @@ FALSE
 <h3 id="ensdb-hsapiens-v75">
 <span class="header-section-number">4.1</span> EnsDb.Hsapiens.v75<a class="anchor" aria-label="anchor" href="#ensdb-hsapiens-v75"></a>
 </h3>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">ensembldb</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Annotated-class.html" class="external-link">metadata</a></span><span class="op">(</span><span class="va">EnsDb.Hsapiens.v75</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                  name                               value</span></span>
 <span><span class="co">#&gt; 1             Db type                               EnsDb</span></span>
@@ -2452,7 +2192,7 @@ FALSE
 <h3 id="biomart">
 <span class="header-section-number">4.2</span> biomaRt<a class="anchor" aria-label="anchor" href="#biomart"></a>
 </h3>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu">biomaRt</span><span class="fu">::</span><span class="fu">martBMCheck</span><span class="op">(</span><span class="va">mart</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/stop.html" class="external-link">stop</a></span><span class="op">(</span><span class="st">"The BioMart service is currently unavailable."</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
@@ -2473,7 +2213,7 @@ FALSE
 <span class="header-section-number">4.3</span> Experimental Factor Ontology (EFO)<a class="anchor" aria-label="anchor" href="#experimental-factor-ontology-efo"></a>
 </h3>
 <p>The ontology of traits/disease is formally available as this<span class="citation"><sup>2</sup></span>. The script below assumes that efo-3.26.0 has been downloaded.</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ontologyIndex</span><span class="op">)</span></span>
 <span><span class="va">id</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">ontology</span><span class="op">)</span></span>
 <span><span class="op">{</span></span>
