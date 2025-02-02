@@ -135,7 +135,7 @@ HardyWeinberg::HWPerm.mult(GenotypeCounts,nperm=300)
 HardyWeinberg::HWStr(hla[,3:4],test="permutation",nperm=300)
 ```
 
-Only 300 permutations are done to illustrate.
+The MN locus is seen to be close to the HWE line from the ternary plot. Only 300 permutations are done for the HLA/DQR data to illustrate.
 
 ## SNPassoc
 
