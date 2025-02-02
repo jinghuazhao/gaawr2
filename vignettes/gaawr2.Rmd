@@ -119,7 +119,7 @@ options(width=200)
 # MN blood group
 SNP <- c(MM = 298, MN = 489, NN = 213)
 HardyWeinberg::maf(SNP)
-HardyWeinberg::HWTernaryPlot(SNP,region=0,hwcurve=FALSE,grid=TRUE,markercol="blue")
+HardyWeinberg::HWTernaryPlot(SNP,region=0,grid=TRUE,markercol="blue")
 HardyWeinberg::HWChisq(SNP, cc = 0, verbose = TRUE)
 # Chromosome X
 xSNP <- c(A=10, B=20, AA=30, AB=20, BB=10)
