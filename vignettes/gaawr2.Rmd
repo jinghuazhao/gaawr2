@@ -191,7 +191,7 @@ SNPassoc::association(cc ~ rs4490198 * factor(rs11123242), data = asthma.snps, m
 
 This package considers haplotype estimation using EM-algorithms and genetic association under a generalized linear model (GLM).
 
-```{r haplostats}
+```{r haplostats, warning=FALSE}
 # Association with the first three SNPs
 snpsH <- names(asthma.snps)[6+(1:3)]
 genoH <- SNPassoc::make.geno(asthma.snps, snpsH)
