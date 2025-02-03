@@ -34,6 +34,8 @@ navbar:
   components:
     home:
         icon: fa-home
+        text: "Home"
+        aria-hidden: "true"
         href: index.html
     articles:
         text: Articles
