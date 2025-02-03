@@ -2,9 +2,9 @@ Package: gaawr2
 Title: Genetic Association Analysis with R (II)
 Version: 0.0.1
 Date: 2025-2-3
-Authors@R: 
-    person("Jing Hua", "Zhao", , "jinghuazhao@hotmail.com", role = c("aut", "cre"))
-Author: Jing Hua Zhao [aut, cre] (<https://orcid.org/0000-0002-1463-5870>, 0000-0003-4930-3582)
+Authors@R: person("Jing Hua", "Zhao", , role = c("aut", "cre"),
+                  email = "jinghuazhao@hotmail.com",
+                  comment = c(ORCID = "https://orcid.org/0000-0002-1463-5870", ORCID = "0000-0003-4930-3582"))
 Maintainer: Jing Hua Zhao <jinghuazhao@hotmail.com>
 Description: An R package companion to the titled Henry-Stewart talk, part 2.
 License: MIT + file LICENSE
