@@ -1318,15 +1318,16 @@ Figure 3.1: SNP ternary plot
 <span><span class="va">snpsH</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">asthma.snps</span><span class="op">)</span><span class="op">[</span><span class="fl">6</span><span class="op">+</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="va">genoH</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/makegeno.html" class="external-link">make.geno</a></span><span class="op">(</span><span class="va">asthma.snps</span>, <span class="va">snpsH</span><span class="op">)</span></span>
 <span><span class="va">em</span> <span class="op">&lt;-</span> <span class="fu">haplo.stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/haplo.stats/man/haplo.em.html" class="external-link">haplo.em</a></span><span class="op">(</span><span class="va">genoH</span>, locus.label <span class="op">=</span> <span class="va">snpsH</span>, miss.val <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">haplo_table</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">em</span><span class="op">$</span><span class="va">haplotype</span>, <span class="va">em</span><span class="op">$</span><span class="va">hap.prob</span><span class="op">)</span></span>
+<span><span class="va">haplo_table</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">em</span>,<span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">haplotype</span>,<span class="va">hap.prob</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">haplo_table</span>,caption<span class="op">=</span><span class="st">"Haplotypes of the first three SNPs"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
-<caption>(#tab:haplo.stats)Haplotypes of the first three SNPs</caption>
+<caption>
+<span id="tab:haplostats">Table 3.3: </span>Haplotypes of the first three SNPs</caption>
 <thead><tr class="header">
 <th align="left">rs4490198</th>
 <th align="left">rs4849332</th>
 <th align="left">rs1367179</th>
-<th align="right">em$hap.prob</th>
+<th align="right">hap.prob</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -1492,7 +1493,7 @@ Figure 3.1: SNP ternary plot
 <span>     <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span>caption<span class="op">=</span><span class="st">"Score tests under GLMM on four SNPs"</span>,digits<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>
-<span id="tab:gmmat">Table 3.3: </span>Score tests under GLMM on four SNPs</caption>
+<span id="tab:gmmat">Table 3.4: </span>Score tests under GLMM on four SNPs</caption>
 <thead><tr class="header">
 <th align="left">SNP</th>
 <th align="left">RSID</th>
@@ -1571,7 +1572,7 @@ Figure 3.1: SNP ternary plot
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">model.wald</span>,caption<span class="op">=</span><span class="st">"Wald tests under GLMM on four SNPs"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>
-<span id="tab:gmmat">Table 3.3: </span>Wald tests under GLMM on four SNPs</caption>
+<span id="tab:gmmat">Table 3.4: </span>Wald tests under GLMM on four SNPs</caption>
 <thead><tr class="header">
 <th align="left">CHR</th>
 <th align="left">SNP</th>
@@ -1728,7 +1729,7 @@ Figure 3.1: SNP ternary plot
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">ex</span><span class="op">$</span><span class="va">BUGSoutput</span><span class="op">$</span><span class="va">summary</span>,digits<span class="op">=</span><span class="fl">2</span>,caption<span class="op">=</span><span class="st">"MCMC results for the Meyer data"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>
-<span id="tab:jags">Table 3.4: </span>MCMC results for the Meyer data</caption>
+<span id="tab:jags">Table 3.5: </span>MCMC results for the Meyer data</caption>
 <thead><tr class="header">
 <th align="left"></th>
 <th align="right">mean</th>
@@ -1883,7 +1884,7 @@ Figure 3.2: Power Estimation for eQTL Studies of 240 SNPs
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">scalar_fields</span>, caption <span class="op">=</span> <span class="st">"Basic Information"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>
-<span id="tab:ot">Table 3.5: </span>Basic Information</caption>
+<span id="tab:ot">Table 3.6: </span>Basic Information</caption>
 <thead><tr class="header">
 <th align="left">Field</th>
 <th align="left">Value</th>
@@ -1907,7 +1908,7 @@ Figure 3.2: Power Estimation for eQTL Studies of 240 SNPs
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">target</span><span class="op">$</span><span class="va">geneticConstraint</span>, caption <span class="op">=</span> <span class="st">"Genetic Constraint Metrics"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>
-<span id="tab:ot">Table 3.5: </span>Genetic Constraint Metrics</caption>
+<span id="tab:ot">Table 3.6: </span>Genetic Constraint Metrics</caption>
 <thead><tr class="header">
 <th align="left">constraintType</th>
 <th align="right">exp</th>
@@ -1951,7 +1952,7 @@ Figure 3.2: Power Estimation for eQTL Studies of 240 SNPs
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tractability_data</span>, caption <span class="op">=</span> <span class="st">"Tractability Information"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>
-<span id="tab:ot">Table 3.5: </span>Tractability Information</caption>
+<span id="tab:ot">Table 3.6: </span>Tractability Information</caption>
 <thead><tr class="header">
 <th align="left">label</th>
 <th align="left">modality</th>
