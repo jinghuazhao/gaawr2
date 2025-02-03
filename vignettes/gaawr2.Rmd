@@ -148,9 +148,9 @@ options(width=200,digits=2)
 data(asthma, package = "SNPassoc")
 str(asthma, list.len=8)
 knitr::kable(asthma[1:3,1:8],caption="First three records & two SNPs")
-
 snpCols <- colnames(asthma)[6+(1:2)]
 snps <- SNPassoc::setupSNP(data=asthma[snpCols], colSNPs=1:length(snpCols), sep="")
+head(snps)
 summary(snps, print=FALSE)
 lapply(snps, head)
 lapply(snps, summary)
@@ -164,14 +164,28 @@ We then turn to genetic models for the first one,
 ```{r snpassoc2, warning=FALSE}
 asthma.snps <- asthma %>%
                dplyr::rename(cc=casecontrol) %>%
-               SNPassoc::setupSNP(colSNPs=7:ncol(.), sep="")
-SNPassoc::association(bmi ~ rs4490198, asthma.snps)
-SNPassoc::association(cc ~ rs4490198, data=asthma.snps)
-SNPassoc::association(cc ~ rs4490198 + country + smoke, asthma.snps)
-SNPassoc::association(cc ~ rs4490198 + survival::strata(gender), asthma.snps)
-SNPassoc::association(cc ~ rs4490198, asthma.snps, subset=country=="Spain")
-SNPassoc::association(cc ~ SNPassoc::dominant(rs4490198)*factor(smoke), data=asthma.snps)
-SNPassoc::association(cc ~ rs4490198*factor(rs11123242), data=asthma.snps, model.interaction = "dominant" )
+               SNPassoc::setupSNP(colSNPs=(6+1):ncol(.), sep="")
+names(asthma.snps)[1:15]
+# Model 1: Simple SNP association with BMI
+SNPassoc::association(bmi ~ rs4490198, data = asthma.snps)
+
+# Model 2: SNP association with case-control status
+SNPassoc::association(cc ~ rs4490198, data = asthma.snps)
+
+# Model 3: SNP association with covariates (country and smoke)
+SNPassoc::association(cc ~ rs4490198 + country + smoke, data = asthma.snps)
+
+# Model 4: SNP association with stratification by gender
+SNPassoc::association(cc ~ rs4490198 + survival::strata(gender), data = asthma.snps)
+
+# Model 5: SNP association with subset (only Spain)
+SNPassoc::association(cc ~ rs4490198, data = asthma.snps, subset = country == "Spain")
+
+# Model 6: Interaction between SNP (dominant model) and smoking
+SNPassoc::association(cc ~ SNPassoc::dominant(rs4490198) * factor(smoke), data = asthma.snps)
+
+# Model 7: Interaction between two SNPs (dominant model for rs4490198)
+SNPassoc::association(cc ~ rs4490198 * factor(rs11123242), data = asthma.snps, model.interaction = "dominant")
 ```
 
 ## haplo.stats
@@ -179,51 +193,41 @@ SNPassoc::association(cc ~ rs4490198*factor(rs11123242), data=asthma.snps, model
 This package considers haplotype estimation using EM-algorithms and genetic association under a generalized linear model (GLM).
 
 ```{r haplo.stats}
-data(asthma, package = "SNPassoc")
-asthma.snps <- SNPassoc::setupSNP(data=asthma, colSNPs=grep("^rs", colnames(asthma)), sep="")
-asthma.snps <- SNPassoc::setupSNP(data=asthma, colSNPs=grep("^rs", colnames(asthma)), sep="") %>%
-               dplyr::rename(cc=casecontrol)
-library(haplo.stats)
-snpsH <- c("rs714588", "rs1023555",  "rs898070")
+# Association with the first three SNPs
+snpsH <- names(asthma.snps)[6+(1:3)]
 genoH <- SNPassoc::make.geno(asthma.snps, snpsH)
 em <- haplo.stats::haplo.em(genoH, locus.label = snpsH, miss.val = c(0, NA))
-em
-knitr::kable(cbind(em$haplotype,em$hap.prob),caption="Haplotypes of rs714588, rs1023555, rs898070")
+haplo_table <- cbind(em$haplotype, em$hap.prob)
+knitr::kable(haplo_table,caption="Haplotypes of the first three SNPs")
+modH <- haplo.stats::haplo.glm(cc ~ genoH, data=asthma.snps,
+                               family="binomial",
+                               locus.label=snpsH,
+                               allele.lev=attributes(genoH)$unique.alleles,
+                               control = haplo.stats::haplo.glm.control(haplo.freq.min=0.05))
+modH
+SNPassoc::intervals(modH)
 
-mod <- haplo.stats::haplo.glm(cc ~ genoH, data=asthma.snps,
-                              family="binomial",
-                              locus.label=snpsH,
-                              allele.lev=attributes(genoH)$unique.alleles,
-                              control = haplo.stats::haplo.glm.control(haplo.freq.min=0.05))
-mod
-SNPassoc::intervals(mod)
-snpsH2 <- labels(asthma.snps)[6:15]
-genoH2 <- SNPassoc::make.geno(asthma.snps, snpsH2)
-haplo.score <- list()
-for (i in 1:4) haplo.score[[i]] <- haplo.stats::haplo.score.slide(asthma.snps$cc, genoH2,
-                                         trait.type="binomial",
-                                         n.slide=i+3,
-                                         simulate=TRUE,
-                                         sim.control=haplo.stats::score.sim.control(min.sim=100,
-                                         max.sim=200)) 
-snpsH3 <- snpsH2[4:7]
-genoH3 <- make.geno(asthma.snps, snpsH3)
-mod <- haplo.stats::haplo.glm(cc~genoH3, data=asthma.snps,
-             family="binomial",
-             locus.label=snpsH3,
-             allele.lev=attributes(genoH3)$unique.alleles,
-             control = haplo.stats::haplo.glm.control(haplo.freq.min=0.05))
-mod
-SNPassoc::intervals(mod)
+# Model comparison with / without haplotypes
 mod.adj.ref <- glm(cc ~ smoke, data=asthma.snps, family="binomial")
-mod.adj <- haplo.glm(cc ~ genoH3 + smoke, data=asthma.snps,
+mod.adj <- haplo.glm(cc ~ genoH + smoke, data=asthma.snps,
                  family="binomial",
-                 locus.label=snpsH3,
+                 locus.label=snpsH,
                  allele.lev=attributes(genoH3)$unique.alleles,
                  control = haplo.stats::haplo.glm.control(haplo.freq.min=0.05))
 mod.adj
 lrt.adj <- mod.adj.ref$deviance - mod.adj$deviance
 pchisq(lrt.adj, mod.adj$lrt$df, lower=FALSE)
+
+# Four variable slide windows over nine SNPs
+snpsH <- labels(asthma.snps)[6+(1:9)]
+genoH <- SNPassoc::make.geno(asthma.snps, snpsH)
+haploH <- list()
+for (i in 1:4) haploH[[i]] <- haplo.stats::haplo.score.slide(asthma.snps$cc, genoH,
+                              trait.type="binomial",
+                              n.slide=i,
+                              locus.label=snpsH,
+                              simulate=TRUE,
+                              sim.control=haplo.stats::score.sim.control(min.sim=50,max.sim=100))
 ```
 
 ## GMMAT
