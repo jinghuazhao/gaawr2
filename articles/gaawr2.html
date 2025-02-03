@@ -1048,9 +1048,16 @@ Figure 3.1: SNP ternary plot
 </tbody>
 </table>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="va">snpCols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">asthma</span><span class="op">)</span><span class="op">[</span><span class="fl">6</span><span class="op">+</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span><span class="op">]</span></span>
+<code class="sourceCode R"><span><span class="va">snpCols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">asthma</span><span class="op">)</span><span class="op">[</span><span class="fl">6</span><span class="op">+</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="va">snps</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/setupSNP.html" class="external-link">setupSNP</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">asthma</span><span class="op">[</span><span class="va">snpCols</span><span class="op">]</span>, colSNPs<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">snpCols</span><span class="op">)</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">snps</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   rs4490198 rs4849332</span></span>
+<span><span class="co">#&gt; 1       G/G       T/T</span></span>
+<span><span class="co">#&gt; 2       G/G       G/T</span></span>
+<span><span class="co">#&gt; 3       G/G       T/T</span></span>
+<span><span class="co">#&gt; 4       A/G       G/T</span></span>
+<span><span class="co">#&gt; 5       A/G       G/G</span></span>
+<span><span class="co">#&gt; 6       A/G       G/T</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">snps</span>, print<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="co">#&gt;           alleles major.allele.freq HWE  missing (%)</span></span>
 <span><span class="co">#&gt; rs4490198 A/G     59                0.17 0.6        </span></span>
@@ -1106,8 +1113,11 @@ Figure 3.1: SNP ternary plot
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">asthma.snps</span> <span class="op">&lt;-</span> <span class="va">asthma</span> <span class="op">%&gt;%</span></span>
 <span>               <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>cc<span class="op">=</span><span class="va">casecontrol</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>               <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/setupSNP.html" class="external-link">setupSNP</a></span><span class="op">(</span>colSNPs<span class="op">=</span><span class="fl">7</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span></span>
-<span><span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/association.html" class="external-link">association</a></span><span class="op">(</span><span class="va">bmi</span> <span class="op">~</span> <span class="va">rs4490198</span>, <span class="va">asthma.snps</span><span class="op">)</span></span>
+<span>               <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/setupSNP.html" class="external-link">setupSNP</a></span><span class="op">(</span>colSNPs<span class="op">=</span><span class="op">(</span><span class="fl">6</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">asthma.snps</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">15</span><span class="op">]</span></span>
+<span><span class="co">#&gt;  [1] "country"    "gender"     "age"        "bmi"        "smoke"      "cc"         "rs4490198"  "rs4849332"  "rs1367179"  "rs11123242" "rs13014858" "rs1430094"  "rs1430093"  "rs746710"   "rs1430090"</span></span>
+<span><span class="co"># Model 1: Simple SNP association with BMI</span></span>
+<span><span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/association.html" class="external-link">association</a></span><span class="op">(</span><span class="va">bmi</span> <span class="op">~</span> <span class="va">rs4490198</span>, data <span class="op">=</span> <span class="va">asthma.snps</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; SNP: rs4490198  adjusted by: </span></span>
 <span><span class="co">#&gt;                 n   me    se     dif  lower upper p-value  AIC</span></span>
@@ -1126,7 +1136,9 @@ Figure 3.1: SNP ternary plot
 <span><span class="co">#&gt; A/G           725 25.6 0.174  0.0643 -0.371 0.500             </span></span>
 <span><span class="co">#&gt; log-Additive                                                  </span></span>
 <span><span class="co">#&gt; 0,1,2                        -0.0502 -0.357 0.257   0.749 9013</span></span>
-<span><span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/association.html" class="external-link">association</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="va">rs4490198</span>, data<span class="op">=</span><span class="va">asthma.snps</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Model 2: SNP association with case-control status</span></span>
+<span><span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/association.html" class="external-link">association</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="va">rs4490198</span>, data <span class="op">=</span> <span class="va">asthma.snps</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; SNP: rs4490198  adjusted by: </span></span>
 <span><span class="co">#&gt;                 0    %   1    %   OR lower upper p-value  AIC</span></span>
@@ -1145,7 +1157,9 @@ Figure 3.1: SNP ternary plot
 <span><span class="co">#&gt; A/G           565 45.9 166 49.1 1.14  0.89  1.45             </span></span>
 <span><span class="co">#&gt; log-Additive                                                 </span></span>
 <span><span class="co">#&gt; 0,1,2        1230 78.4 338 21.6 1.06  0.90  1.26   0.495 1638</span></span>
-<span><span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/association.html" class="external-link">association</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="va">rs4490198</span> <span class="op">+</span> <span class="va">country</span> <span class="op">+</span> <span class="va">smoke</span>, <span class="va">asthma.snps</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Model 3: SNP association with covariates (country and smoke)</span></span>
+<span><span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/association.html" class="external-link">association</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="va">rs4490198</span> <span class="op">+</span> <span class="va">country</span> <span class="op">+</span> <span class="va">smoke</span>, data <span class="op">=</span> <span class="va">asthma.snps</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; SNP: rs4490198  adjusted by: country smoke </span></span>
 <span><span class="co">#&gt;                 0    %   1    %   OR lower upper p-value  AIC</span></span>
@@ -1164,7 +1178,9 @@ Figure 3.1: SNP ternary plot
 <span><span class="co">#&gt; A/G           563 46.0 166 49.3 1.15  0.88  1.50             </span></span>
 <span><span class="co">#&gt; log-Additive                                                 </span></span>
 <span><span class="co">#&gt; 0,1,2        1224 78.4 337 21.6 1.06  0.88  1.28   0.538 1402</span></span>
-<span><span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/association.html" class="external-link">association</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="va">rs4490198</span> <span class="op">+</span> <span class="fu">survival</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/strata.html" class="external-link">strata</a></span><span class="op">(</span><span class="va">gender</span><span class="op">)</span>, <span class="va">asthma.snps</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Model 4: SNP association with stratification by gender</span></span>
+<span><span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/association.html" class="external-link">association</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="va">rs4490198</span> <span class="op">+</span> <span class="fu">survival</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/strata.html" class="external-link">strata</a></span><span class="op">(</span><span class="va">gender</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">asthma.snps</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; SNP: rs4490198  adjusted by: survival::strata(gender) </span></span>
 <span><span class="co">#&gt;                 0    %   1    %   OR lower upper p-value  AIC</span></span>
@@ -1183,7 +1199,9 @@ Figure 3.1: SNP ternary plot
 <span><span class="co">#&gt; A/G           565 45.9 166 49.1 1.12  0.88  1.43             </span></span>
 <span><span class="co">#&gt; log-Additive                                                 </span></span>
 <span><span class="co">#&gt; 0,1,2        1230 78.4 338 21.6 1.07  0.90  1.27   0.455 1629</span></span>
-<span><span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/association.html" class="external-link">association</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="va">rs4490198</span>, <span class="va">asthma.snps</span>, subset<span class="op">=</span><span class="va">country</span><span class="op">==</span><span class="st">"Spain"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Model 5: SNP association with subset (only Spain)</span></span>
+<span><span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/association.html" class="external-link">association</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="va">rs4490198</span>, data <span class="op">=</span> <span class="va">asthma.snps</span>, subset <span class="op">=</span> <span class="va">country</span> <span class="op">==</span> <span class="st">"Spain"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; SNP: rs4490198  adjusted by: </span></span>
 <span><span class="co">#&gt;                0    %  1    %   OR lower upper p-value AIC</span></span>
@@ -1202,7 +1220,9 @@ Figure 3.1: SNP ternary plot
 <span><span class="co">#&gt; A/G          145 44.5 22 45.8 1.06  0.57  1.94            </span></span>
 <span><span class="co">#&gt; log-Additive                                              </span></span>
 <span><span class="co">#&gt; 0,1,2        326 87.2 48 12.8 1.24  0.80  1.91   0.339 290</span></span>
-<span><span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/association.html" class="external-link">association</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/inheritance.html" class="external-link">dominant</a></span><span class="op">(</span><span class="va">rs4490198</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">smoke</span><span class="op">)</span>, data<span class="op">=</span><span class="va">asthma.snps</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Model 6: Interaction between SNP (dominant model) and smoking</span></span>
+<span><span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/association.html" class="external-link">association</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/inheritance.html" class="external-link">dominant</a></span><span class="op">(</span><span class="va">rs4490198</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">smoke</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">asthma.snps</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;       SNP: SNPassoc::dominant(rs4490198  adjusted by: </span></span>
 <span><span class="co">#&gt;  Interaction </span></span>
@@ -1240,7 +1260,9 @@ Figure 3.1: SNP ternary plot
 <span><span class="co">#&gt; A/G-G/G 237 53 1.24  0.75  2.04</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; p trend: 0.7</span></span>
-<span><span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/association.html" class="external-link">association</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="va">rs4490198</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">rs11123242</span><span class="op">)</span>, data<span class="op">=</span><span class="va">asthma.snps</span>, model.interaction <span class="op">=</span> <span class="st">"dominant"</span> <span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Model 7: Interaction between two SNPs (dominant model for rs4490198)</span></span>
+<span><span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/association.html" class="external-link">association</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="va">rs4490198</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">rs11123242</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">asthma.snps</span>, model.interaction <span class="op">=</span> <span class="st">"dominant"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;       SNP: rs4490198  adjusted by: </span></span>
 <span><span class="co">#&gt;  Interaction </span></span>
@@ -1292,39 +1314,18 @@ Figure 3.1: SNP ternary plot
 </h3>
 <p>This package considers haplotype estimation using EM-algorithms and genetic association under a generalized linear model (GLM).</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">asthma</span>, package <span class="op">=</span> <span class="st">"SNPassoc"</span><span class="op">)</span></span>
-<span><span class="va">asthma.snps</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/setupSNP.html" class="external-link">setupSNP</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">asthma</span>, colSNPs<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="st">"^rs"</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">asthma</span><span class="op">)</span><span class="op">)</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span></span>
-<span><span class="va">asthma.snps</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/setupSNP.html" class="external-link">setupSNP</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">asthma</span>, colSNPs<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="st">"^rs"</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">asthma</span><span class="op">)</span><span class="op">)</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>               <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>cc<span class="op">=</span><span class="va">casecontrol</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://analytictools.mayo.edu/research/haplo-stats/" class="external-link">haplo.stats</a></span><span class="op">)</span></span>
-<span><span class="va">snpsH</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"rs714588"</span>, <span class="st">"rs1023555"</span>,  <span class="st">"rs898070"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="co"># Association with the first three SNPs</span></span>
+<span><span class="va">snpsH</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">asthma.snps</span><span class="op">)</span><span class="op">[</span><span class="fl">6</span><span class="op">+</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="va">genoH</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/makegeno.html" class="external-link">make.geno</a></span><span class="op">(</span><span class="va">asthma.snps</span>, <span class="va">snpsH</span><span class="op">)</span></span>
 <span><span class="va">em</span> <span class="op">&lt;-</span> <span class="fu">haplo.stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/haplo.stats/man/haplo.em.html" class="external-link">haplo.em</a></span><span class="op">(</span><span class="va">genoH</span>, locus.label <span class="op">=</span> <span class="va">snpsH</span>, miss.val <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">em</span></span>
-<span><span class="co">#&gt; ======================================================================================================================================================================================================== </span></span>
-<span><span class="co">#&gt;                                                                                                Haplotypes                                                                                                </span></span>
-<span><span class="co">#&gt; ======================================================================================================================================================================================================== </span></span>
-<span><span class="co">#&gt;   rs714588 rs1023555 rs898070 hap.freq</span></span>
-<span><span class="co">#&gt; 1        1         1        1    0.041</span></span>
-<span><span class="co">#&gt; 2        1         1        2    0.024</span></span>
-<span><span class="co">#&gt; 3        1         2        1    0.043</span></span>
-<span><span class="co">#&gt; 4        1         2        2    0.440</span></span>
-<span><span class="co">#&gt; 5        2         1        1    0.083</span></span>
-<span><span class="co">#&gt; 6        2         1        2    0.084</span></span>
-<span><span class="co">#&gt; 7        2         2        1    0.208</span></span>
-<span><span class="co">#&gt; 8        2         2        2    0.077</span></span>
-<span><span class="co">#&gt; ======================================================================================================================================================================================================== </span></span>
-<span><span class="co">#&gt;                                                                                                 Details                                                                                                  </span></span>
-<span><span class="co">#&gt; ======================================================================================================================================================================================================== </span></span>
-<span><span class="co">#&gt; lnlike =  -4103 </span></span>
-<span><span class="co">#&gt; lr stat for no LD =  775 , df =  4 , p-val =  0</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">em</span><span class="op">$</span><span class="va">haplotype</span>,<span class="va">em</span><span class="op">$</span><span class="va">hap.prob</span><span class="op">)</span>,caption<span class="op">=</span><span class="st">"Haplotypes of rs714588, rs1023555, rs898070"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">haplo_table</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">em</span><span class="op">$</span><span class="va">haplotype</span>, <span class="va">em</span><span class="op">$</span><span class="va">hap.prob</span><span class="op">)</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">haplo_table</span>,caption<span class="op">=</span><span class="st">"Haplotypes of the first three SNPs"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
-<caption>(#tab:haplo.stats)Haplotypes of rs714588, rs1023555, rs898070</caption>
+<caption>(#tab:haplo.stats)Haplotypes of the first three SNPs</caption>
 <thead><tr class="header">
-<th align="left">rs714588</th>
-<th align="left">rs1023555</th>
-<th align="left">rs898070</th>
+<th align="left">rs4490198</th>
+<th align="left">rs4849332</th>
+<th align="left">rs1367179</th>
 <th align="right">em$hap.prob</th>
 </tr></thead>
 <tbody>
@@ -1332,160 +1333,113 @@ Figure 3.1: SNP ternary plot
 <td align="left">1</td>
 <td align="left">1</td>
 <td align="left">1</td>
-<td align="right">0.04</td>
+<td align="right">0.00</td>
 </tr>
 <tr class="even">
 <td align="left">1</td>
 <td align="left">1</td>
 <td align="left">2</td>
-<td align="right">0.02</td>
+<td align="right">0.56</td>
 </tr>
 <tr class="odd">
 <td align="left">1</td>
 <td align="left">2</td>
 <td align="left">1</td>
-<td align="right">0.04</td>
+<td align="right">0.00</td>
 </tr>
 <tr class="even">
 <td align="left">1</td>
 <td align="left">2</td>
 <td align="left">2</td>
-<td align="right">0.44</td>
+<td align="right">0.03</td>
 </tr>
 <tr class="odd">
 <td align="left">2</td>
 <td align="left">1</td>
 <td align="left">1</td>
-<td align="right">0.08</td>
+<td align="right">0.00</td>
 </tr>
 <tr class="even">
 <td align="left">2</td>
 <td align="left">1</td>
 <td align="left">2</td>
-<td align="right">0.08</td>
+<td align="right">0.06</td>
 </tr>
 <tr class="odd">
 <td align="left">2</td>
 <td align="left">2</td>
 <td align="left">1</td>
-<td align="right">0.21</td>
+<td align="right">0.19</td>
 </tr>
 <tr class="even">
 <td align="left">2</td>
 <td align="left">2</td>
 <td align="left">2</td>
-<td align="right">0.08</td>
+<td align="right">0.17</td>
 </tr>
 </tbody>
 </table>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu">haplo.stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/haplo.stats/man/haplo.glm.html" class="external-link">haplo.glm</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="va">genoH</span>, data<span class="op">=</span><span class="va">asthma.snps</span>,</span>
-<span>                              family<span class="op">=</span><span class="st">"binomial"</span>,</span>
-<span>                              locus.label<span class="op">=</span><span class="va">snpsH</span>,</span>
-<span>                              allele.lev<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/attributes.html" class="external-link">attributes</a></span><span class="op">(</span><span class="va">genoH</span><span class="op">)</span><span class="op">$</span><span class="va">unique.alleles</span>,</span>
-<span>                              control <span class="op">=</span> <span class="fu">haplo.stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/haplo.stats/man/haplo.glm.control.html" class="external-link">haplo.glm.control</a></span><span class="op">(</span>haplo.freq.min<span class="op">=</span><span class="fl">0.05</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">mod</span></span>
+<code class="sourceCode R"><span><span class="va">modH</span> <span class="op">&lt;-</span> <span class="fu">haplo.stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/haplo.stats/man/haplo.glm.html" class="external-link">haplo.glm</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="va">genoH</span>, data<span class="op">=</span><span class="va">asthma.snps</span>,</span>
+<span>                               family<span class="op">=</span><span class="st">"binomial"</span>,</span>
+<span>                               locus.label<span class="op">=</span><span class="va">snpsH</span>,</span>
+<span>                               allele.lev<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/attributes.html" class="external-link">attributes</a></span><span class="op">(</span><span class="va">genoH</span><span class="op">)</span><span class="op">$</span><span class="va">unique.alleles</span>,</span>
+<span>                               control <span class="op">=</span> <span class="fu">haplo.stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/haplo.stats/man/haplo.glm.control.html" class="external-link">haplo.glm.control</a></span><span class="op">(</span>haplo.freq.min<span class="op">=</span><span class="fl">0.05</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">modH</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Call:  haplo.stats::haplo.glm(formula = cc ~ genoH, family = "binomial", </span></span>
 <span><span class="co">#&gt;     data = asthma.snps, locus.label = snpsH, control = haplo.stats::haplo.glm.control(haplo.freq.min = 0.05), </span></span>
 <span><span class="co">#&gt;     allele.lev = attributes(genoH)$unique.alleles)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Coefficients:</span></span>
-<span><span class="co">#&gt; (Intercept)      genoH.5      genoH.6      genoH.7      genoH.8   genoH.rare  </span></span>
-<span><span class="co">#&gt;  -1.3741805    0.0900879   -0.0082069    0.0560710    0.0882132    0.1396095  </span></span>
+<span><span class="co">#&gt; (Intercept)      genoH.6      genoH.7      genoH.8   genoH.rare  </span></span>
+<span><span class="co">#&gt;   -1.322930     0.161274     0.083020    -0.027472    -0.191619  </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Haplotypes:</span></span>
-<span><span class="co">#&gt;            rs714588 rs1023555 rs898070 hap.freq</span></span>
-<span><span class="co">#&gt; genoH.5           G         A        A 0.082685</span></span>
-<span><span class="co">#&gt; genoH.6           G         A        G 0.084073</span></span>
-<span><span class="co">#&gt; genoH.7           G         T        A 0.207956</span></span>
-<span><span class="co">#&gt; genoH.8           G         T        G 0.076886</span></span>
-<span><span class="co">#&gt; genoH.rare        *         *        * 0.107905</span></span>
-<span><span class="co">#&gt; haplo.base        A         T        G 0.440495</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Degrees of Freedom:  1577 Total (i.e. Null);  1572 Residual</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;      Null Deviance:  1645 </span></span>
-<span><span class="co">#&gt;  Residual Deviance:  1643 </span></span>
-<span><span class="co">#&gt;                AIC:  1655</span></span>
-<span><span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/intervals.html" class="external-link">intervals</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                freq   or   95%   C.I.   P-val </span></span>
-<span><span class="co">#&gt;          ATG 0.4405   1.00 Reference haplotype </span></span>
-<span><span class="co">#&gt;          GAA 0.0827   1.09 (   0.77 -   1.56 )  0.6160 </span></span>
-<span><span class="co">#&gt;          GAG 0.0841   0.99 (   0.69 -   1.42 )  0.9642 </span></span>
-<span><span class="co">#&gt;          GTA 0.2080   1.06 (   0.84 -   1.34 )  0.6379 </span></span>
-<span><span class="co">#&gt;          GTG 0.0769   1.09 (   0.76 -   1.58 )  0.6367 </span></span>
-<span><span class="co">#&gt;   genoH.rare 0.1079   1.15 (   0.83 -   1.59 )  0.3968</span></span>
-<span><span class="va">snpsH2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/labels.html" class="external-link">labels</a></span><span class="op">(</span><span class="va">asthma.snps</span><span class="op">)</span><span class="op">[</span><span class="fl">6</span><span class="op">:</span><span class="fl">15</span><span class="op">]</span></span>
-<span><span class="va">genoH2</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/makegeno.html" class="external-link">make.geno</a></span><span class="op">(</span><span class="va">asthma.snps</span>, <span class="va">snpsH2</span><span class="op">)</span></span>
-<span><span class="va">haplo.score</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span> <span class="va">haplo.score</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu">haplo.stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/haplo.stats/man/haplo.score.slide.html" class="external-link">haplo.score.slide</a></span><span class="op">(</span><span class="va">asthma.snps</span><span class="op">$</span><span class="va">cc</span>, <span class="va">genoH2</span>,</span>
-<span>                                         trait.type<span class="op">=</span><span class="st">"binomial"</span>,</span>
-<span>                                         n.slide<span class="op">=</span><span class="va">i</span><span class="op">+</span><span class="fl">3</span>,</span>
-<span>                                         simulate<span class="op">=</span><span class="cn">TRUE</span>,</span>
-<span>                                         sim.control<span class="op">=</span><span class="fu">haplo.stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/haplo.stats/man/score.sim.control.html" class="external-link">score.sim.control</a></span><span class="op">(</span>min.sim<span class="op">=</span><span class="fl">100</span>,</span>
-<span>                                         max.sim<span class="op">=</span><span class="fl">200</span><span class="op">)</span><span class="op">)</span> </span>
-<span><span class="va">snpsH3</span> <span class="op">&lt;-</span> <span class="va">snpsH2</span><span class="op">[</span><span class="fl">4</span><span class="op">:</span><span class="fl">7</span><span class="op">]</span></span>
-<span><span class="va">genoH3</span> <span class="op">&lt;-</span> <span class="fu">make.geno</span><span class="op">(</span><span class="va">asthma.snps</span>, <span class="va">snpsH3</span><span class="op">)</span></span>
-<span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu">haplo.stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/haplo.stats/man/haplo.glm.html" class="external-link">haplo.glm</a></span><span class="op">(</span><span class="va">cc</span><span class="op">~</span><span class="va">genoH3</span>, data<span class="op">=</span><span class="va">asthma.snps</span>,</span>
-<span>             family<span class="op">=</span><span class="st">"binomial"</span>,</span>
-<span>             locus.label<span class="op">=</span><span class="va">snpsH3</span>,</span>
-<span>             allele.lev<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/attributes.html" class="external-link">attributes</a></span><span class="op">(</span><span class="va">genoH3</span><span class="op">)</span><span class="op">$</span><span class="va">unique.alleles</span>,</span>
-<span>             control <span class="op">=</span> <span class="fu">haplo.stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/haplo.stats/man/haplo.glm.control.html" class="external-link">haplo.glm.control</a></span><span class="op">(</span>haplo.freq.min<span class="op">=</span><span class="fl">0.05</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">mod</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Call:  haplo.stats::haplo.glm(formula = cc ~ genoH3, family = "binomial", </span></span>
-<span><span class="co">#&gt;     data = asthma.snps, locus.label = snpsH3, control = haplo.stats::haplo.glm.control(haplo.freq.min = 0.05), </span></span>
-<span><span class="co">#&gt;     allele.lev = attributes(genoH3)$unique.alleles)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Coefficients:</span></span>
-<span><span class="co">#&gt; (Intercept)     genoH3.2     genoH3.9    genoH3.11  genoH3.rare  </span></span>
-<span><span class="co">#&gt;  -1.2880793    0.0067873   -0.1146385    0.1099134   -0.2505565  </span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Haplotypes:</span></span>
-<span><span class="co">#&gt;             rs1430090 rs6737251 rs11685217 rs1430097 hap.freq</span></span>
-<span><span class="co">#&gt; genoH3.2            G         C          C         C  0.29632</span></span>
-<span><span class="co">#&gt; genoH3.9            T         T          C         A  0.11839</span></span>
-<span><span class="co">#&gt; genoH3.11           T         T          T         A  0.18302</span></span>
-<span><span class="co">#&gt; genoH3.rare         *         *          *         *  0.05021</span></span>
-<span><span class="co">#&gt; haplo.base          T         C          C         C  0.35206</span></span>
+<span><span class="co">#&gt;            rs4490198 rs4849332 rs1367179 hap.freq</span></span>
+<span><span class="co">#&gt; genoH.6            G         G         G 0.058479</span></span>
+<span><span class="co">#&gt; genoH.7            G         T         C 0.185124</span></span>
+<span><span class="co">#&gt; genoH.8            G         T         G 0.165551</span></span>
+<span><span class="co">#&gt; genoH.rare         *         *         * 0.031456</span></span>
+<span><span class="co">#&gt; haplo.base         A         G         G 0.559391</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Degrees of Freedom:  1577 Total (i.e. Null);  1573 Residual</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;      Null Deviance:  1645 </span></span>
-<span><span class="co">#&gt;  Residual Deviance:  1641 </span></span>
-<span><span class="co">#&gt;                AIC:  1651</span></span>
-<span><span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/intervals.html" class="external-link">intervals</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  Residual Deviance:  1643 </span></span>
+<span><span class="co">#&gt;                AIC:  1653</span></span>
+<span><span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/intervals.html" class="external-link">intervals</a></span><span class="op">(</span><span class="va">modH</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                freq   or   95%   C.I.   P-val </span></span>
-<span><span class="co">#&gt;         TCCC 0.3521   1.00 Reference haplotype </span></span>
-<span><span class="co">#&gt;         GCCC 0.2963   1.01 (   0.82 -   1.24 )  0.9495 </span></span>
-<span><span class="co">#&gt;         TTCA 0.1184   0.89 (   0.67 -   1.20 )  0.4433 </span></span>
-<span><span class="co">#&gt;         TTTA 0.1830   1.12 (   0.87 -   1.43 )  0.3796 </span></span>
-<span><span class="co">#&gt;  genoH3.rare 0.0502   0.78 (   0.50 -   1.22 )  0.2750</span></span>
+<span><span class="co">#&gt;          AGG 0.5594   1.00 Reference haplotype </span></span>
+<span><span class="co">#&gt;          GGG 0.0585   1.18 (   0.81 -   1.70 )  0.3937 </span></span>
+<span><span class="co">#&gt;          GTC 0.1851   1.09 (   0.87 -   1.36 )  0.4669 </span></span>
+<span><span class="co">#&gt;          GTG 0.1656   0.97 (   0.77 -   1.23 )  0.8198 </span></span>
+<span><span class="co">#&gt;   genoH.rare 0.0315   0.83 (   0.47 -   1.44 )  0.5003</span></span>
+<span></span>
+<span><span class="co"># Model comparison with / without haplotypes</span></span>
 <span><span class="va">mod.adj.ref</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="va">smoke</span>, data<span class="op">=</span><span class="va">asthma.snps</span>, family<span class="op">=</span><span class="st">"binomial"</span><span class="op">)</span></span>
-<span><span class="va">mod.adj</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/haplo.stats/man/haplo.glm.html" class="external-link">haplo.glm</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="va">genoH3</span> <span class="op">+</span> <span class="va">smoke</span>, data<span class="op">=</span><span class="va">asthma.snps</span>,</span>
+<span><span class="va">mod.adj</span> <span class="op">&lt;-</span> <span class="fu">haplo.glm</span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="va">genoH</span> <span class="op">+</span> <span class="va">smoke</span>, data<span class="op">=</span><span class="va">asthma.snps</span>,</span>
 <span>                 family<span class="op">=</span><span class="st">"binomial"</span>,</span>
-<span>                 locus.label<span class="op">=</span><span class="va">snpsH3</span>,</span>
+<span>                 locus.label<span class="op">=</span><span class="va">snpsH</span>,</span>
 <span>                 allele.lev<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/attributes.html" class="external-link">attributes</a></span><span class="op">(</span><span class="va">genoH3</span><span class="op">)</span><span class="op">$</span><span class="va">unique.alleles</span>,</span>
 <span>                 control <span class="op">=</span> <span class="fu">haplo.stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/haplo.stats/man/haplo.glm.control.html" class="external-link">haplo.glm.control</a></span><span class="op">(</span>haplo.freq.min<span class="op">=</span><span class="fl">0.05</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">mod.adj</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Call:  haplo.glm(formula = cc ~ genoH3 + smoke, family = "binomial", </span></span>
-<span><span class="co">#&gt;     data = asthma.snps, locus.label = snpsH3, control = haplo.stats::haplo.glm.control(haplo.freq.min = 0.05), </span></span>
+<span><span class="co">#&gt; Call:  haplo.glm(formula = cc ~ genoH + smoke, family = "binomial", </span></span>
+<span><span class="co">#&gt;     data = asthma.snps, locus.label = snpsH, control = haplo.stats::haplo.glm.control(haplo.freq.min = 0.05), </span></span>
 <span><span class="co">#&gt;     allele.lev = attributes(genoH3)$unique.alleles)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Coefficients:</span></span>
-<span><span class="co">#&gt; (Intercept)     genoH3.2     genoH3.9    genoH3.11  genoH3.rare        smoke  </span></span>
-<span><span class="co">#&gt;   -1.189508     0.019373    -0.097111     0.113148    -0.253046    -0.393112  </span></span>
+<span><span class="co">#&gt; (Intercept)      genoH.6      genoH.7      genoH.8   genoH.rare        smoke  </span></span>
+<span><span class="co">#&gt;   -1.216221     0.144485     0.092058    -0.024518    -0.170104    -0.390860  </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Haplotypes:</span></span>
-<span><span class="co">#&gt;             rs1430090 rs6737251 rs11685217 rs1430097 hap.freq</span></span>
-<span><span class="co">#&gt; genoH3.2            G         C          C         C  0.29539</span></span>
-<span><span class="co">#&gt; genoH3.9            T         T          C         A  0.11860</span></span>
-<span><span class="co">#&gt; genoH3.11           T         T          T         A  0.18319</span></span>
-<span><span class="co">#&gt; genoH3.rare         *         *          *         *  0.05044</span></span>
-<span><span class="co">#&gt; haplo.base          T         C          C         C  0.35238</span></span>
+<span><span class="co">#&gt;            rs4490198 rs4849332 rs1367179 hap.freq</span></span>
+<span><span class="co">#&gt; genoH.6            G         G         G 0.058406</span></span>
+<span><span class="co">#&gt; genoH.7            G         T         C 0.184673</span></span>
+<span><span class="co">#&gt; genoH.8            G         T         G 0.165351</span></span>
+<span><span class="co">#&gt; genoH.rare         *         *         * 0.031263</span></span>
+<span><span class="co">#&gt; haplo.base         A         G         G 0.560307</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Degrees of Freedom:  1570 Total (i.e. Null);  1565 Residual</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -1494,11 +1448,23 @@ Figure 3.1: SNP ternary plot
 <span><span class="co">#&gt;        7        0 </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;      Null Deviance:  1639 </span></span>
-<span><span class="co">#&gt;  Residual Deviance:  1627 </span></span>
-<span><span class="co">#&gt;                AIC:  1639</span></span>
+<span><span class="co">#&gt;  Residual Deviance:  1629 </span></span>
+<span><span class="co">#&gt;                AIC:  1641</span></span>
 <span><span class="va">lrt.adj</span> <span class="op">&lt;-</span> <span class="va">mod.adj.ref</span><span class="op">$</span><span class="va">deviance</span> <span class="op">-</span> <span class="va">mod.adj</span><span class="op">$</span><span class="va">deviance</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/Chisquare.html" class="external-link">pchisq</a></span><span class="op">(</span><span class="va">lrt.adj</span>, <span class="va">mod.adj</span><span class="op">$</span><span class="va">lrt</span><span class="op">$</span><span class="va">df</span>, lower<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 0.65</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] 0.87</span></span>
+<span></span>
+<span><span class="co"># Four variable slide windows over nine SNPs</span></span>
+<span><span class="va">snpsH</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/labels.html" class="external-link">labels</a></span><span class="op">(</span><span class="va">asthma.snps</span><span class="op">)</span><span class="op">[</span><span class="fl">6</span><span class="op">+</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">9</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">genoH</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/makegeno.html" class="external-link">make.geno</a></span><span class="op">(</span><span class="va">asthma.snps</span>, <span class="va">snpsH</span><span class="op">)</span></span>
+<span><span class="va">haploH</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span> <span class="va">haploH</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu">haplo.stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/haplo.stats/man/haplo.score.slide.html" class="external-link">haplo.score.slide</a></span><span class="op">(</span><span class="va">asthma.snps</span><span class="op">$</span><span class="va">cc</span>, <span class="va">genoH</span>,</span>
+<span>                              trait.type<span class="op">=</span><span class="st">"binomial"</span>,</span>
+<span>                              n.slide<span class="op">=</span><span class="va">i</span>,</span>
+<span>                              locus.label<span class="op">=</span><span class="va">snpsH</span>,</span>
+<span>                              simulate<span class="op">=</span><span class="cn">TRUE</span>,</span>
+<span>                              sim.control<span class="op">=</span><span class="fu">haplo.stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/haplo.stats/man/score.sim.control.html" class="external-link">score.sim.control</a></span><span class="op">(</span>min.sim<span class="op">=</span><span class="fl">50</span>,max.sim<span class="op">=</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in haplo.stats::haplo.score.slide(asthma.snps$cc, genoH, trait.type = "binomial", : n.slide out of range, using default of 2 instead</span></span></code></pre></div>
 </div>
 <div class="section level3" number="3.4">
 <h3 id="gmmat">
