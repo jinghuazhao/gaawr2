@@ -28,3 +28,10 @@ remove_destination() {
 } >> "$log_file" 2>&1
 
 echo "Files copied successfully from $src to $dst. Check the log file at $log_file for details."
+
+cd ~/R
+export version=$(awk '/Version/{print $2}' $src/DESCRIPTION)
+echo "Now, build, install and check gaawr2 $version"
+R CMD build --compact-vignettes=both --md5 --resave-data --log gaawr2
+R CMD INSTALL --compact-docs --data-compress=xz gaawr2_${version}.tar.gz
+R CMD check --as-cran gaawr2_${version}.tar.gz
