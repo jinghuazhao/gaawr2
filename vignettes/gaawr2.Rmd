@@ -165,7 +165,6 @@ We then turn to genetic models for the first one,
 asthma.snps <- asthma %>%
                dplyr::rename(cc=casecontrol) %>%
                SNPassoc::setupSNP(colSNPs=(6+1):ncol(.), sep="")
-names(asthma.snps)[1:15]
 # Model 1: Simple SNP association with BMI
 SNPassoc::association(bmi ~ rs4490198, data = asthma.snps)
 
