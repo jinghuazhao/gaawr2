@@ -37,9 +37,9 @@ for (p in pkgs) if (length(grep(paste("^package:", p, "$", sep=""), search())) =
 invisible(suppressMessages(lapply(pkgs, require, character.only = TRUE)))
 ```
 
-The package intends to gather information, meta-data and scripts in genetic association analysis as a companion to a Henry-Stewart talk.
+The package gathers information, meta-data and scripts in a recent Henry-Stewart talk.
 
-It is adapted from earlier package development work, particularly pQTLdata, <https://jinghuazhao.github.io/pQTLdata/>.
+It is adapted from pQTLdata, <https://jinghuazhao.github.io/pQTLdata/>.
 
 # Hello, world!
 
