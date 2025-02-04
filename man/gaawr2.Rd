@@ -30,7 +30,7 @@ welcome(3)
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://jinghuazhao.github.io/gaawr2}
+  \item \url{https://jinghuazhao.github.io/gaawr2/}
   \item \url{https://github.com/jinghuazhao/gaawr2}
   \item Report bugs at \url{https://github.com/jinghuazhao/gaawr2/issues}
 }
