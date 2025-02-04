@@ -23,7 +23,7 @@ remove_destination() {
   echo "Changing to source directory: $src" | tee -a "$log_file"
   cd "$src" || { echo "Error: Source directory not found: $src"; exit 1; }
   echo "Copying files excluding 'docs', 'pkgdown', and all hidden files/directories" | tee -a "$log_file"
-  rsync -av --exclude='docs/' --exclude='pkgdown/' --exclude='.*' --exclude='*/.*' ./ "$dst/"
+  rsync -av --exclude='docs/' --exclude='pkgdown/' --exclude='.*' --exclude='*/.*' --exclude='README.Rmd' --exclude='LICENSE.md' ./ "$dst/"
   echo "Copy Operation Completed Successfully: $(date '+%Y-%m-%d %H:%M:%S')" | tee -a "$log_file"
 } >> "$log_file" 2>&1
 
