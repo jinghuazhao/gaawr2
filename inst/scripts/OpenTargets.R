@@ -31,7 +31,7 @@ base_url <- "https://api.platform.opentargets.org/api/v4/graphql"
 variables <- list("ensemblId" = gene_id)
 post_body <- list(query = query_string, variables = variables)
 r <- httr::POST(url=base_url, body=post_body, encode='json')
-data <- iconv(r, "latin1", "ASCII")
+data <- iconv(r, "", "ASCII")
 content <- jsonlite::fromJSON(data)
 target <- content$data$target
 scalar_fields <- data.frame(
