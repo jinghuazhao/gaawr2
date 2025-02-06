@@ -90,25 +90,25 @@
 <span class="header-section-number">1.2</span> Linux<a class="anchor" aria-label="anchor" href="#linux"></a>
 </h3>
 <p>We more often embed R in a Linux script,</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># environment variable</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">message</span><span class="op">=</span><span class="st">"Hello, world!"</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'message=Sys.getenv("message");print(message)'</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># a code chunk</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> <span class="at">--no-save</span> <span class="at">-q</span> <span class="op">&lt;&lt;END</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="st">options(echo=FALSE)</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="st">print("Hello, world!")</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="op">END</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># a processor</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> Hello, world! <span class="kw">|</span> <span class="dt">\</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="st">   message &lt;- scan("stdin", what = "", sep = "\n", quiet = TRUE);</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="st">   write.table(message, col.names = FALSE, row.names = FALSE, quote = FALSE)</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="st">'</span> <span class="kw">|</span> <span class="dt">\</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Hello, world!"</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &gt; options(echo=FALSE)</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Hello, world!"</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Hello, world!</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># environment variable</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="bu">export</span> <span class="va">message</span><span class="op">=</span><span class="st">"Hello, world!"</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'message=Sys.getenv("message");print(message)'</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="co"># a code chunk</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="ex">R</span> <span class="at">--no-save</span> <span class="at">-q</span> <span class="op">&lt;&lt;END</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="st">options(echo=FALSE)</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="st">print("Hello, world!")</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="op">END</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co"># a processor</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="bu">echo</span> Hello, world! <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'</span></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="st">   message &lt;- scan("stdin", what = "", sep = "\n", quiet = TRUE);</span></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="st">   write.table(message, col.names = FALSE, row.names = FALSE, quote = FALSE)</span></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="st">'</span> <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="fu">cat</span></span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="co">#&gt; [1] "Hello, world!"</span></span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a><span class="co">#&gt; &gt; options(echo=FALSE)</span></span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a><span class="co">#&gt; [1] "Hello, world!"</span></span>
+<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a><span class="co">#&gt; Hello, world!</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2" number="2">
@@ -2334,11 +2334,11 @@ Figure 3.2: Power Estimation for eQTL Studies of 240 SNPs
 </h2>
 <p>While created as a showcase of modern package development, like other R packages it includes data examples, customized functions,
 documentation and featured articles.</p>
-<pre class="mermaid"><code>graph LR;
-    PackageCreation["Package creation"] --&gt; GitHubRepository["GitHub repository"]
-    GitHubRepository --&gt; PkgdownStyling["pkgdown styling"]
-    PkgdownStyling --&gt; Refinement["Refinement"]
-    Refinement --&gt; Testing["Testing"]</code></pre>
+<pre class="mermaid"><code>graph LR
+    A[Package creation] --&gt; B[GitHub repository]
+    B --&gt; C[pkgdown styling]
+    C --&gt; D[Refinement]
+    D --&gt; E[Testing]</code></pre>
 <p>The relevant scripts are with <code>inst/scripts</code> directory in the source package. Briefly,</p>
 <ul>
 <li>
@@ -2390,7 +2390,7 @@ workflow, namely, <a href="https://github.com/jinghuazhao/gaawr2/actions/workflo
 <span class="header-section-number">6</span> References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><div id="refs" class="references csl-bib-body" line-spacing="2">
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><div id="refs" class="references csl-bib-body" entry-spacing="0" line-spacing="2">
 <div id="ref-suhre20" class="csl-entry">
 <div class="csl-left-margin">1. </div>
 <div class="csl-right-inline">Suhre, K., McCarthy, M. I. &amp; Schwenk, J. M. Genetics meets proteomics: Perspectives for large population-based studies. <em>Nat Rev Genet</em> (2020) doi:<a href="https://doi.org/10.1038/s41576-020-0268-2" class="external-link">10.1038/s41576-020-0268-2</a>.</div>
