@@ -63,6 +63,10 @@ reference:
   - title: "A summary"
     contents:
     - gaawr2
+  - title: Data
+    contents:
+    - DiaHealth
+    - diabetes
   - title: "Function"
     contents:
     - welcome
