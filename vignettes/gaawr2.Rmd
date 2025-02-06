@@ -544,6 +544,12 @@ Note that the `devtools::document()` in `pkgdown.sh` automatically updates NAMES
 which can be picked up through `pkgdown::build_reference()`. The refinement is greatly facilitated by GitHub `R-CMD-check.yaml`
 workflow, namely, <https://github.com/jinghuazhao/gaawr2/actions/workflows/R-CMD-check.yaml>.
 
+<div class="mermaid">graph TB
+    A[Package creation] --&gt; B[GitHub repository]
+    B --&gt; C[pkgdown styling]
+    C --&gt; D[Refinement]
+    D --&gt; E[Testing]</div>
+
 # References
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
