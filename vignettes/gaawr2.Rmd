@@ -483,12 +483,20 @@ onto_plot(efo,efo_0000540)
 While created as a showcase of modern package development, like other R packages it includes data examples, customized functions,
 documentation and featured articles.
 
-```{mermaid test}
-graph TB;
-A[Package creation] --> B[GitHub repository];
-B --> C[pkgdown styling];
-C --> D[Refinement];
-D --> E[Testing];
+<div class="mermaid">graph TB;
+A[Package creation] --&gt; B[GitHub repository];
+B --&gt; C[pkgdown styling];
+C --&gt; D[Refinement];
+D --&gt; E[Testing];</div>
+
+```{r mermaid, echo = FALSE}
+DiagrammeR::mermaid("
+  graph TB
+    A[Package creation] --> B[GitHub repository]
+    B --> C[pkgdown styling]
+    C --> D[Refinement]
+    D --> E[Testing]
+")
 ```
 
 The relevant scripts are with `inst/scripts` directory in the source package. Briefly,
