@@ -82,7 +82,7 @@ The operators are intuitive in many ways, but we would like to highlight two typ
 - the scope operator (`::`) is useful since user executes command from a particular package without loading it, which is usually faster.
 - the native (`|>`) and contributed (`%>%`) pipe operators which enable a chained of operations, the latter popularized from R **magrittr** and **dplyr** packages
 
-```{r ops, fig.cap="Mean values by gender and diabetes category", fig.height=6, fig.with=8, messages=FALSE}
+```{r diabetes, fig.cap="Mean values by gender and diabetes category", fig.height=6, fig.with=8, messages=FALSE}
 options(width=200,digits=2)
 data(diabetes,package="gaawr2")
 mean_values <- diabetes %>%
@@ -99,7 +99,8 @@ mean_values_long <- mean_values %>%
     values_to = "Mean_Value"
   )
 
-ggplot2::ggplot(mean_values_long, aes(x = Variable, y = Mean_Value, fill = CLASS)) + # fill by CLASS
+ggplot2::ggplot(mean_values_long,
+  ggplot2::aes(x = Variable, y = Mean_Value, fill = CLASS)) +
   ggplot2::geom_col(position = ggplot2::position_dodge()) +
   ggplot2::facet_wrap(~ Gender, scales = "free_y") +
   ggplot2::labs(
