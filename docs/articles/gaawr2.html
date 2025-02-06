@@ -2330,7 +2330,13 @@ Figure 3.2: Power Estimation for eQTL Studies of 240 SNPs
 </h2>
 <p>While created as a showcase of modern package development, like other R packages it includes data examples, customized functions,
 documentation and featured articles.</p>
-<div class="mermaid">graph LR
+<pre class="mermaid"><code>graph TB
+  A[Package creation] --&gt; B[GitHub repository]
+  B --&gt; C[pkgdown styling]
+  C --&gt; D[Refinement]
+  D --&gt; E[Testing]</code></pre>
+<div class="mermaid">
+graph LR
 A[Package creation] –&gt; B[GitHub repository]
 B –&gt; C[pkgdown styling]
 C –&gt; D[Refinement]
