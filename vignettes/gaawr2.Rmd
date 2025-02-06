@@ -90,8 +90,8 @@ mean_values <- diabetes %>%
   dplyr::group_by(CLASS, Gender) %>%
   dplyr::select(AGE:BMI) %>%
   dplyr::summarize(dplyr::across(dplyr::everything(), \(x) mean(x, na.rm = TRUE)))
+knitr::kable(mean_values,caption="Mean value by gender and diabetes category")
 
-# Restructure the data for ggplot2 (pivot to long format)
 mean_values_long <- mean_values %>%
   tidyr::pivot_longer(
     cols = AGE:BMI,
@@ -99,12 +99,11 @@ mean_values_long <- mean_values %>%
     values_to = "Mean_Value"
   )
 
-# Create the ggplot2 plot with grouped bars
 ggplot2::ggplot(mean_values_long, aes(x = Variable, y = Mean_Value, fill = CLASS)) + # fill by CLASS
   ggplot2::geom_col(position = ggplot2::position_dodge()) +
   ggplot2::facet_wrap(~ Gender, scales = "free_y") +
   ggplot2::labs(
-    title = "Mean Values by Variable, Gender, and Class",
+    title = "",
     x = "Variable",
     y = "Mean Value",
     fill = "Diabetes Class"
