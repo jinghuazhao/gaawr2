@@ -117,42 +117,41 @@
 <li>the native (<code>|&gt;</code>) and contributed (<code>%&gt;%</code>) pipe operators which enable a chained of operations, the latter popularized from R <strong>magrittr</strong> and <strong>dplyr</strong> packages</li>
 </ul>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">sumstats</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">mpg</span> <span class="op">&gt;</span> <span class="fl">20</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarize</a></span><span class="op">(</span>avg_hp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">hp</span><span class="op">)</span>, avg_wt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">wt</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">sumstats</span>,caption<span class="op">=</span><span class="st">"Mean horse power and weight by Cylinder for mpg over 20"</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
-<caption>
-<span id="tab:ops">Table 2.1: </span>Mean horse power and weight by Cylinder for mpg over 20</caption>
-<thead><tr class="header">
-<th align="right">cyl</th>
-<th align="right">avg_hp</th>
-<th align="right">avg_wt</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="right">4</td>
-<td align="right">82.63636</td>
-<td align="right">2.285727</td>
-</tr>
-<tr class="even">
-<td align="right">6</td>
-<td align="right">110.00000</td>
-<td align="right">2.903333</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">sumstats</span>, <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">avg_hp</span>, fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_bar</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"identity"</span><span class="op">)</span> <span class="op">+</span></span>
-<span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">""</span>, x <span class="op">=</span> <span class="st">"Number of Cylinders"</span>, y <span class="op">=</span> <span class="st">"Average Horsepower"</span><span class="op">)</span> <span class="op">+</span></span>
-<span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html" class="external-link">scale_fill_brewer</a></span><span class="op">(</span>palette <span class="op">=</span> <span class="st">"Set2"</span>, name <span class="op">=</span> <span class="st">"Cylinders"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Calculate mean values</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">diabetes</span>,package<span class="op">=</span><span class="st">"gaawr2"</span><span class="op">)</span></span>
+<span><span class="va">mean_values</span> <span class="op">&lt;-</span> <span class="va">diabetes</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">CLASS</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Y"</span>, <span class="st">"N"</span>, <span class="st">"P"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">CLASS</span>, <span class="va">Gender</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">AGE</span><span class="op">:</span><span class="va">BMI</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarize</a></span><span class="op">(</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html" class="external-link">across</a></span><span class="op">(</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything</a></span><span class="op">(</span><span class="op">)</span>, \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Adding missing grouping variables: `CLASS`, `Gender`</span></span>
+<span><span class="co">#&gt; `summarise()` has grouped output by 'CLASS'. You can override using the</span></span>
+<span><span class="co">#&gt; `.groups` argument.</span></span>
+<span></span>
+<span><span class="co"># Restructure the data for ggplot2 (pivot to long format)</span></span>
+<span><span class="va">mean_values_long</span> <span class="op">&lt;-</span> <span class="va">mean_values</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="external-link">pivot_longer</a></span><span class="op">(</span></span>
+<span>    cols <span class="op">=</span> <span class="va">AGE</span><span class="op">:</span><span class="va">BMI</span>,</span>
+<span>    names_to <span class="op">=</span> <span class="st">"Variable"</span>,</span>
+<span>    values_to <span class="op">=</span> <span class="st">"Mean_Value"</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Create the ggplot2 plot with grouped bars</span></span>
+<span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mean_values_long</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Variable</span>, y <span class="op">=</span> <span class="va">Mean_Value</span>, fill <span class="op">=</span> <span class="va">CLASS</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="co"># fill by CLASS</span></span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_col</a></span><span class="op">(</span>position <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html" class="external-link">position_dodge</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">Gender</span>, scales <span class="op">=</span> <span class="st">"free_y"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span></span>
+<span>    title <span class="op">=</span> <span class="st">"Mean Values by Variable, Gender, and Class"</span>,</span>
+<span>    x <span class="op">=</span> <span class="st">"Variable"</span>,</span>
+<span>    y <span class="op">=</span> <span class="st">"Mean Value"</span>,</span>
+<span>    fill <span class="op">=</span> <span class="st">"Diabetes Class"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">45</span>, hjust <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ops"></span>
-<img src="gaawr2%2Fops-1.png" alt="Average Horsepower by Cylinder Count (mpg &gt; 20)" width="672" style="display:block; margin: auto"><p class="caption">
-Figure 2.1: Average Horsepower by Cylinder Count (mpg &gt; 20)
+<img src="gaawr2%2Fops-1.png" alt="Mean values by gender and diabetes category" width="672" style="display:block; margin: auto"><p class="caption">
+Figure 2.1: Mean values by gender and diabetes category
 </p>
 </div>
 <p>The Comprehensive R Archive Network (CRAN) host and Bioconductor host many fined-tuned user-contributed packages, their installation is furnished through</p>
@@ -177,7 +176,7 @@ acronym, the bulk of which is also readily available.</p>
 </h3>
 <p>We set to run through the package for HWE. Three data sources are used: MN blood group in the documentation,
 a chromosome X SNP and a HLA/DQR,</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>width<span class="op">=</span><span class="fl">200</span><span class="op">)</span></span>
 <span><span class="co"># MN blood group</span></span>
 <span><span class="va">SNP</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>MM <span class="op">=</span> <span class="fl">298</span>, MN <span class="op">=</span> <span class="fl">489</span>, NN <span class="op">=</span> <span class="fl">213</span><span class="op">)</span></span>
@@ -191,7 +190,7 @@ a chromosome X SNP and a HLA/DQR,</p>
 Figure 3.1: SNP ternary plot
 </p>
 </div>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">HardyWeinberg</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/HardyWeinberg/man/HWChisq.html" class="external-link">HWChisq</a></span><span class="op">(</span><span class="va">SNP</span>, cc <span class="op">=</span> <span class="fl">0</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Chi-square test for Hardy-Weinberg equilibrium (autosomal)</span></span>
 <span><span class="co">#&gt; Chi2 =  0.2214896 DF =  1 p-value =  0.6379073 D =  -3.69375 f =  0.01488253</span></span>
@@ -969,7 +968,7 @@ Figure 3.1: SNP ternary plot
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">HardyWeinberg</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/HardyWeinberg/man/HWPerm.mult.html" class="external-link">HWPerm.mult</a></span><span class="op">(</span><span class="va">GenotypeCounts</span>,nperm<span class="op">=</span><span class="fl">300</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Permutation test for Hardy-Weinberg equilibrium (autosomal).</span></span>
 <span><span class="co">#&gt; 25 alleles detected.</span></span>
@@ -986,7 +985,7 @@ Figure 3.1: SNP ternary plot
 </h3>
 <p>The package implements procedures which are appropriate for candidate gene association analysis, under a variety of genetic models.</p>
 <p>Fist we look at some meta-data, include HWE.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>width<span class="op">=</span><span class="fl">200</span>,digits<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">asthma</span>, package <span class="op">=</span> <span class="st">"SNPassoc"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">asthma</span>, list.len<span class="op">=</span><span class="fl">8</span><span class="op">)</span></span>
@@ -1047,7 +1046,7 @@ Figure 3.1: SNP ternary plot
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">snpCols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">asthma</span><span class="op">)</span><span class="op">[</span><span class="fl">6</span><span class="op">+</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="va">snps</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/setupSNP.html" class="external-link">setupSNP</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">asthma</span><span class="op">[</span><span class="va">snpCols</span><span class="op">]</span>, colSNPs<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">snpCols</span><span class="op">)</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">snps</span><span class="op">)</span></span>
@@ -1110,7 +1109,7 @@ Figure 3.1: SNP ternary plot
 <span><span class="co">#&gt; rs4849332 0.52</span></span></code></pre></div>
 <p>where variable <code>snpCols</code> skips six columns non-SNP data for two SNPs.</p>
 <p>We then turn to genetic models for the first one,</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">asthma.snps</span> <span class="op">&lt;-</span> <span class="va">asthma</span> <span class="op">%&gt;%</span></span>
 <span>               <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>cc<span class="op">=</span><span class="va">casecontrol</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>               <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/setupSNP.html" class="external-link">setupSNP</a></span><span class="op">(</span>colSNPs<span class="op">=</span><span class="op">(</span><span class="fl">6</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span></span>
@@ -1311,7 +1310,7 @@ Figure 3.1: SNP ternary plot
 <span class="header-section-number">3.3</span> haplo.stats<a class="anchor" aria-label="anchor" href="#haplo-stats"></a>
 </h3>
 <p>This package considers haplotype estimation using EM-algorithms and genetic association under a generalized linear model (GLM).</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Association with the first three SNPs</span></span>
 <span><span class="va">snpsH</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">asthma.snps</span><span class="op">)</span><span class="op">[</span><span class="fl">6</span><span class="op">+</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="va">genoH</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/makegeno.html" class="external-link">make.geno</a></span><span class="op">(</span><span class="va">asthma.snps</span>, <span class="va">snpsH</span><span class="op">)</span></span>
@@ -1378,7 +1377,7 @@ Figure 3.1: SNP ternary plot
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">modH</span> <span class="op">&lt;-</span> <span class="fu">haplo.stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/haplo.stats/man/haplo.glm.html" class="external-link">haplo.glm</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="va">genoH</span>, data<span class="op">=</span><span class="va">asthma.snps</span>,</span>
 <span>                               family<span class="op">=</span><span class="st">"binomial"</span>,</span>
 <span>                               locus.label<span class="op">=</span><span class="va">snpsH</span>,</span>
@@ -1469,7 +1468,7 @@ Figure 3.1: SNP ternary plot
 <span class="header-section-number">3.4</span> GMMAT<a class="anchor" aria-label="anchor" href="#gmmat"></a>
 </h3>
 <p>The following is modified slightly from the package vignette,</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">example</span>,package<span class="op">=</span><span class="st">"GMMAT"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/attach.html" class="external-link">attach</a></span><span class="op">(</span><span class="va">example</span><span class="op">)</span></span>
 <span><span class="va">model0</span> <span class="op">&lt;-</span> <span class="fu">GMMAT</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GMMAT/man/glmmkin.html" class="external-link">glmmkin</a></span><span class="op">(</span><span class="va">disease</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">pheno</span>, kins <span class="op">=</span> <span class="va">GRM</span>,</span>
@@ -1559,7 +1558,7 @@ Figure 3.1: SNP ternary plot
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="va">outfile</span><span class="op">)</span></span>
 <span><span class="va">bed.file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"geno.bed"</span>, package <span class="op">=</span> <span class="st">"GMMAT"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>            <span class="fu">tools</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/tools/fileutils.html" class="external-link">file_path_sans_ext</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -1643,7 +1642,7 @@ Figure 3.1: SNP ternary plot
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/detach.html" class="external-link">detach</a></span><span class="op">(</span><span class="va">example</span><span class="op">)</span></span></code></pre></div>
 <p>where both BGEN and PLINK binary file are illustrated.</p>
 </div>
@@ -1658,7 +1657,7 @@ Figure 3.1: SNP ternary plot
 <span class="header-section-number">3.6</span> GWAS<a class="anchor" aria-label="anchor" href="#gwas"></a>
 </h3>
 <p>We return to the asthma data used in <strong>SNPassoc</strong>.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">assoc</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/WGassociation.html" class="external-link">WGassociation</a></span><span class="op">(</span><span class="va">cc</span>, data<span class="op">=</span><span class="va">asthma.snps</span><span class="op">)</span></span>
 <span><span class="va">assoc.adj</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/WGassociation.html" class="external-link">WGassociation</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="va">country</span> <span class="op">+</span> <span class="va">smoke</span>, <span class="va">asthma.snps</span><span class="op">)</span></span>
 <span><span class="va">assoc.maxstat</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/maxstat.html" class="external-link">maxstat</a></span><span class="op">(</span><span class="va">asthma.snps</span>, <span class="va">cc</span><span class="op">)</span></span>
@@ -1680,7 +1679,7 @@ Figure 3.1: SNP ternary plot
 <h3 id="h2-jags">
 <span class="header-section-number">3.7</span> h2.jags<a class="anchor" aria-label="anchor" href="#h2-jags"></a>
 </h3>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1234567</span><span class="op">)</span></span>
 <span><span class="va">meyer</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">within</a></span><span class="op">(</span><span class="va">meyer</span>,<span class="op">{</span></span>
 <span>         <span class="va">y</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">y</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">y</span>,na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">y</span>,na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
@@ -1809,7 +1808,7 @@ every iteraction is kept (n.thin=1).</p>
 </h3>
 <p>Consider <code>powereQTL.SLR</code> (simple linear regression) for a sample size of 50-300 by 50, minor allele frequencies
 0.005~0.5, <span class="math inline">\(\alpha\)</span>=0.05. We have,</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">n.designs</span> <span class="op">&lt;-</span> <span class="fl">6</span></span>
 <span><span class="va">designs</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="va">n.designs</span></span>
 <span><span class="va">N</span> <span class="op">&lt;-</span> <span class="fl">50</span> <span class="op">*</span> <span class="va">designs</span></span>
@@ -1840,7 +1839,7 @@ Figure 3.2: Power Estimation for eQTL Studies of 240 SNPs
 <h3 id="opentargets">
 <span class="header-section-number">3.9</span> OpenTargets<a class="anchor" aria-label="anchor" href="#opentargets"></a>
 </h3>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gene_id</span> <span class="op">&lt;-</span> <span class="st">"ENSG00000164308"</span></span>
 <span><span class="va">query_string</span> <span class="op">=</span> <span class="st">"</span></span>
 <span><span class="st">  query target($ensemblId: String!){</span></span>
@@ -1901,7 +1900,7 @@ Figure 3.2: Power Estimation for eQTL Studies of 240 SNPs
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">target</span><span class="op">$</span><span class="va">geneticConstraint</span>, caption <span class="op">=</span> <span class="st">"Genetic Constraint Metrics"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>
@@ -1945,7 +1944,7 @@ Figure 3.2: Power Estimation for eQTL Studies of 240 SNPs
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tractability_data</span>, caption <span class="op">=</span> <span class="st">"Tractability Information"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>
@@ -2109,7 +2108,7 @@ Figure 3.2: Power Estimation for eQTL Studies of 240 SNPs
 <h3 id="ensdb-hsapiens-v75">
 <span class="header-section-number">4.1</span> EnsDb.Hsapiens.v75<a class="anchor" aria-label="anchor" href="#ensdb-hsapiens-v75"></a>
 </h3>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">ensembldb</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Annotated-class.html" class="external-link">metadata</a></span><span class="op">(</span><span class="va">EnsDb.Hsapiens.v75</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                  name                               value</span></span>
 <span><span class="co">#&gt; 1             Db type                               EnsDb</span></span>
@@ -2156,7 +2155,7 @@ Figure 3.2: Power Estimation for eQTL Studies of 240 SNPs
 <h3 id="biomart">
 <span class="header-section-number">4.2</span> biomaRt<a class="anchor" aria-label="anchor" href="#biomart"></a>
 </h3>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu">biomaRt</span><span class="fu">::</span><span class="fu">martBMCheck</span><span class="op">(</span><span class="va">mart</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/stop.html" class="external-link">stop</a></span><span class="op">(</span><span class="st">"The BioMart service is currently unavailable."</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
@@ -2177,7 +2176,7 @@ Figure 3.2: Power Estimation for eQTL Studies of 240 SNPs
 <span class="header-section-number">4.3</span> Experimental Factor Ontology (EFO)<a class="anchor" aria-label="anchor" href="#experimental-factor-ontology-efo"></a>
 </h3>
 <p>The ontology of traits/disease is formally available as this<span class="citation"><sup>2</sup></span>. The script below assumes that efo-3.26.0 has been downloaded.</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ontologyIndex</span><span class="op">)</span></span>
 <span><span class="va">id</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">ontology</span><span class="op">)</span></span>
 <span><span class="op">{</span></span>
@@ -2250,7 +2249,8 @@ Upon use <code>pkgdown</code>, an article can be seen from the menu item <code>A
     regress,
     seqminer,
     SNPassoc,
-    testthat</code></pre>
+    testthat,
+    tidyr</code></pre>
 <p>Note that the <code><a href="https://devtools.r-lib.org/reference/document.html" class="external-link">devtools::document()</a></code> in <code>pkgdown.sh</code> automatically updates NAMESPACE and regenerates function documentation file(.Rd),
 which can be picked up through <code><a href="https://pkgdown.r-lib.org/reference/build_reference.html" class="external-link">pkgdown::build_reference()</a></code>. The refinement is greatly facilitated by GitHub <code>R-CMD-check.yaml</code>
 workflow, namely, <a href="https://github.com/jinghuazhao/gaawr2/actions/workflows/R-CMD-check.yaml" class="external-link uri">https://github.com/jinghuazhao/gaawr2/actions/workflows/R-CMD-check.yaml</a>.</p>
