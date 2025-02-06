@@ -28,8 +28,7 @@ template:
     bootswatch: litera
   includes:
     in_header: |
-      <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-      <script>mermaid.initialize({ startOnLoad: true });</script>
+      <script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";mermaid.initialize({});</script>
   css: pkgdown/mermaid.css
 
 navbar:
