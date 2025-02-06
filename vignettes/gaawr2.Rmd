@@ -82,8 +82,8 @@ The operators are intuitive in many ways, but we would like to highlight two typ
 - the scope operator (`::`) is useful since user executes command from a particular package without loading it, which is usually faster.
 - the native (`|>`) and contributed (`%>%`) pipe operators which enable a chained of operations, the latter popularized from R **magrittr** and **dplyr** packages
 
-```{r ops, fig.cap="Mean values by gender and diabetes category", fig.height=6, fig.with=8}
-# Calculate mean values
+```{r ops, fig.cap="Mean values by gender and diabetes category", fig.height=6, fig.with=8, messages=FALSE}
+options(width=200,digits=2)
 data(diabetes,package="gaawr2")
 mean_values <- diabetes %>%
   dplyr::filter(CLASS %in% c("Y", "N", "P")) %>%
@@ -161,7 +161,6 @@ The package implements procedures which are appropriate for candidate gene assoc
 Fist we look at some meta-data, include HWE.
 
 ```{r snpassoc1, warning=FALSE}
-options(width=200,digits=2)
 data(asthma, package = "SNPassoc")
 str(asthma, list.len=8)
 knitr::kable(asthma[1:3,1:8],caption="First three records & two SNPs")
