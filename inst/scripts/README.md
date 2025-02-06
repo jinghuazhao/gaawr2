@@ -25,7 +25,9 @@ rentrez.R  | **entrez** query
 SNPassoc.R | **SNPassoc** script
 tabix.sh*  | **tabix** script
 
-There may be minor discrepancy with code in vignette; additionally,
+Given the limited allowance for computing time for CRAN checking, scripts here are largely perferable to those in the package vignette, [`gaawr2`].
+
+Additionally,
 
 - `cran.sh` makes a copy of the latest repository but drops files not needed by CRAN.
 - `hwe_ternary_plotly.py` is a Python script using plotly for the HWE ternary plot whose top vertex (the “a‑axis”) represents A1A2, the left vertex (the “b‑axis”) A1A2, and the right vertex (the “c‑axis”) A2A2.
