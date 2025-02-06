@@ -491,12 +491,7 @@ graph TB
   D --> E[Testing]
 ```
 
-<div class="mermaid">graph LR
-A[Package creation] –&gt; B[GitHub repository]
-B –&gt; C[pkgdown styling]
-C –&gt; D[Refinement]
-D –&gt; E[Testing]
-</div>
+![Workflow](gaawr2.png)
 
 The relevant scripts are with `inst/scripts` directory in the source package. Briefly,
 
