@@ -21,7 +21,7 @@
 #'   \item{\code{hypertensive}}{Hypertension.}
 #'   \item{\code{family_hypertension}}{Family history of hypertension.}
 #'   \item{\code{cardiovascular_disease}}{CVD.}
-#'   \item{\code{stroke}}{Stroke).}
+#'   \item{\code{stroke}}{Stroke.}
 #'   \item{\code{diabetic}}{Diabetic.}
 #' }
 #' @details
