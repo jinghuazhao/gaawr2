@@ -485,7 +485,7 @@ documentation and featured articles.
 
 <div class="mermaid">graph TB;A[Package creation] --&gt; B[GitHub repository];B --&gt; C[pkgdown styling];C --&gt; D[Refinement];D --&gt; E[Testing];</div>
 
-```{r mermaid, echo=FALSE, eval=FALSE}
+```{r mermaid, echo=FALSE}
 DiagrammeR::mermaid("
   graph TB
     A[Package creation] --> B[GitHub repository]
