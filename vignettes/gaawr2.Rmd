@@ -30,7 +30,7 @@ knitr::opts_chunk$set(
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 pkgs <- c("EnsDb.Hsapiens.v75","ensembldb","GMMAT","HardyWeinberg","MCMCglmm","SNPassoc","biomaRt",
            "gap","gap.datasets","haplo.stats","powerEQTL","R2jags","regress",
-           "dplyr","ggplot2","httr","jsonlite","kableExtra","knitr")
+           "dplyr","ggplot2","httr","jsonlite","kableExtra","knitr","tidyr")
 for (p in pkgs) if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
     if (!requireNamespace(p)) warning(paste0("This vignette needs package `", p, "'; please install"))
 }
@@ -82,17 +82,35 @@ The operators are intuitive in many ways, but we would like to highlight two typ
 - the scope operator (`::`) is useful since user executes command from a particular package without loading it, which is usually faster.
 - the native (`|>`) and contributed (`%>%`) pipe operators which enable a chained of operations, the latter popularized from R **magrittr** and **dplyr** packages
 
-```{r ops, fig.cap="Average Horsepower by Cylinder Count (mpg > 20)", fig.height=6, fig.with=8}
-sumstats <- mtcars %>%
-  dplyr::filter(mpg > 20) %>%
-  dplyr::group_by(cyl) %>%
-  dplyr::summarize(avg_hp = mean(hp), avg_wt = mean(wt))
-knitr::kable(sumstats,caption="Mean horse power and weight by Cylinder for mpg over 20")
-ggplot2::ggplot(sumstats, ggplot2::aes(x = factor(cyl), y = avg_hp, fill = factor(cyl))) +
-ggplot2::geom_bar(stat = "identity") +
-ggplot2::labs(title = "", x = "Number of Cylinders", y = "Average Horsepower") +
-ggplot2::theme_minimal() +
-ggplot2::scale_fill_brewer(palette = "Set2", name = "Cylinders")
+```{r ops, fig.cap="Mean values by gender and diabetes category", fig.height=6, fig.with=8}
+# Calculate mean values
+data(diabetes,package="gaawr2")
+mean_values <- diabetes %>%
+  dplyr::filter(CLASS %in% c("Y", "N", "P")) %>%
+  dplyr::group_by(CLASS, Gender) %>%
+  dplyr::select(AGE:BMI) %>%
+  dplyr::summarize(dplyr::across(dplyr::everything(), \(x) mean(x, na.rm = TRUE)))
+
+# Restructure the data for ggplot2 (pivot to long format)
+mean_values_long <- mean_values %>%
+  tidyr::pivot_longer(
+    cols = AGE:BMI,
+    names_to = "Variable",
+    values_to = "Mean_Value"
+  )
+
+# Create the ggplot2 plot with grouped bars
+ggplot2::ggplot(mean_values_long, aes(x = Variable, y = Mean_Value, fill = CLASS)) + # fill by CLASS
+  ggplot2::geom_col(position = ggplot2::position_dodge()) +
+  ggplot2::facet_wrap(~ Gender, scales = "free_y") +
+  ggplot2::labs(
+    title = "Mean Values by Variable, Gender, and Class",
+    x = "Variable",
+    y = "Mean Value",
+    fill = "Diabetes Class"
+  ) +
+  ggplot2::theme_bw() +
+  ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1))
 ```
 
 The Comprehensive R Archive Network (CRAN) host and Bioconductor host many fined-tuned user-contributed packages, their installation is furnished through
@@ -503,7 +521,8 @@ Suggests:
     regress,
     seqminer,
     SNPassoc,
-    testthat
+    testthat,
+    tidyr
 ```
 
 Note that the `devtools::document()` in `pkgdown.sh` automatically updates NAMESPACE and regenerates function documentation file(.Rd),
