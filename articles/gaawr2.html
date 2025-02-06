@@ -108,8 +108,8 @@
 </div>
 </div>
 <div class="section level2" number="2">
-<h2 id="operators-and-packages">
-<span class="header-section-number">2</span> Operators and packages<a class="anchor" aria-label="anchor" href="#operators-and-packages"></a>
+<h2 id="language-elements">
+<span class="header-section-number">2</span> Language elements<a class="anchor" aria-label="anchor" href="#language-elements"></a>
 </h2>
 <p>The operators are intuitive in many ways, but we would like to highlight two types of them,</p>
 <ul>
@@ -2330,6 +2330,11 @@ Figure 3.2: Power Estimation for eQTL Studies of 240 SNPs
 </h2>
 <p>While created as a showcase of modern package development, like other R packages it includes data examples, customized functions,
 documentation and featured articles.</p>
+<pre class="mermaid"><code>graph LR
+    PackageCreation["Package creation"] --&gt; GitHubRepository["GitHub repository"]
+    GitHubRepository --&gt; PkgdownStyling["pkgdown styling"]
+    PkgdownStyling --&gt; Refinement["Refinement"]
+    Refinement --&gt; Testing["Testing"]</code></pre>
 <p>The relevant scripts are with <code>inst/scripts</code> directory in the source package. Briefly,</p>
 <ul>
 <li>
