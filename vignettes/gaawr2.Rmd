@@ -85,8 +85,13 @@ The operators are intuitive in many ways, but we would like to highlight two typ
 ```{r diabetes, fig.cap="Mean values by gender and diabetes category", fig.height=6, fig.with=8, messages=FALSE}
 options(width=200,digits=2)
 data(diabetes,package="gaawr2")
+
 mean_values <- diabetes %>%
   dplyr::filter(CLASS %in% c("Y", "N", "P")) %>%
+  dplyr::mutate(
+    Gender = dplyr::recode(Gender, "F" = "Female", "M" = "Male"),
+    CLASS = dplyr::recode(CLASS, "Y" = "Yes", "N" = "No", "P" = "Predicted")
+  ) %>%
   dplyr::group_by(CLASS, Gender) %>%
   dplyr::select(AGE:BMI) %>%
   dplyr::summarize(dplyr::across(dplyr::everything(), \(x) mean(x, na.rm = TRUE)))
@@ -98,16 +103,15 @@ mean_values_long <- mean_values %>%
     names_to = "Variable",
     values_to = "Mean_Value"
   )
-
 ggplot2::ggplot(mean_values_long,
   ggplot2::aes(x = Variable, y = Mean_Value, fill = CLASS)) +
   ggplot2::geom_col(position = ggplot2::position_dodge()) +
-  ggplot2::facet_wrap(~ Gender, scales = "free_y") +
+  ggplot2::facet_wrap(~ Gender) +
   ggplot2::labs(
     title = "",
     x = "Variable",
     y = "Mean Value",
-    fill = "Diabetes Class"
+    fill = "Diabetes Status" # Modified legend title for clarity
   ) +
   ggplot2::theme_bw() +
   ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1))
