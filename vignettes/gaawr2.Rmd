@@ -484,11 +484,11 @@ While created as a showcase of modern package development, like other R packages
 documentation and featured articles.
 
 ```{mermaid}
-graph LR;
-    PackageCreation["Package creation"] --> GitHubRepository["GitHub repository"]
-    GitHubRepository --> PkgdownStyling["pkgdown styling"]
-    PkgdownStyling --> Refinement["Refinement"]
-    Refinement --> Testing["Testing"]
+graph LR
+    A[Package creation] --> B[GitHub repository]
+    B --> C[pkgdown styling]
+    C --> D[Refinement]
+    D --> E[Testing]
 ```
 
 The relevant scripts are with `inst/scripts` directory in the source package. Briefly,
