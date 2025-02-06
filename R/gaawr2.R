@@ -9,6 +9,9 @@
 #'
 #' Objects                   |  Description
 #' --------------------------|------------------------------------
+#' **Dataset**               |   &nbsp;
+#' [`DiaHealth`]             |   A Bangladeshi Dataset for Type 2 Diabetes Prediction
+#' [`diabetes`]              |   A diabetes dataset
 #' **Functions**             |   &nbsp;
 #' [`welcome`]               |   An enhanced welcome
 #'
