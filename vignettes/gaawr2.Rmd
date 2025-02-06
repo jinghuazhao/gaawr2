@@ -483,8 +483,8 @@ onto_plot(efo,efo_0000540)
 While created as a showcase of modern package development, like other R packages it includes data examples, customized functions,
 documentation and featured articles.
 
-```mermaid
-graph LR
+```{mermaid}
+graph LR;
     PackageCreation["Package creation"] --> GitHubRepository["GitHub repository"]
     GitHubRepository --> PkgdownStyling["pkgdown styling"]
     PkgdownStyling --> Refinement["Refinement"]
