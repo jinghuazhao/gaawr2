@@ -117,7 +117,7 @@
 <li>the native (<code>|&gt;</code>) and contributed (<code>%&gt;%</code>) pipe operators which enable a chained of operations, the latter popularized from R <strong>magrittr</strong> and <strong>dplyr</strong> packages</li>
 </ul>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Calculate mean values</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>width<span class="op">=</span><span class="fl">200</span>,digits<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">diabetes</span>,package<span class="op">=</span><span class="st">"gaawr2"</span><span class="op">)</span></span>
 <span><span class="va">mean_values</span> <span class="op">&lt;-</span> <span class="va">diabetes</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">CLASS</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Y"</span>, <span class="st">"N"</span>, <span class="st">"P"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
@@ -125,26 +125,11 @@
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">AGE</span><span class="op">:</span><span class="va">BMI</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarize</a></span><span class="op">(</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html" class="external-link">across</a></span><span class="op">(</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything</a></span><span class="op">(</span><span class="op">)</span>, \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Adding missing grouping variables: `CLASS`, `Gender`</span></span>
-<span><span class="co">#&gt; `summarise()` has grouped output by 'CLASS'. You can override using the</span></span>
-<span><span class="co">#&gt; `.groups` argument.</span></span>
+<span><span class="co">#&gt; `summarise()` has grouped output by 'CLASS'. You can override using the `.groups` argument.</span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">mean_values</span>,caption<span class="op">=</span><span class="st">"Mean value by gender and diabetes category"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>
 <span id="tab:ops">Table 2.1: </span>Mean value by gender and diabetes category</caption>
-<colgroup>
-<col width="5%">
-<col width="6%">
-<col width="8%">
-<col width="8%">
-<col width="8%">
-<col width="8%">
-<col width="8%">
-<col width="8%">
-<col width="8%">
-<col width="8%">
-<col width="9%">
-<col width="8%">
-</colgroup>
 <thead><tr class="header">
 <th align="left">CLASS</th>
 <th align="left">Gender</th>
@@ -163,86 +148,86 @@
 <tr class="odd">
 <td align="left">N</td>
 <td align="left">F</td>
-<td align="right">43.98438</td>
-<td align="right">4.384375</td>
-<td align="right">57.92188</td>
-<td align="right">4.501563</td>
-<td align="right">4.350000</td>
-<td align="right">1.484375</td>
-<td align="right">1.326563</td>
-<td align="right">2.587500</td>
-<td align="right">0.6906250</td>
-<td align="right">22.50781</td>
+<td align="right">44</td>
+<td align="right">4.4</td>
+<td align="right">58</td>
+<td align="right">4.5</td>
+<td align="right">4.3</td>
+<td align="right">1.5</td>
+<td align="right">1.3</td>
+<td align="right">2.6</td>
+<td align="right">0.69</td>
+<td align="right">23</td>
 </tr>
 <tr class="even">
 <td align="left">N</td>
 <td align="left">M</td>
-<td align="right">44.81579</td>
-<td align="right">5.142105</td>
-<td align="right">70.47368</td>
-<td align="right">4.636842</td>
-<td align="right">4.126316</td>
-<td align="right">1.860526</td>
-<td align="right">1.068421</td>
-<td align="right">2.684210</td>
-<td align="right">1.3736842</td>
-<td align="right">22.09211</td>
+<td align="right">45</td>
+<td align="right">5.1</td>
+<td align="right">70</td>
+<td align="right">4.6</td>
+<td align="right">4.1</td>
+<td align="right">1.9</td>
+<td align="right">1.1</td>
+<td align="right">2.7</td>
+<td align="right">1.37</td>
+<td align="right">22</td>
 </tr>
 <tr class="odd">
 <td align="left">P</td>
 <td align="left">F</td>
-<td align="right">41.47059</td>
-<td align="right">3.876471</td>
-<td align="right">49.58824</td>
-<td align="right">6.058823</td>
-<td align="right">4.747059</td>
-<td align="right">1.876471</td>
-<td align="right">1.179412</td>
-<td align="right">2.655882</td>
-<td align="right">0.9823529</td>
-<td align="right">24.17647</td>
+<td align="right">41</td>
+<td align="right">3.9</td>
+<td align="right">50</td>
+<td align="right">6.1</td>
+<td align="right">4.8</td>
+<td align="right">1.9</td>
+<td align="right">1.2</td>
+<td align="right">2.7</td>
+<td align="right">0.98</td>
+<td align="right">24</td>
 </tr>
 <tr class="even">
 <td align="left">P</td>
 <td align="left">M</td>
-<td align="right">44.13889</td>
-<td align="right">4.811111</td>
-<td align="right">73.86111</td>
-<td align="right">5.977778</td>
-<td align="right">4.500000</td>
-<td align="right">2.244444</td>
-<td align="right">1.102778</td>
-<td align="right">2.416667</td>
-<td align="right">0.9833333</td>
-<td align="right">23.81944</td>
+<td align="right">44</td>
+<td align="right">4.8</td>
+<td align="right">74</td>
+<td align="right">6.0</td>
+<td align="right">4.5</td>
+<td align="right">2.2</td>
+<td align="right">1.1</td>
+<td align="right">2.4</td>
+<td align="right">0.98</td>
+<td align="right">24</td>
 </tr>
 <tr class="odd">
 <td align="left">Y</td>
 <td align="left">F</td>
-<td align="right">55.56780</td>
-<td align="right">4.840678</td>
-<td align="right">58.86158</td>
-<td align="right">9.104407</td>
-<td align="right">5.079096</td>
-<td align="right">2.426554</td>
-<td align="right">1.304237</td>
-<td align="right">2.526441</td>
-<td align="right">1.1115819</td>
-<td align="right">30.61486</td>
+<td align="right">56</td>
+<td align="right">4.8</td>
+<td align="right">59</td>
+<td align="right">9.1</td>
+<td align="right">5.1</td>
+<td align="right">2.4</td>
+<td align="right">1.3</td>
+<td align="right">2.5</td>
+<td align="right">1.11</td>
+<td align="right">31</td>
 </tr>
 <tr class="even">
 <td align="left">Y</td>
 <td align="left">M</td>
-<td align="right">55.25514</td>
-<td align="right">5.491858</td>
-<td align="right">77.91975</td>
-<td align="right">8.719547</td>
-<td align="right">4.866502</td>
-<td align="right">2.476358</td>
-<td align="right">1.136420</td>
-<td align="right">2.679383</td>
-<td align="right">2.6207819</td>
-<td align="right">30.92420</td>
+<td align="right">55</td>
+<td align="right">5.5</td>
+<td align="right">78</td>
+<td align="right">8.7</td>
+<td align="right">4.9</td>
+<td align="right">2.5</td>
+<td align="right">1.1</td>
+<td align="right">2.7</td>
+<td align="right">2.62</td>
+<td align="right">31</td>
 </tr>
 </tbody>
 </table>
@@ -299,8 +284,8 @@ a chromosome X SNP and a HLA/DQR,</p>
 <span><span class="co"># MN blood group</span></span>
 <span><span class="va">SNP</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>MM <span class="op">=</span> <span class="fl">298</span>, MN <span class="op">=</span> <span class="fl">489</span>, NN <span class="op">=</span> <span class="fl">213</span><span class="op">)</span></span>
 <span><span class="fu">HardyWeinberg</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/HardyWeinberg/man/maf.html" class="external-link">maf</a></span><span class="op">(</span><span class="va">SNP</span><span class="op">)</span></span>
-<span><span class="co">#&gt;      N </span></span>
-<span><span class="co">#&gt; 0.4575</span></span>
+<span><span class="co">#&gt;    N </span></span>
+<span><span class="co">#&gt; 0.46</span></span>
 <span><span class="fu">HardyWeinberg</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/HardyWeinberg/man/HWTernaryPlot.html" class="external-link">HWTernaryPlot</a></span><span class="op">(</span><span class="va">SNP</span>,region<span class="op">=</span><span class="fl">0</span>,grid<span class="op">=</span><span class="cn">TRUE</span>,markercol<span class="op">=</span><span class="st">"blue"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:hwe"></span>
@@ -311,12 +296,12 @@ Figure 3.1: SNP ternary plot
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">HardyWeinberg</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/HardyWeinberg/man/HWChisq.html" class="external-link">HWChisq</a></span><span class="op">(</span><span class="va">SNP</span>, cc <span class="op">=</span> <span class="fl">0</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Chi-square test for Hardy-Weinberg equilibrium (autosomal)</span></span>
-<span><span class="co">#&gt; Chi2 =  0.2214896 DF =  1 p-value =  0.6379073 D =  -3.69375 f =  0.01488253</span></span>
+<span><span class="co">#&gt; Chi2 =  0.22 DF =  1 p-value =  0.64 D =  -3.7 f =  0.015</span></span>
 <span><span class="co"># Chromosome X</span></span>
 <span><span class="va">xSNP</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>A<span class="op">=</span><span class="fl">10</span>, B<span class="op">=</span><span class="fl">20</span>, AA<span class="op">=</span><span class="fl">30</span>, AB<span class="op">=</span><span class="fl">20</span>, BB<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span>
 <span><span class="fu">HardyWeinberg</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/HardyWeinberg/man/HWChisq.html" class="external-link">HWChisq</a></span><span class="op">(</span><span class="va">xSNP</span>,cc<span class="op">=</span><span class="fl">0</span>,x.linked<span class="op">=</span><span class="cn">TRUE</span>,verbose<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Chi-square test for Hardy-Weinberg equilibrium (X-chromosomal)</span></span>
-<span><span class="co">#&gt; Chi2 =  14.86111 DF = 2 p-value =  0.0005928581 D =  NA f =  0.25</span></span>
+<span><span class="co">#&gt; Chi2 =  15 DF = 2 p-value =  0.00059 D =  NA f =  0.25</span></span>
 <span><span class="co"># HLA/DQR</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jinghuazhao/R" class="external-link">gap</a></span><span class="op">)</span></span>
 <span><span class="va">DQR</span> <span class="op">&lt;-</span> <span class="va">hla</span><span class="op">[</span>,<span class="fl">3</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span>
@@ -1090,11 +1075,11 @@ Figure 3.1: SNP ternary plot
 <code class="sourceCode R"><span><span class="fu">HardyWeinberg</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/HardyWeinberg/man/HWPerm.mult.html" class="external-link">HWPerm.mult</a></span><span class="op">(</span><span class="va">GenotypeCounts</span>,nperm<span class="op">=</span><span class="fl">300</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Permutation test for Hardy-Weinberg equilibrium (autosomal).</span></span>
 <span><span class="co">#&gt; 25 alleles detected.</span></span>
-<span><span class="co">#&gt; Observed statistic: 1.461325e-84   300 permutations. p-value: 0.01</span></span>
+<span><span class="co">#&gt; Observed statistic: 1.5e-84   300 permutations. p-value: 0.01</span></span>
 <span><span class="fu">HardyWeinberg</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/HardyWeinberg/man/HWStr.html" class="external-link">HWStr</a></span><span class="op">(</span><span class="va">hla</span><span class="op">[</span>,<span class="fl">3</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>,test<span class="op">=</span><span class="st">"permutation"</span>,nperm<span class="op">=</span><span class="fl">300</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 1 STRs detected.</span></span>
-<span><span class="co">#&gt;      STR   N Nt     MinorAF   MajorAF        Ho        He       Hp       pval</span></span>
-<span><span class="co">#&gt; 1 DQR.a1 271 25 0.001845018 0.1494465 0.8856089 0.9097643 2.654949 0.02666667</span></span></code></pre></div>
+<span><span class="co">#&gt;      STR   N Nt MinorAF MajorAF   Ho   He  Hp  pval</span></span>
+<span><span class="co">#&gt; 1 DQR.a1 271 25  0.0018    0.15 0.89 0.91 2.7 0.027</span></span></code></pre></div>
 <p>The MN locus is seen to be close to the HWE line from the ternary plot. Only 300 permutations are done for the HLA/DQR data to illustrate.</p>
 </div>
 <div class="section level3" number="3.2">
@@ -1104,8 +1089,7 @@ Figure 3.1: SNP ternary plot
 <p>The package implements procedures which are appropriate for candidate gene association analysis, under a variety of genetic models.</p>
 <p>Fist we look at some meta-data, include HWE.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>width<span class="op">=</span><span class="fl">200</span>,digits<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">asthma</span>, package <span class="op">=</span> <span class="st">"SNPassoc"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">asthma</span>, package <span class="op">=</span> <span class="st">"SNPassoc"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">asthma</span>, list.len<span class="op">=</span><span class="fl">8</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 'data.frame':    1578 obs. of  57 variables:</span></span>
 <span><span class="co">#&gt;  $ country    : Factor w/ 10 levels "Australia","Belgium",..: 5 5 5 5 5 5 5 5 5 5 ...</span></span>
