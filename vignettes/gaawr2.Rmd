@@ -484,7 +484,9 @@ onto_plot(efo,efo_0000540)
 While created as a showcase of modern package development, like other R packages it includes data examples, customized functions,
 documentation and featured articles.
 
-![The **gaawr2** workflow](gaawr2.png)
+```{r gaawr2, echo=FALSE, out.width='80%', fig.cap="The **gaawr2** workflow"}
+knitr::include_graphics("gaawr2.png")
+```
 
 The relevant scripts are with `inst/scripts` directory in the source package. Briefly,
 
