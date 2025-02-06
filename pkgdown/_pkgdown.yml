@@ -27,9 +27,7 @@ template:
   params:
     bootswatch: litera
   includes:
-    in_header: |
-      <script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";mermaid.initialize({});</script>
-  css: pkgdown/mermaid.css
+    after_body: <script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";mermaid.initialize({});</script>
 
 navbar:
   structure:
