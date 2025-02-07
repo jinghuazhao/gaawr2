@@ -48,7 +48,7 @@ We start with several ways of printting a `Hello, world!` message.
 
 ## R
 
-It is customary to use an R command line interface (CLI) or graphical user interface (GUI),
+R can be started from either command line interface (CLI) or a graphical user interface (GUI),
 
 ```{r welcome}
 print("Hello, world!\n")
@@ -56,7 +56,7 @@ print("Hello, world!\n")
 
 ## Linux
 
-We more often embed R in a Linux script,
+We more often embed R in a Linux script as shown below,
 
 ```{bash linux}
 # environment variable
@@ -122,12 +122,13 @@ The Comprehensive R Archive Network (CRAN) host and Bioconductor host many fined
 
 - `install.packages()` which is a standard way to install from CRAN
 - `BiocManager::install() which is the current approach to install package from the Bioconductor project.`
+- All packages, including those archived, can be installed with `devtools::install_github(cran/package-name)`, e.g., **kinship** and **GenABEL**.
 
 # Data analysis
 
-Topics vary from those classic models such as **mets** for twin data to heavily featured in candidate gene studies, such as 
-Hardy-Weinberg equilirium (HWE), to their counterparts in Genomewide association study (GWAS) such as various types of association 
-statistics, QQ/Manhattan/local association plots.
+Topics in this section underpins large-scale genome data analysis such as Genomewide association study (GWAS) and vary from those
+classic models such as **mets** for twin data to heavily featured in candidate gene studies, such as Hardy-Weinberg equilirium (HWE), to
+GWAS such as various types of association statistics, QQ/Manhattan/local association plots.
 
 There has been a lot of interests in machine learning (ML), artificial language (AI), including deep learning, just to add one more
 acronym, the bulk of which is also readily available.
@@ -482,7 +483,7 @@ onto_plot(efo,efo_0000540)
 # gaawr2
 
 While created as a showcase of modern package development, like other R packages it includes data examples, customized functions,
-documentation and featured articles.
+documentation and featured articles. The workflow is shown in the following diagram.
 
 <div class="mermaid">graph TB; A[Package creation] &#45;&#45;&gt; B[GitHub respository]; B &#45;&#45;&gt; C[Pkgdown styling];C &#45;&#45;&gt; D[Refinement];D &#45;&#45;&gt; E[Testing]</div>
 
@@ -496,11 +497,15 @@ The relevant scripts are with `inst/scripts` directory in the source package. Br
 Note that for creation of the GitHub repository, an SSH key is assumed in place. In order for `pkgdown.sh` to function well, all
 required files such as `nature-genetics.csl` need to be available.
 
+Moreover, the `devtools::document()` in `pkgdown.sh` automatically updates NAMESPACE and regenerates documentation files (.Rd),
+which can be picked up through `pkgdown::build_reference()`. The refinement is greatly facilitated by GitHub `R-CMD-check.yaml`
+workflow, namely, <https://github.com/jinghuazhao/gaawr2/actions/workflows/R-CMD-check.yaml>, e.g., flagging missing packages
+in package building.
+
 A GitHub login is still necessary to enable web pages, so that this can be accessed as <https://jinghuazhao.github.io/gaawr2/>.
 Upon use `pkgdown`, an article can be seen from the menu item `Articles`.
 
-We carry on adding files such as `NEWS.md` and `_pkgdown.yml`. In particular, this needs to be in the generated .html for MathJax:
-`<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>`.
+We carry on adding files such as `NEWS.md` and `_pkgdown.yml`, involing MathJax and mermaid:
 
 In line with various analyses we have covered, their associate packages are also added to the suggested list of packages in DESCRIPTION:
 
@@ -530,10 +535,6 @@ Suggests:
     testthat,
     tidyr
 ```
-
-Note that the `devtools::document()` in `pkgdown.sh` automatically updates NAMESPACE and regenerates function documentation file(.Rd),
-which can be picked up through `pkgdown::build_reference()`. The refinement is greatly facilitated by GitHub `R-CMD-check.yaml`
-workflow, namely, <https://github.com/jinghuazhao/gaawr2/actions/workflows/R-CMD-check.yaml>.
 
 # References
 
