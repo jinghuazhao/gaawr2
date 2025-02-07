@@ -2330,9 +2330,12 @@ Figure 3.2: Power Estimation for eQTL Studies of 240 SNPs
 </h2>
 <p>While created as a showcase of modern package development, like other R packages it includes data examples, customized functions,
 documentation and featured articles.</p>
-<div class="float">
-<img src="gaawr2.png" size="80%" alt="gaawr2 workflow"><div class="figcaption">
-<strong>gaawr2</strong> workflow</div>
+<div class="mermaid">
+<p>graph TB
+PackageCreation –&gt; GitHubRepository
+GitHubRepository –&gt; PkgdownStyling
+PkgdownStyling –&gt; Refinement
+Refinement –&gt; Testing</p>
 </div>
 <p>The relevant scripts are with <code>inst/scripts</code> directory in the source package. Briefly,</p>
 <ul>
@@ -2379,13 +2382,6 @@ Upon use <code>pkgdown</code>, an article can be seen from the menu item <code>A
 <p>Note that the <code>devtools::document()</code> in <code>pkgdown.sh</code> automatically updates NAMESPACE and regenerates function documentation file(.Rd),
 which can be picked up through <code><a href="https://pkgdown.r-lib.org/reference/build_reference.html" class="external-link">pkgdown::build_reference()</a></code>. The refinement is greatly facilitated by GitHub <code>R-CMD-check.yaml</code>
 workflow, namely, <a href="https://github.com/jinghuazhao/gaawr2/actions/workflows/R-CMD-check.yaml" class="external-link uri">https://github.com/jinghuazhao/gaawr2/actions/workflows/R-CMD-check.yaml</a>.</p>
-<div class="mermaid">
-<p>graph TB
-PackageCreation[“Package creation”] –&gt; GitHubRepository[“GitHub repository”]
-GitHubRepository –&gt; PkgdownStyling[“pkgdown styling”]
-PkgdownStyling –&gt; Refinement[“Refinement”]
-Refinement –&gt; Testing[“Testing”]</p>
-</div>
 </div>
 <div class="section level2" number="6">
 <h2 id="references">
