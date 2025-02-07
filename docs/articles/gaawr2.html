@@ -2330,8 +2330,12 @@ Figure 3.2: Power Estimation for eQTL Studies of 240 SNPs
 </h2>
 <p>While created as a showcase of modern package development, like other R packages it includes data examples, customized functions,
 documentation and featured articles.</p>
-<div class="figure">
-<img src="gaawr2.png" size="80%" alt=""><p class="caption"><strong>gaawr2</strong> workflow</p>
+<div class="mermaid">
+<p>graph TB
+PackageCreation –&gt; GitHubRepository
+GitHubRepository –&gt; PkgdownStyling
+PkgdownStyling –&gt; Refinement
+Refinement –&gt; Testing</p>
 </div>
 <p>The relevant scripts are with <code>inst/scripts</code> directory in the source package. Briefly,</p>
 <ul>
@@ -2412,13 +2416,6 @@ workflow, namely, <a href="https://github.com/jinghuazhao/gaawr2/actions/workflo
     </footer>
 </div>
 
-<div class="mermaid">
-graph TB
-PackageCreation[“Package creation”] –&gt; GitHubRepository[“GitHub repository”]
-GitHubRepository –&gt; PkgdownStyling[“pkgdown styling”]
-PkgdownStyling –&gt; Refinement[“Refinement”]
-Refinement –&gt; Testing[“Testing”]
-</div>
 
 
   <script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";mermaid.initialize({});</script>
