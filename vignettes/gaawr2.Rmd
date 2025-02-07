@@ -484,7 +484,7 @@ onto_plot(efo,efo_0000540)
 While created as a showcase of modern package development, like other R packages it includes data examples, customized functions,
 documentation and featured articles.
 
-![](gaawr2.png)(size=80%)
+![**gaawr2** workflow](gaawr2.png){size=80%}
 
 The relevant scripts are with `inst/scripts` directory in the source package. Briefly,
 
@@ -535,8 +535,7 @@ Note that the `devtools::document()` in `pkgdown.sh` automatically updates NAMES
 which can be picked up through `pkgdown::build_reference()`. The refinement is greatly facilitated by GitHub `R-CMD-check.yaml`
 workflow, namely, <https://github.com/jinghuazhao/gaawr2/actions/workflows/R-CMD-check.yaml>.
 
-<div class="mermaid">
-graph TB
+<div class="mermaid">graph TB
     PackageCreation["Package creation"] --> GitHubRepository["GitHub repository"]
     GitHubRepository --> PkgdownStyling["pkgdown styling"]
     PkgdownStyling --> Refinement["Refinement"]
