@@ -23,7 +23,6 @@ for d in gaawr2
 do
     if [ -d vignettes/${d} ]; then
        rm -rf docs/articles/${d}
-       cp vignettes/gaawr2.png vignettes/${d}
        mv vignettes/${d} docs/articles/
     fi
 done
