@@ -7,18 +7,18 @@
 \format{
 A data frame with 1,000 rows and 14 variables:
 \describe{
-\item{\code{ID}}{ID.}
-\item{\code{No_Pation}}{No. of Patient.}
-\item{\code{Gender}}{Gender.}
-\item{\code{AGE}}{Age.}
-\item{\code{Urea}}{Chief nitrogenous end product of the metabolic breakdown of proteins.}
-\item{\code{Cr}}{Creatinine ratio (Cr).}
-\item{\code{HbA1c}}{Hemoglobin A1c (HbA1c).}
-\item{\code{Chol}}{Cholesterol (Chol).}
-\item{\code{TG}}{Triglycerides (TG).}
-\item{\code{HDL}}{High-density lipoprotein (HDL).}
-\item{\code{LDL}}{Low-density lipoprotein (LDL).}
-\item{\code{VLDL}}{Very-low-density lipoprotein (VLDL).}
+\item{\code{ID}}{Unique identifier for each patient (unitless).}
+\item{\code{No_Pation}}{Patient number (unitless).}
+\item{\code{Gender}}{Categorical variable (Female, Male).}
+\item{\code{AGE}}{Years (age of the person).}
+\item{\code{Urea}}{Chief nitrogenous end product of the metabolic breakdown of proteins in milligrams per deciliter (mg/dL).}
+\item{\code{Cr}}{Creatinine ratio (Cr) (mg/dL).}
+\item{\code{HbA1c}}{Hemoglobin A1c (HbA1c) \% (percentage).}
+\item{\code{Chol}}{Cholesterol (Chol) (mg/dL).}
+\item{\code{TG}}{Triglycerides (TG) (mg/dL).}
+\item{\code{HDL}}{High-density lipoprotein (HDL) (mg/dL).}
+\item{\code{LDL}}{Low-density lipoprotein (LDL) (mg/dL).}
+\item{\code{VLDL}}{Very-low-density lipoprotein (VLDL) (mg/dL).}
 \item{\code{BMI}}{Body mass index (BMI).}
 \item{\code{CLASS}}{Class (the patient's diabetes disease class may be Diabetic, Non-Diabetic, or Predict-Diabetic).}
 }

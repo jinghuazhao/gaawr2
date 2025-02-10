@@ -7,14 +7,14 @@
 \format{
 A data frame with 5,437 patients and 14 variables on demographics, clinical parameters, and medical history.
 \describe{
-\item{\code{age}}{Age.}
-\item{\code{gender}}{Gender.}
-\item{\code{pulse_rate}}{Pulse rate.}
-\item{\code{systolic_bp}}{Systolic blood pressure (SBP).}
-\item{\code{diastolic_bp}}{Diastolic blood pressure (DBP).}
-\item{\code{glucose}}{Glucose.}
-\item{\code{height}}{Height.}
-\item{\code{weight}}{Weight.}
+\item{\code{age}}{Years (age of the person).}
+\item{\code{gender}}{Categorical variable (Female, Male).}
+\item{\code{pulse_rate}}{Beats per minute (bpm).}
+\item{\code{systolic_bp}}{SBP in millimeters of mercury (mmHg).}
+\item{\code{diastolic_bp}}{DBP (mmHg).}
+\item{\code{glucose}}{Milligrams per deciliter (mg/dL).}
+\item{\code{height}}{Meter (m).}
+\item{\code{weight}}{Kilogram (kg).}
 \item{\code{bmi}}{Body mass index (BMI).}
 \item{\code{family_diabetes}}{Family history of diabetes.}
 \item{\code{hypertensive}}{Hypertension.}
