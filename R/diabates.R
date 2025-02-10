@@ -29,10 +29,8 @@
 #'
 #' @source Rashid A (2020), “Diabetes Dataset”, Mendeley Data, V1, doi: 10.17632/wj9rwkp9c2.1.
 #' @examples
-#' \dontrun{
 #' data(diabetes)
-#' head(diabetes)
-#' }
+#' knitr::kable(head(diabetes,5),caption="Five individuals in diabetes data")
 #' @seealso \code{\link[gaawr2]{DiaHealth}}.
 
 "diabetes"

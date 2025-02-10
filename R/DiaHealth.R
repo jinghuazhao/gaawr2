@@ -29,10 +29,8 @@
 #'
 #' @source Prama TT, Zaman M, Sarker F, Mamun KA. (2024), “DiaHealth: A Bangladeshi Dataset for Type 2 Diabetes Prediction ”, Mendeley Data, V1, doi: 10.17632/7m7555vgrn.1
 #' @examples
-#' \dontrun{
 #' data(DiaHealth)
-#' head(DiaHealth)
-#' }
+#' knitr::kable(head(DiaHealth,5),caption="Five individauls in DiaHealth")
 #' @seealso \code{\link[gaawr2]{diabetes}}
 
 "DiaHealth"
