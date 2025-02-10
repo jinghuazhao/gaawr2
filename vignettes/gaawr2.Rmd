@@ -78,6 +78,16 @@ cat
 
 # Language elements
 
+Basic data manipulation can be seen with
+
+```{r iris}
+class(iris)
+dim(iris)
+str(iris)
+head(iris,1)
+tail(iris,1)
+```
+
 The operators are intuitive in many ways, but we would like to highlight two types of them,
 
 - the scope operator (`::`) is useful since user executes command from a particular package without loading it, which is usually faster.
