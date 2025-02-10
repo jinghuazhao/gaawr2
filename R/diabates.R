@@ -13,7 +13,7 @@
 #'   \item{\code{Gender}}{Gender.}
 #'   \item{\code{AGE}}{Age.}
 #'   \item{\code{Urea}}{Urea.}
-#'   \item{\code{Cr}}{Creatinine ratio(Cr).}
+#'   \item{\code{Cr}}{Creatinine ratio (Cr).}
 #'   \item{\code{HbA1c}}{HbA1c.}
 #'   \item{\code{Chol}}{Cholesterol (Chol).}
 #'   \item{\code{TG}}{Triglycerides(TG).}
