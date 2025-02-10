@@ -27,7 +27,7 @@ do
     fi
 done
 
-for f in .github .gitignore .Rbuildignore $(ls)
+for f in .github .gitignore .Rbuildignore .Rinstignore $(ls)
 do
   echo adding ${f}
   git add ${f}
