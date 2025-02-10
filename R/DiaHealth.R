@@ -1,7 +1,7 @@
 #' DiaHealth
 #'
 #' @description
-#' A Bangladeshi Dataset for Type 2 Diabetes Prediction.
+#' A Bangladeshi dataset for Type 2 diabetes prediction.
 #'
 #' @docType data
 #' @keywords datasets internal
