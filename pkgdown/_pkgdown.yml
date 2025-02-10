@@ -57,9 +57,11 @@ navbar:
     github:
         icon: fab fa-github
         href: https://github.com/jinghuazhao/gaawr2
+        aria-label: GitHub
     cran:
         icon: fab fa-r-project
         href: https://jinghuazhao.github.io/R/
+        aria-label: R
 
 reference:
   - title: "A summary"
