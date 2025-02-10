@@ -31,7 +31,7 @@ Prama TT, Zaman M, Sarker F, Mamun KA. (2024), “DiaHealth: A Bangladeshi Datas
 DiaHealth
 }
 \description{
-A Bangladeshi Dataset for Type 2 Diabetes Prediction.
+A Bangladeshi dataset for Type 2 diabetes prediction.
 }
 \details{
 Key features include age, gender, pulse rate, blood pressure (systolic and diastolic), glucose level, BMI, and family history of diabetes and related conditions like hypertension and cardiovascular disease. The dataset is labeled with a binary outcome indicating whether each patient has diabetes. This rich dataset is designed to support the development and evaluation of machine learning models for diabetes detection, management, and treatment.
