@@ -83,6 +83,7 @@ footer:
 env:
  global:
    - _R_CHECK_FORCE_SUGGESTS_: false
+   - _R_CHECK_SYSTEM_CLOCK_: false
 
 website:
   mathjax: default
