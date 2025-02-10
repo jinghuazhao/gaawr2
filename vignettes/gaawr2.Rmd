@@ -59,15 +59,14 @@ print("Hello, world!\n")
 We more often embed R in a Linux script as shown below,
 
 ```{bash linux}
+# quoting code with delimiters
+R --no-save -q <<END
+print("Hello, world!")
+END
 # environment variable
 export message="Hello, world!"
 Rscript -e 'message=Sys.getenv("message");print(message)'
-# a code chunk
-R --no-save -q <<END
-options(echo=FALSE)
-print("Hello, world!")
-END
-# a processor
+# a code chunk as a processor
 echo Hello, world! | \
 Rscript -e '
    message <- scan("stdin", what = "", sep = "\n", quiet = TRUE);
@@ -75,6 +74,13 @@ Rscript -e '
 ' | \
 cat
 ```
+
+More generally as shown in the example, one can take advantage of powerful data handling facilities
+in the Linux environment, through either itself or software followed by their counterparts in R with
+options to feed back to the Linux envornment again for further use.
+
+Further to this point, R could be a powerful part in a workflow, e.g., an article has been curated
+in **pQTLtools** involving **snakemake**, <https://jinghuazhao.github.io/pQTLtools/articles/snakemake.html>.
 
 # Language elements
 
@@ -545,6 +551,12 @@ Suggests:
     testthat,
     tidyr
 ```
+
+# Summary
+
+We've explored various aspects of genetic association analysis in R, particularly in the context of computing systems
+like Linux. While these serve as a solid foundation, a more in-depth data analysis coupled with development is surely
+fruitful.
 
 # References
 
