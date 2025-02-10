@@ -37,10 +37,8 @@ A Bangladeshi Dataset for Type 2 Diabetes Prediction.
 Key features include age, gender, pulse rate, blood pressure (systolic and diastolic), glucose level, BMI, and family history of diabetes and related conditions like hypertension and cardiovascular disease. The dataset is labeled with a binary outcome indicating whether each patient has diabetes. This rich dataset is designed to support the development and evaluation of machine learning models for diabetes detection, management, and treatment.
 }
 \examples{
-\dontrun{
 data(DiaHealth)
-head(DiaHealth)
-}
+knitr::kable(head(DiaHealth,5),caption="Five individauls in DiaHealth")
 }
 \seealso{
 \code{\link[gaawr2]{diabetes}}

@@ -37,10 +37,8 @@ The data were collected from the Iraqi society, as they data were acquired from 
 and (the Specializes Center for Endocrinology and Diabetes-Al-Kindy Teaching Hospital).
 }
 \examples{
-\dontrun{
 data(diabetes)
-head(diabetes)
-}
+knitr::kable(head(diabetes,5),caption="Five individuals in diabetes data")
 }
 \seealso{
 \code{\link[gaawr2]{DiaHealth}}.
