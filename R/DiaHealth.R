@@ -16,7 +16,7 @@
 #'   \item{\code{glucose}}{Glucose.}
 #'   \item{\code{height}}{Height.}
 #'   \item{\code{weight}}{Weight.}
-#'   \item{\code{bmi}}{Body Mass Index (BMI).}
+#'   \item{\code{bmi}}{Body mass index (BMI).}
 #'   \item{\code{family_diabetes}}{Family history of diabetes.}
 #'   \item{\code{hypertensive}}{Hypertension.}
 #'   \item{\code{family_hypertension}}{Family history of hypertension.}
