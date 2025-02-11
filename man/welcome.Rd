@@ -2,7 +2,7 @@
 % Please edit documentation in R/welcome.R
 \name{welcome}
 \alias{welcome}
-\title{welcome Function}
+\title{welcome function}
 \usage{
 welcome(n)
 }
