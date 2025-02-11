@@ -6,6 +6,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Genetic Association Analysis with R (II) • gaawr2</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
@@ -55,8 +61,7 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-
-      <h1>Genetic Association Analysis with R (II)</h1>
+      <img src="../logo.png" class="logo" alt=""><h1>Genetic Association Analysis with R (II)</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/jinghuazhao/gaawr2/blob/main/vignettes/gaawr2.Rmd" class="external-link"><code>vignettes/gaawr2.Rmd</code></a></small>
@@ -86,30 +91,33 @@
 <span class="header-section-number">1.2</span> Linux<a class="anchor" aria-label="anchor" href="#linux"></a>
 </h3>
 <p>We more often embed R in a Linux script as shown below,</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># quoting code with delimiters</span></span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">R</span> <span class="at">--no-save</span> <span class="at">-q</span> <span class="op">&lt;&lt;END</span></span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="st">print("Hello, world!")</span></span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="op">END</span></span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="co"># environment variable</span></span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="bu">export</span> <span class="va">message</span><span class="op">=</span><span class="st">"Hello, world!"</span></span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'message=Sys.getenv("message");print(message)'</span></span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="co"># a code chunk as a processor</span></span>
-<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="bu">echo</span> Hello, world! <span class="kw">|</span> <span class="dt">\</span></span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'</span></span>
-<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="st">   message &lt;- scan("stdin", what = "", sep = "\n", quiet = TRUE);</span></span>
-<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="st">   write.table(message, col.names = FALSE, row.names = FALSE, quote = FALSE)</span></span>
-<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="st">'</span> <span class="kw">|</span> <span class="dt">\</span></span>
-<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="fu">cat</span></span>
-<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="co">#&gt; &gt; print("Hello, world!")</span></span>
-<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="co">#&gt; [1] "Hello, world!"</span></span>
-<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a><span class="co">#&gt; &gt; </span></span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="bu">export</span> <span class="va">message</span><span class="op">=</span><span class="st">"Hello, world!"</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"print('</span><span class="va">$message</span><span class="st">')"</span> <span class="op">&gt;</span> hello.R</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="ex">R</span> CMD BATCH hello.R</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="ex">R</span> <span class="at">--no-save</span> <span class="at">-q</span> <span class="op">&lt;</span> hello.R</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="ex">R</span> <span class="at">--no-save</span> <span class="at">-q</span> <span class="op">&lt;&lt;END</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="st">message &lt;- Sys.getenv("message"); print(message)</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="st">source("hello.R")</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="op">END</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="bu">echo</span> <span class="va">${message}</span> <span class="kw">|</span> <span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="st">message &lt;- scan("stdin", what="", sep="\n", quiet=TRUE);</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="st">write.table(message, col.names=FALSE, row.names=FALSE,</span></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="st">            quote=FALSE)</span></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="st">'</span> <span class="kw">|</span> <span class="fu">cat</span></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="co">#&gt; &gt; print('Hello, world!')</span></span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="co">#&gt; [1] "Hello, world!"</span></span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="co">#&gt; &gt; </span></span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a><span class="co">#&gt; &gt; message &lt;- Sys.getenv("message"); print(message)</span></span>
 <span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a><span class="co">#&gt; [1] "Hello, world!"</span></span>
-<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a><span class="co">#&gt; Hello, world!</span></span></code></pre></div>
-<p>More generally as shown in the example, one can take advantage of powerful data handling facilities
-in the Linux environment, through either itself or software followed by their counterparts in R with
+<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a><span class="co">#&gt; &gt; source("hello.R")</span></span>
+<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a><span class="co">#&gt; [1] "Hello, world!"</span></span>
+<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a><span class="co">#&gt; &gt; </span></span>
+<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a><span class="co">#&gt; Hello, world!</span></span></code></pre></div>
+<p>As shown in the example, one can take advantage of powerful data handling facilities in the Linux
+environment, through either Linux itself or software followed by their counterparts in R with
 options to feed back to the Linux envornment again for further use.</p>
-<p>Further to this point, R could be a powerful part in a workflow, e.g., an article has been curated
-in <strong>pQTLtools</strong> involving <strong>snakemake</strong>, <a href="https://jinghuazhao.github.io/pQTLtools/articles/snakemake.html" class="external-link uri">https://jinghuazhao.github.io/pQTLtools/articles/snakemake.html</a>.</p>
+<p>Moreover, R could be a powerful part in a workflow, e.g., an article has been curated in <strong>pQTLtools</strong>
+involving <strong>snakemake</strong>, <a href="https://jinghuazhao.github.io/pQTLtools/articles/snakemake.html" class="external-link uri">https://jinghuazhao.github.io/pQTLtools/articles/snakemake.html</a>.</p>
 </div>
 </div>
 <div class="section level2" number="2">
@@ -2408,9 +2416,9 @@ Upon use <code>pkgdown</code>, an article can be seen from the menu item <code>A
 <h2 id="summary">
 <span class="header-section-number">6</span> Summary<a class="anchor" aria-label="anchor" href="#summary"></a>
 </h2>
-<p>We’ve explored various aspects of genetic association analysis in R, particularly in the context of computing systems
-like Linux. While these serve as a solid foundation, a more in-depth data analysis coupled with development is surely
-fruitful.</p>
+<p>We hsve explored various aspects of genetic association analysis in R, particularly in the context of computing
+systems like Linux. While these serve as a solid foundation, a more in-depth data analysis coupled with
+development surely fruitful and rewarding.</p>
 </div>
 <div class="section level2" number="7">
 <h2 id="references">
