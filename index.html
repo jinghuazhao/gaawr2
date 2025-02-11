@@ -64,32 +64,34 @@
   <main id="main" class="col-md-9"><p><img src="reference/figures/logo.svg" align="right" alt="" width="200"></p>
 <!-- badges: start -->
 
-<div class="section level2">
-<h2 id="genetic-association-analysis-with-r-ii">Genetic Association Analysis with R (II)<a class="anchor" aria-label="anchor" href="#genetic-association-analysis-with-r-ii"></a>
-</h2>
+<div class="section level1">
+<div class="page-header">
+<img src="logo.svg" class="logo" alt=""><h1 id="genetic-association-analysis-with-r-ii">Genetic Association Analysis with R (II)<a class="anchor" aria-label="anchor" href="#genetic-association-analysis-with-r-ii"></a>
+</h1>
+</div>
 <p>An R package companion to the titled Henry-Stewart talk, part 2.</p>
-<div class="section level3">
-<h3 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
-</h3>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
 <p>The latest version of <strong>gaawr2</strong> can be installed as usual:</p>
-<div class="section level4">
-<h4 id="id_1-install-from-r">1. Install from R<a class="anchor" aria-label="anchor" href="#id_1-install-from-r"></a>
-</h4>
+<div class="section level3">
+<h3 id="id_1-install-from-r">1. Install from R<a class="anchor" aria-label="anchor" href="#id_1-install-from-r"></a>
+</h3>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"remotes"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"jinghuazhao/gaawr2"</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level4">
-<h4 id="id_2-install-from-github-repository">2. Install from GitHub repository<a class="anchor" aria-label="anchor" href="#id_2-install-from-github-repository"></a>
-</h4>
+<div class="section level3">
+<h3 id="id_2-install-from-github-repository">2. Install from GitHub repository<a class="anchor" aria-label="anchor" href="#id_2-install-from-github-repository"></a>
+</h3>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/jinghuazhao/gaawr2</span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">R</span> CMD INSTALL gaawr2</span></code></pre></div>
 <p>Dependencies are detailed in the DECRIPTION file of the package at GitHub.</p>
 </div>
 </div>
-<div class="section level3">
-<h3 id="a-summary-of-functions">A summary of functions<a class="anchor" aria-label="anchor" href="#a-summary-of-functions"></a>
-</h3>
+<div class="section level2">
+<h2 id="a-summary-of-functions">A summary of functions<a class="anchor" aria-label="anchor" href="#a-summary-of-functions"></a>
+</h2>
 <p>This can be seen from R with</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span>help<span class="op">=</span><span class="va">gaawr2</span><span class="op">)</span></span></code></pre></div>
