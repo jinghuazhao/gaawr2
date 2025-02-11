@@ -117,7 +117,7 @@
 <p>As shown in the example, one can take advantage of powerful data handling facilities in the Linux
 environment, through either Linux itself or software followed by their counterparts in R with
 options to feed back to the Linux envornment again for further use.</p>
-<p>Moreover, R could be a powerful part in a workflow, e.g., an article has been curated in <strong>pQTLtools</strong>
+<p>Moreover, R could be an integrated component of a workflow, e.g., as curated in <strong>pQTLtools</strong>
 involving <strong>snakemake</strong>, <a href="https://jinghuazhao.github.io/pQTLtools/articles/snakemake.html" class="external-link uri">https://jinghuazhao.github.io/pQTLtools/articles/snakemake.html</a>.</p>
 </div>
 </div>
@@ -125,7 +125,7 @@ involving <strong>snakemake</strong>, <a href="https://jinghuazhao.github.io/pQT
 <h2 id="language-elements">
 <span class="header-section-number">2</span> Language elements<a class="anchor" aria-label="anchor" href="#language-elements"></a>
 </h2>
-<p>Basic data manipulation can be seen with</p>
+<p>Basic data manipulation of the <code>iris</code> data includes</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "data.frame"</span></span>
@@ -144,7 +144,7 @@ involving <strong>snakemake</strong>, <a href="https://jinghuazhao.github.io/pQT
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">iris</span>,<span class="fl">1</span><span class="op">)</span></span>
 <span><span class="co">#&gt;     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species</span></span>
 <span><span class="co">#&gt; 150          5.9           3          5.1         1.8 virginica</span></span></code></pre></div>
-<p>The operators are intuitive in many ways, but we would like to highlight two types of them,</p>
+<p>We would like to highlight two types of operators,</p>
 <ul>
 <li>the scope operator (<code>::</code>) is useful since user executes command from a particular package without loading it, which is usually faster.</li>
 <li>the native (<code>|&gt;</code>) and contributed (<code>%&gt;%</code>) pipe operators which enable a chained of operations, the latter popularized from R <strong>magrittr</strong> and <strong>dplyr</strong> packages</li>
