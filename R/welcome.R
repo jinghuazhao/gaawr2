@@ -1,4 +1,4 @@
-#' welcome Function
+#' welcome function
 #'
 #' It prints a welcome message, saying number of times.
 #'
