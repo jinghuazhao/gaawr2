@@ -4,18 +4,14 @@ output: github_document
 
 
 
-<img src="man/figures/logo.png" align="right" alt="" width="120" />
-
-# Genetic Association Analysis with R (II)
-
-An R package companion to the titled Henry-Stewart talk, part 2.
+<img src="man/figures/logo.png" align="right" alt="" width="200" />
 
 <!-- badges: start -->
 [![pages-build-deployment](https://github.com/jinghuazhao/gaawr2/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/jinghuazhao/gaawr2/actions/workflows/pages/pages-build-deployment)
 [![R-CMD-check](https://github.com/jinghuazhao/gaawr2/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jinghuazhao/gaawr2/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-## Description
+## Genetic Association Analysis with R (II)
 
 An R package companion to the titled Henry-Stewart talk, part 2.
 
