@@ -61,7 +61,7 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="../logo.png" class="logo" alt=""><h1>Web facilities</h1>
+      <img src="../logo.svg" class="logo" alt=""><h1>Web facilities</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/jinghuazhao/gaawr2/blob/HEAD/vignettes/web.Rmd" class="external-link"><code>vignettes/web.Rmd</code></a></small>
@@ -79,8 +79,8 @@
 <span class="header-section-number">1.1</span> Python<a class="anchor" aria-label="anchor" href="#python"></a>
 </h3>
 <p>Perhaps this is the simplest way to start from the Linux command line, nevertheless with Python,</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>python3 <span class="op">-</span>m http.server <span class="dv">8000</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>firefox http:<span class="op">//</span><span class="fl">127.0.0.1</span>:<span class="dv">8000</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>python3 <span class="op">-</span>m http.server <span class="dv">8000</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>firefox http:<span class="op">//</span><span class="fl">127.0.0.1</span>:<span class="dv">8000</span></span></code></pre></div>
 <p>which works with <code>python3 -m http.server</code> by default when the port number 8000 is available.</p>
 </div>
 <div class="section level3" number="1.2">
@@ -145,15 +145,15 @@ PROCESS study-3-IL18R1B-chrX.fastGWA.gz
 ANALYZE HETEROGENEITY
 CLEAR</code></pre>
 <p>Assuming the script is named <code>IL.18R1.metal</code>, <code>IL.18R1-1.tbl.gz</code> is generated from <strong>htslib</strong>, <a href="https://www.htslib.org/download/" class="external-link uri">https://www.htslib.org/download/</a>, as follows,</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="bu">export</span> <span class="va">protein</span><span class="op">=</span>IL.18R1</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="ex">metal</span> <span class="va">${protein}</span>.metal <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span> <span class="kw">|</span> <span class="dt">\</span></span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="fu">tee</span> <span class="va">${protein}</span>-1.tbl.log</span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="fu">cat</span> <span class="op">&lt;(</span><span class="fu">head</span> <span class="at">-1</span> <span class="va">${protein}</span>-1.tbl<span class="op">)</span> <span class="dt">\</span></span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>    <span class="op">&lt;(</span><span class="fu">sed</span> <span class="st">'1d'</span> <span class="va">${protein}</span>-1.tbl <span class="kw">|</span> <span class="dt">\</span></span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="fu">sort</span> <span class="at">-k1,1n</span> <span class="at">-k2,2n</span><span class="op">)</span> <span class="kw">|</span> <span class="dt">\</span></span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="ex">bgzip</span> <span class="at">-f</span> <span class="op">&gt;</span> <span class="va">${protein}</span>-1.tbl.gz</span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="ex">tabix</span> <span class="at">-S1</span> <span class="at">-s1</span> <span class="at">-b2</span> <span class="at">-e2</span> <span class="at">-f</span> <span class="va">${protein}</span>-1.tbl.gz</span>
-<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="fu">rm</span> <span class="va">${protein}</span>-1.tbl</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">protein</span><span class="op">=</span>IL.18R1</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">metal</span> <span class="va">${protein}</span>.metal <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span> <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tee</span> <span class="va">${protein}</span>-1.tbl.log</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> <span class="op">&lt;(</span><span class="fu">head</span> <span class="at">-1</span> <span class="va">${protein}</span>-1.tbl<span class="op">)</span> <span class="dt">\</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;(</span><span class="fu">sed</span> <span class="st">'1d'</span> <span class="va">${protein}</span>-1.tbl <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span> <span class="at">-k1,1n</span> <span class="at">-k2,2n</span><span class="op">)</span> <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ex">bgzip</span> <span class="at">-f</span> <span class="op">&gt;</span> <span class="va">${protein}</span>-1.tbl.gz</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="ex">tabix</span> <span class="at">-S1</span> <span class="at">-s1</span> <span class="at">-b2</span> <span class="at">-e2</span> <span class="at">-f</span> <span class="va">${protein}</span>-1.tbl.gz</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="va">${protein}</span>-1.tbl</span></code></pre></div>
 <p>The bgzipped data allows for access by genomic region as shown below.</p>
 </div>
 <div class="section level3" number="2.2">
@@ -224,15 +224,15 @@ Running swagger Docs at http://127.0.0.1:8001/__docs__/</code></pre>
 </li>
 </ul>
 <p>Additional work required to get output from <code>curl</code> to a tab-delimited data,</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">curl</span> <span class="st">"http://localhost:8001/tests?protein=IL.18R1&amp;region=2:102700000-103800000"</span> <span class="kw">|</span> <span class="dt">\</span></span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="ex">jq</span> <span class="at">-r</span> <span class="st">'.[0] |</span></span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="st">   fromjson |</span></span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="st">   .[] |</span></span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="st">   [</span></span>
-<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="st">     .Chromosome, .Position, .MarkerName, .Allele1, .Allele2, .Freq1,</span></span>
-<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="st">     .Effect, .StdErr, .logP, .Direction, .HetISq, .HetChiSq, .HetDf, .logHetP, .N</span></span>
-<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="st">   ] |</span></span>
-<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a><span class="st">   @tsv'</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="st">"http://localhost:8001/tests?protein=IL.18R1&amp;region=2:102700000-103800000"</span> <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">jq</span> <span class="at">-r</span> <span class="st">'.[0] |</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="st">   fromjson |</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="st">   .[] |</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="st">   [</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="st">     .Chromosome, .Position, .MarkerName, .Allele1, .Allele2, .Freq1,</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="st">     .Effect, .StdErr, .logP, .Direction, .HetISq, .HetChiSq, .HetDf, .logHetP, .N</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="st">   ] |</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="st">   @tsv'</span></span></code></pre></div>
 <p>where</p>
 <ol style="list-style-type: decimal">
 <li>
@@ -247,11 +247,11 @@ Running swagger Docs at http://127.0.0.1:8001/__docs__/</code></pre>
 <strong><span class="citation"><sup><strong>tsv?</strong></sup></span></strong>: Convert the array into tab-separated values.</li>
 </ol>
 <p>Note also that only selected columns (as in 4) are kept. The simplest way to have the header is add it manually,</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="kw">(</span></span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>  <span class="bu">echo</span> <span class="st">"Chromosome|Position|MarkerName|Allele1|Allele2|Freq1|Effect|StdErr|logP|Direction|HetISq|HetChiSq|HetDf|logHetP|N"</span> <span class="kw">|</span> <span class="dt">\</span></span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>  <span class="fu">sed</span> <span class="st">'s/|/\t/g'</span></span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>  <span class="ex">curl</span> command as above.</span>
-<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="kw">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">echo</span> <span class="st">"Chromosome|Position|MarkerName|Allele1|Allele2|Freq1|Effect|StdErr|logP|Direction|HetISq|HetChiSq|HetDf|logHetP|N"</span> <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sed</span> <span class="st">'s/|/\t/g'</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">curl</span> command as above.</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="kw">)</span></span></code></pre></div>
 </div>
 <div class="section level4" number="2.3.2">
 <h4 id="r-1">
@@ -310,7 +310,7 @@ to <code>/lib/dynamic</code> will not be served as static files but could be han
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
-<div id="refs" class="references csl-bib-body" entry-spacing="0" line-spacing="2">
+<div id="refs" class="references csl-bib-body" line-spacing="2">
 <div id="ref-willer10" class="csl-entry">
 <div class="csl-left-margin">1. </div>
 <div class="csl-right-inline">Willer, C. J., Li, Y. &amp; Abecasis, G. R. <a href="https://doi.org/10.1093/bioinformatics/btq340" class="external-link">METAL: Fast and efficient meta-analysis of genomewide association scans</a>. <em>Bioinformatics</em> <strong>26</strong>, 2190–1 (2010).</div>
