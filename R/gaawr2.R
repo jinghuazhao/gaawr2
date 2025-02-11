@@ -5,12 +5,12 @@
 #' @aliases gaawr2-package
 #'
 #' @details
-#' Available data are listed in the following table.
+#' Available data and function are listed in the following table.
 #'
 #' Objects                   |  Description
 #' --------------------------|------------------------------------
 #' **Dataset**               |   &nbsp;
-#' [`DiaHealth`]             |   A Bangladeshi Dataset for Type 2 Diabetes Prediction
+#' [`DiaHealth`]             |   A Bangladeshi dataset for Type 2 diabetes prediction
 #' [`diabetes`]              |   A diabetes dataset
 #' **Functions**             |   &nbsp;
 #' [`welcome`]               |   An enhanced welcome
