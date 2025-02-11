@@ -11,7 +11,7 @@ output: github_document
 [![R-CMD-check](https://github.com/jinghuazhao/gaawr2/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jinghuazhao/gaawr2/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-# Genetic Association Analysis with R (II)
+## Genetic Association Analysis with R (II)
 
 An R package companion to the titled Henry-Stewart talk, part 2.
 
