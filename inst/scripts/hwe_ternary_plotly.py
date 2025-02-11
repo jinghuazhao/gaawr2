@@ -3,12 +3,11 @@ import numpy as np
 
 def hwe_ternary_plot(observed_counts, hom1_label="A1A1", het_label="A1A2", hom2_label="A2A2"):
     """
-    Generates a ternary plot visualizing Hardy-Weinberg Equilibrium (HWE)
-    and observed genotype frequencies with customizable genotype labels.
+    Generates a ternary plot visualizing Hardy-Weinberg Equilibrium (HWE) and observed genotype frequencies
+    with customizable genotype labels.
 
     Args:
-        observed_counts (dict): A dictionary with observed counts for genotypes.
-                                 Keys should match the genotype labels provided.
+        observed_counts (dict): A dictionary with observed counts for genotypes. Keys should match the genotype labels provided.
                                  e.g., {"AA": 298, "AB": 489, "BB": 213}
         hom1_label (str, optional): Label for the first hom genotype. Defaults to "A1A2".
         het_label (str, optional): Label for the het genotype. Defaults to "A1A2".
@@ -17,7 +16,6 @@ def hwe_ternary_plot(observed_counts, hom1_label="A1A1", het_label="A1A2", hom2_
     Returns:
         plotly.graph_objects.Figure: A Plotly Figure object displaying the ternary plot.
     """
-
     genotype_labels = {
         "hom1": hom1_label,
         "het": het_label,
@@ -25,17 +23,12 @@ def hwe_ternary_plot(observed_counts, hom1_label="A1A1", het_label="A1A2", hom2_
     }
 
     # Extract counts using the provided labels
-    # Use .get with default 0 to handle missing keys gracefully
-    counts = {
-        genotype_labels["hom1"]: observed_counts.get(genotype_labels["hom1"], 0),
-        genotype_labels["het"]: observed_counts.get(genotype_labels["het"], 0),
-        genotype_labels["hom2"]: observed_counts.get(genotype_labels["hom2"], 0)
-    }
+    counts = {genotype_labels["hom1"]: observed_counts.get(genotype_labels["hom1"], 0),
+              genotype_labels["het"]: observed_counts.get(genotype_labels["het"], 0),
+              genotype_labels["hom2"]: observed_counts.get(genotype_labels["hom2"], 0)}
 
     total = sum(counts.values())
-    observed_frequencies = {}
-    for label in genotype_labels.values():
-        observed_frequencies[label] = counts[label] / total if total > 0 else 0 # Avoid division by zero
+    observed_frequencies = {label: counts[label] / total if total > 0 else 0 for label in genotype_labels.values()}
 
     # Calculate allele frequencies (p for allele 1, q for allele 2)
     p = (2 * counts[genotype_labels["hom1"]] + counts[genotype_labels["het"]]) / (2 * total) if total > 0 else 0
@@ -48,19 +41,12 @@ def hwe_ternary_plot(observed_counts, hom1_label="A1A1", het_label="A1A2", hom2_
     }
 
     # Generate 100 points for the HWE line
-    hwe_line_points = []
-    for p_val in np.linspace(0, 1, 100):
-        q_val = 1 - p_val
-        hwe_line_points.append({
-            genotype_labels["hom1"]: p_val**2,
-            genotype_labels["het"]: 2 * p_val * q_val,
-            genotype_labels["hom2"]: q_val**2
-        })
+    hwe_line_points = [{"hom1": p_val**2, "het": 2 * p_val * (1 - p_val), "hom2": (1 - p_val)**2} for p_val in np.linspace(0, 1, 100)]
 
     # a-axis: het (top vertex), b-axis: hom1 (left vertex), c-axis: hom2 (right vertex)
-    hwe_het = [point[genotype_labels["het"]] for point in hwe_line_points]
-    hwe_hom1 = [point[genotype_labels["hom1"]] for point in hwe_line_points]
-    hwe_hom2 = [point[genotype_labels["hom2"]] for point in hwe_line_points]
+    hwe_het = [point["het"] for point in hwe_line_points]
+    hwe_hom1 = [point["hom1"] for point in hwe_line_points]
+    hwe_hom2 = [point["hom2"] for point in hwe_line_points]
 
     # Create the ternary plot
     fig = go.Figure(go.Scatterternary(
@@ -93,32 +79,33 @@ def hwe_ternary_plot(observed_counts, hom1_label="A1A1", het_label="A1A2", hom2_
 
     return fig
 
-# MM, MN, NN labels (original)
-observed_counts_original = {"MM": 298, "MN": 489, "NN": 213}
-fig_original = hwe_ternary_plot(observed_counts_original)
-fig_original.show()
+# Example observed counts
+observed_counts_list = [
+    {"AA": 298, "AB": 489, "BB": 213},
+    {"AA": 310, "AB": 470, "BB": 220},
+    {"G1G1": 280, "G1G2": 500, "G2G2": 220},
+    {"AA": 500, "AB": 100, "BB": 400},
+    {"AA": 250, "AB": 500, "BB": 250},
+    {"AA": 100, "AB": 800, "BB": 100}
+]
+labels_list = [
+    ("AA", "AB", "BB"),
+    ("AA", "AB", "BB"),
+    ("G1G1", "G1G2", "G2G2"),
+    ("AA", "AB", "BB"),
+    ("AA", "AB", "BB"),
+    ("AA", "AB", "BB")
+]
+filenames = [
+    "hwe_ternary_plot_original.svg",
+    "hwe_ternary_plot_AA_AB_BB.svg",
+    "hwe_ternary_plot_G1G1_G1G2_G2G2.svg",
+    "hwe_ternary_plot_test_imbalance.svg",
+    "hwe_ternary_plot_test_hwe.svg",
+    "hwe_ternary_plot_test_far_hwe.svg"
+]
 
-# AA, AB, BB labels
-observed_counts_AA_AB_BB = {"AA": 310, "AB": 470, "BB": 220}
-fig_AA_AB_BB = hwe_ternary_plot(observed_counts_AA_AB_BB, hom1_label="AA", het_label="AB", hom2_label="BB")
-fig_AA_AB_BB.show()
-
-# G1G1, G1G2, G2G2 labels
-observed_counts_G1G1_G1G2_G2G2 = {"G1G1": 280, "G1G2": 500, "G2G2": 220}
-fig_G1G1_G1G2_G2G2 = hwe_ternary_plot(observed_counts_G1G1_G1G2_G2G2, hom1_label="G1G1", het_label="G1G2", hom2_label="G2G2")
-fig_G1G1_G1G2_G2G2.show()
-
-# Imbalance in HWE
-observed_counts_test_imbalance = {"AA": 500, "AB": 100, "BB": 400}
-fig_test_imbalance = hwe_ternary_plot(observed_counts_test_imbalance, hom1_label="AA", het_label="AB", hom2_label="BB")
-fig_test_imbalance.show()
-
-# Roughly in HWE
-observed_counts_test_hwe = {"AA": 250, "AB": 500, "BB": 250}
-fig_test_hwe = hwe_ternary_plot(observed_counts_test_hwe, hom1_label="AA", het_label="AB", hom2_label="BB")
-fig_test_hwe.show()
-
-# Far from HWE
-observed_counts_test_far_hwe = {"AA": 100, "AB": 800, "BB": 100}
-fig_test_far_hwe = hwe_ternary_plot(observed_counts_test_far_hwe, hom1_label="AA", het_label="AB", hom2_label="BB")
-fig_test_far_hwe.show()
+for observed_counts, labels, filename in zip(observed_counts_list, labels_list, filenames):
+    fig = hwe_ternary_plot(observed_counts, hom1_label=labels[0], het_label=labels[1], hom2_label=labels[2])
+    fig.show()
+    fig.write_image(filename)
