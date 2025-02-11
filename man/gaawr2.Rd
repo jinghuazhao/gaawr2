@@ -9,10 +9,10 @@
 An R package companion to the titled Henry-Stewart talk, part 2.
 }
 \details{
-Available data are listed in the following table.\tabular{ll}{
+Available data and function are listed in the following table.\tabular{ll}{
    Objects \tab Description \cr
    \strong{Dataset} \tab   \cr
-   \code{\link{DiaHealth}} \tab A Bangladeshi Dataset for Type 2 Diabetes Prediction \cr
+   \code{\link{DiaHealth}} \tab A Bangladeshi dataset for Type 2 diabetes prediction \cr
    \code{\link{diabetes}} \tab A diabetes dataset \cr
    \strong{Functions} \tab   \cr
    \code{\link{welcome}} \tab An enhanced welcome \cr
