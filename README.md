@@ -4,6 +4,8 @@ output: github_document
 
 
 
+<img src="man/figures/logo.png" align="right" alt="" width="120" />
+
 # Genetic Association Analysis with R (II)
 
 An R package companion to the titled Henry-Stewart talk, part 2.
