@@ -10,7 +10,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-<img src="man/figures/logo.png" align="right" alt="" width="120" />
+<img src="man/figures/logo.png" align="right" alt="" width="200" />
 
 <!-- badges: start -->
 [![pages-build-deployment](https://github.com/jinghuazhao/gaawr2/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/jinghuazhao/gaawr2/actions/workflows/pages/pages-build-deployment)
@@ -18,10 +18,6 @@ knitr::opts_chunk$set(
 <!-- badges: end -->
 
 ## Genetic Association Analysis with R (II)
-
-An R package companion to the titled Henry-Stewart talk, part 2.
-
-## Description
 
 ```{r, echo = FALSE, message=FALSE, warning=FALSE}
 desc <- read.dcf("DESCRIPTION")
