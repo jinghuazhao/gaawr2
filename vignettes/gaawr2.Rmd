@@ -56,7 +56,7 @@ print("Hello, world!\n")
 
 ## Linux
 
-We more often embed R in a Linux script as shown below,
+We more often embed R in a Linux script as follows,
 
 ```{bash linux}
 export message="Hello, world!"
@@ -72,6 +72,7 @@ message <- scan("stdin", what="", sep="\n", quiet=TRUE);
 write.table(message, col.names=FALSE, row.names=FALSE,
             quote=FALSE)
 ' | cat
+rm hello.*
 ```
 
 As shown in the example, one can take advantage of powerful data handling facilities in the Linux
