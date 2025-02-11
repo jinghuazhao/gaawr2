@@ -79,12 +79,12 @@ As shown in the example, one can take advantage of powerful data handling facili
 environment, through either Linux itself or software followed by their counterparts in R with
 options to feed back to the Linux envornment again for further use.
 
-Moreover, R could be a powerful part in a workflow, e.g., an article has been curated in **pQTLtools**
+Moreover, R could be an integrated component of a workflow, e.g., as curated in **pQTLtools**
 involving **snakemake**, <https://jinghuazhao.github.io/pQTLtools/articles/snakemake.html>.
 
 # Language elements
 
-Basic data manipulation can be seen with
+Basic data manipulation of the `iris` data includes
 
 ```{r iris}
 class(iris)
@@ -94,7 +94,7 @@ head(iris,1)
 tail(iris,1)
 ```
 
-The operators are intuitive in many ways, but we would like to highlight two types of them,
+We would like to highlight two types of operators,
 
 - the scope operator (`::`) is useful since user executes command from a particular package without loading it, which is usually faster.
 - the native (`|>`) and contributed (`%>%`) pipe operators which enable a chained of operations, the latter popularized from R **magrittr** and **dplyr** packages
