@@ -1621,11 +1621,34 @@ Figure 3.1: SNP ternary plot
 <span>                              sim.control<span class="op">=</span><span class="fu">haplo.stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/haplo.stats/man/score.sim.control.html" class="external-link">score.sim.control</a></span><span class="op">(</span>min.sim<span class="op">=</span><span class="fl">50</span>,max.sim<span class="op">=</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3" number="3.4">
+<h3 id="gwas">
+<span class="header-section-number">3.4</span> GWAS<a class="anchor" aria-label="anchor" href="#gwas"></a>
+</h3>
+<p>We return to the asthma data used in <strong>SNPassoc</strong>.</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">assoc</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/WGassociation.html" class="external-link">WGassociation</a></span><span class="op">(</span><span class="va">cc</span>, data<span class="op">=</span><span class="va">asthma.snps</span><span class="op">)</span></span>
+<span><span class="va">assoc.adj</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/WGassociation.html" class="external-link">WGassociation</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="va">country</span> <span class="op">+</span> <span class="va">smoke</span>, <span class="va">asthma.snps</span><span class="op">)</span></span>
+<span><span class="va">assoc.maxstat</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/maxstat.html" class="external-link">maxstat</a></span><span class="op">(</span><span class="va">asthma.snps</span>, <span class="va">cc</span><span class="op">)</span></span>
+<span><span class="va">assoc</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">comments</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span>caption<span class="op">=</span><span class="st">"SNP association"</span><span class="op">)</span></span>
+<span><span class="va">assoc.adj</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">comments</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span>caption<span class="op">=</span><span class="st">"with adjustment for contountry &amp; smoking"</span><span class="op">)</span></span>
+<span><span class="va">assoc.maxstat</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">`[`</span><span class="op">(</span>,<span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span>caption <span class="op">=</span> <span class="st">"Max stat association statistics"</span><span class="op">)</span></span></code></pre></div>
+<p>where assoc.maxstat is coerced into a matrix later, but there appears problematic to knit though.</p>
+</div>
+<div class="section level3" number="3.5">
 <h3 id="gmmat">
-<span class="header-section-number">3.4</span> GMMAT<a class="anchor" aria-label="anchor" href="#gmmat"></a>
+<span class="header-section-number">3.5</span> GMMAT<a class="anchor" aria-label="anchor" href="#gmmat"></a>
 </h3>
 <p>The following is modified slightly from the package vignette,</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">example</span>,package<span class="op">=</span><span class="st">"GMMAT"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/attach.html" class="external-link">attach</a></span><span class="op">(</span><span class="va">example</span><span class="op">)</span></span>
 <span><span class="va">model0</span> <span class="op">&lt;-</span> <span class="fu">GMMAT</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GMMAT/man/glmmkin.html" class="external-link">glmmkin</a></span><span class="op">(</span><span class="va">disease</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">pheno</span>, kins <span class="op">=</span> <span class="va">GRM</span>,</span>
@@ -1715,7 +1738,7 @@ Figure 3.1: SNP ternary plot
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="va">outfile</span><span class="op">)</span></span>
 <span><span class="va">bed.file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"geno.bed"</span>, package <span class="op">=</span> <span class="st">"GMMAT"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>            <span class="fu">tools</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/tools/fileutils.html" class="external-link">file_path_sans_ext</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -1799,42 +1822,13 @@ Figure 3.1: SNP ternary plot
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/detach.html" class="external-link">detach</a></span><span class="op">(</span><span class="va">example</span><span class="op">)</span></span></code></pre></div>
 <p>where both BGEN and PLINK binary file are illustrated.</p>
 </div>
-<div class="section level3" number="3.5">
-<h3 id="proteogenomics">
-<span class="header-section-number">3.5</span> Proteogenomics<a class="anchor" aria-label="anchor" href="#proteogenomics"></a>
-</h3>
-<p>See <a href="https://jinghuazhao.github.io/pQTLtools/" class="external-link uri">https://jinghuazhao.github.io/pQTLtools/</a>. An overview on the proteomics is found from the relevant paper<span class="citation"><sup>1</sup></span>.</p>
-</div>
 <div class="section level3" number="3.6">
-<h3 id="gwas">
-<span class="header-section-number">3.6</span> GWAS<a class="anchor" aria-label="anchor" href="#gwas"></a>
-</h3>
-<p>We return to the asthma data used in <strong>SNPassoc</strong>.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">assoc</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/WGassociation.html" class="external-link">WGassociation</a></span><span class="op">(</span><span class="va">cc</span>, data<span class="op">=</span><span class="va">asthma.snps</span><span class="op">)</span></span>
-<span><span class="va">assoc.adj</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/WGassociation.html" class="external-link">WGassociation</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="va">country</span> <span class="op">+</span> <span class="va">smoke</span>, <span class="va">asthma.snps</span><span class="op">)</span></span>
-<span><span class="va">assoc.maxstat</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/maxstat.html" class="external-link">maxstat</a></span><span class="op">(</span><span class="va">asthma.snps</span>, <span class="va">cc</span><span class="op">)</span></span>
-<span><span class="va">assoc</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">comments</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span>caption<span class="op">=</span><span class="st">"SNP association"</span><span class="op">)</span></span>
-<span><span class="va">assoc.adj</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">comments</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span>caption<span class="op">=</span><span class="st">"with adjustment for contountry &amp; smoking"</span><span class="op">)</span></span>
-<span><span class="va">assoc.maxstat</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">`[`</span><span class="op">(</span>,<span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span>caption <span class="op">=</span> <span class="st">"Max stat association statistics"</span><span class="op">)</span></span></code></pre></div>
-<p>where assoc.maxstat is coerced into a matrix later, but there appears problematic to knit though.</p>
-</div>
-<div class="section level3" number="3.7">
 <h3 id="h2-jags">
-<span class="header-section-number">3.7</span> h2.jags<a class="anchor" aria-label="anchor" href="#h2-jags"></a>
+<span class="header-section-number">3.6</span> h2.jags<a class="anchor" aria-label="anchor" href="#h2-jags"></a>
 </h3>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1234567</span><span class="op">)</span></span>
@@ -1959,9 +1953,9 @@ Figure 3.1: SNP ternary plot
 <p>To avoid multithread and excessive time for CRAN checking, only one chain and 80 iterations are run, 40 of which are burn-ins and
 every iteraction is kept (n.thin=1).</p>
 </div>
-<div class="section level3" number="3.8">
+<div class="section level3" number="3.7">
 <h3 id="powereqtl">
-<span class="header-section-number">3.8</span> powerEQTL<a class="anchor" aria-label="anchor" href="#powereqtl"></a>
+<span class="header-section-number">3.7</span> powerEQTL<a class="anchor" aria-label="anchor" href="#powereqtl"></a>
 </h3>
 <p>Consider <code>powereQTL.SLR</code> (simple linear regression) for a sample size of 50-300 by 50, minor allele frequencies
 0.005~0.5, <span class="math inline">\(\alpha\)</span>=0.05. We have,</p>
@@ -1991,6 +1985,12 @@ Figure 3.2: Power Estimation for eQTL Studies of 240 SNPs
 </p>
 </div>
 <p>The counterpart for single-cell RNA-Seq design is via <code>powerEQTL.scRNAseq</code>.</p>
+</div>
+<div class="section level3" number="3.8">
+<h3 id="proteogenomics">
+<span class="header-section-number">3.8</span> Proteogenomics<a class="anchor" aria-label="anchor" href="#proteogenomics"></a>
+</h3>
+<p>See <a href="https://jinghuazhao.github.io/pQTLtools/" class="external-link uri">https://jinghuazhao.github.io/pQTLtools/</a>. An overview on the proteomics is found from the relevant paper<span class="citation"><sup>1</sup></span>.</p>
 </div>
 <div class="section level3" number="3.9">
 <h3 id="opentargets">
