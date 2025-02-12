@@ -332,7 +332,7 @@ where both BGEN and PLINK binary file are illustrated.
 
 ## h2.jags
 
-This is based on work report earlier @zhao18,
+The function uses JAGS (<https://mcmc-jags.sourceforge.io/>) for heritability estimation @zhao18,
 
 ```{r jags, message=FALSE}
 set.seed(1234567)
