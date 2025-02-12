@@ -1986,17 +1986,114 @@ Figure 3.2: Power Estimation for eQTL Studies of 240 SNPs
 </div>
 <p>The counterpart for single-cell RNA-Seq design is via <code>powerEQTL.scRNAseq</code>.</p>
 </div>
-<div class="section level3" number="3.8">
-<h3 id="proteogenomics">
-<span class="header-section-number">3.8</span> Proteogenomics<a class="anchor" aria-label="anchor" href="#proteogenomics"></a>
-</h3>
-<p>See <a href="https://jinghuazhao.github.io/pQTLtools/" class="external-link uri">https://jinghuazhao.github.io/pQTLtools/</a>. An overview on the proteomics is found from the relevant paper<span class="citation"><sup>1</sup></span>.</p>
 </div>
-<div class="section level3" number="3.9">
-<h3 id="opentargets">
-<span class="header-section-number">3.9</span> OpenTargets<a class="anchor" aria-label="anchor" href="#opentargets"></a>
+<div class="section level2" number="4">
+<h2 id="annotations">
+<span class="header-section-number">4</span> Annotations<a class="anchor" aria-label="anchor" href="#annotations"></a>
+</h2>
+<div class="section level3" number="4.1">
+<h3 id="ensdb-hsapiens-v75">
+<span class="header-section-number">4.1</span> EnsDb.Hsapiens.v75<a class="anchor" aria-label="anchor" href="#ensdb-hsapiens-v75"></a>
 </h3>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">ensembldb</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Annotated-class.html" class="external-link">metadata</a></span><span class="op">(</span><span class="va">EnsDb.Hsapiens.v75</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                  name                               value</span></span>
+<span><span class="co">#&gt; 1             Db type                               EnsDb</span></span>
+<span><span class="co">#&gt; 2     Type of Gene ID                     Ensembl Gene ID</span></span>
+<span><span class="co">#&gt; 3  Supporting package                           ensembldb</span></span>
+<span><span class="co">#&gt; 4       Db created by ensembldb package from Bioconductor</span></span>
+<span><span class="co">#&gt; 5      script_version                               0.3.0</span></span>
+<span><span class="co">#&gt; 6       Creation time            Thu May 18 09:15:45 2017</span></span>
+<span><span class="co">#&gt; 7     ensembl_version                                  75</span></span>
+<span><span class="co">#&gt; 8        ensembl_host                           localhost</span></span>
+<span><span class="co">#&gt; 9            Organism                        homo_sapiens</span></span>
+<span><span class="co">#&gt; 10        taxonomy_id                                9606</span></span>
+<span><span class="co">#&gt; 11       genome_build                              GRCh37</span></span>
+<span><span class="co">#&gt; 12    DBSCHEMAVERSION                                 2.0</span></span>
+<span><span class="va">genes</span> <span class="op">&lt;-</span> <span class="fu">ensembldb</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GenomicFeatures/man/transcripts.html" class="external-link">genes</a></span><span class="op">(</span><span class="va">EnsDb.Hsapiens.v75</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">genes</span><span class="op">)</span></span>
+<span><span class="co">#&gt; GRanges object with 6 ranges and 6 metadata columns:</span></span>
+<span><span class="co">#&gt;                   seqnames      ranges strand |         gene_id   gene_name gene_biotype seq_coord_system      symbol                          entrezid</span></span>
+<span><span class="co">#&gt;                      &lt;Rle&gt;   &lt;IRanges&gt;  &lt;Rle&gt; |     &lt;character&gt; &lt;character&gt;  &lt;character&gt;      &lt;character&gt; &lt;character&gt;                            &lt;list&gt;</span></span>
+<span><span class="co">#&gt;   ENSG00000223972        1 11869-14412      + | ENSG00000223972     DDX11L1   pseudogene       chromosome     DDX11L1               100287596,100287102</span></span>
+<span><span class="co">#&gt;   ENSG00000227232        1 14363-29806      - | ENSG00000227232      WASH7P   pseudogene       chromosome      WASH7P                  100287171,653635</span></span>
+<span><span class="co">#&gt;   ENSG00000243485        1 29554-31109      + | ENSG00000243485  MIR1302-10      lincRNA       chromosome  MIR1302-10 100422919,100422834,100422831,...</span></span>
+<span><span class="co">#&gt;   ENSG00000237613        1 34554-36081      - | ENSG00000237613     FAM138A      lincRNA       chromosome     FAM138A              654835,645520,641702</span></span>
+<span><span class="co">#&gt;   ENSG00000268020        1 52473-54936      + | ENSG00000268020      OR4G4P   pseudogene       chromosome      OR4G4P                              &lt;NA&gt;</span></span>
+<span><span class="co">#&gt;   ENSG00000240361        1 62948-63887      + | ENSG00000240361     OR4G11P   pseudogene       chromosome     OR4G11P                              &lt;NA&gt;</span></span>
+<span><span class="co">#&gt;   -------</span></span>
+<span><span class="co">#&gt;   seqinfo: 273 sequences (1 circular) from GRCh37 genome</span></span>
+<span><span class="va">transcripts_data</span> <span class="op">&lt;-</span> <span class="fu">ensembldb</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GenomicFeatures/man/transcripts.html" class="external-link">transcripts</a></span><span class="op">(</span><span class="va">EnsDb.Hsapiens.v75</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">transcripts_data</span><span class="op">)</span></span>
+<span><span class="co">#&gt; GRanges object with 6 ranges and 6 metadata columns:</span></span>
+<span><span class="co">#&gt;                   seqnames      ranges strand |           tx_id             tx_biotype tx_cds_seq_start tx_cds_seq_end         gene_id         tx_name</span></span>
+<span><span class="co">#&gt;                      &lt;Rle&gt;   &lt;IRanges&gt;  &lt;Rle&gt; |     &lt;character&gt;            &lt;character&gt;        &lt;integer&gt;      &lt;integer&gt;     &lt;character&gt;     &lt;character&gt;</span></span>
+<span><span class="co">#&gt;   ENST00000456328        1 11869-14409      + | ENST00000456328   processed_transcript             &lt;NA&gt;           &lt;NA&gt; ENSG00000223972 ENST00000456328</span></span>
+<span><span class="co">#&gt;   ENST00000515242        1 11872-14412      + | ENST00000515242 transcribed_unproces..             &lt;NA&gt;           &lt;NA&gt; ENSG00000223972 ENST00000515242</span></span>
+<span><span class="co">#&gt;   ENST00000518655        1 11874-14409      + | ENST00000518655 transcribed_unproces..             &lt;NA&gt;           &lt;NA&gt; ENSG00000223972 ENST00000518655</span></span>
+<span><span class="co">#&gt;   ENST00000450305        1 12010-13670      + | ENST00000450305 transcribed_unproces..             &lt;NA&gt;           &lt;NA&gt; ENSG00000223972 ENST00000450305</span></span>
+<span><span class="co">#&gt;   ENST00000438504        1 14363-29370      - | ENST00000438504 unprocessed_pseudogene             &lt;NA&gt;           &lt;NA&gt; ENSG00000227232 ENST00000438504</span></span>
+<span><span class="co">#&gt;   ENST00000541675        1 14363-24886      - | ENST00000541675 unprocessed_pseudogene             &lt;NA&gt;           &lt;NA&gt; ENSG00000227232 ENST00000541675</span></span>
+<span><span class="co">#&gt;   -------</span></span>
+<span><span class="co">#&gt;   seqinfo: 273 sequences (1 circular) from GRCh37 genome</span></span></code></pre></div>
+<p>One can also use <code>exons_data &lt;- ensembldb::exons(EnsDb.Hsapiens.v75);head(exons_data)</code> but it is skipped for being considerably longer.</p>
+</div>
+<div class="section level3" number="4.2">
+<h3 id="biomart">
+<span class="header-section-number">4.2</span> biomaRt<a class="anchor" aria-label="anchor" href="#biomart"></a>
+</h3>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu">biomaRt</span><span class="fu">::</span><span class="fu">martBMCheck</span><span class="op">(</span><span class="va">mart</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/stop.html" class="external-link">stop</a></span><span class="op">(</span><span class="st">"The BioMart service is currently unavailable."</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listMarts.html" class="external-link">listMarts</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">ensembl</span> <span class="op">&lt;-</span> <span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/useMart.html" class="external-link">useMart</a></span><span class="op">(</span><span class="st">"ensembl"</span>, dataset<span class="op">=</span><span class="st">"hsapiens_gene_ensembl"</span>, host<span class="op">=</span><span class="st">"grch37.ensembl.org"</span>, path<span class="op">=</span><span class="st">"/biomart/martservice"</span><span class="op">)</span></span>
+<span><span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listDatasets.html" class="external-link">listDatasets</a></span><span class="op">(</span><span class="va">ensembl</span><span class="op">)</span></span>
+<span><span class="va">attr</span> <span class="op">&lt;-</span> <span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listAttributes.html" class="external-link">listAttributes</a></span><span class="op">(</span><span class="va">ensembl</span><span class="op">)</span></span>
+<span><span class="va">attr_select</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'ensembl_gene_id'</span>, <span class="st">'chromosome_name'</span>, <span class="st">'start_position'</span>, <span class="st">'end_position'</span>, <span class="st">'description'</span>, <span class="st">'hgnc_symbol'</span>,</span>
+<span>                 <span class="st">'transcription_start_site'</span><span class="op">)</span></span>
+<span><span class="va">gene</span> <span class="op">&lt;-</span> <span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/getBM.html" class="external-link">getBM</a></span><span class="op">(</span>attributes <span class="op">=</span> <span class="va">attr_select</span>, mart <span class="op">=</span> <span class="va">ensembl</span><span class="op">)</span></span>
+<span><span class="va">filter</span> <span class="op">&lt;-</span> <span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listFilters.html" class="external-link">listFilters</a></span><span class="op">(</span><span class="va">ensembl</span><span class="op">)</span></span>
+<span><span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listFilters.html" class="external-link">searchFilters</a></span><span class="op">(</span>mart <span class="op">=</span> <span class="va">ensembl</span>, pattern <span class="op">=</span> <span class="st">"gene"</span><span class="op">)</span></span>
+<span><span class="co"># GRCh38</span></span>
+<span><span class="va">ensembl</span> <span class="op">&lt;-</span> <span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/useMart.html" class="external-link">useMart</a></span><span class="op">(</span><span class="st">"ensembl"</span>, dataset<span class="op">=</span><span class="st">"hsapiens_gene_ensembl"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3" number="4.3">
+<h3 id="experimental-factor-ontology-efo">
+<span class="header-section-number">4.3</span> Experimental Factor Ontology (EFO)<a class="anchor" aria-label="anchor" href="#experimental-factor-ontology-efo"></a>
+</h3>
+<p>The ontology of traits/disease is formally available as this<span class="citation"><sup>1</sup></span>. The script below assumes that efo-3.26.0 has been downloaded.</p>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ontologyIndex</span><span class="op">)</span></span>
+<span><span class="va">id</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">ontology</span><span class="op">)</span></span>
+<span><span class="op">{</span></span>
+<span>  <span class="va">inflammatory</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="va">ontology</span><span class="op">$</span><span class="va">name</span>,pattern<span class="op">=</span><span class="st">"inflammatory"</span><span class="op">)</span></span>
+<span>  <span class="va">immune</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="va">ontology</span><span class="op">$</span><span class="va">name</span>,pattern<span class="op">=</span><span class="st">"immune"</span><span class="op">)</span></span>
+<span>  <span class="va">inf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sets.html" class="external-link">union</a></span><span class="op">(</span><span class="va">inflammatory</span>,<span class="va">immune</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>id<span class="op">=</span><span class="va">ontology</span><span class="op">$</span><span class="va">id</span><span class="op">[</span><span class="va">inf</span><span class="op">]</span>,name<span class="op">=</span><span class="va">ontology</span><span class="op">$</span><span class="va">name</span><span class="op">[</span><span class="va">inf</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="co"># GO</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">go</span><span class="op">)</span></span>
+<span><span class="va">goidname</span> <span class="op">&lt;-</span> <span class="fu">id</span><span class="op">(</span><span class="va">go</span><span class="op">)</span></span>
+<span><span class="co"># EFO</span></span>
+<span><span class="va">file</span> <span class="op">&lt;-</span> <span class="st">"efo.obo"</span> <span class="co"># efo-3.26.0</span></span>
+<span><span class="fu">get_relation_names</span><span class="op">(</span><span class="va">file</span><span class="op">)</span></span>
+<span><span class="va">efo</span> <span class="op">&lt;-</span> <span class="fu">get_ontology</span><span class="op">(</span><span class="va">file</span>, extract_tags<span class="op">=</span><span class="st">"everything"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">efo</span><span class="op">)</span> <span class="co"># 89</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">efo</span><span class="op">$</span><span class="va">id</span><span class="op">)</span> <span class="co"># 27962</span></span>
+<span><span class="va">efoidname</span> <span class="op">&lt;-</span> <span class="fu">id</span><span class="op">(</span><span class="va">efo</span><span class="op">)</span></span>
+<span><span class="va">diseases</span> <span class="op">&lt;-</span> <span class="fu">get_descendants</span><span class="op">(</span><span class="va">efo</span>,<span class="st">"EFO:0000408"</span><span class="op">)</span></span>
+<span><span class="va">efo_0000540</span> <span class="op">&lt;-</span> <span class="fu">get_descendants</span><span class="op">(</span><span class="va">efo</span>,<span class="st">"EFO:0000540"</span><span class="op">)</span></span>
+<span><span class="va">efo_0000540name</span> <span class="op">&lt;-</span> <span class="va">efo</span><span class="op">$</span><span class="va">name</span><span class="op">[</span><span class="va">efo_0000540</span><span class="op">]</span></span>
+<span><span class="va">isd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">efo_0000540</span>,<span class="va">efo_0000540name</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ontologyPlot</span><span class="op">)</span></span>
+<span><span class="fu">onto_plot</span><span class="op">(</span><span class="va">efo</span>,<span class="va">efo_0000540</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3" number="4.4">
+<h3 id="opentargets">
+<span class="header-section-number">4.4</span> OpenTargets<a class="anchor" aria-label="anchor" href="#opentargets"></a>
+</h3>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gene_id</span> <span class="op">&lt;-</span> <span class="st">"ENSG00000164308"</span></span>
 <span><span class="va">query_string</span> <span class="op">=</span> <span class="st">"</span></span>
 <span><span class="st">  query target($ensemblId: String!){</span></span>
@@ -2037,7 +2134,7 @@ Figure 3.2: Power Estimation for eQTL Studies of 240 SNPs
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">scalar_fields</span>, caption <span class="op">=</span> <span class="st">"Basic Information"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>
-<span id="tab:ot">Table 3.6: </span>Basic Information</caption>
+<span id="tab:ot">Table 4.1: </span>Basic Information</caption>
 <thead><tr class="header">
 <th align="left">Field</th>
 <th align="left">Value</th>
@@ -2057,11 +2154,11 @@ Figure 3.2: Power Estimation for eQTL Studies of 240 SNPs
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">target</span><span class="op">$</span><span class="va">geneticConstraint</span>, caption <span class="op">=</span> <span class="st">"Genetic Constraint Metrics"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>
-<span id="tab:ot">Table 3.6: </span>Genetic Constraint Metrics</caption>
+<span id="tab:ot">Table 4.1: </span>Genetic Constraint Metrics</caption>
 <thead><tr class="header">
 <th align="left">constraintType</th>
 <th align="right">exp</th>
@@ -2101,11 +2198,11 @@ Figure 3.2: Power Estimation for eQTL Studies of 240 SNPs
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tractability_data</span>, caption <span class="op">=</span> <span class="st">"Tractability Information"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>
-<span id="tab:ot">Table 3.6: </span>Tractability Information</caption>
+<span id="tab:ot">Table 4.1: </span>Tractability Information</caption>
 <thead><tr class="header">
 <th align="left">label</th>
 <th align="left">modality</th>
@@ -2257,112 +2354,15 @@ Figure 3.2: Power Estimation for eQTL Studies of 240 SNPs
 <p>where <code>jsonlite::fromJSON(content(r,"text",encoding="UTF-8"))</code> also works when R is nicely compiled with libiconv.</p>
 </div>
 </div>
-<div class="section level2" number="4">
-<h2 id="annotations">
-<span class="header-section-number">4</span> Annotations<a class="anchor" aria-label="anchor" href="#annotations"></a>
-</h2>
-<div class="section level3" number="4.1">
-<h3 id="ensdb-hsapiens-v75">
-<span class="header-section-number">4.1</span> EnsDb.Hsapiens.v75<a class="anchor" aria-label="anchor" href="#ensdb-hsapiens-v75"></a>
-</h3>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">ensembldb</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Annotated-class.html" class="external-link">metadata</a></span><span class="op">(</span><span class="va">EnsDb.Hsapiens.v75</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                  name                               value</span></span>
-<span><span class="co">#&gt; 1             Db type                               EnsDb</span></span>
-<span><span class="co">#&gt; 2     Type of Gene ID                     Ensembl Gene ID</span></span>
-<span><span class="co">#&gt; 3  Supporting package                           ensembldb</span></span>
-<span><span class="co">#&gt; 4       Db created by ensembldb package from Bioconductor</span></span>
-<span><span class="co">#&gt; 5      script_version                               0.3.0</span></span>
-<span><span class="co">#&gt; 6       Creation time            Thu May 18 09:15:45 2017</span></span>
-<span><span class="co">#&gt; 7     ensembl_version                                  75</span></span>
-<span><span class="co">#&gt; 8        ensembl_host                           localhost</span></span>
-<span><span class="co">#&gt; 9            Organism                        homo_sapiens</span></span>
-<span><span class="co">#&gt; 10        taxonomy_id                                9606</span></span>
-<span><span class="co">#&gt; 11       genome_build                              GRCh37</span></span>
-<span><span class="co">#&gt; 12    DBSCHEMAVERSION                                 2.0</span></span>
-<span><span class="va">genes</span> <span class="op">&lt;-</span> <span class="fu">ensembldb</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GenomicFeatures/man/transcripts.html" class="external-link">genes</a></span><span class="op">(</span><span class="va">EnsDb.Hsapiens.v75</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">genes</span><span class="op">)</span></span>
-<span><span class="co">#&gt; GRanges object with 6 ranges and 6 metadata columns:</span></span>
-<span><span class="co">#&gt;                   seqnames      ranges strand |         gene_id   gene_name gene_biotype seq_coord_system      symbol                          entrezid</span></span>
-<span><span class="co">#&gt;                      &lt;Rle&gt;   &lt;IRanges&gt;  &lt;Rle&gt; |     &lt;character&gt; &lt;character&gt;  &lt;character&gt;      &lt;character&gt; &lt;character&gt;                            &lt;list&gt;</span></span>
-<span><span class="co">#&gt;   ENSG00000223972        1 11869-14412      + | ENSG00000223972     DDX11L1   pseudogene       chromosome     DDX11L1               100287596,100287102</span></span>
-<span><span class="co">#&gt;   ENSG00000227232        1 14363-29806      - | ENSG00000227232      WASH7P   pseudogene       chromosome      WASH7P                  100287171,653635</span></span>
-<span><span class="co">#&gt;   ENSG00000243485        1 29554-31109      + | ENSG00000243485  MIR1302-10      lincRNA       chromosome  MIR1302-10 100422919,100422834,100422831,...</span></span>
-<span><span class="co">#&gt;   ENSG00000237613        1 34554-36081      - | ENSG00000237613     FAM138A      lincRNA       chromosome     FAM138A              654835,645520,641702</span></span>
-<span><span class="co">#&gt;   ENSG00000268020        1 52473-54936      + | ENSG00000268020      OR4G4P   pseudogene       chromosome      OR4G4P                              &lt;NA&gt;</span></span>
-<span><span class="co">#&gt;   ENSG00000240361        1 62948-63887      + | ENSG00000240361     OR4G11P   pseudogene       chromosome     OR4G11P                              &lt;NA&gt;</span></span>
-<span><span class="co">#&gt;   -------</span></span>
-<span><span class="co">#&gt;   seqinfo: 273 sequences (1 circular) from GRCh37 genome</span></span>
-<span><span class="va">transcripts_data</span> <span class="op">&lt;-</span> <span class="fu">ensembldb</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GenomicFeatures/man/transcripts.html" class="external-link">transcripts</a></span><span class="op">(</span><span class="va">EnsDb.Hsapiens.v75</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">transcripts_data</span><span class="op">)</span></span>
-<span><span class="co">#&gt; GRanges object with 6 ranges and 6 metadata columns:</span></span>
-<span><span class="co">#&gt;                   seqnames      ranges strand |           tx_id             tx_biotype tx_cds_seq_start tx_cds_seq_end         gene_id         tx_name</span></span>
-<span><span class="co">#&gt;                      &lt;Rle&gt;   &lt;IRanges&gt;  &lt;Rle&gt; |     &lt;character&gt;            &lt;character&gt;        &lt;integer&gt;      &lt;integer&gt;     &lt;character&gt;     &lt;character&gt;</span></span>
-<span><span class="co">#&gt;   ENST00000456328        1 11869-14409      + | ENST00000456328   processed_transcript             &lt;NA&gt;           &lt;NA&gt; ENSG00000223972 ENST00000456328</span></span>
-<span><span class="co">#&gt;   ENST00000515242        1 11872-14412      + | ENST00000515242 transcribed_unproces..             &lt;NA&gt;           &lt;NA&gt; ENSG00000223972 ENST00000515242</span></span>
-<span><span class="co">#&gt;   ENST00000518655        1 11874-14409      + | ENST00000518655 transcribed_unproces..             &lt;NA&gt;           &lt;NA&gt; ENSG00000223972 ENST00000518655</span></span>
-<span><span class="co">#&gt;   ENST00000450305        1 12010-13670      + | ENST00000450305 transcribed_unproces..             &lt;NA&gt;           &lt;NA&gt; ENSG00000223972 ENST00000450305</span></span>
-<span><span class="co">#&gt;   ENST00000438504        1 14363-29370      - | ENST00000438504 unprocessed_pseudogene             &lt;NA&gt;           &lt;NA&gt; ENSG00000227232 ENST00000438504</span></span>
-<span><span class="co">#&gt;   ENST00000541675        1 14363-24886      - | ENST00000541675 unprocessed_pseudogene             &lt;NA&gt;           &lt;NA&gt; ENSG00000227232 ENST00000541675</span></span>
-<span><span class="co">#&gt;   -------</span></span>
-<span><span class="co">#&gt;   seqinfo: 273 sequences (1 circular) from GRCh37 genome</span></span></code></pre></div>
-<p>One can also use <code>exons_data &lt;- ensembldb::exons(EnsDb.Hsapiens.v75);head(exons_data)</code> but it is skipped for being considerably longer.</p>
-</div>
-<div class="section level3" number="4.2">
-<h3 id="biomart">
-<span class="header-section-number">4.2</span> biomaRt<a class="anchor" aria-label="anchor" href="#biomart"></a>
-</h3>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu">biomaRt</span><span class="fu">::</span><span class="fu">martBMCheck</span><span class="op">(</span><span class="va">mart</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="kw"><a href="https://rdrr.io/r/base/stop.html" class="external-link">stop</a></span><span class="op">(</span><span class="st">"The BioMart service is currently unavailable."</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span><span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listMarts.html" class="external-link">listMarts</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">ensembl</span> <span class="op">&lt;-</span> <span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/useMart.html" class="external-link">useMart</a></span><span class="op">(</span><span class="st">"ensembl"</span>, dataset<span class="op">=</span><span class="st">"hsapiens_gene_ensembl"</span>, host<span class="op">=</span><span class="st">"grch37.ensembl.org"</span>, path<span class="op">=</span><span class="st">"/biomart/martservice"</span><span class="op">)</span></span>
-<span><span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listDatasets.html" class="external-link">listDatasets</a></span><span class="op">(</span><span class="va">ensembl</span><span class="op">)</span></span>
-<span><span class="va">attr</span> <span class="op">&lt;-</span> <span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listAttributes.html" class="external-link">listAttributes</a></span><span class="op">(</span><span class="va">ensembl</span><span class="op">)</span></span>
-<span><span class="va">attr_select</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'ensembl_gene_id'</span>, <span class="st">'chromosome_name'</span>, <span class="st">'start_position'</span>, <span class="st">'end_position'</span>, <span class="st">'description'</span>, <span class="st">'hgnc_symbol'</span>,</span>
-<span>                 <span class="st">'transcription_start_site'</span><span class="op">)</span></span>
-<span><span class="va">gene</span> <span class="op">&lt;-</span> <span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/getBM.html" class="external-link">getBM</a></span><span class="op">(</span>attributes <span class="op">=</span> <span class="va">attr_select</span>, mart <span class="op">=</span> <span class="va">ensembl</span><span class="op">)</span></span>
-<span><span class="va">filter</span> <span class="op">&lt;-</span> <span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listFilters.html" class="external-link">listFilters</a></span><span class="op">(</span><span class="va">ensembl</span><span class="op">)</span></span>
-<span><span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/listFilters.html" class="external-link">searchFilters</a></span><span class="op">(</span>mart <span class="op">=</span> <span class="va">ensembl</span>, pattern <span class="op">=</span> <span class="st">"gene"</span><span class="op">)</span></span>
-<span><span class="co"># GRCh38</span></span>
-<span><span class="va">ensembl</span> <span class="op">&lt;-</span> <span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/useMart.html" class="external-link">useMart</a></span><span class="op">(</span><span class="st">"ensembl"</span>, dataset<span class="op">=</span><span class="st">"hsapiens_gene_ensembl"</span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level3" number="4.3">
-<h3 id="experimental-factor-ontology-efo">
-<span class="header-section-number">4.3</span> Experimental Factor Ontology (EFO)<a class="anchor" aria-label="anchor" href="#experimental-factor-ontology-efo"></a>
-</h3>
-<p>The ontology of traits/disease is formally available as this<span class="citation"><sup>2</sup></span>. The script below assumes that efo-3.26.0 has been downloaded.</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ontologyIndex</span><span class="op">)</span></span>
-<span><span class="va">id</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">ontology</span><span class="op">)</span></span>
-<span><span class="op">{</span></span>
-<span>  <span class="va">inflammatory</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="va">ontology</span><span class="op">$</span><span class="va">name</span>,pattern<span class="op">=</span><span class="st">"inflammatory"</span><span class="op">)</span></span>
-<span>  <span class="va">immune</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="va">ontology</span><span class="op">$</span><span class="va">name</span>,pattern<span class="op">=</span><span class="st">"immune"</span><span class="op">)</span></span>
-<span>  <span class="va">inf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sets.html" class="external-link">union</a></span><span class="op">(</span><span class="va">inflammatory</span>,<span class="va">immune</span><span class="op">)</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>id<span class="op">=</span><span class="va">ontology</span><span class="op">$</span><span class="va">id</span><span class="op">[</span><span class="va">inf</span><span class="op">]</span>,name<span class="op">=</span><span class="va">ontology</span><span class="op">$</span><span class="va">name</span><span class="op">[</span><span class="va">inf</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span><span class="co"># GO</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">go</span><span class="op">)</span></span>
-<span><span class="va">goidname</span> <span class="op">&lt;-</span> <span class="fu">id</span><span class="op">(</span><span class="va">go</span><span class="op">)</span></span>
-<span><span class="co"># EFO</span></span>
-<span><span class="va">file</span> <span class="op">&lt;-</span> <span class="st">"efo.obo"</span> <span class="co"># efo-3.26.0</span></span>
-<span><span class="fu">get_relation_names</span><span class="op">(</span><span class="va">file</span><span class="op">)</span></span>
-<span><span class="va">efo</span> <span class="op">&lt;-</span> <span class="fu">get_ontology</span><span class="op">(</span><span class="va">file</span>, extract_tags<span class="op">=</span><span class="st">"everything"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">efo</span><span class="op">)</span> <span class="co"># 89</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">efo</span><span class="op">$</span><span class="va">id</span><span class="op">)</span> <span class="co"># 27962</span></span>
-<span><span class="va">efoidname</span> <span class="op">&lt;-</span> <span class="fu">id</span><span class="op">(</span><span class="va">efo</span><span class="op">)</span></span>
-<span><span class="va">diseases</span> <span class="op">&lt;-</span> <span class="fu">get_descendants</span><span class="op">(</span><span class="va">efo</span>,<span class="st">"EFO:0000408"</span><span class="op">)</span></span>
-<span><span class="va">efo_0000540</span> <span class="op">&lt;-</span> <span class="fu">get_descendants</span><span class="op">(</span><span class="va">efo</span>,<span class="st">"EFO:0000540"</span><span class="op">)</span></span>
-<span><span class="va">efo_0000540name</span> <span class="op">&lt;-</span> <span class="va">efo</span><span class="op">$</span><span class="va">name</span><span class="op">[</span><span class="va">efo_0000540</span><span class="op">]</span></span>
-<span><span class="va">isd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">efo_0000540</span>,<span class="va">efo_0000540name</span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ontologyPlot</span><span class="op">)</span></span>
-<span><span class="fu">onto_plot</span><span class="op">(</span><span class="va">efo</span>,<span class="va">efo_0000540</span><span class="op">)</span></span></code></pre></div>
-</div>
-</div>
 <div class="section level2" number="5">
+<h2 id="proteogenomics">
+<span class="header-section-number">5</span> Proteogenomics<a class="anchor" aria-label="anchor" href="#proteogenomics"></a>
+</h2>
+<p>See <a href="https://jinghuazhao.github.io/pQTLtools/" class="external-link uri">https://jinghuazhao.github.io/pQTLtools/</a>. An overview on the proteomics is found from the relevant paper<span class="citation"><sup>2</sup></span>.</p>
+</div>
+<div class="section level2" number="6">
 <h2 id="gaawr2">
-<span class="header-section-number">5</span> gaawr2<a class="anchor" aria-label="anchor" href="#gaawr2"></a>
+<span class="header-section-number">6</span> gaawr2<a class="anchor" aria-label="anchor" href="#gaawr2"></a>
 </h2>
 <p>While created as a showcase of modern package development, like other R packages it includes data examples, customized functions,
 documentation and featured articles. The workflow is shown in the following diagram.</p>
@@ -2415,27 +2415,27 @@ Upon use <code>pkgdown</code>, an article can be seen from the menu item <code>A
     testthat,
     tidyr</code></pre>
 </div>
-<div class="section level2" number="6">
+<div class="section level2" number="7">
 <h2 id="summary">
-<span class="header-section-number">6</span> Summary<a class="anchor" aria-label="anchor" href="#summary"></a>
+<span class="header-section-number">7</span> Summary<a class="anchor" aria-label="anchor" href="#summary"></a>
 </h2>
 <p>We hsve explored various aspects of genetic association analysis in R, particularly in the context of computing
 systems like Linux. While these serve as a solid foundation, a more in-depth data analysis coupled with
 development is surely fruitful and rewarding.</p>
 </div>
-<div class="section level2" number="7">
+<div class="section level2" number="8">
 <h2 id="references">
-<span class="header-section-number">7</span> References<a class="anchor" aria-label="anchor" href="#references"></a>
+<span class="header-section-number">8</span> References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script><div id="refs" class="references csl-bib-body" entry-spacing="0" line-spacing="2">
-<div id="ref-suhre20" class="csl-entry">
-<div class="csl-left-margin">1. </div>
-<div class="csl-right-inline">Suhre, K., McCarthy, M. I. &amp; Schwenk, J. M. Genetics meets proteomics: Perspectives for large population-based studies. <em>Nat Rev Genet</em> (2020) doi:<a href="https://doi.org/10.1038/s41576-020-0268-2" class="external-link">10.1038/s41576-020-0268-2</a>.</div>
-</div>
 <div id="ref-malone10" class="csl-entry">
-<div class="csl-left-margin">2. </div>
+<div class="csl-left-margin">1. </div>
 <div class="csl-right-inline">Malone, J. <em>et al.</em> <a href="https://doi.org/10.1093/bioinformatics/btq099" class="external-link">Modeling sample variables with an experimental factor ontology</a>. <em>Bioinformatics</em> <strong>26</strong>, 1112–1118 (2010).</div>
+</div>
+<div id="ref-suhre20" class="csl-entry">
+<div class="csl-left-margin">2. </div>
+<div class="csl-right-inline">Suhre, K., McCarthy, M. I. &amp; Schwenk, J. M. Genetics meets proteomics: Perspectives for large population-based studies. <em>Nat Rev Genet</em> (2020) doi:<a href="https://doi.org/10.1038/s41576-020-0268-2" class="external-link">10.1038/s41576-020-0268-2</a>.</div>
 </div>
 </div>
 </div>
