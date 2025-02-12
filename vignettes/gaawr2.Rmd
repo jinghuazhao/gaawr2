@@ -271,6 +271,30 @@ for (i in 1:4) haploH[[i]] <- haplo.stats::haplo.score.slide(asthma.snps$cc, gen
                               sim.control=haplo.stats::score.sim.control(min.sim=50,max.sim=100))
 ```
 
+## GWAS
+
+We return to the asthma data used in **SNPassoc**.
+
+```r
+assoc <- SNPassoc::WGassociation(cc, data=asthma.snps)
+assoc.adj <- SNPassoc::WGassociation(cc ~ country + smoke, asthma.snps)
+assoc.maxstat <- SNPassoc::maxstat(asthma.snps, cc)
+assoc %>%
+  as.data.frame() %>%
+  dplyr::select(-comments) %>%
+  knitr::kable(caption="SNP association")
+assoc.adj %>%
+  as.data.frame() %>%
+  dplyr::select(-comments) %>%
+  knitr::kable(caption="with adjustment for contountry & smoking")
+assoc.maxstat %>%
+  `[`(,) %>%
+  t() %>%
+  knitr::kable(caption = "Max stat association statistics")
+```
+
+where assoc.maxstat is coerced into a matrix later, but there appears problematic to knit though.
+
 ## GMMAT
 
 The following is modified slightly from the package vignette,
@@ -305,35 +329,6 @@ detach(example)
 ```
 
 where both BGEN and PLINK binary file are illustrated.
-
-
-## Proteogenomics
-
-See <https://jinghuazhao.github.io/pQTLtools/>. An overview on the proteomics is found from the relevant paper @suhre20.
-
-## GWAS
-
-We return to the asthma data used in **SNPassoc**.
-
-```r
-assoc <- SNPassoc::WGassociation(cc, data=asthma.snps)
-assoc.adj <- SNPassoc::WGassociation(cc ~ country + smoke, asthma.snps)
-assoc.maxstat <- SNPassoc::maxstat(asthma.snps, cc)
-assoc %>%
-  as.data.frame() %>%
-  dplyr::select(-comments) %>%
-  knitr::kable(caption="SNP association")
-assoc.adj %>%
-  as.data.frame() %>%
-  dplyr::select(-comments) %>%
-  knitr::kable(caption="with adjustment for contountry & smoking")
-assoc.maxstat %>%
-  `[`(,) %>%
-  t() %>%
-  knitr::kable(caption = "Max stat association statistics")
-```
-
-where assoc.maxstat is coerced into a matrix later, but there appears problematic to knit though.
 
 ## h2.jags
 
@@ -389,6 +384,10 @@ legend("bottomright", inset=.02, title="Sample size (N)", paste(N), col=colors, 
 ```
 
 The counterpart for single-cell RNA-Seq design is via `powerEQTL.scRNAseq`.
+
+## Proteogenomics
+
+See <https://jinghuazhao.github.io/pQTLtools/>. An overview on the proteomics is found from the relevant paper @suhre20.
 
 ## OpenTargets
 
