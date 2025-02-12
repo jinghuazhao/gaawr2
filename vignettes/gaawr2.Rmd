@@ -489,14 +489,11 @@ scalar_fields <- data.frame(
   Value = c(target$id, target$approvedSymbol, target$biotype)
 )
 tractability_data <- target$tractability
-knitr::kable(scalar_fields) %>%
-  kableExtra::add_header_above(c("Basic Information" = ncol(scalar_fields))) %>%
+kableExtra::kbl(scalar_fields,caption="Basic Information") %>%
   kableExtra::kable_styling(bootstrap_options = c("striped", "hover"))
-knitr::kable(target$geneticConstraint) %>%
-  kableExtra::add_header_above(c("Basic Information" = ncol(target$geneticConstraint))) %>%
+kableExtra::kbl(target$geneticConstraint, caption="Genetic Constraint Metrics") %>%
   kableExtra::kable_styling(bootstrap_options = c("striped", "hover"))
-knitr::kable(tractability_data) %>%
-  kableExtra::add_header_above(c("Basic Information" = ncol(tractability_data))) %>%
+kableExtra::kbl(tractability_data,caption="Tractability Information") %>%
   kableExtra::kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
 ```
 
