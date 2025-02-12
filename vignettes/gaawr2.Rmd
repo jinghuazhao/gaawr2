@@ -490,14 +490,14 @@ scalar_fields <- data.frame(
 )
 tractability_data <- target$tractability
 knitr::kable(scalar_fields) %>%
-  kableExtra::kable_styling(repeat_header_text = "Basic Information", repeat_header_method = "replace",
-                            bootstrap_options = c("striped", "hover"))
+  kableExtra::add_header_above(c("Basic Information" = ncol(scalar_fields))) %>%
+  kableExtra::kable_styling(bootstrap_options = c("striped", "hover"))
 knitr::kable(target$geneticConstraint) %>%
-  kableExtra::kable_styling(repeat_header_text = "Genetic Constraint Metrics", repeat_header_method = "replace",
-                            bootstrap_options = c("striped", "hover"))
+  kableExtra::add_header_above(c("Basic Information" = ncol(target$geneticConstraint))) %>%
+  kableExtra::kable_styling(bootstrap_options = c("striped", "hover"))
 knitr::kable(tractability_data) %>%
-  kableExtra::kable_styling(repeat_header_text = "Tractability Information", repeat_header_method = "replace",
-                            bootstrap_options = c("striped", "hover"), full_width = FALSE)
+  kableExtra::add_header_above(c("Basic Information" = ncol(tractability_data))) %>%
+  kableExtra::kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
 ```
 
 where `jsonlite::fromJSON(content(r,"text",encoding="UTF-8"))` also works when R is nicely compiled with libiconv.
