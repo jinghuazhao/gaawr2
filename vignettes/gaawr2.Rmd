@@ -559,7 +559,7 @@ Suggests:
 
 We hsve explored various aspects of genetic association analysis in R, particularly in the context of computing
 systems like Linux. While these serve as a solid foundation, a more in-depth data analysis coupled with
-development surely fruitful and rewarding.
+development is surely fruitful and rewarding.
 
 # References
 
