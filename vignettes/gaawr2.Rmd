@@ -385,56 +385,6 @@ legend("bottomright", inset=.02, title="Sample size (N)", paste(N), col=colors, 
 
 The counterpart for single-cell RNA-Seq design is via `powerEQTL.scRNAseq`.
 
-## Proteogenomics
-
-See <https://jinghuazhao.github.io/pQTLtools/>. An overview on the proteomics is found from the relevant paper @suhre20.
-
-## OpenTargets
-
-```{r ot, messages=FALSE}
-gene_id <- "ENSG00000164308"
-query_string = "
-  query target($ensemblId: String!){
-    target(ensemblId: $ensemblId){
-      id
-      approvedSymbol
-      biotype
-      geneticConstraint {
-        constraintType
-        exp
-        obs
-        score
-        oe
-        oeLower
-        oeUpper
-      }
-      tractability {
-        label
-        modality
-        value
-      }
-    }
-  }
-"
-base_url <- "https://api.platform.opentargets.org/api/v4/graphql"
-variables <- list("ensemblId" = gene_id)
-post_body <- list(query = query_string, variables = variables)
-r <- httr::POST(url=base_url, body=post_body, encode='json')
-data <- iconv(r, "", "ASCII")
-content <- jsonlite::fromJSON(data)
-target <- content$data$target
-scalar_fields <- data.frame(
-  Field = c("ID", "Approved Symbol", "Biotype"),
-  Value = c(target$id, target$approvedSymbol, target$biotype)
-)
-tractability_data <- target$tractability
-knitr::kable(scalar_fields, caption = "Basic Information")
-knitr::kable(target$geneticConstraint, caption = "Genetic Constraint Metrics")
-knitr::kable(tractability_data, caption = "Tractability Information")
-```
-
-where `jsonlite::fromJSON(content(r,"text",encoding="UTF-8"))` also works when R is nicely compiled with libiconv.
-
 # Annotations
 
 ## EnsDb.Hsapiens.v75
@@ -497,6 +447,56 @@ isd <- data.frame(efo_0000540,efo_0000540name)
 library(ontologyPlot)
 onto_plot(efo,efo_0000540)
 ```
+
+## OpenTargets
+
+```{r ot, messages=FALSE}
+gene_id <- "ENSG00000164308"
+query_string = "
+  query target($ensemblId: String!){
+    target(ensemblId: $ensemblId){
+      id
+      approvedSymbol
+      biotype
+      geneticConstraint {
+        constraintType
+        exp
+        obs
+        score
+        oe
+        oeLower
+        oeUpper
+      }
+      tractability {
+        label
+        modality
+        value
+      }
+    }
+  }
+"
+base_url <- "https://api.platform.opentargets.org/api/v4/graphql"
+variables <- list("ensemblId" = gene_id)
+post_body <- list(query = query_string, variables = variables)
+r <- httr::POST(url=base_url, body=post_body, encode='json')
+data <- iconv(r, "", "ASCII")
+content <- jsonlite::fromJSON(data)
+target <- content$data$target
+scalar_fields <- data.frame(
+  Field = c("ID", "Approved Symbol", "Biotype"),
+  Value = c(target$id, target$approvedSymbol, target$biotype)
+)
+tractability_data <- target$tractability
+knitr::kable(scalar_fields, caption = "Basic Information")
+knitr::kable(target$geneticConstraint, caption = "Genetic Constraint Metrics")
+knitr::kable(tractability_data, caption = "Tractability Information")
+```
+
+where `jsonlite::fromJSON(content(r,"text",encoding="UTF-8"))` also works when R is nicely compiled with libiconv.
+
+# Proteogenomics
+
+See <https://jinghuazhao.github.io/pQTLtools/>. An overview on the proteomics is found from the relevant paper @suhre20.
 
 # gaawr2
 
