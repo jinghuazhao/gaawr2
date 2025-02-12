@@ -134,6 +134,9 @@ ggplot2::ggplot(mean_values_long,
   ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1))
 ```
 
+We see higher mean age and HbA1c values in the "Yes" diabetes group as well as noticeable differences in BMI, which align with
+the known associations between these variables and diabetes.
+
 The Comprehensive R Archive Network (CRAN) host and Bioconductor host many fined-tuned user-contributed packages, their installation is furnished through
 
 - `install.packages()` which is a standard way to install from CRAN
