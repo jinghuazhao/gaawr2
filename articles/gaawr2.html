@@ -2132,223 +2132,475 @@ Figure 3.2: Power Estimation for eQTL Studies of 240 SNPs
 <span>  Value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">target</span><span class="op">$</span><span class="va">id</span>, <span class="va">target</span><span class="op">$</span><span class="va">approvedSymbol</span>, <span class="va">target</span><span class="op">$</span><span class="va">biotype</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="va">tractability_data</span> <span class="op">&lt;-</span> <span class="va">target</span><span class="op">$</span><span class="va">tractability</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">scalar_fields</span>, caption <span class="op">=</span> <span class="st">"Basic Information"</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">scalar_fields</span>, caption <span class="op">=</span> <span class="st">"Basic Information"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>bootstrap_options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"striped"</span>, <span class="st">"hover"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<table class="table table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:ot">Table 4.1: </span>Basic Information</caption>
-<thead><tr class="header">
-<th align="left">Field</th>
-<th align="left">Value</th>
+<span id="tab:ot">Table 4.1: </span><span id="tab:ot">Table 4.2: </span>Basic Information
+</caption>
+<thead><tr>
+<th style="text-align:left;">
+Field
+</th>
+<th style="text-align:left;">
+Value
+</th>
 </tr></thead>
 <tbody>
-<tr class="odd">
-<td align="left">ID</td>
-<td align="left">ENSG00000164308</td>
+<tr>
+<td style="text-align:left;">
+ID
+</td>
+<td style="text-align:left;">
+ENSG00000164308
+</td>
 </tr>
-<tr class="even">
-<td align="left">Approved Symbol</td>
-<td align="left">ERAP2</td>
+<tr>
+<td style="text-align:left;">
+Approved Symbol
+</td>
+<td style="text-align:left;">
+ERAP2
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Biotype</td>
-<td align="left">protein_coding</td>
+<tr>
+<td style="text-align:left;">
+Biotype
+</td>
+<td style="text-align:left;">
+protein_coding
+</td>
 </tr>
 </tbody>
 </table>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">target</span><span class="op">$</span><span class="va">geneticConstraint</span>, caption <span class="op">=</span> <span class="st">"Genetic Constraint Metrics"</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
+<code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">target</span><span class="op">$</span><span class="va">geneticConstraint</span>, caption <span class="op">=</span> <span class="st">"Genetic Constraint Metrics"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>bootstrap_options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"striped"</span>, <span class="st">"hover"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<table class="table table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:ot">Table 4.1: </span>Genetic Constraint Metrics</caption>
-<thead><tr class="header">
-<th align="left">constraintType</th>
-<th align="right">exp</th>
-<th align="right">obs</th>
-<th align="right">score</th>
-<th align="right">oe</th>
-<th align="right">oeLower</th>
-<th align="right">oeUpper</th>
+<span id="tab:ot">Table 4.1: </span><span id="tab:ot">Table 4.1: </span>Genetic Constraint Metrics
+</caption>
+<thead><tr>
+<th style="text-align:left;">
+constraintType
+</th>
+<th style="text-align:right;">
+exp
+</th>
+<th style="text-align:right;">
+obs
+</th>
+<th style="text-align:right;">
+score
+</th>
+<th style="text-align:right;">
+oe
+</th>
+<th style="text-align:right;">
+oeLower
+</th>
+<th style="text-align:right;">
+oeUpper
+</th>
 </tr></thead>
 <tbody>
-<tr class="odd">
-<td align="left">syn</td>
-<td align="right">186</td>
-<td align="right">183</td>
-<td align="right">0.15</td>
-<td align="right">0.99</td>
-<td align="right">0.87</td>
-<td align="right">1.1</td>
+<tr>
+<td style="text-align:left;">
+syn
+</td>
+<td style="text-align:right;">
+186
+</td>
+<td style="text-align:right;">
+183
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:right;">
+0.87
+</td>
+<td style="text-align:right;">
+1.1
+</td>
 </tr>
-<tr class="even">
-<td align="left">mis</td>
-<td align="right">497</td>
-<td align="right">501</td>
-<td align="right">-0.07</td>
-<td align="right">1.01</td>
-<td align="right">0.94</td>
-<td align="right">1.1</td>
+<tr>
+<td style="text-align:left;">
+mis
+</td>
+<td style="text-align:right;">
+497
+</td>
+<td style="text-align:right;">
+501
+</td>
+<td style="text-align:right;">
+-0.07
+</td>
+<td style="text-align:right;">
+1.01
+</td>
+<td style="text-align:right;">
+0.94
+</td>
+<td style="text-align:right;">
+1.1
+</td>
 </tr>
-<tr class="odd">
-<td align="left">lof</td>
-<td align="right">48</td>
-<td align="right">45</td>
-<td align="right">0.00</td>
-<td align="right">0.93</td>
-<td align="right">0.73</td>
-<td align="right">1.2</td>
+<tr>
+<td style="text-align:left;">
+lof
+</td>
+<td style="text-align:right;">
+48
+</td>
+<td style="text-align:right;">
+45
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.93
+</td>
+<td style="text-align:right;">
+0.73
+</td>
+<td style="text-align:right;">
+1.2
+</td>
 </tr>
 </tbody>
 </table>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tractability_data</span>, caption <span class="op">=</span> <span class="st">"Tractability Information"</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
+<code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">tractability_data</span>, caption <span class="op">=</span> <span class="st">"Tractability Information"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>bootstrap_options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"striped"</span>, <span class="st">"hover"</span><span class="op">)</span>, full_width <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<table class="table table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:ot">Table 4.1: </span>Tractability Information</caption>
-<thead><tr class="header">
-<th align="left">label</th>
-<th align="left">modality</th>
-<th align="left">value</th>
+<span id="tab:ot">Table 4.1: </span><span id="tab:ot">Table 4.1: </span>Tractability Information
+</caption>
+<thead><tr>
+<th style="text-align:left;">
+label
+</th>
+<th style="text-align:left;">
+modality
+</th>
+<th style="text-align:left;">
+value
+</th>
 </tr></thead>
 <tbody>
-<tr class="odd">
-<td align="left">Approved Drug</td>
-<td align="left">SM</td>
-<td align="left">FALSE</td>
+<tr>
+<td style="text-align:left;">
+Approved Drug
+</td>
+<td style="text-align:left;">
+SM
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
 </tr>
-<tr class="even">
-<td align="left">Advanced Clinical</td>
-<td align="left">SM</td>
-<td align="left">TRUE</td>
+<tr>
+<td style="text-align:left;">
+Advanced Clinical
+</td>
+<td style="text-align:left;">
+SM
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Phase 1 Clinical</td>
-<td align="left">SM</td>
-<td align="left">FALSE</td>
+<tr>
+<td style="text-align:left;">
+Phase 1 Clinical
+</td>
+<td style="text-align:left;">
+SM
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
 </tr>
-<tr class="even">
-<td align="left">Structure with Ligand</td>
-<td align="left">SM</td>
-<td align="left">TRUE</td>
+<tr>
+<td style="text-align:left;">
+Structure with Ligand
+</td>
+<td style="text-align:left;">
+SM
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
 </tr>
-<tr class="odd">
-<td align="left">High-Quality Ligand</td>
-<td align="left">SM</td>
-<td align="left">TRUE</td>
+<tr>
+<td style="text-align:left;">
+High-Quality Ligand
+</td>
+<td style="text-align:left;">
+SM
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
 </tr>
-<tr class="even">
-<td align="left">High-Quality Pocket</td>
-<td align="left">SM</td>
-<td align="left">FALSE</td>
+<tr>
+<td style="text-align:left;">
+High-Quality Pocket
+</td>
+<td style="text-align:left;">
+SM
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Med-Quality Pocket</td>
-<td align="left">SM</td>
-<td align="left">FALSE</td>
+<tr>
+<td style="text-align:left;">
+Med-Quality Pocket
+</td>
+<td style="text-align:left;">
+SM
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
 </tr>
-<tr class="even">
-<td align="left">Druggable Family</td>
-<td align="left">SM</td>
-<td align="left">FALSE</td>
+<tr>
+<td style="text-align:left;">
+Druggable Family
+</td>
+<td style="text-align:left;">
+SM
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Approved Drug</td>
-<td align="left">AB</td>
-<td align="left">FALSE</td>
+<tr>
+<td style="text-align:left;">
+Approved Drug
+</td>
+<td style="text-align:left;">
+AB
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
 </tr>
-<tr class="even">
-<td align="left">Advanced Clinical</td>
-<td align="left">AB</td>
-<td align="left">FALSE</td>
+<tr>
+<td style="text-align:left;">
+Advanced Clinical
+</td>
+<td style="text-align:left;">
+AB
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Phase 1 Clinical</td>
-<td align="left">AB</td>
-<td align="left">FALSE</td>
+<tr>
+<td style="text-align:left;">
+Phase 1 Clinical
+</td>
+<td style="text-align:left;">
+AB
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
 </tr>
-<tr class="even">
-<td align="left">UniProt loc high conf</td>
-<td align="left">AB</td>
-<td align="left">FALSE</td>
+<tr>
+<td style="text-align:left;">
+UniProt loc high conf
+</td>
+<td style="text-align:left;">
+AB
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
 </tr>
-<tr class="odd">
-<td align="left">GO CC high conf</td>
-<td align="left">AB</td>
-<td align="left">FALSE</td>
+<tr>
+<td style="text-align:left;">
+GO CC high conf
+</td>
+<td style="text-align:left;">
+AB
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
 </tr>
-<tr class="even">
-<td align="left">UniProt loc med conf</td>
-<td align="left">AB</td>
-<td align="left">FALSE</td>
+<tr>
+<td style="text-align:left;">
+UniProt loc med conf
+</td>
+<td style="text-align:left;">
+AB
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
 </tr>
-<tr class="odd">
-<td align="left">UniProt SigP or TMHMM</td>
-<td align="left">AB</td>
-<td align="left">TRUE</td>
+<tr>
+<td style="text-align:left;">
+UniProt SigP or TMHMM
+</td>
+<td style="text-align:left;">
+AB
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
 </tr>
-<tr class="even">
-<td align="left">GO CC med conf</td>
-<td align="left">AB</td>
-<td align="left">FALSE</td>
+<tr>
+<td style="text-align:left;">
+GO CC med conf
+</td>
+<td style="text-align:left;">
+AB
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Human Protein Atlas loc</td>
-<td align="left">AB</td>
-<td align="left">FALSE</td>
+<tr>
+<td style="text-align:left;">
+Human Protein Atlas loc
+</td>
+<td style="text-align:left;">
+AB
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
 </tr>
-<tr class="even">
-<td align="left">Approved Drug</td>
-<td align="left">PR</td>
-<td align="left">FALSE</td>
+<tr>
+<td style="text-align:left;">
+Approved Drug
+</td>
+<td style="text-align:left;">
+PR
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Advanced Clinical</td>
-<td align="left">PR</td>
-<td align="left">FALSE</td>
+<tr>
+<td style="text-align:left;">
+Advanced Clinical
+</td>
+<td style="text-align:left;">
+PR
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
 </tr>
-<tr class="even">
-<td align="left">Phase 1 Clinical</td>
-<td align="left">PR</td>
-<td align="left">FALSE</td>
+<tr>
+<td style="text-align:left;">
+Phase 1 Clinical
+</td>
+<td style="text-align:left;">
+PR
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Literature</td>
-<td align="left">PR</td>
-<td align="left">FALSE</td>
+<tr>
+<td style="text-align:left;">
+Literature
+</td>
+<td style="text-align:left;">
+PR
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
 </tr>
-<tr class="even">
-<td align="left">UniProt Ubiquitination</td>
-<td align="left">PR</td>
-<td align="left">FALSE</td>
+<tr>
+<td style="text-align:left;">
+UniProt Ubiquitination
+</td>
+<td style="text-align:left;">
+PR
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Database Ubiquitination</td>
-<td align="left">PR</td>
-<td align="left">TRUE</td>
+<tr>
+<td style="text-align:left;">
+Database Ubiquitination
+</td>
+<td style="text-align:left;">
+PR
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
 </tr>
-<tr class="even">
-<td align="left">Half-life Data</td>
-<td align="left">PR</td>
-<td align="left">TRUE</td>
+<tr>
+<td style="text-align:left;">
+Half-life Data
+</td>
+<td style="text-align:left;">
+PR
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Small Molecule Binder</td>
-<td align="left">PR</td>
-<td align="left">TRUE</td>
+<tr>
+<td style="text-align:left;">
+Small Molecule Binder
+</td>
+<td style="text-align:left;">
+PR
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
 </tr>
-<tr class="even">
-<td align="left">Approved Drug</td>
-<td align="left">OC</td>
-<td align="left">FALSE</td>
+<tr>
+<td style="text-align:left;">
+Approved Drug
+</td>
+<td style="text-align:left;">
+OC
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Advanced Clinical</td>
-<td align="left">OC</td>
-<td align="left">FALSE</td>
+<tr>
+<td style="text-align:left;">
+Advanced Clinical
+</td>
+<td style="text-align:left;">
+OC
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
 </tr>
-<tr class="even">
-<td align="left">Phase 1 Clinical</td>
-<td align="left">OC</td>
-<td align="left">FALSE</td>
+<tr>
+<td style="text-align:left;">
+Phase 1 Clinical
+</td>
+<td style="text-align:left;">
+OC
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
 </tr>
 </tbody>
 </table>
