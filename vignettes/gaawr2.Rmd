@@ -332,6 +332,8 @@ where both BGEN and PLINK binary file are illustrated.
 
 ## h2.jags
 
+This is based on work report earlier @zhao18,
+
 ```{r jags, message=FALSE}
 set.seed(1234567)
 meyer <- within(meyer,{
@@ -556,9 +558,10 @@ Suggests:
 
 # Summary
 
-We hsve explored various aspects of genetic association analysis in R, particularly in the context of computing
-systems like Linux. While these serve as a solid foundation, a more in-depth data analysis coupled with
-development is surely fruitful and rewarding.
+Following an earlier review @zhao06a and a part I of the talk, we have further explored various aspects
+of genetic association analysis in R, particularly in the context of computing systems like Linux. While
+these serve as a solid foundation, a more in-depth data analysis coupled with development is surely
+fruitful and rewarding.
 
 # References
 
