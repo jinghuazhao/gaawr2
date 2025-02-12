@@ -489,9 +489,12 @@ scalar_fields <- data.frame(
   Value = c(target$id, target$approvedSymbol, target$biotype)
 )
 tractability_data <- target$tractability
-knitr::kable(scalar_fields, caption = "Basic Information")
-knitr::kable(target$geneticConstraint, caption = "Genetic Constraint Metrics")
-knitr::kable(tractability_data, caption = "Tractability Information")
+knitr::kable(scalar_fields, caption = "Basic Information") %>%
+  kableExtra::kable_styling(bootstrap_options = c("striped", "hover"))
+knitr::kable(target$geneticConstraint, caption = "Genetic Constraint Metrics") %>%
+  kableExtra::kable_styling(bootstrap_options = c("striped", "hover"))
+knitr::kable(tractability_data, caption = "Tractability Information") %>%
+  kableExtra::kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
 ```
 
 where `jsonlite::fromJSON(content(r,"text",encoding="UTF-8"))` also works when R is nicely compiled with libiconv.
