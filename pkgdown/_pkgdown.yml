@@ -26,7 +26,11 @@ template:
   bootstrap: 5
   params:
     bootswatch: litera
+    mathjax: default
   includes:
+    in_header:
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     after_body: <script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";mermaid.initialize({});</script>
 
 navbar:
@@ -86,9 +90,3 @@ env:
  global:
    - _R_CHECK_FORCE_SUGGESTS_: false
    - _R_CHECK_SYSTEM_CLOCK_: false
-
-website:
-  mathjax: default
-  head:
-    - '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">'
-    - '<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>'
