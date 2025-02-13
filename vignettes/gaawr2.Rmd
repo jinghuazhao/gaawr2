@@ -112,7 +112,8 @@ mean_values <- diabetes %>%
   dplyr::group_by(CLASS, Gender) %>%
   dplyr::select(AGE:BMI) %>%
   dplyr::summarize(dplyr::across(dplyr::everything(), \(x) mean(x, na.rm = TRUE)))
-knitr::kable(mean_values,caption="Mean value by gender and diabetes category")
+kableExtra::kbl(mean_values,caption="Mean value by gender and diabetes category") %>%
+kableExtra::kable_styling(bootstrap_options = c("striped", "hover"))
 
 mean_values_long <- mean_values %>%
   tidyr::pivot_longer(
@@ -173,7 +174,8 @@ DQR <- hla[,3:4]
 a1 <- DQR[1]
 a2 <- DQR[2]
 GenotypeCounts <- HardyWeinberg::AllelesToTriangular(a1,a2)
-knitr::kable(GenotypeCounts,caption="Genotype distribution of DQR")
+kableExtra::kbl(GenotypeCounts,caption="Genotype distribution of DQR") %>%
+kableExtra::kable_styling(bootstrap_options = c("striped", "hover"))
 HardyWeinberg::HWPerm.mult(GenotypeCounts,nperm=300)
 HardyWeinberg::HWStr(hla[,3:4],test="permutation",nperm=300)
 ```
@@ -353,7 +355,8 @@ eps <- 0.001
 y <- with(meyer,y)
 x <- with(meyer,cbind(g1,g2))
 ex <- gap::h2.jags(y,x,G,sigma.p=0.03,sigma.r=0.014,n.chains=1,n.iter=80)
-knitr::kable(ex$BUGSoutput$summary,digits=2,caption="MCMC results for the Meyer data")
+kableExtra::kbl(ex$BUGSoutput$summary,digits=2,caption="MCMC results for the Meyer data") %>%
+kableExtra::kable_styling(bootstrap_options = c("striped", "hover"))
 ```
 
 To avoid multithread and excessive time for CRAN checking, only one chain and 80 iterations are run, 40 of which are burn-ins and
@@ -490,11 +493,11 @@ scalar_fields <- data.frame(
 )
 tractability_data <- target$tractability
 kableExtra::kbl(scalar_fields,caption="(a) Basic Information") %>%
-  kableExtra::kable_styling(bootstrap_options = c("striped", "hover"))
+kableExtra::kable_styling(bootstrap_options = c("striped", "hover"))
 kableExtra::kbl(target$geneticConstraint, caption="(b) Genetic Constraint Metrics") %>%
-  kableExtra::kable_styling(bootstrap_options = c("striped", "hover"))
+kableExtra::kable_styling(bootstrap_options = c("striped", "hover"))
 kableExtra::kbl(tractability_data,caption="(c) Tractability Information") %>%
-  kableExtra::kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
+kableExtra::kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
 ```
 
 where `jsonlite::fromJSON(content(r,"text",encoding="UTF-8"))` also works when R is nicely compiled with libiconv.
