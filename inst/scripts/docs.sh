@@ -7,7 +7,7 @@ Rscript -e '
   {
     knitr::knit("README.Rmd")
     roxygen2::roxygenise()
-    pkgdown::build_articles()
+    pkgdown::build_favicons(overwrite=TRUE)
     pkgdown::build_site()
   }
   pkgdown::build_site_github_pages()
