@@ -6,6 +6,7 @@ output:
     toc_float: true
     fig_caption: true
     number_sections: true
+    self_contained: false
 fontsize: 11pt
 bibliography: '`r system.file("REFERENCES.bib", package="gaawr2")`'
 csl: nature-genetics.csl
