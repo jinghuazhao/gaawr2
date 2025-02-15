@@ -17,6 +17,9 @@ Available data and function are listed in the following table.\tabular{ll}{
    \strong{Functions} \tab   \cr
    \code{\link{welcome}} \tab An enhanced welcome \cr
 }
+
+
+We can add references such as \insertCite{Rpack:bibtex;textual}{Rdpack}
 }
 \section{Usage}{
 
@@ -29,6 +32,9 @@ Vignettes on package usage:
 
 \examples{
 welcome(3)
+}
+\references{
+\insertAllCited{}
 }
 \seealso{
 Useful links:
