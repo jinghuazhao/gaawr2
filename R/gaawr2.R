@@ -15,6 +15,7 @@
 #' **Functions**             |   &nbsp;
 #' [`welcome`]               |   An enhanced welcome
 #'
+#' We can add references such as \insertCite{Rpack:bibtex;textual}{Rdpack}
 #' @section Usage:
 #' Vignettes on package usage:
 #' - Genetic Association Analysis with R (II), `vignette("gaawr2")`.
@@ -24,6 +25,9 @@
 #' @import dplyr gap ggplot2
 #' @importFrom survival strata
 #' @importFrom Rdpack reprompt
+#'
+#' @references
+#' \insertAllCited{}
 #'
 #' @author Jing Hua Zhao in collaboration with other colleagues.
 #' @keywords internal
