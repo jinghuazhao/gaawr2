@@ -511,8 +511,8 @@ where `jsonlite::fromJSON(content(r,"text",encoding="UTF-8"))` also works when R
 
 Packages `gwasrapidd` provides easy access to the GWAS Catalog, while `rentrez` enables search for GenBank and PubMed.
 
-An overview on proteogenomics is available @suhre20. Some aspects of the proteogenomics is given by
-`pQTLtools`, <https://jinghuazhao.github.io/pQTLtools/>.
+An overview on proteogenomics is available @suhre20. Some aspects of the analysis is given by `pQTLtools`,
+<https://jinghuazhao.github.io/pQTLtools/>.
 
 # gaawr2
 
