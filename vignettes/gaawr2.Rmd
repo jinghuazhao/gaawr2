@@ -39,7 +39,7 @@ for (p in pkgs) if (length(grep(paste("^package:", p, "$", sep=""), search())) =
 invisible(suppressMessages(lapply(pkgs, require, character.only = TRUE)))
 ```
 
-The package gathers information, meta-data and scripts in a recent Henry-Stewart talk.
+The package gathers information, meta-data and scripts in a Henry-Stewart talk @zhao09.
 
 It is adapted from pQTLdata, <https://jinghuazhao.github.io/pQTLdata/>.
 
@@ -565,8 +565,8 @@ Suggests:
 
 # Summary
 
-Following part I of the talk @zhao09, we have further explored various aspects of genetic association
-analysis in R, particularly in the context of computing systems like Linux. While these serve as a
-solid foundation, a more in-depth data analysis coupled with development is surely fruitful and rewarding.
+Following part I of the talk, we have further explored various aspects of genetic association analysis in
+R, particularly in the context of computing systems like Linux. While these serve as a solid foundation,
+a more in-depth data analysis coupled with development is surely fruitful and rewarding.
 
 # References
