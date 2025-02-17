@@ -507,11 +507,11 @@ kableExtra::kable_styling(bootstrap_options = c("striped", "hover"), full_width 
 
 where `jsonlite::fromJSON(content(r,"text",encoding="UTF-8"))` also works when R is nicely compiled with libiconv.
 
-# Miscellaneous packages
+# Additional packages
 
 Packages `gwasrapidd` provides easy access to the GWAS Catalog, while `rentrez` enables search for GenBank and PubMed.
 
-An overview on proteomics is found from the relevant paper @suhre20. Some aspects of the proteogenomics is given by
+An overview on proteogenomics is available @suhre20. Some aspects of the proteogenomics is given by
 `pQTLtools`, <https://jinghuazhao.github.io/pQTLtools/>.
 
 # gaawr2
