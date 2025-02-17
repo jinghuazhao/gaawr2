@@ -70,7 +70,7 @@
 
     
     
-<p>The package gathers information, meta-data and scripts in a recent Henry-Stewart talk.</p>
+<p>The package gathers information, meta-data and scripts in a Henry-Stewart talk<span class="citation"><sup>1</sup></span>.</p>
 <p>It is adapted from pQTLdata, <a href="https://jinghuazhao.github.io/pQTLdata/" class="external-link uri">https://jinghuazhao.github.io/pQTLdata/</a>.</p>
 <div class="section level2" number="1">
 <h2 id="hello-world">
@@ -3311,7 +3311,7 @@ A9
 <h3 id="h2-jags">
 <span class="header-section-number">3.6</span> h2.jags<a class="anchor" aria-label="anchor" href="#h2-jags"></a>
 </h3>
-<p>The function uses JAGS (<a href="https://mcmc-jags.sourceforge.io/" class="external-link uri">https://mcmc-jags.sourceforge.io/</a>) for heritability estimation<span class="citation"><sup>1</sup></span>,</p>
+<p>The function uses JAGS (<a href="https://mcmc-jags.sourceforge.io/" class="external-link uri">https://mcmc-jags.sourceforge.io/</a>) for heritability estimation<span class="citation"><sup>2</sup></span>,</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1234567</span><span class="op">)</span></span>
 <span><span class="va">meyer</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">within</a></span><span class="op">(</span><span class="va">meyer</span>,<span class="op">{</span></span>
@@ -3657,7 +3657,7 @@ Figure 3.2: Power Estimation for eQTL Studies of 240 SNPs
 <h3 id="experimental-factor-ontology-efo">
 <span class="header-section-number">4.3</span> Experimental Factor Ontology (EFO)<a class="anchor" aria-label="anchor" href="#experimental-factor-ontology-efo"></a>
 </h3>
-<p>The ontology of traits/disease is formally available as this<span class="citation"><sup>2</sup></span>. The script below assumes that efo-3.26.0 has been downloaded.</p>
+<p>The ontology of traits/disease is formally available as this<span class="citation"><sup>3</sup></span>. The script below assumes that efo-3.26.0 has been downloaded.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ontologyIndex</span><span class="op">)</span></span>
 <span><span class="va">id</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">ontology</span><span class="op">)</span></span>
@@ -4205,7 +4205,7 @@ FALSE
 <h2 id="proteogenomics">
 <span class="header-section-number">5</span> Proteogenomics<a class="anchor" aria-label="anchor" href="#proteogenomics"></a>
 </h2>
-<p>See <a href="https://jinghuazhao.github.io/pQTLtools/" class="external-link uri">https://jinghuazhao.github.io/pQTLtools/</a>. An overview on the proteomics is found from the relevant paper<span class="citation"><sup>3</sup></span>.</p>
+<p>See <a href="https://jinghuazhao.github.io/pQTLtools/" class="external-link uri">https://jinghuazhao.github.io/pQTLtools/</a>. An overview on the proteomics is found from the relevant paper<span class="citation"><sup>4</sup></span>.</p>
 </div>
 <div class="section level2" number="6">
 <h2 id="gaawr2">
@@ -4266,29 +4266,29 @@ Upon use <code>pkgdown</code>, an article can be seen from the menu item <code>A
 <h2 id="summary">
 <span class="header-section-number">7</span> Summary<a class="anchor" aria-label="anchor" href="#summary"></a>
 </h2>
-<p>Following part I of the talk<span class="citation"><sup>4</sup></span>, we have further explored various aspects of genetic association
-analysis in R, particularly in the context of computing systems like Linux. While these serve as a
-solid foundation, a more in-depth data analysis coupled with development is surely fruitful and rewarding.</p>
+<p>Following part I of the talk, we have further explored various aspects of genetic association analysis in
+R, particularly in the context of computing systems like Linux. While these serve as a solid foundation,
+a more in-depth data analysis coupled with development is surely fruitful and rewarding.</p>
 </div>
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
 <div id="refs" class="references csl-bib-body" entry-spacing="0" line-spacing="2">
-<div id="ref-zhao18" class="csl-entry">
+<div id="ref-zhao09" class="csl-entry">
 <div class="csl-left-margin">1. </div>
+<div class="csl-right-inline">Zhao, J. H. <a href="https://doi.org/10.69645/DCRY5578" class="external-link">Genetic association analysis with <span>R</span></a>. <em>The Biomedical &amp; Life Sciences Collection</em> <strong>2009</strong>, e1002430 (2009).</div>
+</div>
+<div id="ref-zhao18" class="csl-entry">
+<div class="csl-left-margin">2. </div>
 <div class="csl-right-inline">Zhao, J. H., Luan, J. A. &amp; Congdon, P. <a href="https://doi.org/10.18637/jss.v085.i06" class="external-link">Bayesian linear mixed models with polygenic effects</a>. <em>Journal of Statistical Software</em> <strong>85</strong>, 1–27 (2018).</div>
 </div>
 <div id="ref-malone10" class="csl-entry">
-<div class="csl-left-margin">2. </div>
+<div class="csl-left-margin">3. </div>
 <div class="csl-right-inline">Malone, J. <em>et al.</em> <a href="https://doi.org/10.1093/bioinformatics/btq099" class="external-link">Modeling sample variables with an experimental factor ontology</a>. <em>Bioinformatics</em> <strong>26</strong>, 1112–1118 (2010).</div>
 </div>
 <div id="ref-suhre20" class="csl-entry">
-<div class="csl-left-margin">3. </div>
-<div class="csl-right-inline">Suhre, K., McCarthy, M. I. &amp; Schwenk, J. M. Genetics meets proteomics: Perspectives for large population-based studies. <em>Nat Rev Genet</em> (2020) doi:<a href="https://doi.org/10.1038/s41576-020-0268-2" class="external-link">10.1038/s41576-020-0268-2</a>.</div>
-</div>
-<div id="ref-zhao09" class="csl-entry">
 <div class="csl-left-margin">4. </div>
-<div class="csl-right-inline">Zhao, J. H. <a href="https://doi.org/10.69645/DCRY5578" class="external-link">Genetic association analysis with <span>R</span></a>. <em>The Biomedical &amp; Life Sciences Collection</em> <strong>2009</strong>, e1002430 (2009).</div>
+<div class="csl-right-inline">Suhre, K., McCarthy, M. I. &amp; Schwenk, J. M. Genetics meets proteomics: Perspectives for large population-based studies. <em>Nat Rev Genet</em> (2020) doi:<a href="https://doi.org/10.1038/s41576-020-0268-2" class="external-link">10.1038/s41576-020-0268-2</a>.</div>
 </div>
 </div>
 </div>
