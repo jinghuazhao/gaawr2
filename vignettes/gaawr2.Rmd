@@ -507,9 +507,12 @@ kableExtra::kable_styling(bootstrap_options = c("striped", "hover"), full_width 
 
 where `jsonlite::fromJSON(content(r,"text",encoding="UTF-8"))` also works when R is nicely compiled with libiconv.
 
-# Proteogenomics
+# Miscellaneous packages
 
-See <https://jinghuazhao.github.io/pQTLtools/>. An overview on the proteomics is found from the relevant paper @suhre20.
+Packages `gwasrapidd` provides easy access to the GWAS Catalog, while `rentrez` enables search for GenBank and PubMed.
+
+An overview on proteomics is found from the relevant paper @suhre20. Some aspects of the proteogenomics is given by
+`pQTLtools`, <https://jinghuazhao.github.io/pQTLtools/>.
 
 # gaawr2
 
@@ -524,6 +527,7 @@ The relevant scripts are with `inst/scripts` directory in the source package. Br
 - `github.sh` creates `gaawr2` at GitHub from the command line.
 - `pkgdown.sh` makes a pkgdown-style package and this vignette is set to be processed with the `bookdown` package.
 - `docs.sh` adds, commits and pushes files to GitHub.
+- `cran.sh` build, install and check the package in CRAN-style.
 
 Note that for creation of the GitHub repository, an SSH key is assumed in place. In order for `pkgdown.sh` to function well, all
 required files such as `nature-genetics.csl` need to be available.
