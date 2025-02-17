@@ -565,7 +565,7 @@ Suggests:
 
 # Summary
 
-Following an earlier review @zhao06a and part I of the talk, we have further explored various aspects
+Following an earlier review @zhao06a and part I of the talk @zhao09, we have further explored various aspects
 of genetic association analysis in R, particularly in the context of computing systems like Linux. While
 these serve as a solid foundation, a more in-depth data analysis coupled with development is surely
 fruitful and rewarding.
