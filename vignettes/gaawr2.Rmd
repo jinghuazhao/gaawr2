@@ -57,7 +57,7 @@ print("Hello, world!\n")
 
 ## Linux
 
-We more often embed R in a Linux script as follows,
+As it is very powerful, we more often embed R in a Linux script as follows,
 
 ```{bash linux}
 export message="Hello, world!"
@@ -68,13 +68,17 @@ R --no-save -q <<END
 message <- Sys.getenv("message"); print(message)
 source("hello.R")
 END
-echo ${message} | Rscript -e '
+echo ${message} | \
+Rscript -e '
 message <- scan("stdin", what="", sep="\n", quiet=TRUE);
 write.table(message, col.names=FALSE, row.names=FALSE,
             quote=FALSE)
-' | cat
+' | \
+cat
 rm hello.*
 ```
+
+where the backslash (`\`) is for line continuation.
 
 As shown in the example, one can take advantage of powerful data handling facilities in the Linux
 environment, through either Linux itself or software followed by their counterparts in R with
