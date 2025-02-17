@@ -4205,10 +4205,12 @@ FALSE
 </div>
 </div>
 <div class="section level2" number="5">
-<h2 id="proteogenomics">
-<span class="header-section-number">5</span> Proteogenomics<a class="anchor" aria-label="anchor" href="#proteogenomics"></a>
+<h2 id="miscellaneous-packages">
+<span class="header-section-number">5</span> Miscellaneous packages<a class="anchor" aria-label="anchor" href="#miscellaneous-packages"></a>
 </h2>
-<p>See <a href="https://jinghuazhao.github.io/pQTLtools/" class="external-link uri">https://jinghuazhao.github.io/pQTLtools/</a>. An overview on the proteomics is found from the relevant paper<span class="citation"><sup>4</sup></span>.</p>
+<p>Packages <code>gwasrapidd</code> provides easy access to the GWAS Catalog, while <code>rentrez</code> enables search for GenBank and PubMed.</p>
+<p>An overview on proteomics is found from the relevant paper<span class="citation"><sup>4</sup></span>. Some aspects of the proteogenomics is given by
+<code>pQTLtools</code>, <a href="https://jinghuazhao.github.io/pQTLtools/" class="external-link uri">https://jinghuazhao.github.io/pQTLtools/</a>.</p>
 </div>
 <div class="section level2" number="6">
 <h2 id="gaawr2">
@@ -4229,6 +4231,8 @@ graph TB; A[Package creation] --&gt; B[GitHub respository]; B --&gt; C[Pkgdown s
 <code>pkgdown.sh</code> makes a pkgdown-style package and this vignette is set to be processed with the <code>bookdown</code> package.</li>
 <li>
 <code>docs.sh</code> adds, commits and pushes files to GitHub.</li>
+<li>
+<code>cran.sh</code> build, install and check the package in CRAN-style.</li>
 </ul>
 <p>Note that for creation of the GitHub repository, an SSH key is assumed in place. In order for <code>pkgdown.sh</code> to function well, all
 required files such as <code>nature-genetics.csl</code> need to be available.</p>
