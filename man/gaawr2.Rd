@@ -19,7 +19,7 @@ Available data and function are listed in the following table.\tabular{ll}{
 }
 
 
-We can add references such as \insertCite{Rpack:bibtex;textual}{Rdpack}
+We can add references such as \insertCite{Rpack:bibtex;textual}{Rdpack}.
 }
 \section{Usage}{
 
