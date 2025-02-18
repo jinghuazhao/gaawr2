@@ -13,7 +13,7 @@ BugReports: https://github.com/jinghuazhao/gaawr2/issues
 Encoding: UTF-8
 Depends:
     R (>= 3.5.0)
-Imports:  dplyr, gap, ggplot2, survival, Rdpack
+Imports:  dplyr, gap, gap.datasets, ggplot2, survival, Rdpack
 RdMacros: Rdpack
 LazyData: Yes
 LazyLoad: Yes
