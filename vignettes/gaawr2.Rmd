@@ -343,7 +343,7 @@ The function uses JAGS (<https://mcmc-jags.sourceforge.io/>) for heritability es
 
 ```{r jags, message=FALSE}
 set.seed(1234567)
-meyer <- within(meyer,{
+meyer <- within(gap.datasets::meyer,{
          y[is.na(y)] <- rnorm(length(y[is.na(y)]),mean(y,na.rm=TRUE),sd(y,na.rm=TRUE))
          g1 <- ifelse(generation==1,1,0)
          g2 <- ifelse(generation==2,1,0)
