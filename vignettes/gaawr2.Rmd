@@ -174,8 +174,7 @@ HardyWeinberg::HWChisq(SNP, cc = 0, verbose = TRUE)
 xSNP <- c(A=10, B=20, AA=30, AB=20, BB=10)
 HardyWeinberg::HWChisq(xSNP,cc=0,x.linked=TRUE,verbose=TRUE)
 # HLA/DQR
-library(gap)
-DQR <- hla[,3:4]
+DQR <- gap.datasets::hla[,3:4]
 a1 <- DQR[1]
 a2 <- DQR[2]
 GenotypeCounts <- HardyWeinberg::AllelesToTriangular(a1,a2)
@@ -206,7 +205,7 @@ lapply(snps, summary)
 SNPassoc::tableHWE(snps)
 ```
 
-where variable `snpCols` skips six columns non-SNP data for two SNPs.
+where variable `snpCols` skips six columns of non-SNP data for two SNPs.
 
 We then turn to genetic models for the first one,
 
