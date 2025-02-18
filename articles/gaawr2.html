@@ -517,8 +517,7 @@ Figure 3.1: SNP ternary plot
 <span><span class="co">#&gt; Chi-square test for Hardy-Weinberg equilibrium (X-chromosomal)</span></span>
 <span><span class="co">#&gt; Chi2 =  15 DF = 2 p-value =  0.00059 D =  NA f =  0.25</span></span>
 <span><span class="co"># HLA/DQR</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jinghuazhao/R" class="external-link">gap</a></span><span class="op">)</span></span>
-<span><span class="va">DQR</span> <span class="op">&lt;-</span> <span class="va">hla</span><span class="op">[</span>,<span class="fl">3</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span>
+<span><span class="va">DQR</span> <span class="op">&lt;-</span> <span class="fu">gap.datasets</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gap.datasets/man/hla.html" class="external-link">hla</a></span><span class="op">[</span>,<span class="fl">3</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span>
 <span><span class="va">a1</span> <span class="op">&lt;-</span> <span class="va">DQR</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
 <span><span class="va">a2</span> <span class="op">&lt;-</span> <span class="va">DQR</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span>
 <span><span class="va">GenotypeCounts</span> <span class="op">&lt;-</span> <span class="fu">HardyWeinberg</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/HardyWeinberg/man/AllelesToTriangular.html" class="external-link">AllelesToTriangular</a></span><span class="op">(</span><span class="va">a1</span>,<span class="va">a2</span><span class="op">)</span></span>
@@ -2748,7 +2747,7 @@ A9
 <span><span class="co">#&gt;           HWE (p value) flag</span></span>
 <span><span class="co">#&gt; rs4490198 0.17              </span></span>
 <span><span class="co">#&gt; rs4849332 0.52</span></span></code></pre></div>
-<p>where variable <code>snpCols</code> skips six columns non-SNP data for two SNPs.</p>
+<p>where variable <code>snpCols</code> skips six columns of non-SNP data for two SNPs.</p>
 <p>We then turn to genetic models for the first one,</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">asthma.snps</span> <span class="op">&lt;-</span> <span class="va">asthma</span> <span class="op">%&gt;%</span></span>
