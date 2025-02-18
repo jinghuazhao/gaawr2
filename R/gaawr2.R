@@ -22,7 +22,7 @@
 #' - Web facilities, `vignette("web")`.
 #' @md
 #'
-#' @import dplyr gap ggplot2
+#' @import gap.datasets
 #' @importFrom survival strata
 #' @importFrom Rdpack reprompt
 #'
