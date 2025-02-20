@@ -1,5 +1,5 @@
 ---
-title: "Genetic Association Analysis (II)"
+title: "Genetic Association Analysis"
 output:
   bookdown::html_document2:
     toc: true
