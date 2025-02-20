@@ -23,6 +23,8 @@ authors:
 
 url: https://jinghuazhao.github.io/gaawr2/
 template:
+  index:
+    path: pkgdown/index.md
   bootstrap: 5
   params:
     bootswatch: litera
