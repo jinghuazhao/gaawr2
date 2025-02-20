@@ -4,7 +4,7 @@
 \name{gaawr2}
 \alias{gaawr2}
 \alias{gaawr2-package}
-\title{Genetic Association Analysis (II)}
+\title{Genetic Association Analysis}
 \description{
 It renders details to Henry-Stewart talks by Zhao (2009, \doi{10.69645/DCRY5578}), which showcases analysis in aspects such as testing of polymorphic variant(s) for Hardy-Weinberg equilibrium, association with trait using genetic and statistical models as well as Bayesian implementation, power calculation in study design and genetic annotation. It also covers R integration with the Linux environment, GitHub, package creation and web applications.
 }
