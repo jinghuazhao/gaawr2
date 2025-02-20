@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 [![R-CMD-check](https://github.com/jinghuazhao/gaawr2/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jinghuazhao/gaawr2/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-## Genetic Association Analysis with R (II)
+## Genetic Association Analysis
 
 ```{r, echo = FALSE, message=FALSE, warning=FALSE}
 desc <- read.dcf("DESCRIPTION")
