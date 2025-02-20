@@ -70,7 +70,21 @@
 
     
     
-<p>The package gathers information, meta-data and scripts in a Henry-Stewart talk<span class="citation"><sup>1</sup></span>.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">pkgs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"EnsDb.Hsapiens.v75"</span>,<span class="st">"ensembldb"</span>,<span class="st">"GMMAT"</span>,<span class="st">"HardyWeinberg"</span>,<span class="st">"MCMCglmm"</span>,<span class="st">"SNPassoc"</span>,<span class="st">"biomaRt"</span>,</span>
+<span>           <span class="st">"gap"</span>,<span class="st">"gap.datasets"</span>,<span class="st">"haplo.stats"</span>,<span class="st">"powerEQTL"</span>,<span class="st">"R2jags"</span>,<span class="st">"regress"</span>,</span>
+<span>           <span class="st">"dplyr"</span>,<span class="st">"ggplot2"</span>,<span class="st">"httr"</span>,<span class="st">"jsonlite"</span>,<span class="st">"kableExtra"</span>,<span class="st">"knitr"</span>,<span class="st">"tidyr"</span><span class="op">)</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">p</span> <span class="kw">in</span> <span class="va">pkgs</span><span class="op">)</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"^package:"</span>, <span class="va">p</span>, <span class="st">"$"</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/search.html" class="external-link">search</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/warning.html" class="external-link">warning</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"This vignette needs package `"</span>, <span class="va">p</span>, <span class="st">"'; please install"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/invisible.html" class="external-link">invisible</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressMessages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">pkgs</span>, <span class="va">require</span>, character.only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">sys_options</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">new_options</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>digits<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<p>The package gathers information, meta-data and scripts in a two-part Henry-Stewart talk<span class="citation"><sup>1</sup></span>, which
+showcases analysis in aspects such as testing of polymorphic variant(s) for Hardy-Weinberg equilibrium,
+association with trait using genetic and statistical models as well as Bayesian implementation, power
+calculation in study design and genetic annotation. It also covers R integration with the Linux
+environment, GitHub, package creation and web applications.</p>
 <p>It is adapted from pQTLdata, <a href="https://jinghuazhao.github.io/pQTLdata/" class="external-link uri">https://jinghuazhao.github.io/pQTLdata/</a>.</p>
 <div class="section level2" number="1">
 <h2 id="hello-world">
@@ -82,7 +96,7 @@
 <span class="header-section-number">1.1</span> R<a class="anchor" aria-label="anchor" href="#r"></a>
 </h3>
 <p>R can be started from either command line interface (CLI) or a graphical user interface (GUI),</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="st">"Hello, world!\n"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "Hello, world!\n"</span></span></code></pre></div>
 </div>
@@ -91,31 +105,31 @@
 <span class="header-section-number">1.2</span> Linux<a class="anchor" aria-label="anchor" href="#linux"></a>
 </h3>
 <p>As it is very powerful, we more often embed R in a Linux script as follows,</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">message</span><span class="op">=</span><span class="st">"Hello, world!"</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"print('</span><span class="va">$message</span><span class="st">')"</span> <span class="op">&gt;</span> hello.R</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> CMD BATCH hello.R</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> <span class="at">--no-save</span> <span class="at">-q</span> <span class="op">&lt;</span> hello.R</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> <span class="at">--no-save</span> <span class="at">-q</span> <span class="op">&lt;&lt;END</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="st">message &lt;- Sys.getenv("message"); print(message)</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="st">source("hello.R")</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="op">END</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">${message}</span> <span class="kw">|</span> <span class="dt">\</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="st">message &lt;- scan("stdin", what="", sep="\n", quiet=TRUE);</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="st">write.table(message, col.names=FALSE, row.names=FALSE,</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="st">            quote=FALSE)</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="st">'</span> <span class="kw">|</span> <span class="dt">\</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> hello.<span class="pp">*</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &gt; print('Hello, world!')</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Hello, world!"</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &gt; </span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &gt; message &lt;- Sys.getenv("message"); print(message)</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Hello, world!"</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &gt; source("hello.R")</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Hello, world!"</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &gt; </span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Hello, world!</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">message</span><span class="op">=</span><span class="st">"Hello, world!"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"print('</span><span class="va">$message</span><span class="st">')"</span> <span class="op">&gt;</span> hello.R</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> CMD BATCH hello.R</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> <span class="at">--no-save</span> <span class="at">-q</span> <span class="op">&lt;</span> hello.R</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> <span class="at">--no-save</span> <span class="at">-q</span> <span class="op">&lt;&lt;END</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="st">message &lt;- Sys.getenv("message"); print(message)</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="st">source("hello.R")</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="op">END</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">${message}</span> <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">'</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="st">message &lt;- scan("stdin", what="", sep="\n", quiet=TRUE);</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="st">write.table(message, col.names=FALSE, row.names=FALSE,</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="st">            quote=FALSE)</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="st">'</span> <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> hello.<span class="pp">*</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &gt; print('Hello, world!')</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Hello, world!"</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &gt; </span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &gt; message &lt;- Sys.getenv("message"); print(message)</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Hello, world!"</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &gt; source("hello.R")</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Hello, world!"</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &gt; </span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Hello, world!</span></span></code></pre></div>
 <p>where the backslash (<code>\</code>) is for line continuation.</p>
 <p>As shown in the example, one can take advantage of powerful data handling facilities in the Linux
 environment, through either Linux itself or software followed by their counterparts in R with
@@ -129,7 +143,7 @@ involving <strong>snakemake</strong>, <a href="https://jinghuazhao.github.io/pQT
 <span class="header-section-number">2</span> Language elements<a class="anchor" aria-label="anchor" href="#language-elements"></a>
 </h2>
 <p>Basic data manipulation of the <code>iris</code> data includes</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "data.frame"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span></span>
@@ -152,7 +166,7 @@ involving <strong>snakemake</strong>, <a href="https://jinghuazhao.github.io/pQT
 <li>the scope operator (<code>::</code>) is useful since user executes command from a particular package without loading it, which is usually faster.</li>
 <li>the native (<code>|&gt;</code>) and contributed (<code>%&gt;%</code>) pipe operators which enable a chained of operations, the latter popularized from R <strong>magrittr</strong> and <strong>dplyr</strong> packages</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span><span class="va">new_options</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">diabetes</span>,package<span class="op">=</span><span class="st">"gaawr2"</span><span class="op">)</span></span>
 <span></span>
@@ -443,7 +457,7 @@ Male
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">mean_values_long</span> <span class="op">&lt;-</span> <span class="va">mean_values</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="external-link">pivot_longer</a></span><span class="op">(</span></span>
@@ -469,7 +483,7 @@ Male
 Figure 2.1: Mean values by gender and diabetes category
 </p>
 </div>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span><span class="va">sys_options</span><span class="op">)</span></span></code></pre></div>
 <p>We see higher mean age and HbA1c values in the “Yes” diabetes group as well as noticeable differences in BMI, which align with
 the known associations between these variables and diabetes.</p>
@@ -496,7 +510,7 @@ acronym, the bulk of which is also readily available.</p>
 </h3>
 <p>We set to run through the package for HWE. Three data sources are used: MN blood group in the documentation,
 a chromosome X SNP and a HLA/DQR,</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># MN blood group</span></span>
 <span><span class="va">SNP</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>MM <span class="op">=</span> <span class="fl">298</span>, MN <span class="op">=</span> <span class="fl">489</span>, NN <span class="op">=</span> <span class="fl">213</span><span class="op">)</span></span>
 <span><span class="fu">HardyWeinberg</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/HardyWeinberg/man/maf.html" class="external-link">maf</a></span><span class="op">(</span><span class="va">SNP</span><span class="op">)</span></span>
@@ -509,7 +523,7 @@ a chromosome X SNP and a HLA/DQR,</p>
 Figure 3.1: SNP ternary plot
 </p>
 </div>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">HardyWeinberg</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/HardyWeinberg/man/HWChisq.html" class="external-link">HWChisq</a></span><span class="op">(</span><span class="va">SNP</span>, cc <span class="op">=</span> <span class="fl">0</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Chi-square test for Hardy-Weinberg equilibrium (autosomal)</span></span>
 <span><span class="co">#&gt; Chi2 =  0.2214896 DF =  1 p-value =  0.6379073 D =  -3.69375 f =  0.01488253</span></span>
@@ -2611,7 +2625,7 @@ A9
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">HardyWeinberg</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/HardyWeinberg/man/HWPerm.mult.html" class="external-link">HWPerm.mult</a></span><span class="op">(</span><span class="va">GenotypeCounts</span>,nperm<span class="op">=</span><span class="fl">300</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Permutation test for Hardy-Weinberg equilibrium (autosomal).</span></span>
 <span><span class="co">#&gt; 25 alleles detected.</span></span>
@@ -2628,7 +2642,7 @@ A9
 </h3>
 <p>The package implements procedures which are appropriate for candidate gene association analysis, under a variety of genetic models.</p>
 <p>Fist we look at some meta-data, include HWE.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">asthma</span>, package <span class="op">=</span> <span class="st">"SNPassoc"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">asthma</span>, list.len<span class="op">=</span><span class="fl">8</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 'data.frame':    1578 obs. of  57 variables:</span></span>
@@ -2698,7 +2712,7 @@ A9
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">snpCols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">asthma</span><span class="op">)</span><span class="op">[</span><span class="fl">6</span><span class="op">+</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="va">snps</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/setupSNP.html" class="external-link">setupSNP</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">asthma</span><span class="op">[</span><span class="va">snpCols</span><span class="op">]</span>, colSNPs<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">snpCols</span><span class="op">)</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">snps</span><span class="op">)</span></span>
@@ -2761,7 +2775,7 @@ A9
 <span><span class="co">#&gt; rs4849332 0.5221</span></span></code></pre></div>
 <p>where variable <code>snpCols</code> skips six columns of non-SNP data for two SNPs.</p>
 <p>We then turn to genetic models for the first one,</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">asthma.snps</span> <span class="op">&lt;-</span> <span class="va">asthma</span> <span class="op">%&gt;%</span></span>
 <span>               <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>cc<span class="op">=</span><span class="va">casecontrol</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>               <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/setupSNP.html" class="external-link">setupSNP</a></span><span class="op">(</span>colSNPs<span class="op">=</span><span class="op">(</span><span class="fl">6</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span></span>
@@ -2965,7 +2979,7 @@ A9
 <span class="header-section-number">3.3</span> haplo.stats<a class="anchor" aria-label="anchor" href="#haplo-stats"></a>
 </h3>
 <p>This package considers haplotype estimation using EM-algorithms and genetic association under a generalized linear model (GLM).</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Association with the first three SNPs</span></span>
 <span><span class="va">snpsH</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">asthma.snps</span><span class="op">)</span><span class="op">[</span><span class="fl">6</span><span class="op">+</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="va">genoH</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/makegeno.html" class="external-link">make.geno</a></span><span class="op">(</span><span class="va">asthma.snps</span>, <span class="va">snpsH</span><span class="op">)</span></span>
@@ -3032,7 +3046,7 @@ A9
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">modH</span> <span class="op">&lt;-</span> <span class="fu">haplo.stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/haplo.stats/man/haplo.glm.html" class="external-link">haplo.glm</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="va">genoH</span>, data<span class="op">=</span><span class="va">asthma.snps</span>,</span>
 <span>                               family<span class="op">=</span><span class="st">"binomial"</span>,</span>
 <span>                               locus.label<span class="op">=</span><span class="va">snpsH</span>,</span>
@@ -3123,7 +3137,7 @@ A9
 <span class="header-section-number">3.4</span> GWAS<a class="anchor" aria-label="anchor" href="#gwas"></a>
 </h3>
 <p>We return to the asthma data used in <strong>SNPassoc</strong>.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">assoc</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/WGassociation.html" class="external-link">WGassociation</a></span><span class="op">(</span><span class="va">cc</span>, data<span class="op">=</span><span class="va">asthma.snps</span><span class="op">)</span></span>
 <span><span class="va">assoc.adj</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/WGassociation.html" class="external-link">WGassociation</a></span><span class="op">(</span><span class="va">cc</span> <span class="op">~</span> <span class="va">country</span> <span class="op">+</span> <span class="va">smoke</span>, <span class="va">asthma.snps</span><span class="op">)</span></span>
 <span><span class="va">assoc.maxstat</span> <span class="op">&lt;-</span> <span class="fu">SNPassoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SNPassoc/man/maxstat.html" class="external-link">maxstat</a></span><span class="op">(</span><span class="va">asthma.snps</span>, <span class="va">cc</span><span class="op">)</span></span>
@@ -3146,7 +3160,7 @@ A9
 <span class="header-section-number">3.5</span> GMMAT<a class="anchor" aria-label="anchor" href="#gmmat"></a>
 </h3>
 <p>The following is modified slightly from the package vignette,</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">example</span>,package<span class="op">=</span><span class="st">"GMMAT"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/attach.html" class="external-link">attach</a></span><span class="op">(</span><span class="va">example</span><span class="op">)</span></span>
 <span><span class="va">model0</span> <span class="op">&lt;-</span> <span class="fu">GMMAT</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GMMAT/man/glmmkin.html" class="external-link">glmmkin</a></span><span class="op">(</span><span class="va">disease</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">sex</span>, data <span class="op">=</span> <span class="va">pheno</span>, kins <span class="op">=</span> <span class="va">GRM</span>,</span>
@@ -3236,7 +3250,7 @@ A9
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="va">outfile</span><span class="op">)</span></span>
 <span><span class="va">bed.file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"geno.bed"</span>, package <span class="op">=</span> <span class="st">"GMMAT"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>            <span class="fu">tools</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/tools/fileutils.html" class="external-link">file_path_sans_ext</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -3334,7 +3348,7 @@ A9
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/detach.html" class="external-link">detach</a></span><span class="op">(</span><span class="va">example</span><span class="op">)</span></span></code></pre></div>
 <p>where both BGEN and PLINK binary file are illustrated.</p>
 </div>
@@ -3343,7 +3357,7 @@ A9
 <span class="header-section-number">3.6</span> h2.jags<a class="anchor" aria-label="anchor" href="#h2-jags"></a>
 </h3>
 <p>The function uses JAGS (<a href="https://mcmc-jags.sourceforge.io/" class="external-link uri">https://mcmc-jags.sourceforge.io/</a>) for heritability estimation<span class="citation"><sup>2</sup></span>,</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1234567</span><span class="op">)</span></span>
 <span><span class="va">meyer</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">within</a></span><span class="op">(</span><span class="fu">gap.datasets</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gap.datasets/man/meyer.html" class="external-link">meyer</a></span>,<span class="op">{</span></span>
 <span>         <span class="va">y</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">y</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">y</span>,na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">y</span>,na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
@@ -3585,7 +3599,7 @@ every iteraction is kept (n.thin=1).</p>
 </h3>
 <p>Consider <code>powereQTL.SLR</code> (simple linear regression) for a sample size of 50-300 by 50, minor allele frequencies
 0.005~0.5, <span class="math inline">\(\alpha\)</span>=0.05. We have,</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">n.designs</span> <span class="op">&lt;-</span> <span class="fl">6</span></span>
 <span><span class="va">designs</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="va">n.designs</span></span>
 <span><span class="va">N</span> <span class="op">&lt;-</span> <span class="fl">50</span> <span class="op">*</span> <span class="va">designs</span></span>
@@ -3621,7 +3635,7 @@ Figure 3.2: Power Estimation for eQTL Studies of 240 SNPs
 <h3 id="ensdb-hsapiens-v75">
 <span class="header-section-number">4.1</span> EnsDb.Hsapiens.v75<a class="anchor" aria-label="anchor" href="#ensdb-hsapiens-v75"></a>
 </h3>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">ensembldb</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Annotated-class.html" class="external-link">metadata</a></span><span class="op">(</span><span class="va">EnsDb.Hsapiens.v75</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                  name                               value</span></span>
 <span><span class="co">#&gt; 1             Db type                               EnsDb</span></span>
@@ -3700,7 +3714,7 @@ Figure 3.2: Power Estimation for eQTL Studies of 240 SNPs
 <h3 id="biomart">
 <span class="header-section-number">4.2</span> biomaRt<a class="anchor" aria-label="anchor" href="#biomart"></a>
 </h3>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu">biomaRt</span><span class="fu">::</span><span class="fu">martBMCheck</span><span class="op">(</span><span class="va">mart</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/stop.html" class="external-link">stop</a></span><span class="op">(</span><span class="st">"The BioMart service is currently unavailable."</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
@@ -3721,7 +3735,7 @@ Figure 3.2: Power Estimation for eQTL Studies of 240 SNPs
 <span class="header-section-number">4.3</span> Experimental Factor Ontology (EFO)<a class="anchor" aria-label="anchor" href="#experimental-factor-ontology-efo"></a>
 </h3>
 <p>The ontology of traits/disease is formally available as this<span class="citation"><sup>3</sup></span>. The script below assumes that efo-3.26.0 has been downloaded.</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ontologyIndex</span><span class="op">)</span></span>
 <span><span class="va">id</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">ontology</span><span class="op">)</span></span>
 <span><span class="op">{</span></span>
@@ -3751,7 +3765,7 @@ Figure 3.2: Power Estimation for eQTL Studies of 240 SNPs
 <h3 id="opentargets">
 <span class="header-section-number">4.4</span> OpenTargets<a class="anchor" aria-label="anchor" href="#opentargets"></a>
 </h3>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gene_id</span> <span class="op">&lt;-</span> <span class="st">"ENSG00000164308"</span></span>
 <span><span class="va">query_string</span> <span class="op">=</span> <span class="st">"</span></span>
 <span><span class="st">  query target($ensemblId: String!){</span></span>
@@ -3830,7 +3844,7 @@ protein_coding
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html" class="external-link">kbl</a></span><span class="op">(</span><span class="va">target</span><span class="op">$</span><span class="va">geneticConstraint</span>, caption<span class="op">=</span><span class="st">"(b) Genetic Constraint Metrics"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span><span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>bootstrap_options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"striped"</span>, <span class="st">"hover"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
@@ -3932,7 +3946,7 @@ lof
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html" class="external-link">kbl</a></span><span class="op">(</span><span class="va">tractability_data</span>,caption<span class="op">=</span><span class="st">"(c) Tractability Information"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span><span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>bootstrap_options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"striped"</span>, <span class="st">"hover"</span><span class="op">)</span>, full_width <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <table class="table table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
