@@ -1,4 +1,4 @@
-#' Genetic Association Analysis (II)
+#' Genetic Association Analysis
 #'
 #' @docType package
 #' @name gaawr2
