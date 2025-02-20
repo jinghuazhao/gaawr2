@@ -18,7 +18,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include=FALSE}
+```{r envs, include=FALSE}
 set.seed(0)
 knitr::opts_chunk$set(
   out.extra = 'style="display:block; margin: auto"',
@@ -27,11 +27,9 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   dev = "png")
-sys_options <- options()
-new_options <- options(digits=2)
 ```
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
+```{r setup, message=FALSE, warning=FALSE}
 pkgs <- c("EnsDb.Hsapiens.v75","ensembldb","GMMAT","HardyWeinberg","MCMCglmm","SNPassoc","biomaRt",
            "gap","gap.datasets","haplo.stats","powerEQTL","R2jags","regress",
            "dplyr","ggplot2","httr","jsonlite","kableExtra","knitr","tidyr")
@@ -39,9 +37,15 @@ for (p in pkgs) if (length(grep(paste("^package:", p, "$", sep=""), search())) =
     if (!requireNamespace(p)) warning(paste0("This vignette needs package `", p, "'; please install"))
 }
 invisible(suppressMessages(lapply(pkgs, require, character.only = TRUE)))
+sys_options <- options()
+new_options <- options(digits=2)
 ```
 
-The package gathers information, meta-data and scripts in a Henry-Stewart talk @zhao09.
+The package gathers information, meta-data and scripts in a two-part Henry-Stewart talk @zhao09, which
+showcases analysis in aspects such as testing of polymorphic variant(s) for Hardy-Weinberg equilibrium,
+association with trait using genetic and statistical models as well as Bayesian implementation, power
+calculation in study design and genetic annotation. It also covers R integration with the Linux
+environment, GitHub, package creation and web applications.
 
 It is adapted from pQTLdata, <https://jinghuazhao.github.io/pQTLdata/>.
 
