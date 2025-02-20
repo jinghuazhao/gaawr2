@@ -1,4 +1,4 @@
-#' Genetic Association Analysis with R (II)
+#' Genetic Association Analysis (II)
 #'
 #' @docType package
 #' @name gaawr2
