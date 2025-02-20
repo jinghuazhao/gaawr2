@@ -1,5 +1,5 @@
 Package: gaawr2
-Title: Genetic Association Analysis (II)
+Title: Genetic Association Analysis
 Version: 0.0.2
 Date: 2025-2-20
 Authors@R: c(person("Jing Hua", "Zhao", , role = c("aut", "cre"),
