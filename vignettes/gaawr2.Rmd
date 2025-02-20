@@ -1,5 +1,5 @@
 ---
-title: "Genetic Association Analysis with R (II)"
+title: "Genetic Association Analysis (II)"
 output:
   bookdown::html_document2:
     toc: true
@@ -27,6 +27,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   dev = "png")
+sys_options <- options()
+new_options <- options(digits=2)
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
@@ -105,7 +107,7 @@ We would like to highlight two types of operators,
 - the native (`|>`) and contributed (`%>%`) pipe operators which enable a chained of operations, the latter popularized from R **magrittr** and **dplyr** packages
 
 ```{r diabetes, fig.cap="Mean values by gender and diabetes category", fig.height=6, fig.with=8, messages=FALSE}
-options(width=200,digits=2)
+options(new_options)
 data(diabetes,package="gaawr2")
 
 mean_values <- diabetes %>%
@@ -138,6 +140,7 @@ ggplot2::ggplot(mean_values_long,
   ) +
   ggplot2::theme_bw() +
   ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1))
+options(sys_options)
 ```
 
 We see higher mean age and HbA1c values in the "Yes" diabetes group as well as noticeable differences in BMI, which align with
@@ -164,7 +167,6 @@ We set to run through the package for HWE. Three data sources are used: MN blood
 a chromosome X SNP and a HLA/DQR,
 
 ```{r hwe, fig.cap="SNP ternary plot", fig.height=15.07, fig.width=15.6, messages=FALSE}
-options(width=200)
 # MN blood group
 SNP <- c(MM = 298, MN = 489, NN = 213)
 HardyWeinberg::maf(SNP)
@@ -574,6 +576,6 @@ Suggests:
 
 Following part I of the talk, we have further explored various aspects of genetic association analysis in
 R, particularly in the context of computing systems like Linux. While these serve as a solid foundation,
-a more in-depth data analysis coupled with development is surely fruitful and rewarding.
+a more in-depth data analysis coupled with more rigorous development is surely fruitful and rewarding.
 
 # References
