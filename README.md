@@ -11,9 +11,9 @@ output: github_document
 [![R-CMD-check](https://github.com/jinghuazhao/gaawr2/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jinghuazhao/gaawr2/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-## Genetic Association Analysis with R (II)
+## Genetic Association Analysis
 
-An R package companion to the titled Henry-Stewart talk, part 2.
+It renders details to Henry-Stewart talks by Zhao (2009, <doi:10.69645/DCRY5578>), which showcases analysis in aspects such as testing of polymorphic variant(s) for Hardy-Weinberg equilibrium, association with trait using genetic and statistical models as well as Bayesian implementation, power calculation in study design and genetic annotation. It also covers R integration with the Linux environment, GitHub, package creation and web applications.
 
 ## Installation
 
