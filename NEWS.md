@@ -1,10 +1,11 @@
 ## gaawr2 0.0.2
 
-(2025/2/20)
+(2025/2/21)
 
 * Add index.md.
 * Expanding inst/scripts/ens.R so as to slim down pQTLdata.
 * Revise Title/DESCRIPTION and track options()'s as suggested by Beni Altmann.
+* Revise vignette.
 
 ## gaawr2 0.0.1
 
