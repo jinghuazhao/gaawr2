@@ -4,7 +4,7 @@ output: github_document
 
 
 
--<img src="man/figures/logo.svg" align="right" alt="" width="150" />
+<img src="man/figures/logo.svg" align="right" alt="" width="150" />
 
 <!-- badges: start -->
 [![pages-build-deployment](https://github.com/jinghuazhao/gaawr2/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/jinghuazhao/gaawr2/actions/workflows/pages/pages-build-deployment)
