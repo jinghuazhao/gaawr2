@@ -63,7 +63,7 @@ navbar:
         aria-label: GitHub
     cran:
         icon: fab fa-r-project
-        href: https://jinghuazhao.github.io/R/
+        href: https://cran.r-project.org/package=gaawr2
         aria-label: R
 
 reference:
