@@ -1,7 +1,7 @@
 Package: gaawr2
 Title: Genetic Association Analysis
-Version: 0.0.2
-Date: 2025-2-21
+Version: 0.0.3
+Date: 2025-2-22
 Authors@R: c(person("Jing Hua", "Zhao", , role = c("aut", "cre"),
                   email = "jinghuazhao@hotmail.com",
                   comment = c(ORCID = "https://orcid.org/0000-0002-1463-5870", ORCID = "0000-0003-4930-3582")),
