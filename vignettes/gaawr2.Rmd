@@ -196,7 +196,7 @@ The MN locus is seen to be close to the HWE line from the ternary plot. Only 300
 
 The package implements procedures which are appropriate for candidate gene association analysis, under a variety of genetic models.
 
-Fist we look at some meta-data, include HWE.
+We first look at some meta-data, include HWE.
 
 ```{r snpassoc1, warning=FALSE}
 data(asthma, package = "SNPassoc")
