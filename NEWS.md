@@ -1,9 +1,9 @@
 ## gaawr2 0.0.3
 
-(2025/2/21)
+(2025/2/25)
 
 * Add CRAN URL.
-* Amend README.Rmd after CRAN submission/publication.
+* Amend README.Rmd/vignette after CRAN submission/publication.
 
 ## gaawr2 0.0.2
 
