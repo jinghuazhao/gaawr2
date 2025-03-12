@@ -12,5 +12,5 @@ knitr::opts_chunk$set(
 
 <img src="man/figures/logo.svg" align="right" alt="" width="150" />
 
-```{r, child='pkgdown/index.md'}
+```{r, child='pkgdown/index.Rmd'}
 ```
