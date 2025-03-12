@@ -6,13 +6,6 @@ output: github_document
 
 <img src="man/figures/logo.svg" align="right" width="150px" />
 
-
-
-
-
-
-
-
 ## Genetic Association Analysis
 
 
