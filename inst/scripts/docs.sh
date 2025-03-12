@@ -21,7 +21,7 @@ Rscript -e '
 
 module load ceuadmin/R
 Rscript -e '
-  rmarkdown::render('pkgdown/index.Rmd', output_format = 'md_document');
+  rmarkdown::render("pkgdown/index.Rmd", output_format = "md_document");
   knitr::knit("README.Rmd");devtools::document();pkgdown::build_site()
 '
 
