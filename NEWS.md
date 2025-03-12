@@ -3,7 +3,7 @@
 (2025/3/12)
 
 * Add CRAN URL.
-* Amend README.Rmd/vignette after CRAN submission/publication.
+* Amend index.md/README.Rmd/vignette after CRAN submission/publication.
 
 ## gaawr2 0.0.2
 
