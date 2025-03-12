@@ -2,7 +2,7 @@
 output: github_document
 ---
 
-```{r logo, echo = FALSE, include=FALSE}
+```{r readme, echo = FALSE, include=FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
