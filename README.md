@@ -7,6 +7,12 @@ output: github_document
 <img src="man/figures/logo.svg" align="right" alt="" width="150" />
 
 
+
+
+
+
+
+
 ## Genetic Association Analysis
 
 
