@@ -5,9 +5,12 @@ output: github_document
 ```{r index, echo = FALSE, include=FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  fig.path = "man/figures/"
 )
 ```
+
+<img src="man/figures/logo.svg" align="right" alt="" width="150" />
 
 ```{r, echo = FALSE, message=FALSE, warning=FALSE}
 desc <- read.dcf("../DESCRIPTION")
