@@ -20,7 +20,10 @@ Rscript -e '
 # setup
 
 module load ceuadmin/R
-Rscript -e 'knitr::knit("README.Rmd");devtools::document();pkgdown::build_site()'
+Rscript -e '
+  rmarkdown::render('pkgdown/index.Rmd', output_format = 'md_document');
+  knitr::knit("README.Rmd");devtools::document();pkgdown::build_site()
+'
 
 for d in gaawr2
 do
