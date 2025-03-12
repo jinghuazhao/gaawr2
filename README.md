@@ -4,17 +4,17 @@ output: github_document
 
 
 
-
-
-
-
-
-
-
 <div class="figure" style="text-align: right">
-<img src="../man/figures/logo.svg" alt="plot of chunk logo" width="150px" />
+<img src="man/figures/logo.svg" alt="plot of chunk logo" width="150px" />
 <p class="caption">plot of chunk logo</p>
 </div>
+
+
+
+
+
+
+
 
 ## Genetic Association Analysis
 
