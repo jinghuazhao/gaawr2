@@ -1,5 +1,3 @@
-<img src="../man/figures/logo.svg" width="150px" style="display: block; margin: auto 0 auto auto;" />
-
 ## Genetic Association Analysis
 
 <!-- badges: start -->
