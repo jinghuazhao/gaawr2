@@ -10,7 +10,9 @@ knitr::opts_chunk$set(
 )
 ```
 
-<img src="man/figures/logo.svg" align="right" alt="" width="150" />
+```{r logo, echo=FALSE, out.width="150px", fig.align="right"}
+knitr::include_graphics("man/figures/logo.svg")
+```
 
 ```{r, echo = FALSE, message=FALSE, warning=FALSE}
 desc <- read.dcf("../DESCRIPTION")
