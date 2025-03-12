@@ -10,9 +10,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r logo, echo=FALSE, out.width="150px", fig.align="right"}
-knitr::include_graphics("man/figures/logo.svg")
-```
+<img src="man/figures/logo.svg" align="right" width="150px" />
 
 ```{r, child='pkgdown/index.Rmd'}
 ```
