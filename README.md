@@ -22,6 +22,10 @@ The latest version of **gaawr2** can be installed as usual:
 ### 1. Install from R
 
 ```r
+# CRAN
+install.packages("gaawr2")
+
+# GitHub
 if (!requireNamespace("remotes", quietly = TRUE)) install.packages("remotes")
 remotes::install_github("jinghuazhao/gaawr2")
 ```
