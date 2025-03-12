@@ -19,6 +19,9 @@ Rscript -e '
 
 # setup
 
+module load ceuadmin/R
+Rscript -e 'knitr::knit("README.Rmd");devtools::document();pkgdown::build_site()'
+
 for d in gaawr2
 do
     if [ -d vignettes/${d} ]; then
