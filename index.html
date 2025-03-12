@@ -61,7 +61,8 @@
   </div>
 </nav><div class="container template-home">
 <div class="row">
-  <main id="main" class="col-md-9"><div class="section level2">
+  <main id="main" class="col-md-9"><p><img src="reference/figures/logo.svg" align="right" width="150px"></p>
+<div class="section level2">
 <h2 id="genetic-association-analysis">Genetic Association Analysis<a class="anchor" aria-label="anchor" href="#genetic-association-analysis"></a>
 </h2>
 <!-- badges: start -->
@@ -75,18 +76,19 @@
 <div class="section level3">
 <h3 id="id_1-install-from-r">1. Install from R<a class="anchor" aria-label="anchor" href="#id_1-install-from-r"></a>
 </h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># CRAN</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"gaawr2"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="co"># GitHub</span></span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"remotes"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) <span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"jinghuazhao/gaawr2"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># CRAN</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"gaawr2"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># GitHub</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"remotes"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"jinghuazhao/gaawr2"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="id_2-install-from-github-repository">2. Install from GitHub repository<a class="anchor" aria-label="anchor" href="#id_2-install-from-github-repository"></a>
 </h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>git clone https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>jinghuazhao<span class="sc">/</span>gaawr2</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>R CMD INSTALL gaawr2</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/jinghuazhao/gaawr2</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">R</span> CMD INSTALL gaawr2</span></code></pre></div>
 <p>Dependencies are detailed in the DECRIPTION file of the package at GitHub.</p>
 </div>
 </div>
@@ -94,10 +96,12 @@
 <h2 id="a-summary-of-functions">A summary of functions<a class="anchor" aria-label="anchor" href="#a-summary-of-functions"></a>
 </h2>
 <p>This can be seen from R with</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">library</span>(<span class="at">help=</span>gaawr2)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span>help<span class="op">=</span><span class="va">gaawr2</span><span class="op">)</span></span></code></pre></div>
 <p>or</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">library</span>(gaawr2)</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>?gaawr2</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://jinghuazhao.github.io/gaawr2/">gaawr2</a></span><span class="op">)</span></span>
+<span><span class="op">?</span><span class="va">gaawr2</span></span></code></pre></div>
 </div>
 
   </main><aside class="col-md-3"><div class="links">
