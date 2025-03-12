@@ -4,7 +4,6 @@
 
 * Add CRAN URL.
 * Amend README.Rmd/vignette after CRAN submission/publication.
-* Add pkgdown/index.Rmd.
 
 ## gaawr2 0.0.2
 
