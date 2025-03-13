@@ -10,7 +10,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-<img src="man/figures/logo.svg" align="right" width="150px" />
+<img src="man/figures/logo.svg" align="right" height="110" alt="" />
 
 ```{r, echo = FALSE, message=FALSE, warning=FALSE}
 desc <- read.dcf("DESCRIPTION")
