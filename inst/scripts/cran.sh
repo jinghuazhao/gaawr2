@@ -3,7 +3,7 @@
 set -e
 src="$HOME/gaawr2"
 dst="$HOME/R/gaawr2"
-log_file="$HOME/gaawr2_copy.log"
+log_file="$HOME/work/gaawr2_copy.log"
 
 remove_destination() {
   if [ -d "$dst" ]; then
