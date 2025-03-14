@@ -4,7 +4,7 @@ output: github_document
 
 
 
-<img src="man/figures/logo.svg" align="right" height="43" alt="gaawr2 website" />
+<img src="man/figures/logo.svg" align="right" height="11" alt="gaawr2 website" />
 
 ## Genetic Association Analysis
 
