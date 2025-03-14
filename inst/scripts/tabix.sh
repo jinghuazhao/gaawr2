@@ -27,7 +27,6 @@ rm GCST90274804.h.tsv.gz.tbi
 
 Rscript -e '
 suppressMessages(library(dplyr))
-options(width=200)
 r <- Sys.getenv("r")
 d <- read.delim(file.path("tests","IL.18R1-1.tbl.gz"))
 metal <- TwoSampleMR::format_data(within(d,{P=10^log.P.}), phenotype_col="prot", snp_col="MarkerName",

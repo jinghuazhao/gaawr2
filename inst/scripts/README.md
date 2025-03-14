@@ -25,7 +25,8 @@ rentrez.R  | **entrez** query
 SNPassoc.R | **SNPassoc** script
 tabix.sh*  | **tabix** script
 
-Given the limited allowance for computing time for CRAN checking, scripts here are largely perferable to those in the package vignette, [`gaawr2`].
+Given the limited allowance for computing time for CRAN checking, scripts here are largely perferable to those in the package vignette, 
+[`gaawr2`]. Owing to CRAN poly, R scripts are revised to be functions.
 
 Additionally,
 
