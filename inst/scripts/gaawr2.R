@@ -8,6 +8,7 @@ create_gaawr2 <- function()
 # Image in README.Rmd
 # <img src="man/figures/logo.png" align="right" height="86" alt="gaawr2 website" />
   library(pkgdown)
+# https://realfavicongenerator.net/
 # favicons
-  build_favicons(overwrite=TRUE)
+# build_favicons(overwrite=TRUE)
 }
