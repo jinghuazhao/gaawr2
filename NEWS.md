@@ -3,7 +3,7 @@
 (2025/3/14)
 
 * Add CRAN URL.
-* Amend README.Rmd/vignette after CRAN submission/publication.
+* Amend README.Rmd/vignette/_pkgdown.yml after CRAN submission/publication.
 * Turn most inst/scripts/*R to be functions.
 
 ## gaawr2 0.0.2
