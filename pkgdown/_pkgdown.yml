@@ -32,13 +32,9 @@ template:
 
 navbar:
   structure:
-    left: [home, articles, reference, changelog]
-    right: [github, cran]
+    left: [articles, reference, changelog]
+    right: [home, github, cran]
   components:
-    home:
-        icon: fa-home
-        aria-hidden: "true"
-        href: index.html
     articles:
         text: Articles
         menu:
@@ -54,6 +50,10 @@ navbar:
     changelog:
           text: Changelog
           href: news/index.html
+    home:
+        icon: fa-home
+        aria-hidden: "true"
+        href: index.html
     github:
         icon: fab fa-github
         href: https://github.com/jinghuazhao/gaawr2
