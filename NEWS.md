@@ -2,8 +2,8 @@
 
 (2025/3/22)
 
-* Further work on ERRORs at CRAN as flagged by Prof Brian Ripley.
 * Add CRAN URL.
+* Address URL handling issue in vignettes as flagged by Prof Brian Ripley.
 * Amend README.Rmd/_pkgdown.yml after CRAN submission/publication.
 * Amend vignette which extracts a list of packages in `Suggests`.
 * Suggests Cairo to enable metric information with 'CairoPNG'.
