@@ -170,7 +170,7 @@ acronym, the bulk of which is also readily available.
 We set to run through the package for HWE. Three data sources are used: MN blood group in the documentation,
 a chromosome X SNP and a HLA/DQR,
 
-```{r hwe, fig.cap="SNP ternary plot", fig.height=15.07, fig.width=15.6, messages=FALSE}
+```{r hwe, fig.cap="SNP ternary plot", fig.height=8, fig.width=10, messages=FALSE}
 # MN blood group
 SNP <- c(MM = 298, MN = 489, NN = 213)
 HardyWeinberg::maf(SNP)
