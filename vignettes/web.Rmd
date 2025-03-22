@@ -8,7 +8,7 @@ output:
     self_contained: false
 fontsize: 11pt
 bibliography: '`r system.file("REFERENCES.bib", package="gaawr2")`'
-csl: nature-genetics.csl
+csl: "`r system.file('csl', 'nature-genetics-no-url.csl', package = 'gaawr2')`"
 pkgdown:
   as_is: true
 vignette: >
@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
   fig.path = "plumber/",
   collapse = TRUE,
   comment = "#>",
-  dev = "png")
+  dev = "CairoPNG")
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
@@ -66,6 +66,39 @@ httpuv::startServer("0.0.0.0", 8000, list(
 ```
 
 Upon accessing `http://127.0.0.1:8000`, we see the message "Hello, world!".
+
+This is an attempt to implement the following CRAN policy,
+
+> Packages which use Internet resources should fail gracefully with an informative message if the resource is not available or has changed (and not give a check warning nor error).
+
+```{r url}
+check_url_availability <- function(url) {
+# Send a GET request to the URL
+  response <- tryCatch({
+    httr::GET(url)
+  }, error = function(e) {
+# If there was an error, return FALSE
+    return(NULL)
+  })
+# If response is NULL or status code is not 200, return FALSE
+  if (is.null(response) || httr::status_code(response) != 200) {
+    message(paste("Warning: The URL", url, "is not accessible. Please check the link."))
+    return(FALSE)
+  }
+# If status code is 200, the URL is available
+  message(paste("The URL", url, "is accessible."))
+  return(TRUE)
+}
+
+url_to_check <- "http://www.zotero.org/styles/nature-genetics"
+is_available <- check_url_availability(url_to_check)
+
+if (is_available) {
+  message("Using CSL as usual.")
+} else {
+  message("Using fallback to local CSL file instead.")
+}
+```
 
 Below, we assume that our working directory is the source package,
 
