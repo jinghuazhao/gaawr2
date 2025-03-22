@@ -3,8 +3,9 @@
 (2025/3/22)
 
 * Add CRAN URL.
-* Amend vignette in particular enable metric information with 'CairoPNG'.
 * Amend README.Rmd/_pkgdown.yml after CRAN submission/publication.
+* Amend vignette which extracts a list of packages in `Suggests`.
+* Suggests Cairo to enable metric information with 'CairoPNG'.
 * Turn most inst/scripts/*R to be functions.
 
 ## gaawr2 0.0.2
