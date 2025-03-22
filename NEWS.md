@@ -2,6 +2,7 @@
 
 (2025/3/22)
 
+* Further work on ERRORs at CRAN as flagged by Prof Brian Ripley.
 * Add CRAN URL.
 * Amend README.Rmd/_pkgdown.yml after CRAN submission/publication.
 * Amend vignette which extracts a list of packages in `Suggests`.
