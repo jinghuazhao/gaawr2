@@ -555,7 +555,7 @@ includes:
 
 In line with various analyses we have covered, their associate packages are also added to the suggested list of packages in DESCRIPTION:
 
-```{r desc}
+```{r desc, results="asis"}
 suggests <- read.dcf(file = system.file("DESCRIPTION", package = "gaawr2"), fields = c("Suggests"))
 write.dcf(suggests)
 ```
