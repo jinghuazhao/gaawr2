@@ -1,9 +1,10 @@
 ## gaawr2 0.0.3
 
-(2025/3/14)
+(2025/3/22)
 
 * Add CRAN URL.
-* Amend README.Rmd/vignette/_pkgdown.yml after CRAN submission/publication.
+* Amend vignette in particular enable metric information with 'CairoPNG'.
+* Amend README.Rmd/_pkgdown.yml after CRAN submission/publication.
 * Turn most inst/scripts/*R to be functions.
 
 ## gaawr2 0.0.2
