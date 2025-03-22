@@ -80,7 +80,7 @@
 <span><span class="fu"><a href="https://rdrr.io/r/base/invisible.html" class="external-link">invisible</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressMessages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">pkgs</span>, <span class="va">require</span>, character.only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">sys_options</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">new_options</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>digits<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
-<p>The package gathers information, meta-data and scripts in a two-part Henry-Stewart talk<span class="citation"><sup>1</sup></span>, which
+<p>The package gathers information, meta-data and scripts in a two-part Henry-Stewart talk,<span class="citation"><a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content="&lt;p&gt;(&lt;span&gt;“Genetic association analysis with &lt;span&gt;R&lt;/span&gt;”&lt;/span&gt;)&lt;/p&gt;"><sup>1</sup></a></span> which
 showcases analysis in aspects such as testing of polymorphic variant(s) for Hardy-Weinberg equilibrium,
 association with trait using genetic and statistical models as well as Bayesian implementation, power
 calculation in study design and genetic annotation. It also covers R integration with the Linux
@@ -3356,7 +3356,7 @@ A9
 <h3 id="h2-jags">
 <span class="header-section-number">3.6</span> h2.jags<a class="anchor" aria-label="anchor" href="#h2-jags"></a>
 </h3>
-<p>The function uses JAGS (<a href="https://mcmc-jags.sourceforge.io/" class="external-link uri">https://mcmc-jags.sourceforge.io/</a>) for heritability estimation<span class="citation"><sup>2</sup></span>,</p>
+<p>The function uses JAGS (<a href="https://mcmc-jags.sourceforge.io/" class="external-link uri">https://mcmc-jags.sourceforge.io/</a>) for heritability estimation,<span class="citation"><a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content="&lt;p&gt;(&lt;span&gt;“Bayesian linear mixed models with polygenic effects”&lt;/span&gt;)&lt;/p&gt;"><sup>2</sup></a></span></p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1234567</span><span class="op">)</span></span>
 <span><span class="va">meyer</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">within</a></span><span class="op">(</span><span class="fu">gap.datasets</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gap.datasets/man/meyer.html" class="external-link">meyer</a></span>,<span class="op">{</span></span>
@@ -3734,7 +3734,7 @@ Figure 3.2: Power Estimation for eQTL Studies of 240 SNPs
 <h3 id="experimental-factor-ontology-efo">
 <span class="header-section-number">4.3</span> Experimental Factor Ontology (EFO)<a class="anchor" aria-label="anchor" href="#experimental-factor-ontology-efo"></a>
 </h3>
-<p>The ontology of traits/disease is formally available as this<span class="citation"><sup>3</sup></span>. The script below assumes that efo-3.26.0 has been downloaded.</p>
+<p>The ontology of traits/disease is formally available as this.<span class="citation"><a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content="&lt;p&gt;(&lt;span&gt;“Modeling sample variables with an experimental factor ontology”&lt;/span&gt;)&lt;/p&gt;"><sup>3</sup></a></span> The script below assumes that efo-3.26.0 has been downloaded.</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ontologyIndex</span><span class="op">)</span></span>
 <span><span class="va">id</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">ontology</span><span class="op">)</span></span>
@@ -4283,7 +4283,7 @@ FALSE
 <span class="header-section-number">5</span> Additional packages<a class="anchor" aria-label="anchor" href="#additional-packages"></a>
 </h2>
 <p>Packages <code>gwasrapidd</code> provides easy access to the GWAS Catalog, while <code>rentrez</code> enables search for GenBank and PubMed.</p>
-<p>An overview on proteogenomics is available<span class="citation"><sup>4</sup></span>. Some aspects of the analysis is given by <code>pQTLtools</code>,
+<p>An overview on proteogenomics is available.<span class="citation"><a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content="&lt;p&gt;(&lt;span&gt;“Genetics meets proteomics: Perspectives for large population-based studies”&lt;/span&gt;)&lt;/p&gt;"><sup>4</sup></a></span> Some aspects of the analysis is given by <code>pQTLtools</code>,
 <a href="https://jinghuazhao.github.io/pQTLtools/" class="external-link uri">https://jinghuazhao.github.io/pQTLtools/</a>.</p>
 </div>
 <div class="section level2" number="6">
@@ -4340,25 +4340,22 @@ a more in-depth data analysis coupled with more rigorous development is surely f
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
-<div id="refs" class="references csl-bib-body" entry-spacing="0" line-spacing="2">
+<div id="refs" class="references csl-bib-body">
 <div id="ref-zhao09" class="csl-entry">
-<div class="csl-left-margin">1. </div>
-<div class="csl-right-inline">Zhao, J. H. <a href="https://doi.org/10.69645/DCRY5578" class="external-link">Genetic association analysis with <span>R</span></a>. <em>The Biomedical &amp; Life Sciences Collection</em> <strong>2009</strong>, e1002430 (2009).</div>
+<span>“<a href="https://doi.org/10.69645/DCRY5578" class="external-link">Genetic association analysis with <span>R</span></a>”</span>
 </div>
 <div id="ref-zhao18" class="csl-entry">
-<div class="csl-left-margin">2. </div>
-<div class="csl-right-inline">Zhao, J. H., Luan, J. A. &amp; Congdon, P. <a href="https://doi.org/10.18637/jss.v085.i06" class="external-link">Bayesian linear mixed models with polygenic effects</a>. <em>Journal of Statistical Software</em> <strong>85</strong>, 1–27 (2018).</div>
+<span>“<a href="https://doi.org/10.18637/jss.v085.i06" class="external-link">Bayesian linear mixed models with polygenic effects</a>”</span>
 </div>
 <div id="ref-malone10" class="csl-entry">
-<div class="csl-left-margin">3. </div>
-<div class="csl-right-inline">Malone, J. <em>et al.</em> <a href="https://doi.org/10.1093/bioinformatics/btq099" class="external-link">Modeling sample variables with an experimental factor ontology</a>. <em>Bioinformatics</em> <strong>26</strong>, 1112–1118 (2010).</div>
+<span>“<a href="https://doi.org/10.1093/bioinformatics/btq099" class="external-link">Modeling sample variables with an experimental factor ontology</a>”</span>
 </div>
 <div id="ref-suhre20" class="csl-entry">
-<div class="csl-left-margin">4. </div>
-<div class="csl-right-inline">Suhre, K., McCarthy, M. I. &amp; Schwenk, J. M. Genetics meets proteomics: Perspectives for large population-based studies. <em>Nat Rev Genet</em> (2020) doi:<a href="https://doi.org/10.1038/s41576-020-0268-2" class="external-link">10.1038/s41576-020-0268-2</a>.</div>
+<span>“<a href="https://doi.org/10.1038/s41576-020-0268-2" class="external-link">Genetics meets proteomics: Perspectives for large population-based studies</a>”</span>
 </div>
 </div>
 </div>
+
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
 </div>
