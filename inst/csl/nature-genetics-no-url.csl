@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<csl:style xmlns:csl="http://purl.org/net/xbiblio/csl" version="1.0">
+    <info>
+        <title>Nature Genetics</title>
+        <id>nature-genetics-local</id>
+        <link href=""/>
+        <author>
+            <name>Nature Genetics</name>
+        </author>
+    </info>
+    
+    <!-- Citation format -->
+    <citation>
+        <layout prefix="(" suffix=")" delimiter=", ">
+            <text variable="author" font-style="italic"/>
+            <text variable="issued" prefix="(" suffix=")"/>
+            <text variable="title" quotes="true"/>
+            <text variable="publisher" prefix=":"/>
+        </layout>
+    </citation>
+    
+    <!-- Bibliography format -->
+    <bibliography>
+        <layout>
+            <text variable="author" font-style="italic"/>
+            <text variable="title" quotes="true"/>
+            <text variable="issued"/>
+            <text variable="publisher" prefix=":"/>
+        </layout>
+    </bibliography>
+</csl:style>
