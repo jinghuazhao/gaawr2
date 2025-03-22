@@ -3,13 +3,9 @@
     <info>
         <title>Nature Genetics</title>
         <id>nature-genetics-local</id>
-        <link href=""/>
         <author>
             <name>Nature Genetics</name>
         </author>
-        <translator>
-            <name>Custom Style</name>
-        </translator>
     </info>
     
     <!-- Citation format: (Author Year) -->
@@ -17,18 +13,28 @@
         <layout prefix="(" suffix=")" delimiter="; ">
             <text variable="author" font-style="italic"/>
             <text variable="issued" prefix=" " suffix=""/>
-            <text variable="title" quotes="true"/>
         </layout>
     </citation>
     
-    <!-- Bibliography format -->
+    <!-- Bibliography format: Author(s), Title, Journal, Volume, Page, Year -->
     <bibliography>
         <layout delimiter=". ">
+            <!-- Author(s) in italics -->
             <text variable="author" font-style="italic"/>
+            
+            <!-- Title of the article, in quotes -->
             <text variable="title" quotes="true"/>
+            
+            <!-- Journal or container title, italicized -->
             <text variable="container-title" font-style="italic"/>
-            <text variable="volume" prefix=" vol. " suffix=","/>
+            
+            <!-- Volume number, prefixed with "vol." -->
+            <text variable="volume" prefix="vol. " suffix=","/>
+            
+            <!-- Page numbers, prefixed with "pp." -->
             <text variable="page" prefix="pp. "/>
+            
+            <!-- Year of publication, in parentheses -->
             <text variable="issued" prefix=" (" suffix=")"/>
         </layout>
     </bibliography>
