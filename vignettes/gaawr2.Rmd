@@ -555,31 +555,9 @@ includes:
 
 In line with various analyses we have covered, their associate packages are also added to the suggested list of packages in DESCRIPTION:
 
-```
-Suggests:
-    BLR,
-    BGLR,
-    biomaRt,
-    bookdown,
-    EnsDb.Hsapiens.v75,
-    ensembldb,
-    GMMAT,
-    HardyWeinberg,
-    haplo.stats,
-    httr,
-    httpuv,
-    jsonlite,
-    knitr,
-    kableExtra,
-    MCMCglmm,
-    plumber,
-    powerEQTL,
-    R2jags,
-    regress,
-    seqminer,
-    SNPassoc,
-    testthat,
-    tidyr
+```{r desc}
+suggests <- read.dcf(file = system.file("DESCRIPTION", package = "gaawr2"), fields = c("Suggests"))
+write.dcf(suggests)
 ```
 
 # Summary
