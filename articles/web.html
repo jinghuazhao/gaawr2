@@ -99,6 +99,12 @@
 <span>  <span class="op">}</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>Upon accessing <code>http://127.0.0.1:8000</code>, we see the message “Hello, world!”.</p>
+</div>
+</div>
+<div class="section level2" number="2">
+<h2 id="url-availability">
+<span class="header-section-number">2</span> URL availability<a class="anchor" aria-label="anchor" href="#url-availability"></a>
+</h2>
 <p>This is an attempt to implement the following CRAN policy,</p>
 <blockquote>
 <p>Packages which use Internet resources should fail gracefully with an informative message if the resource is not available or has changed (and not give a check warning nor error).</p>
@@ -134,15 +140,14 @@
 <span><span class="co">#&gt; Using CSL as usual.</span></span></code></pre></div>
 <p>Below, we assume that our working directory is the source package,</p>
 </div>
-</div>
-<div class="section level2" number="2">
+<div class="section level2" number="3">
 <h2 id="data-source">
-<span class="header-section-number">2</span> Data source<a class="anchor" aria-label="anchor" href="#data-source"></a>
+<span class="header-section-number">3</span> Data source<a class="anchor" aria-label="anchor" href="#data-source"></a>
 </h2>
 <p>We envisage a server from which data can be obtained, and two R packages <strong>plumber</strong> and <strong>httpuv</strong> are considered here.</p>
-<div class="section level3" number="2.1">
+<div class="section level3" number="3.1">
 <h3 id="a-meta-analysis">
-<span class="header-section-number">2.1</span> A meta-analysis<a class="anchor" aria-label="anchor" href="#a-meta-analysis"></a>
+<span class="header-section-number">3.1</span> A meta-analysis<a class="anchor" aria-label="anchor" href="#a-meta-analysis"></a>
 </h3>
 <p>The compressed data <code>IL.18R1-1.tbl.gz</code> is based on METAL<span class="citation"><sup>1</sup></span>, involving study-[1|2|3] as follows,</p>
 <pre><code>SEPARATOR TAB
@@ -189,9 +194,9 @@ CLEAR</code></pre>
 <span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="fu">rm</span> <span class="va">${protein}</span>-1.tbl</span></code></pre></div>
 <p>The bgzipped data allows for access by genomic region as shown below.</p>
 </div>
-<div class="section level3" number="2.2">
+<div class="section level3" number="3.2">
 <h3 id="plumber">
-<span class="header-section-number">2.2</span> plumber<a class="anchor" aria-label="anchor" href="#plumber"></a>
+<span class="header-section-number">3.2</span> plumber<a class="anchor" aria-label="anchor" href="#plumber"></a>
 </h3>
 <p>Software library <code>libsodium</code>, <a href="https://doc.libsodium.org/" class="external-link uri">https://doc.libsodium.org/</a>, is required for its installation.</p>
 <p>It is <code>an API generator in R</code>, which has been tested as follows.</p>
@@ -239,13 +244,13 @@ CLEAR</code></pre>
 <pre><code>Running plumber API at http://127.0.0.1:8001
 Running swagger Docs at http://127.0.0.1:8001/__docs__/</code></pre>
 </div>
-<div class="section level3" number="2.3">
+<div class="section level3" number="3.3">
 <h3 id="data-access">
-<span class="header-section-number">2.3</span> Data access<a class="anchor" aria-label="anchor" href="#data-access"></a>
+<span class="header-section-number">3.3</span> Data access<a class="anchor" aria-label="anchor" href="#data-access"></a>
 </h3>
-<div class="section level4" number="2.3.1">
+<div class="section level4" number="3.3.1">
 <h4 id="browserconsole">
-<span class="header-section-number">2.3.1</span> Browser/console<a class="anchor" aria-label="anchor" href="#browserconsole"></a>
+<span class="header-section-number">3.3.1</span> Browser/console<a class="anchor" aria-label="anchor" href="#browserconsole"></a>
 </h4>
 <p>So we get query results in JSON format from</p>
 <ul>
@@ -286,9 +291,9 @@ Running swagger Docs at http://127.0.0.1:8001/__docs__/</code></pre>
 <span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>  <span class="ex">curl</span> command as above.</span>
 <span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a><span class="kw">)</span></span></code></pre></div>
 </div>
-<div class="section level4" number="2.3.2">
+<div class="section level4" number="3.3.2">
 <h4 id="r-1">
-<span class="header-section-number">2.3.2</span> R<a class="anchor" aria-label="anchor" href="#r-1"></a>
+<span class="header-section-number">3.3.2</span> R<a class="anchor" aria-label="anchor" href="#r-1"></a>
 </h4>
 <p>The query above is easily furnished with <strong>curl</strong>:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
@@ -302,9 +307,9 @@ Running swagger Docs at http://127.0.0.1:8001/__docs__/</code></pre>
 <pre><code>[1] 4779   18</code></pre>
 </div>
 </div>
-<div class="section level3" number="2.4">
+<div class="section level3" number="3.4">
 <h3 id="httpuv">
-<span class="header-section-number">2.4</span> httpuv<a class="anchor" aria-label="anchor" href="#httpuv"></a>
+<span class="header-section-number">3.4</span> httpuv<a class="anchor" aria-label="anchor" href="#httpuv"></a>
 </h3>
 <p>The package gives a somewhat more involved version as follows,</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
