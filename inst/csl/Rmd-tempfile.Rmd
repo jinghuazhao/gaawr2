@@ -1,0 +1,65 @@
+---
+title: "CSL URL Checking and Citation Example"
+author: "ChatGPT"
+output: html_document
+bibliography: REFERENCES.bib
+csl: !r tempfile(fileext = ".csl")
+vignette: >
+  %\VignetteIndexEntry{gaawr2}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteDepends{httr, XML}
+---
+
+```{r setup}
+if (!requireNamespace("httr", quietly = TRUE)) install.packages("httr")
+if (!requireNamespace("XML", quietly = TRUE)) install.packages("XML")
+
+library(httr)
+library(XML)
+
+check_url_status <- function(url) {
+  response <- tryCatch(HEAD(url), error = function(e) NULL)
+  if (!is.null(response) && status_code(response) == 200) {
+    return(TRUE)
+  } else {
+    return(FALSE)
+  }
+}
+
+check_csl_urls <- function(csl_file_path) {
+  csl_doc <- xmlParse(csl_file_path)
+  link_nodes <- xpathSApply(csl_doc, "//link/@href", xmlValue)
+  for (i in 1:length(link_nodes)) {
+    url <- link_nodes[i]
+    if (!check_url_status(url)) {
+      # Replace invalid URL with fallback message
+      link_nodes[i] <- "URL not available"
+    }
+  }
+  for (i in 1:length(link_nodes)) {
+    xpathApply(csl_doc, sprintf("//link[@href='%s']", link_nodes[i]), function(node) {
+      xmlAttrs(node)["href"] <- link_nodes[i]
+    })
+  }
+  saveXML(csl_doc, file = csl_file_path)
+}
+
+temp_csl <- tempfile(fileext = ".csl")
+file.copy("nature-genetics.csl", temp_csl)
+check_csl_urls(temp_csl)
+csl_file <- temp_csl
+
+csl_content <- readLines(csl_file)
+cat("CSL File Content (Raw):\n")
+cat(csl_content, sep = "\n")
+
+csl_doc <- xmlParse(csl_file)
+
+cat("\nParsed CSL XML:\n")
+print(csl_doc)
+
+link_nodes <- xpathSApply(csl_doc, "//link/@href", xmlValue)
+cat("\nExtracted Links from CSL File:\n")
+print(link_nodes)
+```

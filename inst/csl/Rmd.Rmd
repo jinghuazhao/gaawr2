@@ -1,0 +1,54 @@
+---
+title: "CSL URL Checking and Citation Example"
+author: "ChatGPT"
+output: html_document
+bibliography: REFERENCES.bib
+csl: !r gaawr2::check_csl_urls_in_memory("path/to/your/citation-style-file.csl")
+vignette: >
+  %\VignetteIndexEntry{gaawr2}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteDepends{httr, xml2}
+---
+
+if (!requireNamespace("httr", quietly = TRUE)) install.packages("httr")
+if (!requireNamespace("xml2", quietly = TRUE)) install.packages("xml2")
+
+library(httr)
+library(xml2)
+
+check_url_status <- function(url) {
+  response <- tryCatch(httr::HEAD(url), error = function(e) NULL)
+  if (!is.null(response) && httr::status_code(response) == 200) {
+    return(TRUE)
+  } else {
+    return(FALSE)
+  }
+}
+
+check_csl_urls_in_memory <- function(csl_content) {
+  csl_doc <- xml2::read_xml(csl_content)
+  link_nodes <- xml2::xml_find_all(csl_doc, "//link/@href")
+  for (node in link_nodes) {
+    url <- xml2::xml_text(node)
+    if (!check_url_status(url)) {
+      # If the URL is broken, replace it with a fallback message
+      xml2::xml_text(node) <- "URL not available"
+    }
+  }
+  return(xml2::as_character(csl_doc))
+}
+
+extract_csl_links_from_memory <- function(csl_content) {
+  csl_doc <- xml2::read_xml(csl_content)
+  link_nodes <- xml2::xml_find_all(csl_doc, "//link/@href")
+  return(xml2::xml_text(link_nodes))
+}
+
+csl_content <- readLines("nature-genetics.csl", warn = FALSE)
+csl_content <- paste(csl_content, collapse = "\n")
+modified_csl_content <- check_csl_urls_in_memory(csl_content)
+cat(modified_csl_content)
+links <- extract_csl_links_from_memory(modified_csl_content)
+cat("Links in CSL file:\n")
+print(links)
