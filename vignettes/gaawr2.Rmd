@@ -9,7 +9,7 @@ output:
     self_contained: false
 fontsize: 11pt
 bibliography: '`r system.file("REFERENCES.bib", package="gaawr2")`'
-csl: "`r system.file('csl', 'nature-genetics-no-url.csl', package = 'gaawr2')`"
+csl: '`r system.file("csl", "nature-genetics-no-url.csl", package = "gaawr2")`'
 pkgdown:
   as_is: true
 vignette: >

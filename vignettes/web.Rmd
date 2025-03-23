@@ -8,7 +8,7 @@ output:
     self_contained: false
 fontsize: 11pt
 bibliography: '`r system.file("REFERENCES.bib", package="gaawr2")`'
-csl: "`r system.file('csl', 'nature-genetics-no-url.csl', package = 'gaawr2')`"
+csl: '`r system.file("csl", "nature-genetics-no-url.csl", package = "gaawr2")`'
 pkgdown:
   as_is: true
 vignette: >
@@ -22,7 +22,7 @@ set.seed(0)
 knitr::opts_chunk$set(
   out.extra = 'style="display:block; margin: auto"',
   fig.align = "center",
-  fig.path = "plumber/",
+  fig.path = "web/",
   collapse = TRUE,
   comment = "#>",
   dev = "CairoPNG")
