@@ -1,13 +1,13 @@
 ## gaawr2 0.0.3
 
-(2025/3/22)
+(2025/3/23)
 
 * Add CRAN URL.
-* Address URL handling issue in vignettes as flagged by Prof Brian Ripley.
 * Amend README.Rmd/_pkgdown.yml after CRAN submission/publication.
 * Amend vignette which extracts a list of packages in `Suggests`.
 * Suggests Cairo to enable metric information with 'CairoPNG'.
 * Turn most inst/scripts/*R to be functions.
+* Use nature-genetics-no-url.csl as flagged by Prof Brian Ripley.
 
 ## gaawr2 0.0.2
 
