@@ -55,11 +55,13 @@ cat("CSL File Content (Raw):\n")
 cat(csl_content, sep = "\n")
 
 csl_doc <- xmlParse(csl_file)
-
 cat("\nParsed CSL XML:\n")
 print(csl_doc)
-
 link_nodes <- xpathSApply(csl_doc, "//link/@href", xmlValue)
 cat("\nExtracted Links from CSL File:\n")
 print(link_nodes)
 ```
+
+Would this citation work @malone10?
+
+## References
