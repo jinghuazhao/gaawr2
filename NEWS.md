@@ -5,9 +5,10 @@
 * Add CRAN URL.
 * Amend README.Rmd/_pkgdown.yml after CRAN submission/publication.
 * Amend vignette which extracts a list of packages in `Suggests`.
-* Suggests Cairo to enable metric information with 'CairoPNG'.
+* Create inst/csl/ as flagged by CRAN/Prof Brian Ripley.
+* Set fig.height/fig.width in vignettes.
+* Suggests Cairo and use 'CairoPNG'.
 * Turn most inst/scripts/*R to be functions.
-* Use nature-genetics-no-url.csl as flagged by Prof Brian Ripley.
 
 ## gaawr2 0.0.2
 
