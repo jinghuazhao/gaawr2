@@ -69,6 +69,8 @@ httpuv::startServer("0.0.0.0", 8000, list(
 
 Upon accessing `http://127.0.0.1:8000`, we see the message "Hello, world!".
 
+# URL availability
+
 This is an attempt to implement the following CRAN policy,
 
 > Packages which use Internet resources should fail gracefully with an informative message if the resource is not available or has changed (and not give a check warning nor error).
