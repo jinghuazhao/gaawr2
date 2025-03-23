@@ -25,7 +25,7 @@ Rscript -e '
   knitr::knit("README.Rmd");devtools::document();pkgdown::build_site()
 '
 
-for d in gaawr2
+for d in gaawr2 web
 do
     if [ -d vignettes/${d} ]; then
        rm -rf docs/articles/${d}
