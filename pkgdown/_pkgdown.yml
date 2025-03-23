@@ -54,6 +54,7 @@ navbar:
         icon: fa-home
         aria-hidden: "true"
         href: index.html
+        aria-label: Home
     github:
         icon: fab fa-github
         href: https://github.com/jinghuazhao/gaawr2
