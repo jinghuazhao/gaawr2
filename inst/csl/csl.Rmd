@@ -11,16 +11,16 @@ vignette: >
   %\VignetteDepends{httr, XML}
 ---
 
-```{r setup}
+```{r setup, warning=FALSE}
 source(system.file("csl","url.R",package="gaawr2"))
 csl_file_path <- "nature-genetics.csl"
 csl_file_path <- system.file("csl",csl_file_path,package="gaawr2")
-csl_content <- check_csl_urls(csl_file_path)
 
 cat("CSL File Content (Raw):\n")
 cat(paste(readLines(csl_file_path), collapse = "\n"))
 
 cat("\nExtracted Links from CSL File:\n")
+csl_doc <- check_csl_urls(csl_file_path)
 hrefs <- xpathSApply(csl_doc, "//csl:link", xmlGetAttr, "href", namespaces = namespace)
 print(hrefs)
 ```
