@@ -5,7 +5,7 @@
 * Add CRAN URL.
 * Amend README.Rmd/_pkgdown.yml after CRAN submission/publication.
 * Amend vignette which extracts a list of packages in `Suggests`.
-* Create inst/csl/ as flagged by CRAN/Prof Brian Ripley.
+* Create inst/csl/ as flagged by CRAN & Prof Brian Ripley.
 * Set fig.height/fig.width in vignettes.
 * Suggests Cairo and use 'CairoPNG'.
 * Turn most inst/scripts/*R to be functions.
