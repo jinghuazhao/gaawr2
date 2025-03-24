@@ -3,7 +3,7 @@ title: "CSL URL Checking and Citation Example"
 author: "ChatGPT"
 output: html_document
 bibliography: '`r system.file("REFERENCES.bib", package="gaawr2")`'
-csl: !r tempfile(fileext = ".csl")
+csl: !r csl_content
 vignette: >
   %\VignetteIndexEntry{gaawr2}
   %\VignetteEngine{knitr::rmarkdown}
@@ -13,26 +13,18 @@ vignette: >
 
 ```{r setup}
 source(system.file("csl","url.R",package="gaawr2"))
-temp_csl <- tempfile(fileext = ".csl")
 csl_file_path <- "nature-genetics.csl"
 csl_file_path <- system.file("csl",csl_file_path,package="gaawr2")
-file.copy(csl_file_path, temp_csl)
-csl_doc <- check_csl_urls(temp_csl)
-saveXML(csl_doc, file = csl_file_path)
-csl_file <- temp_csl
+csl_content <- check_csl_urls(csl_file_path)
 
-csl_content <- readLines(csl_file)
 cat("CSL File Content (Raw):\n")
-cat(csl_content, sep = "\n")
+cat(paste(readLines(csl_file_path), collapse = "\n"))
 
-csl_doc <- xmlParse(csl_file)
-cat("\nParsed CSL XML:\n")
-print(csl_doc)
 cat("\nExtracted Links from CSL File:\n")
 hrefs <- xpathSApply(csl_doc, "//csl:link", xmlGetAttr, "href", namespaces = namespace)
 print(hrefs)
 ```
 
-Would this citation work @malone10?
+Would this work @malone10?
 
 ## References
