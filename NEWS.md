@@ -1,6 +1,6 @@
 ## gaawr2 0.0.3
 
-(2025/3/23)
+(2025/3/24)
 
 * Add CRAN URL.
 * Amend README.Rmd/_pkgdown.yml after CRAN submission/publication.
