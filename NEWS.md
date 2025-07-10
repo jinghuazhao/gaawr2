@@ -1,3 +1,9 @@
+## gaawr2 0.0.4
+
+(2025/7/10)
+
+* Refine DESCRIPTION in accordance with Henry-Stewart talks.
+
 ## gaawr2 0.0.3
 
 (2025/3/24)
