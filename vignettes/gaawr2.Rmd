@@ -43,11 +43,21 @@ sys_options <- options()
 new_options <- options(digits=2)
 ```
 
-This is an updated version of a Henry-Stewart talk @zhao09, which gathers information, meta-data and scripts
-to showcase modern genetic analysis ranging from testing of polymorphic variant(s) for Hardy-Weinberg
-equilibrium, association with trait using genetic and statistical models as well as Bayesian implementation
-to power calculation in study design and genetic annotation. It also covers R integration with the Linux
-environment, GitHub, package creation and web applications.
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+desc <- read.dcf(system.file("DESCRIPTION", package="gaawr2"))
+title <- desc[, "Title"]
+knitr::asis_output(paste0("## ", title, "\n\n"))
+
+description <- desc[, "Description"]
+description <- gsub(
+  "(doi:[0-9\\.a-zA-Z]+/[0-9A-Z]+)",
+  "[\\1](https://doi.org/\\1)",
+  description
+)
+lines <- unlist(strsplit(description, "\n"))
+lines[[length(lines)]] <- gsub(" $","",lines[[length(lines)]])
+asis_output(paste(lines, collapse = "\n\n"))
+```
 
 It is adapted from pQTLdata, <https://jinghuazhao.github.io/pQTLdata/>.
 
