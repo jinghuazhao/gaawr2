@@ -45,18 +45,14 @@ new_options <- options(digits=2)
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 desc <- read.dcf(system.file("DESCRIPTION", package="gaawr2"))
-title <- desc[, "Title"]
-knitr::asis_output(paste0("## ", title, "\n\n"))
-
 description <- desc[, "Description"]
 description <- gsub(
   "(doi:[0-9\\.a-zA-Z]+/[0-9A-Z]+)",
   "[\\1](https://doi.org/\\1)",
   description
 )
-lines <- unlist(strsplit(description, "\n"))
-lines[[length(lines)]] <- gsub(" $","",lines[[length(lines)]])
-asis_output(paste(lines, collapse = "\n\n"))
+description <- gsub("\n+", " ", description)
+knitr::asis_output(description)
 ```
 
 It is adapted from pQTLdata, <https://jinghuazhao.github.io/pQTLdata/>.
