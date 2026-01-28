@@ -25,6 +25,7 @@ Rscript -e '
   knitr::knit("README.Rmd");devtools::document();pkgdown::build_site()
 '
 
+rm -f vignettes/.RData vignettes/.Rhistory
 for d in gaawr2 web
 do
     if [ -d vignettes/${d} ]; then
