@@ -1,9 +1,10 @@
 ## gaawr2 0.0.4
 
-(2025/7/25)
+(2026/1/28)
 
+* Add the latest citation.
 * Refine DESCRIPTION in accordance with Henry-Stewart talks.
-* Carry forward DESCRIPTION/Description to gaawr2.Rmd
+* Carry forward DESCRIPTION/Description to both README.Rmd and gaawr2.Rmd
 
 ## gaawr2 0.0.3
 
