@@ -1,0 +1,65 @@
+# Genetic Association Analysis
+
+This is a companion to Henry-Stewart talk by Zhao (2026,
+[doi:10.69645/FRFQ9519](https://doi.org/10.69645/FRFQ9519) ), which
+gathers information, metadata and scripts to showcase modern genetic
+analysis – ranging from testing of polymorphic variant(s) for
+Hardy-Weinberg equilibrium, association with traits using genetic and
+statistical models, Bayesian implementation, power calculation in study
+design, and genetic annotation. It also covers R integration with the
+Linux environment, GitHub, package creation and web applications. The
+earlier version by Zhao (2009,
+[doi:10.69645/DCRY5578](https://doi.org/10.69645/DCRY5578) ) is also
+available online and provides an entry-level introduction to these
+topics.
+
+## Details
+
+Available data and function are listed in the following table.
+
+|                                                                            |                                                      |
+|----------------------------------------------------------------------------|------------------------------------------------------|
+| Objects                                                                    | Description                                          |
+| **Dataset**                                                                |                                                      |
+| [`DiaHealth`](https://jinghuazhao.github.io/gaawr2/reference/DiaHealth.md) | A Bangladeshi dataset for Type 2 diabetes prediction |
+| [`diabetes`](https://jinghuazhao.github.io/gaawr2/reference/diabetes.md)   | A diabetes dataset                                   |
+| **Functions**                                                              |                                                      |
+| [`welcome`](https://jinghuazhao.github.io/gaawr2/reference/welcome.md)     | An enhanced welcome                                  |
+
+We can add references such as Francois (2014) .
+
+## Usage
+
+Vignettes on package usage:
+
+- Genetic Association Analysis with R (II),
+  [`vignette("gaawr2")`](https://jinghuazhao.github.io/gaawr2/articles/gaawr2.md).
+
+- Web facilities,
+  [`vignette("web")`](https://jinghuazhao.github.io/gaawr2/articles/web.md).
+
+## References
+
+Romain Francois (2014). *bibtex: bibtex parser*. R package version
+0.4.0.
+
+## See also
+
+Useful links:
+
+- <https://jinghuazhao.github.io/gaawr2/>
+
+- <https://github.com/jinghuazhao/gaawr2>
+
+- Report bugs at <https://github.com/jinghuazhao/gaawr2/issues>
+
+## Author
+
+Jing Hua Zhao in collaboration with other colleagues.
+
+## Examples
+
+``` r
+welcome(3)
+#> Welcome to gaawr2 3 times!
+```
