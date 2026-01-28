@@ -31,9 +31,8 @@ description <- gsub(
   "[\\1](https://doi.org/\\1)",
   description
 )
-lines <- unlist(lapply(strsplit(description, "\n"),paste,""))
-lines[[length(lines)]] <- gsub(" $","",lines[[length(lines)]])
-knitr::asis_output(lines)
+description <- gsub("\n+", " ", description)
+knitr::asis_output(description)
 ```
 
 ## Installation
