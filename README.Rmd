@@ -26,6 +26,11 @@ knitr::asis_output(paste0("##"," ", title,"\n\n"))
 
 ```{r, echo = FALSE, message=FALSE, warning=FALSE}
 description <- desc[, "Description"]
+description <- gsub(
+  "(doi:[0-9\\.a-zA-Z]+/[0-9A-Z]+)",
+  "[\\1](https://doi.org/\\1)",
+  description
+)
 lines <- unlist(lapply(strsplit(description, "\n"),paste,""))
 lines[[length(lines)]] <- gsub(" $","",lines[[length(lines)]])
 knitr::asis_output(lines)
