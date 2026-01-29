@@ -6,7 +6,7 @@
 \alias{gaawr2-package}
 \title{Genetic Association Analysis}
 \description{
-This is a companion to Henry-Stewart talk by Zhao (2026, \doi{10.69645/FRFQ9519}), which gathers information, metadata and scripts to showcase modern genetic analysis -- ranging from testing of polymorphic variant(s) for Hardy-Weinberg equilibrium, association with traits using genetic and statistical models, Bayesian implementation, power calculation in study design, and genetic annotation. It also covers R integration with the Linux environment, GitHub, package creation and web applications. The earlier version by Zhao (2009, \doi{10.69645/DCRY5578}) is also available online and provides an entry-level introduction to these topics.
+This is a companion to Henry-Stewart talk by Zhao (2026, \doi{10.69645/FRFQ9519}), which gathers information, metadata and scripts to showcase modern genetic analysis -- ranging from testing of polymorphic variant(s) for Hardy-Weinberg equilibrium, association with traits using genetic and statistical models, Bayesian implementation, power calculation in study design, and genetic annotation. It also covers R integration with the Linux environment, GitHub, package creation and web applications. The earlier version by Zhao (2009, \doi{10.69645/DCRY5578}) provides an brief introduction to these topics.
 }
 \details{
 Available data and function are listed in the following table.\tabular{ll}{
