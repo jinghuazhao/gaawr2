@@ -570,7 +570,7 @@ write.dcf(suggests)
 
 # Summary
 
-Following part I of the talk, we have further explored various aspects of genetic association analysis in
+Following the earlier talk, we have further explored various aspects of genetic association analysis in
 R, particularly in the context of computing systems like Linux. While these serve as a solid foundation,
 a more in-depth data analysis coupled with more rigorous development is surely fruitful and rewarding.
 
