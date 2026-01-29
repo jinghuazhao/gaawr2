@@ -2,7 +2,7 @@
 
 ## gaawr2 0.0.4
 
-(2026/1/28)
+(2026/1/29)
 
 - Add the latest citation.
 - Refine DESCRIPTION in accordance with Henry-Stewart talks.

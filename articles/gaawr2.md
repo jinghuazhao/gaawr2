@@ -21,9 +21,8 @@ statistical models, Bayesian implementation, power calculation in study
 design, and genetic annotation. It also covers R integration with the
 Linux environment, GitHub, package creation and web applications. The
 earlier version by Zhao (2009,
-\<[doi:10.69645/DCRY5578](https://doi.org/doi:10.69645/DCRY5578)\>) is
-also available online and provides an entry-level introduction to these
-topics.
+\<[doi:10.69645/DCRY5578](https://doi.org/doi:10.69645/DCRY5578)\>)
+provides an brief introduction to these topics.
 
 It is adapted from pQTLdata, <https://jinghuazhao.github.io/pQTLdata/>.
 
@@ -1191,8 +1190,8 @@ seqminer, SNPassoc, testthat, tidyr
 
 ## 7 Summary
 
-Following part I of the talk, we have further explored various aspects
-of genetic association analysis in R, particularly in the context of
+Following the earlier talk, we have further explored various aspects of
+genetic association analysis in R, particularly in the context of
 computing systems like Linux. While these serve as a solid foundation, a
 more in-depth data analysis coupled with more rigorous development is
 surely fruitful and rewarding.

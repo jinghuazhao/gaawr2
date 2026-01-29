@@ -11,9 +11,8 @@ statistical models, Bayesian implementation, power calculation in study
 design, and genetic annotation. It also covers R integration with the
 Linux environment, GitHub, package creation and web applications. The
 earlier version by Zhao (2009,
-\<[doi:10.69645/DCRY5578](https://doi.org/doi:10.69645/DCRY5578)\>) is
-also available online and provides an entry-level introduction to these
-topics.
+\<[doi:10.69645/DCRY5578](https://doi.org/doi:10.69645/DCRY5578)\>)
+provides an brief introduction to these topics.
 
 ## Installation
 
