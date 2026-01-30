@@ -29,7 +29,10 @@ remove_destination() {
 
 echo "Files copied successfully from $src to $dst. Check the log file at $log_file for details."
 
-# module load ceuadmin/R
+module load ceuadmin/R
+module load gcc/11.3.0/gcc/4zpip55j
+echo $R_LIBS
+
 cd ~/R
 export version=$(awk '/Version/{print $2}' $src/DESCRIPTION)
 echo "Now, build, install and check gaawr2 $version"

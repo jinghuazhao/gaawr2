@@ -20,6 +20,8 @@ Rscript -e '
 # setup
 
 module load ceuadmin/R
+module load gcc/11.3.0/gcc/4zpip55j
+
 Rscript -e '
 # rmarkdown::render("pkgdown/index.Rmd", output_format = "md_document");
   knitr::knit("README.Rmd");devtools::document();pkgdown::build_site()
