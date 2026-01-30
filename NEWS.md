@@ -1,3 +1,9 @@
+## gaawr2 0.0.5
+
+(2026/1/30)
+
+* Replace CRAN-archived seqminer with Rsamples.
+
 ## gaawr2 0.0.4
 
 (2026/1/29)
