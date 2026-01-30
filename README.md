@@ -16,7 +16,7 @@ output: github_document
 <!-- badges: end -->
 
 
-This is a companion to Henry-Stewart talk by Zhao (2026, <[doi:10.69645/FRFQ9519](https://doi.org/doi:10.69645/FRFQ9519)>), which gathers information, metadata and scripts to showcase modern genetic analysis -- ranging from testing of polymorphic variant(s) for Hardy-Weinberg equilibrium, association with traits using genetic and statistical models, Bayesian implementation, power calculation in study design, and genetic annotation. It also covers R integration with the Linux environment, GitHub, package creation and web applications. The earlier version by Zhao (2009, <[doi:10.69645/DCRY5578](https://doi.org/doi:10.69645/DCRY5578)>) provides an brief introduction to these topics.
+This is a companion to Henry-Stewart talk by Zhao (2026, <[doi:10.69645/FRFQ9519](https://doi.org/doi:10.69645/FRFQ9519)>), which gathers information, metadata and scripts to showcase modern genetic analysis -- ranging from testing of polymorphic variant(s) for Hardy-Weinberg equilibrium, association with traits using genetic and statistical models, Bayesian implementation, power calculation in study design, and genetic annotation. It also covers R integration with the Linux environment, GitHub, package creation and web applications. The earlier version by Zhao (2009, <[doi:10.69645/DCRY5578](https://doi.org/doi:10.69645/DCRY5578)>) provides a brief introduction to these topics.
 
 ## Installation
 
