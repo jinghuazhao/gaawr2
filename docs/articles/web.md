@@ -1,0 +1,312 @@
+# Web facilities
+
+## 1 Hello, world!
+
+### 1.1 Python
+
+Perhaps this is the simplest way to start from the Linux command line,
+nevertheless with Python,
+
+``` python
+python3 -m http.server 8000
+firefox http://127.0.0.1:8000
+```
+
+which works with `python3 -m http.server` by default when the port
+number 8000 is available.
+
+### 1.2 R
+
+Our focus here is R with the following script.
+
+``` r
+httpuv::startServer("0.0.0.0", 8000, list(
+  call = function(req) {
+    list(
+      status = 200L,
+      headers = list("Content-Type" = "text/plain"),
+      body = "Hello, world!"
+    )
+  })
+)
+```
+
+Upon accessing `http://127.0.0.1:8000`, we see the message “Hello,
+world!”.
+
+## 2 URL availability
+
+This is an attempt to implement the following CRAN policy,
+
+> Packages which use Internet resources should fail gracefully with an
+> informative message if the resource is not available or has changed
+> (and not give a check warning nor error).
+
+``` r
+check_url_availability <- function(url) {
+# Send a GET request to the URL
+  response <- tryCatch({
+    httr::GET(url)
+  }, error = function(e) {
+# If there was an error, return FALSE
+    return(NULL)
+  })
+# If response is NULL or status code is not 200, return FALSE
+  if (is.null(response) || httr::status_code(response) != 200) {
+    message(paste("Warning: The URL", url, "is not accessible. Please check the link."))
+    return(FALSE)
+  }
+# If status code is 200, the URL is available
+  message(paste("The URL", url, "is accessible."))
+  return(TRUE)
+}
+
+url_to_check <- "http://www.zotero.org/styles/nature-genetics"
+is_available <- check_url_availability(url_to_check)
+#> The URL http://www.zotero.org/styles/nature-genetics is accessible.
+
+if (is_available) {
+  message("Using CSL as usual.")
+} else {
+  message("Using fallback to local CSL file instead.")
+}
+#> Using CSL as usual.
+```
+
+Below, we assume that our working directory is the source package,
+
+## 3 Data source
+
+We envisage a server from which data can be obtained, and two R packages
+**plumber** and **httpuv** are considered here.
+
+### 3.1 A meta-analysis
+
+The compressed data `IL.18R1-1.tbl.gz` is based on METAL¹, involving
+study-\[1\|2\|3\] as follows,
+
+    SEPARATOR TAB
+    COLUMNCOUNTING STRICT
+    CHROMOSOMELABEL CHR
+    POSITIONLABEL POS
+    CUSTOMVARIABLE N
+    LABEL N as N
+    TRACKPOSITIONS ON
+    AVERAGEFREQ ON
+    MINMAXFREQ ON
+    ADDFILTER AF1 >= 0.001
+    ADDFILTER AF1 <= 0.999
+    MARKERLABEL SNP
+    ALLELELABELS A1 A2
+    EFFECTLABEL BETA
+    PVALUELABEL P
+    WEIGHTLABEL N
+    FREQLABEL AF1
+    STDERRLABEL SE
+    SCHEME STDERR
+    EFFECT_PRINT_PRECISION 8
+    STDERR_PRINT_PRECISION 8
+    GENOMICCONTROL OFF
+    LOGPVALUE ON
+    OUTFILE IL18R1B_dr- .tbl
+    PROCESS study-1-IL18R1B.fastGWA.gz
+    PROCESS study-2-IL18R1B.fastGWA.gz
+    PROCESS study-3-IL18R1B.fastGWA.gz
+    PROCESS study-1-IL18R1B-chrX.fastGWA.gz
+    PROCESS study-2-IL18R1B-chrX.fastGWA.gz
+    PROCESS study-3-IL18R1B-chrX.fastGWA.gz
+    ANALYZE HETEROGENEITY
+    CLEAR
+
+Assuming the script is named `IL.18R1.metal`, `IL.18R1-1.tbl.gz` is
+generated from **htslib**, <https://www.htslib.org/download/>, as
+follows,
+
+``` bash
+export protein=IL.18R1
+metal ${protein}.metal 2>&1 | \
+tee ${protein}-1.tbl.log
+cat <(head -1 ${protein}-1.tbl) \
+    <(sed '1d' ${protein}-1.tbl | \
+sort -k1,1n -k2,2n) | \
+bgzip -f > ${protein}-1.tbl.gz
+tabix -S1 -s1 -b2 -e2 -f ${protein}-1.tbl.gz
+rm ${protein}-1.tbl
+```
+
+The bgzipped data allows for access by genomic region as shown below.
+
+### 3.2 plumber
+
+Software library `libsodium`, <https://doc.libsodium.org/>, is required
+for its installation.
+
+It is `an API generator in R`, which has been tested as follows.
+
+``` r
+get_data <- function(filename, region)
+{
+# query_result <- seqminer::tabix.read(filename, region)
+  tbx <- Rsamtools::TabixFile(filename)
+  query_result <- Rsamtools::scanTabix(tbx, param = region)[[1]]
+  if (length(query_result) == 0) {
+    return(data.frame())
+  }
+  hdr <- c("Chromosome", "Position",
+           "MarkerName", "Allele1", "Allele2", "Freq1", "FreqSE", "MinFreq", "MaxFreq",
+           "Effect", "StdErr", "logP",
+           "Direction", "HetISq", "HetChiSq", "HetDf", "logHetP", "N")
+  df <- read.table(text = paste(query_result, collapse = "\n"), sep = "\t", col.names = hdr,
+                   stringsAsFactors = FALSE)
+  return(df)
+}
+
+plbr <- plumber::Plumber$new()
+plbr$handle("GET", "/tests", function(req, res) {
+  protein <- req$args$protein
+  region <- req$args$region
+  if (is.null(protein) || is.null(region)) {
+    res$status <- 400
+    return(list(error = "Both 'protein' and 'region' must be provided"))
+  }
+  filename <- file.path("tests",paste0(protein,"-1.tbl.gz"))
+  print(filename)
+  if (!file.exists(filename)) {
+    res$status <- 404
+    return(list(error = paste("File for", protein, "not found")))
+  }
+  data <- get_data(filename, region)
+  json_data <- jsonlite::toJSON(data, dataframe = "rows", na = "null")
+  res$setHeader("Content-Type", "application/json")
+  return(json_data)
+})
+options(width = 200)
+filename <- file.path("tests","IL.18R1-1.tbl.gz")
+region <- "2:102700000-103800000"
+data <- get_data(filename, region)
+head(data,1)
+plbr$run(port = 8001)
+```
+
+Indeed we can see that the first line of data,
+
+      Chromosome  Position         MarkerName Allele1 Allele2 Freq1 FreqSE MinFreq MaxFreq  Effect StdErr  logP   Direction HetISq HetChiSq HetDf logHetP     N
+    1          2 102700138 chr2:102700138_A_G       a       g 0.087 0.0207  0.0641  0.1376 -0.0566 0.0239 -1.75 -?-+n-?--n+   78.2   36.757     8  -4.894 12799
+
+and
+
+    Running plumber API at http://127.0.0.1:8001
+    Running swagger Docs at http://127.0.0.1:8001/__docs__/
+
+### 3.3 Data access
+
+#### 3.3.1 Browser/console
+
+So we get query results in JSON format from
+
+-   **browser**:
+    `http://localhost:8001/tests?protein=IL.18R1&region=2:102700000-103800000`
+-   **command line interface**:
+    `curl "http://localhost:8001/tests?protein=IL.18R1&region=2:102700000-103800000"`
+
+Additional work required to get output from `curl` to a tab-delimited
+data,
+
+``` bash
+curl "http://localhost:8001/tests?protein=IL.18R1&region=2:102700000-103800000" | \
+jq -r '.[0] |
+   fromjson |
+   .[] |
+   [
+     .Chromosome, .Position, .MarkerName, .Allele1, .Allele2, .Freq1,
+     .Effect, .StdErr, .logP, .Direction, .HetISq, .HetChiSq, .HetDf, .logHetP, .N
+   ] |
+   @tsv'
+```
+
+where
+
+1.  **.\[0\]**: Access the first element in the outer array (the string
+    containing the JSON).
+2.  **fromjson**: Parse the string into a JSON object.
+3.  **.\[\]**: Iterate over the array inside the parsed JSON.
+4.  **\[ … \]**: Create an array of the values needed, each corresponds
+    to a column in the TSV output.
+5.  **^(**tsv?**)**: Convert the array into tab-separated values.
+
+Note also that only selected columns (as in 4) are kept. The simplest
+way to have the header is add it manually,
+
+``` bash
+(
+  echo "Chromosome|Position|MarkerName|Allele1|Allele2|Freq1|Effect|StdErr|logP|Direction|HetISq|HetChiSq|HetDf|logHetP|N" | \
+  sed 's/|/\t/g'
+  curl command as above.
+)
+```
+
+#### 3.3.2 R
+
+The query above is easily furnished with **curl**:
+
+``` r
+tmp <- tempfile()
+curl::curl_download("http://localhost:8001/tests?protein=IL.18R1&region=2:102700000-103800000", tmp)
+df <- jsonlite::fromJSON(readLines(tmp)) |>
+      jsonlite::fromJSON(flatten=TRUE) |>
+      as.data.frame()
+dim(df)
+```
+
+giving
+
+    [1] 4779   18
+
+### 3.4 httpuv
+
+The package gives a somewhat more involved version as follows,
+
+``` r
+dir.create("content/assets", recursive = TRUE)
+dir.create("content/lib", recursive = TRUE)
+s <- httpuv::startServer(
+  host = "0.0.0.0", 
+  port = 5000,
+  app = list(
+    call = function(req) {
+      list(
+        status = 200L,
+        headers = list(
+          'Content-Type' = 'text/html',
+          'Access-Control-Allow-Origin' = '*',
+          'Access-Control-Allow-Methods' = 'GET, POST, OPTIONS',
+          'Access-Control-Allow-Headers' = 'Content-Type'
+        ),
+        body = "Hello world!"
+      )
+    },
+    staticPaths = list(
+      "/assets" = "content/assets/", # Static assets
+      "/lib" = httpuv::staticPath("content/lib", indexhtml = FALSE),
+      "/lib/dynamic" = httpuv::excludeStaticPath()
+    ),
+    staticPathOptions = httpuv::staticPathOptions(indexhtml = TRUE)
+  )
+)
+cat("Server running at http://0.0.0.0:5000\n")
+s$stop()
+```
+
+so mappings are created from `content/[assets, lib]` to `assets` and
+`lib`, while `httpuv::excludeStaticPath()` indicates that requests to
+`/lib/dynamic` will not be served as static files but could be handled
+dynamically by the app logic.
+
+## References
+
+1\.
+
+Willer, C. J., Li, Y. & Abecasis, G. R. [METAL: Fast and efficient
+meta-analysis of genomewide association
+scans](https://doi.org/10.1093/bioinformatics/btq340). *Bioinformatics*
+**26**, 2190–1 (2010).
