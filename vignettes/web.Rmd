@@ -31,7 +31,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-pkgs <- c("httr","httpuv","jsonlite","plumber","seqminer")
+pkgs <- c("httr","httpuv","jsonlite","plumber","Rsamtools")
 for (p in pkgs) if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
     if (!requireNamespace(p)) warning(paste0("This vignette needs package `", p, "'; please install"))
 }
@@ -174,12 +174,18 @@ It is `an API generator in R`, which has been tested as follows.
 ```r
 get_data <- function(filename, region)
 {
-  query_result <- seqminer::tabix.read(filename, region)
+# query_result <- seqminer::tabix.read(filename, region)
+  tbx <- Rsamtools::TabixFile(filename)
+  query_result <- Rsamtools::scanTabix(tbx, param = region)[[1]]
+  if (length(query_result) == 0) {
+    return(data.frame())
+  }
   hdr <- c("Chromosome", "Position",
            "MarkerName", "Allele1", "Allele2", "Freq1", "FreqSE", "MinFreq", "MaxFreq",
            "Effect", "StdErr", "logP",
            "Direction", "HetISq", "HetChiSq", "HetDf", "logHetP", "N")
-  df <- read.table(text = paste(query_result, collapse = "\n"), sep = "\t", col.names=hdr)
+  df <- read.table(text = paste(query_result, collapse = "\n"), sep = "\t", col.names = hdr,
+                   stringsAsFactors = FALSE)
   return(df)
 }
 
