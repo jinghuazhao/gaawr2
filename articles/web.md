@@ -146,12 +146,18 @@ It is `an API generator in R`, which has been tested as follows.
 ``` r
 get_data <- function(filename, region)
 {
-  query_result <- seqminer::tabix.read(filename, region)
+# query_result <- seqminer::tabix.read(filename, region)
+  tbx <- Rsamtools::TabixFile(filename)
+  query_result <- Rsamtools::scanTabix(tbx, param = region)[[1]]
+  if (length(query_result) == 0) {
+    return(data.frame())
+  }
   hdr <- c("Chromosome", "Position",
            "MarkerName", "Allele1", "Allele2", "Freq1", "FreqSE", "MinFreq", "MaxFreq",
            "Effect", "StdErr", "logP",
            "Direction", "HetISq", "HetChiSq", "HetDf", "logHetP", "N")
-  df <- read.table(text = paste(query_result, collapse = "\n"), sep = "\t", col.names=hdr)
+  df <- read.table(text = paste(query_result, collapse = "\n"), sep = "\t", col.names = hdr,
+                   stringsAsFactors = FALSE)
   return(df)
 }
 
