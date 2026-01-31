@@ -16,12 +16,12 @@ Source:
 [`DESCRIPTION`](https://github.com/jinghuazhao/gaawr2/blob/HEAD/DESCRIPTION)
 
 Zhao J (2026). *gaawr2: Genetic Association Analysis*. R package version
-0.0.5, <https://jinghuazhao.github.io/gaawr2/>.
+0.0.6, <https://jinghuazhao.github.io/gaawr2/>.
 
     @Manual{,
       title = {gaawr2: Genetic Association Analysis},
       author = {Jing Hua Zhao},
       year = {2026},
-      note = {R package version 0.0.5},
+      note = {R package version 0.0.6},
       url = {https://jinghuazhao.github.io/gaawr2/},
     }
