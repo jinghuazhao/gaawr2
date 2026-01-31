@@ -1,10 +1,19 @@
 # Changelog
 
+## gaawr2 0.0.6
+
+(2026/1/31)
+
+- Minor revisions on DESCRIPTION/Description and NEWS.md.
+
 ## gaawr2 0.0.5
+
+CRAN release: 2026-01-30
 
 (2026/1/30)
 
-- Replace CRAN-archived seqminer with Rsamples.
+- On CRAN.
+- Replace CRAN-archived seqminer with Rsamtools.
 
 ## gaawr2 0.0.4
 
