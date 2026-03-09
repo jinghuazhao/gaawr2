@@ -58,7 +58,7 @@ which works with `python3 -m http.server` by default when the port number 8000 i
 
 Our focus here is R with the following script.
 
-```
+```{r httpuv-server, eval=FALSE}
 httpuv::startServer("0.0.0.0", 8000, list(
   call = function(req) {
     list(
@@ -174,7 +174,7 @@ Software library `libsodium`, <https://doc.libsodium.org/>, is required for its 
 
 It is `an API generator in R`, which has been tested as follows.
 
-```
+```{r plumber, eval=FALSE}
 get_data <- function(filename, region)
 {
 # query_result <- seqminer::tabix.read(filename, region)
@@ -278,7 +278,7 @@ Note also that only selected columns (as in 4) are kept. The simplest way to hav
 
 The query above is easily furnished with **curl**:
 
-```
+```{r curl, eval=FALSE}
 tmp <- tempfile()
 curl::curl_download("http://localhost:8001/tests?protein=IL.18R1&region=2:102700000-103800000", tmp)
 df <- jsonlite::fromJSON(readLines(tmp)) |>
@@ -297,7 +297,7 @@ giving
 
 The package gives a somewhat more involved version as follows,
 
-```
+```{r httpuv, eval=FALSE}
 dir.create("content/assets", recursive = TRUE)
 dir.create("content/lib", recursive = TRUE)
 s <- httpuv::startServer(
