@@ -1,11 +1,14 @@
 # Genetic Association Analysis
 
 ``` r
+if (!requireNamespace("bookdown", quietly = TRUE)) knitr::knit_exit()
 pkgs <- c("EnsDb.Hsapiens.v75","ensembldb","GMMAT","HardyWeinberg","MCMCglmm","SNPassoc","biomaRt",
            "gap","gap.datasets","haplo.stats","powerEQTL","R2jags","regress",
            "dplyr","ggplot2","httr","jsonlite","kableExtra","knitr","tidyr")
-for (p in pkgs) if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
-    if (!requireNamespace(p)) warning(paste0("This vignette needs package `", p, "'; please install"))
+has_pkg <- function(x) requireNamespace(x, quietly = TRUE)
+missing <- pkgs[!vapply(pkgs, has_pkg, logical(1))]
+if (length(missing)) {
+  warning("Missing packages: ", paste(missing, collapse = ", "))
 }
 invisible(suppressMessages(lapply(pkgs, require, character.only = TRUE)))
 sys_options <- options()
@@ -130,8 +133,7 @@ mean_values <- diabetes %>%
   dplyr::select(AGE:BMI) %>%
   dplyr::summarize(dplyr::across(dplyr::everything(), \(x) mean(x, na.rm = TRUE)))
 #> Adding missing grouping variables: `CLASS`, `Gender`
-#> `summarise()` has grouped output by 'CLASS'. You can override using the
-#> `.groups` argument.
+#> `summarise()` has regrouped the output.
 kableExtra::kbl(mean_values,caption="Mean value by gender and diabetes category") %>%
 kableExtra::kable_styling(bootstrap_options = c("striped", "hover"))
 ```

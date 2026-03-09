@@ -2,9 +2,10 @@
 
 ## gaawr2 0.0.6
 
-(2026/1/31)
+(2026/3/9)
 
-- Minor revisions on DESCRIPTION/Description and NEWS.md.
+- Amend gaawr2.Rmd/web.Rmd.
+- Revise DESCRIPTION/Description.
 
 ## gaawr2 0.0.5
 
