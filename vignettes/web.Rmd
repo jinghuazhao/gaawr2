@@ -31,9 +31,12 @@ knitr::opts_chunk$set(
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
+if (!requireNamespace("bookdown", quietly = TRUE)) knitr::knit_exit()
 pkgs <- c("httr","httpuv","jsonlite","plumber","Rsamtools")
-for (p in pkgs) if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
-    if (!requireNamespace(p)) warning(paste0("This vignette needs package `", p, "'; please install"))
+has_pkg <- function(p) requireNamespace(p, quietly = TRUE)
+missing <- pkgs[!vapply(pkgs, has_pkg, logical(1))]
+if (length(missing)) {
+  warning("Missing packages: ", paste(missing, collapse = ", "))
 }
 invisible(suppressMessages(lapply(pkgs, require, character.only = TRUE)))
 ```
