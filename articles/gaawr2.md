@@ -704,23 +704,21 @@ for (i in 1:4) haploH[[i]] <- haplo.stats::haplo.score.slide(asthma.snps$cc, gen
 
 We return to the asthma data used in **SNPassoc**.
 
-``` r
-assoc <- SNPassoc::WGassociation(cc, data=asthma.snps)
-assoc.adj <- SNPassoc::WGassociation(cc ~ country + smoke, asthma.snps)
-assoc.maxstat <- SNPassoc::maxstat(asthma.snps, cc)
-assoc %>%
-  as.data.frame() %>%
-  dplyr::select(-comments) %>%
-  knitr::kable(caption="SNP association")
-assoc.adj %>%
-  as.data.frame() %>%
-  dplyr::select(-comments) %>%
-  knitr::kable(caption="with adjustment for contountry & smoking")
-assoc.maxstat %>%
-  `[`(,) %>%
-  t() %>%
-  knitr::kable(caption = "Max stat association statistics")
-```
+    assoc <- SNPassoc::WGassociation(cc, data=asthma.snps)
+    assoc.adj <- SNPassoc::WGassociation(cc ~ country + smoke, asthma.snps)
+    assoc.maxstat <- SNPassoc::maxstat(asthma.snps, cc)
+    assoc %>%
+      as.data.frame() %>%
+      dplyr::select(-comments) %>%
+      knitr::kable(caption="SNP association")
+    assoc.adj %>%
+      as.data.frame() %>%
+      dplyr::select(-comments) %>%
+      knitr::kable(caption="with adjustment for contountry & smoking")
+    assoc.maxstat %>%
+      `[`(,) %>%
+      t() %>%
+      knitr::kable(caption = "Max stat association statistics")
 
 where assoc.maxstat is coerced into a matrix later, but there appears
 problematic to knit though.
@@ -970,54 +968,50 @@ but it is skipped for being considerably longer.
 
 ### 4.2 biomaRt
 
-``` r
-if (!biomaRt::martBMCheck(mart)) {
-  stop("The BioMart service is currently unavailable.")
-}
-biomaRt::listMarts()
-ensembl <- biomaRt::useMart("ensembl", dataset="hsapiens_gene_ensembl", host="grch37.ensembl.org", path="/biomart/martservice")
-biomaRt::listDatasets(ensembl)
-attr <- biomaRt::listAttributes(ensembl)
-attr_select <- c('ensembl_gene_id', 'chromosome_name', 'start_position', 'end_position', 'description', 'hgnc_symbol',
-                 'transcription_start_site')
-gene <- biomaRt::getBM(attributes = attr_select, mart = ensembl)
-filter <- biomaRt::listFilters(ensembl)
-biomaRt::searchFilters(mart = ensembl, pattern = "gene")
-# GRCh38
-ensembl <- biomaRt::useMart("ensembl", dataset="hsapiens_gene_ensembl")
-```
+    if (!biomaRt::martBMCheck(mart)) {
+      stop("The BioMart service is currently unavailable.")
+    }
+    biomaRt::listMarts()
+    ensembl <- biomaRt::useMart("ensembl", dataset="hsapiens_gene_ensembl", host="grch37.ensembl.org", path="/biomart/martservice")
+    biomaRt::listDatasets(ensembl)
+    attr <- biomaRt::listAttributes(ensembl)
+    attr_select <- c('ensembl_gene_id', 'chromosome_name', 'start_position', 'end_position', 'description', 'hgnc_symbol',
+                     'transcription_start_site')
+    gene <- biomaRt::getBM(attributes = attr_select, mart = ensembl)
+    filter <- biomaRt::listFilters(ensembl)
+    biomaRt::searchFilters(mart = ensembl, pattern = "gene")
+    # GRCh38
+    ensembl <- biomaRt::useMart("ensembl", dataset="hsapiens_gene_ensembl")
 
 ### 4.3 Experimental Factor Ontology (EFO)
 
 The ontology of traits/disease is formally available as this². The
 script below assumes that efo-3.26.0 has been downloaded.
 
-``` r
-library(ontologyIndex)
-id <- function(ontology)
-{
-  inflammatory <- grep(ontology$name,pattern="inflammatory")
-  immune <- grep(ontology$name,pattern="immune")
-  inf <- union(inflammatory,immune)
-  list(id=ontology$id[inf],name=ontology$name[inf])
-}
-# GO
-data(go)
-goidname <- id(go)
-# EFO
-file <- "efo.obo" # efo-3.26.0
-get_relation_names(file)
-efo <- get_ontology(file, extract_tags="everything")
-length(efo) # 89
-length(efo$id) # 27962
-efoidname <- id(efo)
-diseases <- get_descendants(efo,"EFO:0000408")
-efo_0000540 <- get_descendants(efo,"EFO:0000540")
-efo_0000540name <- efo$name[efo_0000540]
-isd <- data.frame(efo_0000540,efo_0000540name)
-library(ontologyPlot)
-onto_plot(efo,efo_0000540)
-```
+    library(ontologyIndex)
+    id <- function(ontology)
+    {
+      inflammatory <- grep(ontology$name,pattern="inflammatory")
+      immune <- grep(ontology$name,pattern="immune")
+      inf <- union(inflammatory,immune)
+      list(id=ontology$id[inf],name=ontology$name[inf])
+    }
+    # GO
+    data(go)
+    goidname <- id(go)
+    # EFO
+    file <- "efo.obo" # efo-3.26.0
+    get_relation_names(file)
+    efo <- get_ontology(file, extract_tags="everything")
+    length(efo) # 89
+    length(efo$id) # 27962
+    efoidname <- id(efo)
+    diseases <- get_descendants(efo,"EFO:0000408")
+    efo_0000540 <- get_descendants(efo,"EFO:0000540")
+    efo_0000540name <- efo$name[efo_0000540]
+    isd <- data.frame(efo_0000540,efo_0000540name)
+    library(ontologyPlot)
+    onto_plot(efo,efo_0000540)
 
 ### 4.4 OpenTargets
 

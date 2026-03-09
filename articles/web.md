@@ -19,17 +19,15 @@ number 8000 is available.
 
 Our focus here is R with the following script.
 
-``` r
-httpuv::startServer("0.0.0.0", 8000, list(
-  call = function(req) {
-    list(
-      status = 200L,
-      headers = list("Content-Type" = "text/plain"),
-      body = "Hello, world!"
+    httpuv::startServer("0.0.0.0", 8000, list(
+      call = function(req) {
+        list(
+          status = 200L,
+          headers = list("Content-Type" = "text/plain"),
+          body = "Hello, world!"
+        )
+      })
     )
-  })
-)
-```
 
 Upon accessing `http://127.0.0.1:8000`, we see the message “Hello,
 world!”.
@@ -143,50 +141,48 @@ for its installation.
 
 It is `an API generator in R`, which has been tested as follows.
 
-``` r
-get_data <- function(filename, region)
-{
-# query_result <- seqminer::tabix.read(filename, region)
-  tbx <- Rsamtools::TabixFile(filename)
-  query_result <- Rsamtools::scanTabix(tbx, param = region)[[1]]
-  if (length(query_result) == 0) {
-    return(data.frame())
-  }
-  hdr <- c("Chromosome", "Position",
-           "MarkerName", "Allele1", "Allele2", "Freq1", "FreqSE", "MinFreq", "MaxFreq",
-           "Effect", "StdErr", "logP",
-           "Direction", "HetISq", "HetChiSq", "HetDf", "logHetP", "N")
-  df <- read.table(text = paste(query_result, collapse = "\n"), sep = "\t", col.names = hdr,
-                   stringsAsFactors = FALSE)
-  return(df)
-}
+    get_data <- function(filename, region)
+    {
+    # query_result <- seqminer::tabix.read(filename, region)
+      tbx <- Rsamtools::TabixFile(filename)
+      query_result <- Rsamtools::scanTabix(tbx, param = region)[[1]]
+      if (length(query_result) == 0) {
+        return(data.frame())
+      }
+      hdr <- c("Chromosome", "Position",
+               "MarkerName", "Allele1", "Allele2", "Freq1", "FreqSE", "MinFreq", "MaxFreq",
+               "Effect", "StdErr", "logP",
+               "Direction", "HetISq", "HetChiSq", "HetDf", "logHetP", "N")
+      df <- read.table(text = paste(query_result, collapse = "\n"), sep = "\t", col.names = hdr,
+                       stringsAsFactors = FALSE)
+      return(df)
+    }
 
-plbr <- plumber::Plumber$new()
-plbr$handle("GET", "/tests", function(req, res) {
-  protein <- req$args$protein
-  region <- req$args$region
-  if (is.null(protein) || is.null(region)) {
-    res$status <- 400
-    return(list(error = "Both 'protein' and 'region' must be provided"))
-  }
-  filename <- file.path("tests",paste0(protein,"-1.tbl.gz"))
-  print(filename)
-  if (!file.exists(filename)) {
-    res$status <- 404
-    return(list(error = paste("File for", protein, "not found")))
-  }
-  data <- get_data(filename, region)
-  json_data <- jsonlite::toJSON(data, dataframe = "rows", na = "null")
-  res$setHeader("Content-Type", "application/json")
-  return(json_data)
-})
-options(width = 200)
-filename <- file.path("tests","IL.18R1-1.tbl.gz")
-region <- "2:102700000-103800000"
-data <- get_data(filename, region)
-head(data,1)
-plbr$run(port = 8001)
-```
+    plbr <- plumber::Plumber$new()
+    plbr$handle("GET", "/tests", function(req, res) {
+      protein <- req$args$protein
+      region <- req$args$region
+      if (is.null(protein) || is.null(region)) {
+        res$status <- 400
+        return(list(error = "Both 'protein' and 'region' must be provided"))
+      }
+      filename <- file.path("tests",paste0(protein,"-1.tbl.gz"))
+      print(filename)
+      if (!file.exists(filename)) {
+        res$status <- 404
+        return(list(error = paste("File for", protein, "not found")))
+      }
+      data <- get_data(filename, region)
+      json_data <- jsonlite::toJSON(data, dataframe = "rows", na = "null")
+      res$setHeader("Content-Type", "application/json")
+      return(json_data)
+    })
+    options(width = 200)
+    filename <- file.path("tests","IL.18R1-1.tbl.gz")
+    region <- "2:102700000-103800000"
+    data <- get_data(filename, region)
+    head(data,1)
+    plbr$run(port = 8001)
 
 Indeed we can see that the first line of data,
 
@@ -249,14 +245,12 @@ way to have the header is add it manually,
 
 The query above is easily furnished with **curl**:
 
-``` r
-tmp <- tempfile()
-curl::curl_download("http://localhost:8001/tests?protein=IL.18R1&region=2:102700000-103800000", tmp)
-df <- jsonlite::fromJSON(readLines(tmp)) |>
-      jsonlite::fromJSON(flatten=TRUE) |>
-      as.data.frame()
-dim(df)
-```
+    tmp <- tempfile()
+    curl::curl_download("http://localhost:8001/tests?protein=IL.18R1&region=2:102700000-103800000", tmp)
+    df <- jsonlite::fromJSON(readLines(tmp)) |>
+          jsonlite::fromJSON(flatten=TRUE) |>
+          as.data.frame()
+    dim(df)
 
 giving
 
@@ -266,36 +260,34 @@ giving
 
 The package gives a somewhat more involved version as follows,
 
-``` r
-dir.create("content/assets", recursive = TRUE)
-dir.create("content/lib", recursive = TRUE)
-s <- httpuv::startServer(
-  host = "0.0.0.0", 
-  port = 5000,
-  app = list(
-    call = function(req) {
-      list(
-        status = 200L,
-        headers = list(
-          'Content-Type' = 'text/html',
-          'Access-Control-Allow-Origin' = '*',
-          'Access-Control-Allow-Methods' = 'GET, POST, OPTIONS',
-          'Access-Control-Allow-Headers' = 'Content-Type'
+    dir.create("content/assets", recursive = TRUE)
+    dir.create("content/lib", recursive = TRUE)
+    s <- httpuv::startServer(
+      host = "0.0.0.0", 
+      port = 5000,
+      app = list(
+        call = function(req) {
+          list(
+            status = 200L,
+            headers = list(
+              'Content-Type' = 'text/html',
+              'Access-Control-Allow-Origin' = '*',
+              'Access-Control-Allow-Methods' = 'GET, POST, OPTIONS',
+              'Access-Control-Allow-Headers' = 'Content-Type'
+            ),
+            body = "Hello world!"
+          )
+        },
+        staticPaths = list(
+          "/assets" = "content/assets/", # Static assets
+          "/lib" = httpuv::staticPath("content/lib", indexhtml = FALSE),
+          "/lib/dynamic" = httpuv::excludeStaticPath()
         ),
-        body = "Hello world!"
+        staticPathOptions = httpuv::staticPathOptions(indexhtml = TRUE)
       )
-    },
-    staticPaths = list(
-      "/assets" = "content/assets/", # Static assets
-      "/lib" = httpuv::staticPath("content/lib", indexhtml = FALSE),
-      "/lib/dynamic" = httpuv::excludeStaticPath()
-    ),
-    staticPathOptions = httpuv::staticPathOptions(indexhtml = TRUE)
-  )
-)
-cat("Server running at http://0.0.0.0:5000\n")
-s$stop()
-```
+    )
+    cat("Server running at http://0.0.0.0:5000\n")
+    s$stop()
 
 so mappings are created from `content/[assets, lib]` to `assets` and
 `lib`, while
