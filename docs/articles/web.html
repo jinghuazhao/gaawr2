@@ -93,8 +93,7 @@
 <span class="header-section-number">1.2</span> R<a class="anchor" aria-label="anchor" href="#r"></a>
 </h3>
 <p>Our focus here is R with the following script.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">httpuv</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/httpuv/man/startServer.html" class="external-link">startServer</a></span><span class="op">(</span><span class="st">"0.0.0.0"</span>, <span class="fl">8000</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<pre><code><span><span class="fu">httpuv</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/httpuv/man/startServer.html" class="external-link">startServer</a></span><span class="op">(</span><span class="st">"0.0.0.0"</span>, <span class="fl">8000</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>  call <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">req</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>      status <span class="op">=</span> <span class="fl">200L</span>,</span>
@@ -102,7 +101,7 @@
 <span>      body <span class="op">=</span> <span class="st">"Hello, world!"</span></span>
 <span>    <span class="op">)</span></span>
 <span>  <span class="op">}</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+<span><span class="op">)</span></span></code></pre>
 <p>Upon accessing <code>http://127.0.0.1:8000</code>, we see the message “Hello, world!”.</p>
 </div>
 </div>
@@ -205,8 +204,7 @@ CLEAR</code></pre>
 </h3>
 <p>Software library <code>libsodium</code>, <a href="https://doc.libsodium.org/" class="external-link uri">https://doc.libsodium.org/</a>, is required for its installation.</p>
 <p>It is <code>an API generator in R</code>, which has been tested as follows.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">get_data</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">filename</span>, <span class="va">region</span><span class="op">)</span></span>
+<pre><code><span><span class="va">get_data</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">filename</span>, <span class="va">region</span><span class="op">)</span></span>
 <span><span class="op">{</span></span>
 <span><span class="co"># query_result &lt;- seqminer::tabix.read(filename, region)</span></span>
 <span>  <span class="va">tbx</span> <span class="op">&lt;-</span> <span class="fu">Rsamtools</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/Rsamtools/man/TabixFile-class.html" class="external-link">TabixFile</a></span><span class="op">(</span><span class="va">filename</span><span class="op">)</span></span>
@@ -247,7 +245,7 @@ CLEAR</code></pre>
 <span><span class="va">region</span> <span class="op">&lt;-</span> <span class="st">"2:102700000-103800000"</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">get_data</span><span class="op">(</span><span class="va">filename</span>, <span class="va">region</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">data</span>,<span class="fl">1</span><span class="op">)</span></span>
-<span><span class="va">plbr</span><span class="op">$</span><span class="fu">run</span><span class="op">(</span>port <span class="op">=</span> <span class="fl">8001</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">plbr</span><span class="op">$</span><span class="fu">run</span><span class="op">(</span>port <span class="op">=</span> <span class="fl">8001</span><span class="op">)</span></span></code></pre>
 <p>Indeed we can see that the first line of data,</p>
 <pre><code>  Chromosome  Position         MarkerName Allele1 Allele2 Freq1 FreqSE MinFreq MaxFreq  Effect StdErr  logP   Direction HetISq HetChiSq HetDf logHetP     N
 1          2 102700138 chr2:102700138_A_G       a       g 0.087 0.0207  0.0641  0.1376 -0.0566 0.0239 -1.75 -?-+n-?--n+   78.2   36.757     8  -4.894 12799</code></pre>
@@ -307,13 +305,12 @@ Running swagger Docs at http://127.0.0.1:8001/__docs__/</code></pre>
 <span class="header-section-number">3.3.2</span> R<a class="anchor" aria-label="anchor" href="#r-1"></a>
 </h4>
 <p>The query above is easily furnished with <strong>curl</strong>:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span><span class="op">)</span></span>
+<pre><code><span><span class="va">tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu">curl</span><span class="fu">::</span><span class="fu"><a href="https://jeroen.r-universe.dev/curl/reference/curl_download.html" class="external-link">curl_download</a></span><span class="op">(</span><span class="st">"http://localhost:8001/tests?protein=IL.18R1&amp;region=2:102700000-103800000"</span>, <span class="va">tmp</span><span class="op">)</span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://jeroen.r-universe.dev/jsonlite/reference/fromJSON.html" class="external-link">fromJSON</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>      <span class="fu">jsonlite</span><span class="fu">::</span><span class="fu"><a href="https://jeroen.r-universe.dev/jsonlite/reference/fromJSON.html" class="external-link">fromJSON</a></span><span class="op">(</span>flatten<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>      <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></code></pre>
 <p>giving</p>
 <pre><code>[1] 4779   18</code></pre>
 </div>
@@ -323,8 +320,7 @@ Running swagger Docs at http://127.0.0.1:8001/__docs__/</code></pre>
 <span class="header-section-number">3.4</span> httpuv<a class="anchor" aria-label="anchor" href="#httpuv"></a>
 </h3>
 <p>The package gives a somewhat more involved version as follows,</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span><span class="st">"content/assets"</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<pre><code><span><span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span><span class="st">"content/assets"</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span><span class="st">"content/lib"</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu">httpuv</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/httpuv/man/startServer.html" class="external-link">startServer</a></span><span class="op">(</span></span>
 <span>  host <span class="op">=</span> <span class="st">"0.0.0.0"</span>, </span>
@@ -351,7 +347,7 @@ Running swagger Docs at http://127.0.0.1:8001/__docs__/</code></pre>
 <span>  <span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Server running at http://0.0.0.0:5000\n"</span><span class="op">)</span></span>
-<span><span class="va">s</span><span class="op">$</span><span class="kw">stop</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">s</span><span class="op">$</span><span class="kw">stop</span><span class="op">(</span><span class="op">)</span></span></code></pre>
 <p>so mappings are created from <code>content/[assets, lib]</code> to <code>assets</code> and <code>lib</code>, while <code><a href="https://rdrr.io/pkg/httpuv/man/staticPath.html" class="external-link">httpuv::excludeStaticPath()</a></code> indicates that requests
 to <code>/lib/dynamic</code> will not be served as static files but could be handled dynamically by the app logic.</p>
 </div>
