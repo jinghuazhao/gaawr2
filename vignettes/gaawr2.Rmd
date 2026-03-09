@@ -298,7 +298,7 @@ for (i in 1:4) haploH[[i]] <- haplo.stats::haplo.score.slide(asthma.snps$cc, gen
 
 We return to the asthma data used in **SNPassoc**.
 
-```r
+```
 assoc <- SNPassoc::WGassociation(cc, data=asthma.snps)
 assoc.adj <- SNPassoc::WGassociation(cc ~ country + smoke, asthma.snps)
 assoc.maxstat <- SNPassoc::maxstat(asthma.snps, cc)
@@ -426,7 +426,7 @@ One can also use `exons_data <- ensembldb::exons(EnsDb.Hsapiens.v75);head(exons_
 
 ## biomaRt
 
-```r
+```
 if (!biomaRt::martBMCheck(mart)) {
   stop("The BioMart service is currently unavailable.")
 }
@@ -447,7 +447,7 @@ ensembl <- biomaRt::useMart("ensembl", dataset="hsapiens_gene_ensembl")
 
 The ontology of traits/disease is formally available as this @malone10. The script below assumes that efo-3.26.0 has been downloaded.
 
-```r
+```
 library(ontologyIndex)
 id <- function(ontology)
 {
