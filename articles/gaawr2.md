@@ -1,16 +1,18 @@
 # Genetic Association Analysis
 
 ``` r
-if (!requireNamespace("bookdown", quietly = TRUE)) knitr::knit_exit()
 pkgs <- c("EnsDb.Hsapiens.v75","ensembldb","GMMAT","HardyWeinberg","MCMCglmm","SNPassoc","biomaRt",
-           "gap","gap.datasets","haplo.stats","powerEQTL","R2jags","regress",
-           "dplyr","ggplot2","httr","jsonlite","kableExtra","knitr","tidyr")
+          "gap","gap.datasets","haplo.stats","powerEQTL","R2jags","regress",
+          "dplyr","ggplot2","httr","jsonlite","kableExtra","knitr","tidyr")
 has_pkg <- function(x) requireNamespace(x, quietly = TRUE)
-missing <- pkgs[!vapply(pkgs, has_pkg, logical(1))]
+installed <- pkgs[vapply(pkgs, has_pkg, logical(1))]
+missing <- setdiff(pkgs, installed)
 if (length(missing)) {
-  warning("Missing packages: ", paste(missing, collapse = ", "))
+  message("Missing packages: ", paste(missing, collapse = ", "))
 }
-invisible(suppressMessages(lapply(pkgs, require, character.only = TRUE)))
+invisible(lapply(installed, function(p)
+  suppressMessages(library(p, character.only = TRUE))
+))
 sys_options <- options()
 new_options <- options(digits=2)
 ```
@@ -888,6 +890,9 @@ The counterpart for single-cell RNA-Seq design is via
 ### 4.1 EnsDb.Hsapiens.v75
 
 ``` r
+data("EnsDb.Hsapiens.v75", package="EnsDb.Hsapiens.v75")
+#> Warning in data("EnsDb.Hsapiens.v75", package = "EnsDb.Hsapiens.v75"): data set
+#> 'EnsDb.Hsapiens.v75' not found
 ensembldb::metadata(EnsDb.Hsapiens.v75)
 #>                  name                               value
 #> 1             Db type                               EnsDb
