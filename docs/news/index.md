@@ -2,6 +2,8 @@
 
 ## gaawr2 0.0.7
 
+CRAN release: 2026-03-10
+
 (2026/3/10)
 
 -   It is unclear CRAN will follow shinygap.Rmd practice so use inst/doc
