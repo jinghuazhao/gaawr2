@@ -1,5 +1,12 @@
 # Changelog
 
+## gaawr2 0.0.7
+
+(2026/3/10)
+
+-   Rework on gaawr2.Rmd/web.Rmd bookdown dependency which causes errors
+    at CRAN.
+
 ## gaawr2 0.0.6
 
 (2026/3/9)
