@@ -4,6 +4,10 @@
 
 (2026/3/10)
 
+-   It is unclear CRAN will follow shinygap.Rmd practice so use inst/doc
+    instead.
+    -   Consequently, this line is dropped from DESCRIPTION:
+        VignetteBuilder: knitr.
 -   Rework on gaawr2.Rmd/web.Rmd bookdown dependency which causes errors
     at CRAN.
 
