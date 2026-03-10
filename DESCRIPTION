@@ -26,7 +26,6 @@ RdMacros: Rdpack
 LazyData: Yes
 LazyLoad: Yes
 LazyDataCompression: xz
-VignetteBuilder: knitr
 Suggests:
     BLR,
     BGLR,
