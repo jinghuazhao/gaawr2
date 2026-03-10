@@ -23,6 +23,7 @@ Depends:
     R (>= 3.5.0)
 Imports: dplyr, gap, gap.datasets, ggplot2, survival, Rdpack
 RdMacros: Rdpack
+VignetteBuilder: knitr
 LazyData: Yes
 LazyLoad: Yes
 LazyDataCompression: xz
