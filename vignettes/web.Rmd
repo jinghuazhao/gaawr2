@@ -4,8 +4,6 @@ output:
   bookdown::html_document2:
     toc: true
     toc_float: true
-    number_sections: true
-    self_contained: false
 fontsize: 11pt
 bibliography: '`r system.file("REFERENCES.bib", package="gaawr2")`'
 csl: '`r system.file("csl", "nature-genetics.csl", package = "gaawr2")`'
@@ -31,14 +29,14 @@ knitr::opts_chunk$set(
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-if (!requireNamespace("bookdown", quietly = TRUE)) knitr::knit_exit()
 pkgs <- c("httr","httpuv","jsonlite","plumber","Rsamtools")
 has_pkg <- function(p) requireNamespace(p, quietly = TRUE)
 missing <- pkgs[!vapply(pkgs, has_pkg, logical(1))]
 if (length(missing)) {
   warning("Missing packages: ", paste(missing, collapse = ", "))
 }
-invisible(suppressMessages(lapply(pkgs, require, character.only = TRUE)))
+installed <- pkgs[vapply(pkgs, has_pkg, logical(1))]
+invisible(suppressMessages(lapply(installed, require, character.only = TRUE)))
 ```
 
 # Hello, world!

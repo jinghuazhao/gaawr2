@@ -4,9 +4,6 @@ output:
   bookdown::html_document2:
     toc: true
     toc_float: true
-    fig_caption: true
-    number_sections: true
-    self_contained: false
 fontsize: 11pt
 bibliography: '`r system.file("REFERENCES.bib", package="gaawr2")`'
 csl: '`r system.file("csl", "nature-genetics.csl", package = "gaawr2")`'
@@ -32,16 +29,18 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup, message=FALSE, warning=FALSE}
-if (!requireNamespace("bookdown", quietly = TRUE)) knitr::knit_exit()
 pkgs <- c("EnsDb.Hsapiens.v75","ensembldb","GMMAT","HardyWeinberg","MCMCglmm","SNPassoc","biomaRt",
-           "gap","gap.datasets","haplo.stats","powerEQTL","R2jags","regress",
-           "dplyr","ggplot2","httr","jsonlite","kableExtra","knitr","tidyr")
+          "gap","gap.datasets","haplo.stats","powerEQTL","R2jags","regress",
+          "dplyr","ggplot2","httr","jsonlite","kableExtra","knitr","tidyr")
 has_pkg <- function(x) requireNamespace(x, quietly = TRUE)
-missing <- pkgs[!vapply(pkgs, has_pkg, logical(1))]
+installed <- pkgs[vapply(pkgs, has_pkg, logical(1))]
+missing <- setdiff(pkgs, installed)
 if (length(missing)) {
-  warning("Missing packages: ", paste(missing, collapse = ", "))
+  message("Missing packages: ", paste(missing, collapse = ", "))
 }
-invisible(suppressMessages(lapply(pkgs, require, character.only = TRUE)))
+invisible(lapply(installed, function(p)
+  suppressMessages(library(p, character.only = TRUE))
+))
 sys_options <- options()
 new_options <- options(digits=2)
 ```
@@ -416,6 +415,7 @@ The counterpart for single-cell RNA-Seq design is via `powerEQTL.scRNAseq`.
 ## EnsDb.Hsapiens.v75
 
 ```{r ensdb, eval=has_pkg("ensembldb") && has_pkg("EnsDb.Hsapiens.v75"), messages=FALSE}
+data("EnsDb.Hsapiens.v75", package="EnsDb.Hsapiens.v75")
 ensembldb::metadata(EnsDb.Hsapiens.v75)
 genes <- ensembldb::genes(EnsDb.Hsapiens.v75)
 head(genes)
