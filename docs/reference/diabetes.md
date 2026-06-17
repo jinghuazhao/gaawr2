@@ -5,7 +5,7 @@ A diabetes dataset on 1,000 patients.
 ## Usage
 
 ``` r
-diabetes
+data(diabetes)
 ```
 
 ## Format

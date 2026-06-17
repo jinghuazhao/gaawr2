@@ -1,5 +1,12 @@
 # Changelog
 
+## gaawr2 0.0.8
+
+(2026/6/17)
+
+-   Rewire gaawr2.Rmd so it is independent of CRAN.
+-   Suggests htmltools.
+
 ## gaawr2 0.0.7
 
 CRAN release: 2026-03-10
