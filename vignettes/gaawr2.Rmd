@@ -24,7 +24,7 @@ knitr::opts_chunk$set(
 ```{r include-vignette, echo=FALSE, results='asis'}
 if (identical(Sys.getenv("IN_PKGDOWN"), "true")) {
   cat(knitr::knit_child(
-    "/home/jhz22/R/vigneetes/gaawr2.Rmd",
+    "/home/jhz22/R/vignettes/gaawr2.Rmd",
     quiet = TRUE
   ))
 } else {
