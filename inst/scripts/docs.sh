@@ -21,7 +21,7 @@ Rscript -e '
 
 module load ceuadmin/R
 module load gcc/11.3.0/gcc/4zpip55j
-export IN_PKGDOWN=1
+export IN_PKGDOWN=true
 
 Rscript -e '
 # rmarkdown::render("pkgdown/index.Rmd", output_format = "md_document");
