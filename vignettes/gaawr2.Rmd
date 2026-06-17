@@ -1,20 +1,19 @@
 ---
 title: " "
 output:
-  bookdown::html_document2:
-    toc: true
-    toc_float: true
-    number_sections: true
-    self_contained: false
+bookdown::html_document2:
+toc: true
+toc_float: true
+number_sections: true
+self_contained: false
 fontsize: 11pt
 pkgdown:
-  as_is: true
-
+as_is: true
 vignette: >
-  %\VignetteIndexEntry{Genetic Analysis Analysis}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
----
+%\VignetteIndexEntry{Genetic Analysis Analysis}
+%\VignetteEngine{knitr::rmarkdown}
+%\VignetteEncoding{UTF-8}
+-------------------------
 
 ```{r setup, include=FALSE}
 set.seed(0)
@@ -29,9 +28,20 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r gap_incl, echo=FALSE, warning=FALSE}
-htmltools::tags$iframe(
-  src = "https://jinghuazhao.github.io/R/vignettes/gaawr2.html",
-  width = "100%",
-  style = "height:100vh; border:none;"
-)
+```{r gap_incl, echo=FALSE}
+url <- "https://jinghuazhao.github.io/R/vignettes/gaawr2.html"
+if (identical(Sys.getenv("IN_PKGDOWN"), "true")) {
+  cat(
+    sprintf(
+      "<p>For the full vignette see <a href='%s'>%s</a>.</p>",
+      url, url
+    )
+  )
+} else {
+  htmltools::tags$iframe(
+    src = url,
+    width = "100%",
+    style = "height:100vh; border:none;"
+  )
+}
+```
