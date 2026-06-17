@@ -16,14 +16,14 @@ brief introduction to these topics.
 
 Available data and function are listed in the following table.
 
-|                                                                            |                                                      |
-|----------------------------------------------------------------------------|------------------------------------------------------|
-| Objects                                                                    | Description                                          |
-| **Dataset**                                                                |                                                      |
+|  |  |
+|----|----|
+| Objects | Description |
+| **Dataset** |   |
 | [`DiaHealth`](https://jinghuazhao.github.io/gaawr2/reference/DiaHealth.md) | A Bangladeshi dataset for Type 2 diabetes prediction |
-| [`diabetes`](https://jinghuazhao.github.io/gaawr2/reference/diabetes.md)   | A diabetes dataset                                   |
-| **Functions**                                                              |                                                      |
-| [`welcome`](https://jinghuazhao.github.io/gaawr2/reference/welcome.md)     | An enhanced welcome                                  |
+| [`diabetes`](https://jinghuazhao.github.io/gaawr2/reference/diabetes.md) | A diabetes dataset |
+| **Functions** |   |
+| [`welcome`](https://jinghuazhao.github.io/gaawr2/reference/welcome.md) | An enhanced welcome |
 
 We can add references such as Francois (2014) .
 

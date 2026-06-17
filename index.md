@@ -21,6 +21,7 @@ The latest version of **gaawr2** can be installed as usual:
 ### 1. Install from R
 
 ``` r
+
 # CRAN
 install.packages("gaawr2")
 
@@ -44,12 +45,14 @@ GitHub.
 This can be seen from R with
 
 ``` r
+
 library(help=gaawr2)
 ```
 
 or
 
 ``` r
+
 library(gaawr2)
 ?gaawr2
 ```

@@ -20,6 +20,7 @@ number 8000 is available.
 Our focus here is R with the following script.
 
 ``` r
+
 httpuv::startServer("0.0.0.0", 8000, list(
   call = function(req) {
     list(
@@ -43,6 +44,7 @@ This is an attempt to implement the following CRAN policy,
 > (and not give a check warning nor error).
 
 ``` r
+
 check_url_availability <- function(url) {
 # Send a GET request to the URL
   response <- tryCatch({
@@ -144,6 +146,7 @@ for its installation.
 It is `an API generator in R`, which has been tested as follows.
 
 ``` r
+
 get_data <- function(filename, region)
 {
 # query_result <- seqminer::tabix.read(filename, region)
@@ -250,6 +253,7 @@ way to have the header is add it manually,
 The query above is easily furnished with **curl**:
 
 ``` r
+
 tmp <- tempfile()
 curl::curl_download("http://localhost:8001/tests?protein=IL.18R1&region=2:102700000-103800000", tmp)
 df <- jsonlite::fromJSON(readLines(tmp)) |>
@@ -267,6 +271,7 @@ giving
 The package gives a somewhat more involved version as follows,
 
 ``` r
+
 dir.create("content/assets", recursive = TRUE)
 dir.create("content/lib", recursive = TRUE)
 s <- httpuv::startServer(
@@ -299,7 +304,7 @@ s$stop()
 
 so mappings are created from `content/[assets, lib]` to `assets` and
 `lib`, while
-[`httpuv::excludeStaticPath()`](https://rdrr.io/pkg/httpuv/man/staticPath.html)
+[`httpuv::excludeStaticPath()`](https://rstudio.github.io/httpuv/reference/staticPath.html)
 indicates that requests to `/lib/dynamic` will not be served as static
 files but could be handled dynamically by the app logic.
 

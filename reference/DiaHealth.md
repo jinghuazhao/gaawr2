@@ -5,7 +5,7 @@ A Bangladeshi dataset for Type 2 diabetes prediction.
 ## Usage
 
 ``` r
-DiaHealth
+data(DiaHealth)
 ```
 
 ## Format

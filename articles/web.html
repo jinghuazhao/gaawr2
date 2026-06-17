@@ -18,8 +18,8 @@
     }
   };
 </script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Web facilities">
 </head>
@@ -31,7 +31,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">gaawr2</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.7</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.8</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -94,7 +94,7 @@
 </h3>
 <p>Our focus here is R with the following script.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">httpuv</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/httpuv/man/startServer.html" class="external-link">startServer</a></span><span class="op">(</span><span class="st">"0.0.0.0"</span>, <span class="fl">8000</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="fu">httpuv</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/httpuv/reference/startServer.html" class="external-link">startServer</a></span><span class="op">(</span><span class="st">"0.0.0.0"</span>, <span class="fl">8000</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>  call <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">req</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>      status <span class="op">=</span> <span class="fl">200L</span>,</span>
@@ -326,7 +326,7 @@ Running swagger Docs at http://127.0.0.1:8001/__docs__/</code></pre>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span><span class="st">"content/assets"</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span><span class="st">"content/lib"</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu">httpuv</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/httpuv/man/startServer.html" class="external-link">startServer</a></span><span class="op">(</span></span>
+<span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu">httpuv</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/httpuv/reference/startServer.html" class="external-link">startServer</a></span><span class="op">(</span></span>
 <span>  host <span class="op">=</span> <span class="st">"0.0.0.0"</span>, </span>
 <span>  port <span class="op">=</span> <span class="fl">5000</span>,</span>
 <span>  app <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
@@ -344,15 +344,15 @@ Running swagger Docs at http://127.0.0.1:8001/__docs__/</code></pre>
 <span>    <span class="op">}</span>,</span>
 <span>    staticPaths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>      <span class="st">"/assets"</span> <span class="op">=</span> <span class="st">"content/assets/"</span>, <span class="co"># Static assets</span></span>
-<span>      <span class="st">"/lib"</span> <span class="op">=</span> <span class="fu">httpuv</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/httpuv/man/staticPath.html" class="external-link">staticPath</a></span><span class="op">(</span><span class="st">"content/lib"</span>, indexhtml <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,</span>
-<span>      <span class="st">"/lib/dynamic"</span> <span class="op">=</span> <span class="fu">httpuv</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/httpuv/man/staticPath.html" class="external-link">excludeStaticPath</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>      <span class="st">"/lib"</span> <span class="op">=</span> <span class="fu">httpuv</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/httpuv/reference/staticPath.html" class="external-link">staticPath</a></span><span class="op">(</span><span class="st">"content/lib"</span>, indexhtml <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,</span>
+<span>      <span class="st">"/lib/dynamic"</span> <span class="op">=</span> <span class="fu">httpuv</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/httpuv/reference/staticPath.html" class="external-link">excludeStaticPath</a></span><span class="op">(</span><span class="op">)</span></span>
 <span>    <span class="op">)</span>,</span>
-<span>    staticPathOptions <span class="op">=</span> <span class="fu">httpuv</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/httpuv/man/staticPathOptions.html" class="external-link">staticPathOptions</a></span><span class="op">(</span>indexhtml <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>    staticPathOptions <span class="op">=</span> <span class="fu">httpuv</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/httpuv/reference/staticPathOptions.html" class="external-link">staticPathOptions</a></span><span class="op">(</span>indexhtml <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Server running at http://0.0.0.0:5000\n"</span><span class="op">)</span></span>
 <span><span class="va">s</span><span class="op">$</span><span class="kw">stop</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>so mappings are created from <code>content/[assets, lib]</code> to <code>assets</code> and <code>lib</code>, while <code><a href="https://rdrr.io/pkg/httpuv/man/staticPath.html" class="external-link">httpuv::excludeStaticPath()</a></code> indicates that requests
+<p>so mappings are created from <code>content/[assets, lib]</code> to <code>assets</code> and <code>lib</code>, while <code><a href="https://rstudio.github.io/httpuv/reference/staticPath.html" class="external-link">httpuv::excludeStaticPath()</a></code> indicates that requests
 to <code>/lib/dynamic</code> will not be served as static files but could be handled dynamically by the app logic.</p>
 </div>
 </div>
