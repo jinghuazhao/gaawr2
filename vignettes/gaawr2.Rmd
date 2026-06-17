@@ -23,13 +23,7 @@ knitr::opts_chunk$set(
 
 ```{r gaawr2_incl, echo=FALSE, results='asis'}
 render_child <- function(file) {
-  x <- readLines(file, warn = FALSE)
-  if (length(x) > 0 && grepl("^---\\s*$", x[1])) {
-    y <- which(grepl("^---\\s*$", x))
-    if (length(y) >= 2)
-      x <- x[-seq_len(y[2])]
-  }
-  knitr::knit_child(text = x, quiet = TRUE)
+  knitr::knit_child(file = file, quiet = TRUE)
 }
 if (identical(Sys.getenv("IN_PKGDOWN"), "true")) {
   cat(render_child("/home/jhz22/R/vignettes/gaawr2.Rmd"), sep="\n")
