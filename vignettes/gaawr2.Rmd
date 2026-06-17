@@ -22,14 +22,13 @@ knitr::opts_chunk$set(
 ```
 
 ```{r gaawr2_incl, echo=FALSE, results='asis'}
-render_child <- function(file) {
-  knitr::knit_child(file = file, quiet = TRUE)
-}
 if (identical(Sys.getenv("IN_PKGDOWN"), "true")) {
+# A
   cat(
     "<p><strong>Full vignette:</strong> available externally.</p>",
-    "<p><a href='https://jinghuazhao.github.io/R/vignettes/gaawr2.html' target='_blank'>Open full version</a></p>"
+    "<p><a href='https://jinghuazhao.github.io/R/vignettes/gaawr2.html' target='_blank'>Open CRAN-style documentation</a></p>"
   )
+# B
 } else {
 knitr::asis_output(
   as.character(
