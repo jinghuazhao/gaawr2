@@ -1,7 +1,7 @@
 Package: gaawr2
 Title: Genetic Association Analysis
-Version: 0.0.7
-Date: 2026-3-10
+Version: 0.0.8
+Date: 2026-6-17
 Authors@R: c(person("Jing Hua", "Zhao", , role = c("aut", "cre"),
                   email = "jinghuazhao@hotmail.com",
                   comment = c(ORCID = "https://orcid.org/0000-0002-1463-5870", ORCID = "0000-0003-4930-3582")),
@@ -38,6 +38,7 @@ Suggests:
     GMMAT,
     HardyWeinberg,
     haplo.stats,
+    htmltools,
     httr,
     httpuv,
     jsonlite,
@@ -53,4 +54,4 @@ Suggests:
     testthat,
     tidyr
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3
+Config/roxygen2/version: 8.0.0
