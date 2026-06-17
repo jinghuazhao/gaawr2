@@ -1,12 +1,11 @@
 ---
-title: " "
+title: "Genetic Analysis Analysis"
 output:
 bookdown::html_document2:
 toc: true
 toc_float: true
 number_sections: true
 self_contained: false
-fontsize: 11pt
 pkgdown:
 as_is: true
 vignette: >
@@ -16,30 +15,21 @@ vignette: >
 -------------------------
 
 ```{r setup, include=FALSE}
-set.seed(0)
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>",
-  fig.align = "center",
-  fig.width = 8,
-  fig.height = 8,
-  out.extra = 'style="display:block; margin:auto"',
-  dev = "CairoPNG"
+  comment = "#>"
 )
 ```
 
-```{r gap_incl, echo=FALSE}
-url <- "https://jinghuazhao.github.io/R/vignettes/gaawr2.html"
+```{r include-vignette, echo=FALSE, results='asis'}
 if (identical(Sys.getenv("IN_PKGDOWN"), "true")) {
-  cat(
-    sprintf(
-      "<p>For the full vignette see <a href='%s'>%s</a>.</p>",
-      url, url
-    )
-  )
+  cat(knitr::knit_child(
+    "/home/jhz22/R/vigneetes/gaawr2.Rmd",
+    quiet = TRUE
+  ))
 } else {
   htmltools::tags$iframe(
-    src = url,
+    src = "https://jinghuazhao.github.io/R/vignettes/gaawr2.html",
     width = "100%",
     style = "height:100vh; border:none;"
   )
