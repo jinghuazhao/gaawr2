@@ -36,14 +36,8 @@ navbar:
     right: [home, github, cran]
   components:
     articles:
-        text: Articles
-        menu:
-        - text: "Vignettes:"
-        - text: Genetic Association Analysis with R (II)
-          href: articles/gaawr2.html
-        - text: "Articles:"
-        - text: Web facilities
-          href: articles/web.html
+          text: Articles
+          href: articles/index.html
     reference:
           text: Reference
           href: reference/gaawr2.html
@@ -63,6 +57,15 @@ navbar:
         icon: fab fa-r-project
         href: https://cran.r-project.org/package=gaawr2
         aria-label: R
+
+articles:
+  - title: Vignettes
+    contents:
+      - gaawr2
+
+  - title: Articles
+    contents:
+      - web
 
 reference:
   - title: "A summary"
