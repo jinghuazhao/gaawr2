@@ -3,7 +3,7 @@
 (2026/6/17)
 
 * Create gaawr2_cran.Rmd to enable direct access from CRAN.
-* Suggests htmltools.
+* Suggests htmltools as needed by CRAN html.
 
 ## gaawr2 0.0.7
 
