@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r gaawr2_incl, child=echo=FALSE, results='asis'}
+```{r gaawr2_incl, echo=FALSE, results='asis'}
 render_child <- function(file) {
   knitr::knit_child(file = file, quiet = TRUE)
 }
