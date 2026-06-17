@@ -173,7 +173,7 @@ ggplot2::ggplot(mean_values_long,
   ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1))
 ```
 
-![Mean values by gender and diabetes category](figure/diabetes-1.png)
+![Mean values by gender and diabetes category](gaawr2/diabetes-1.png)
 
 Figure 2.1: Mean values by gender and diabetes category
 
@@ -222,7 +222,7 @@ HardyWeinberg::maf(SNP)
 HardyWeinberg::HWTernaryPlot(SNP,region=0,grid=TRUE,markercol="blue")
 ```
 
-![SNP ternary plot](figure/hwe-1.png)
+![SNP ternary plot](gaawr2/hwe-1.png)
 
 Figure 3.1: SNP ternary plot
 
@@ -877,7 +877,7 @@ for (design in designs)
 legend("bottomright", inset=.02, title="Sample size (N)", paste(N), col=colors, horiz=FALSE, cex=0.8, lty=designs)
 ```
 
-![Power Estimation for eQTL Studies of 240 SNPs](figure/eqtl-1.png)
+![Power Estimation for eQTL Studies of 240 SNPs](gaawr2/eqtl-1.png)
 
 Figure 3.2: Power Estimation for eQTL Studies of 240 SNPs
 
