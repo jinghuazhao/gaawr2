@@ -2,7 +2,7 @@
 
 (2026/6/17)
 
-* Rewire gaawr2.Rmd so it is independent of CRAN.
+* Create gaawr2_cran.Rmd to enable direct access from CRAN.
 * Suggests htmltools.
 
 ## gaawr2 0.0.7
