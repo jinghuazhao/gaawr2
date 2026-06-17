@@ -28,7 +28,7 @@ A data frame with 5,437 patients and 14 variables on demographics, clinical para
 Prama TT, Zaman M, Sarker F, Mamun KA. (2024), “DiaHealth: A Bangladeshi Dataset for Type 2 Diabetes Prediction ”, Mendeley Data, V1, doi: 10.17632/7m7555vgrn.1
 }
 \usage{
-DiaHealth
+data(DiaHealth)
 }
 \description{
 A Bangladeshi dataset for Type 2 diabetes prediction.

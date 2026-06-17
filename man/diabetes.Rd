@@ -27,7 +27,7 @@ A data frame with 1,000 rows and 14 variables:
 Rashid A (2020), “Diabetes Dataset”, Mendeley Data, V1, doi: 10.17632/wj9rwkp9c2.1.
 }
 \usage{
-diabetes
+data(diabetes)
 }
 \description{
 A diabetes dataset on 1,000 patients.
