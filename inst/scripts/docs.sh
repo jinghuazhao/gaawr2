@@ -21,7 +21,7 @@ Rscript -e '
 
 module load ceuadmin/R
 module load gcc/11.3.0/gcc/4zpip55j
-export IN_PKGDOWN=true
+cp ~/R/vignettes/gaawr2.Rmd vignettes
 
 Rscript -e '
 # rmarkdown::render("pkgdown/index.Rmd", output_format = "md_document");
