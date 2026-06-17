@@ -1,18 +1,18 @@
 ---
-title: "Genetic Analysis Analysis"
+title: "Genetic Association Analysis"
 output:
-bookdown::html_document2:
-toc: true
-toc_float: true
-number_sections: true
-self_contained: false
+  bookdown::html_document2:
+    toc: true
+    toc_float: true
+    number_sections: true
+    self_contained: false
 pkgdown:
-as_is: true
+  as_is: true
 vignette: >
-%\VignetteIndexEntry{Genetic Analysis Analysis}
-%\VignetteEngine{knitr::rmarkdown}
-%\VignetteEncoding{UTF-8}
--------------------------
+  %\VignetteIndexEntry{Genetic Association Analysis}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
@@ -21,17 +21,27 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r include-vignette, echo=FALSE, results='asis'}
+```{r gaawr2_incl, echo=FALSE, results='asis'}
+render_child <- function(file) {
+  x <- readLines(file, warn = FALSE)
+  if (length(x) > 0 && grepl("^---\\s*$", x[1])) {
+    y <- which(grepl("^---\\s*$", x))
+    if (length(y) >= 2)
+      x <- x[-seq_len(y[2])]
+  }
+  knitr::knit_child(text = x, quiet = TRUE)
+}
 if (identical(Sys.getenv("IN_PKGDOWN"), "true")) {
-  cat(knitr::knit_child(
-    "/home/jhz22/R/vignettes/gaawr2.Rmd",
-    quiet = TRUE
-  ))
+  cat(render_child("/home/jhz22/R/vignettes/gaawr2.Rmd"), sep="\n")
 } else {
-  htmltools::tags$iframe(
-    src = "https://jinghuazhao.github.io/R/vignettes/gaawr2.html",
-    width = "100%",
-    style = "height:100vh; border:none;"
+knitr::asis_output(
+  as.character(
+    htmltools::tags$iframe(
+      src = "https://jinghuazhao.github.io/R/vignettes/gaawr2.html",
+      width = "100%",
+      style = "height:100vh; border:none;"
+    )
   )
+)
 }
 ```
