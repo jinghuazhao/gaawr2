@@ -8,4 +8,4 @@
 ### Articles
 
 -   [Web
-    facilities](https://jinghuazhao.github.io/gaawr2/articles/web.md):
+    Facilities](https://jinghuazhao.github.io/gaawr2/articles/web.md):

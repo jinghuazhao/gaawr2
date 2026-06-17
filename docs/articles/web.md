@@ -1,4 +1,4 @@
-# Web facilities
+# Web Facilities
 
 ## 1 Hello, world!
 
