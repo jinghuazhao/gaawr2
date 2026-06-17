@@ -2,6 +2,7 @@
 
 (2026/6/17)
 
+* Amend _pkgdown.yml with gaawr2/web as articles rather than menu items.
 * Create gaawr2_cran.Rmd to enable direct access from CRAN.
 * Suggests htmltools as needed by CRAN html.
 
