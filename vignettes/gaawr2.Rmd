@@ -21,12 +21,15 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r gaawr2_incl, echo=FALSE, results='asis'}
+```{r gaawr2_incl, child=echo=FALSE, results='asis'}
 render_child <- function(file) {
   knitr::knit_child(file = file, quiet = TRUE)
 }
 if (identical(Sys.getenv("IN_PKGDOWN"), "true")) {
-  cat(render_child("/home/jhz22/R/vignettes/gaawr2.Rmd"), sep="\n")
+  cat(
+    "<p><strong>Full vignette:</strong> available externally.</p>",
+    "<p><a href='https://jinghuazhao.github.io/R/vignettes/gaawr2.html' target='_blank'>Open full version</a></p>"
+  )
 } else {
 knitr::asis_output(
   as.character(
