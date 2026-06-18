@@ -1,8 +1,17 @@
 # Changelog
 
+## gaawr2 0.0.9
+
+(2026/6/18)
+
+- Fix VignetteIndexEntry()/style=“width:100%” in {gaawr2,
+  web}\_cran.Rmd.
+
 ## gaawr2 0.0.8
 
-(2026/6/17)
+CRAN release: 2026-06-17
+
+(2026/6/17, CRAN)
 
 - Amend \_pkgdown.yml with gaawr2/web as articles rather than menu
   items.
