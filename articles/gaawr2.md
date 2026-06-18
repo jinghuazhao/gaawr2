@@ -1171,8 +1171,8 @@ While created as a showcase of modern package development, like other R
 packages it includes data examples, customized functions, documentation
 and featured articles. The workflow is shown in the following diagram.
 
-graph TB; A\[Package creation\] –\> B\[GitHub repository\]; B –\>
-C\[Pkgdown styling\]; C –\> D\[Refinement\]; D –\> E\[Testing\];
+graph TB; A\[Package creation\] --\> B\[GitHub respository\]; B --\>
+C\[Pkgdown styling\];C --\> D\[Refinement\];D --\> E\[Testing\]
 
 The relevant scripts are with `inst/scripts` directory in the source
 package. Briefly,
