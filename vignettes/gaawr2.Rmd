@@ -535,7 +535,13 @@ An overview on proteogenomics is available @suhre20. Some aspects of the analysi
 While created as a showcase of modern package development, like other R packages it includes data examples, customized functions,
 documentation and featured articles. The workflow is shown in the following diagram.
 
-<div class="mermaid">graph TB; A[Package creation] &#45;&#45;&gt; B[GitHub respository]; B &#45;&#45;&gt; C[Pkgdown styling];C &#45;&#45;&gt; D[Refinement];D &#45;&#45;&gt; E[Testing]</div>
+<div class="mermaid">
+graph TB;
+    A[Package creation] --> B[GitHub repository];
+    B --> C[Pkgdown styling];
+    C --> D[Refinement];
+    D --> E[Testing];
+</div>
 
 The relevant scripts are with `inst/scripts` directory in the source package. Briefly,
 
