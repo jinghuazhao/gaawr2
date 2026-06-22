@@ -28,14 +28,6 @@ Rscript -e '
 '
 
 rm -f vignettes/.RData vignettes/.Rhistory
-for d in gaawr2 web
-do
-    if [ -d vignettes/${d} ]; then
-       rm -rf docs/articles/${d}
-       mv vignettes/${d} docs/articles/
-    fi
-done
-
 for f in .github .gitignore .Rbuildignore .Rinstignore $(ls)
 do
   echo adding ${f}
