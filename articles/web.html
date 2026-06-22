@@ -67,6 +67,24 @@
 
     
     
+<script>
+function sendHeight() {
+  const height = document.documentElement.scrollHeight;
+  window.parent.postMessage({
+    type: "setHeight",
+    height: height
+  }, "*");
+}
+window.addEventListener("load", sendHeight);
+setTimeout(sendHeight, 300);
+setTimeout(sendHeight, 1000);
+setTimeout(sendHeight, 2000);
+</script><style>
+html, body {
+  margin: 0;
+  padding: 0;
+}
+</style>
 <div class="section level2" number="1">
 <h2 id="hello-world">
 <span class="header-section-number">1</span> Hello, world!<a class="anchor" aria-label="anchor" href="#hello-world"></a>

@@ -2,10 +2,11 @@
 
 ## gaawr2 0.0.9
 
-(2026/6/18)
+(2026/6/22)
 
 - Fix VignetteIndexEntry()/style=“width:100%” in {gaawr2,
   web}\_cran.Rmd.
+- Integration of parent/child in {gaawr2, web}.Rmd.
 
 ## gaawr2 0.0.8
 

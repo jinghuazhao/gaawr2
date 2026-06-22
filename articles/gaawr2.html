@@ -67,6 +67,24 @@
 
     
     
+<script>
+function sendHeight() {
+  const height = document.documentElement.scrollHeight;
+  window.parent.postMessage({
+    type: "setHeight",
+    height: height
+  }, "*");
+}
+window.addEventListener("load", sendHeight);
+setTimeout(sendHeight, 300);
+setTimeout(sendHeight, 1000);
+setTimeout(sendHeight, 2000);
+</script><style>
+html, body {
+  margin: 0;
+  padding: 0;
+}
+</style>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pkgs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"EnsDb.Hsapiens.v75"</span>,<span class="st">"ensembldb"</span>,<span class="st">"GMMAT"</span>,<span class="st">"HardyWeinberg"</span>,<span class="st">"MCMCglmm"</span>,<span class="st">"SNPassoc"</span>,<span class="st">"biomaRt"</span>,</span>
 <span>          <span class="st">"gap"</span>,<span class="st">"gap.datasets"</span>,<span class="st">"haplo.stats"</span>,<span class="st">"powerEQTL"</span>,<span class="st">"R2jags"</span>,<span class="st">"regress"</span>,</span>
