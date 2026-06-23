@@ -2,7 +2,7 @@
 
 ## gaawr2 0.0.9
 
-(2026/6/22)
+(2026/6/23)
 
 -   Fix VignetteIndexEntry()/style=“width:100%” in {gaawr2,
     web}\_cran.Rmd.
