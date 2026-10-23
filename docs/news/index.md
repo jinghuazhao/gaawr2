@@ -4,7 +4,7 @@
 
 (2026/10/23)
 
--   
+-   Adapt \~/R/docs/gaawr2.sh as cran.sh.
 -   Fix VignetteIndexEntry()/style=“width:100%” in {gaawr2,
     web}\_cran.Rmd.
 -   Integration of parent/child in {gaawr2, web}.Rmd.
