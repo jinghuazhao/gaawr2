@@ -2,7 +2,9 @@
 
 ## gaawr2 0.0.9
 
-(2026/10/23)
+CRAN release: 2026-10-23
+
+(2026/10/23, CRAN)
 
 -   Adapt \~/R/docs/gaawr2.sh as cran.sh.
 -   Add to guard the tests/ runner, and suggest rmarkdown.
