@@ -48,6 +48,6 @@ find vignettes -maxdepth 1 -type f \( -name '*.png' -o -name '10081*' \) ! -name
 find vignettes -type d -name "gaawr2" -exec rm -rf {} +
 ver=$(awk '/^Version:/ {print $2}' "$dst/DESCRIPTION")
 pkg="gaawr2_${ver}.tar.gz"
-_R_CHECK_DEPENDS_ONLY_=true R CMD build --resave-data --compact-vignettes=both "$dst"
+R CMD build --resave-data --compact-vignettes=both "$dst"
 _R_CHECK_DEPENDS_ONLY_=true R CMD check --no-manual "$pkg"
 R CMD check --as-cran --run-donttest "$pkg"
