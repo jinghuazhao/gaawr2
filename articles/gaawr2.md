@@ -1222,7 +1222,7 @@ write.dcf(suggests)
 Suggests: BLR, BGLR, biomaRt, bookdown, Cairo, EnsDb.Hsapiens.v75,
 ensembldb, GMMAT, HardyWeinberg, haplo.stats, htmltools, httr, httpuv,
 jsonlite, kableExtra, knitr, MCMCglmm, plumber, powerEQTL, R2jags,
-regress, Rsamtools, SNPassoc, testthat, tidyr
+regress, rmarkdown, Rsamtools, SNPassoc, testthat, tidyr
 
 ## 7 Summary
 
