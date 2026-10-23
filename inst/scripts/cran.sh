@@ -8,7 +8,7 @@ module load rhel8/default-icl ceuadmin/R mono/5.0.1.1 texlive
 export TMPDIR=/rds/user/jhz22/hpc-work/work
 export src="$HOME/gaawr2"
 export dst="$HOME/R/gaawr2"
-export log="$HOME/work/gaawr2_cran.log"
+export log="$HOME/R/gaawr2_cran.log"
 
 exec > >(tee -a "$log") 2>&1
 echo "=== CRAN pipeline start $(date) on $(hostname) ==="
@@ -24,7 +24,7 @@ rsync -a --delete \
   "$src/" "$dst/"
 
 module load ceuadmin/R
-module load gcc/11
+module load gcc/11.2.0/gcc/rjvgspag
 export PATH="/home/jhz22/R-devel/bin:$PATH"
 export _R_CHECK_CRAN_INCOMING_=TRUE
 export _R_CHECK_CRAN_INCOMING_REMOTE_=TRUE
@@ -44,11 +44,10 @@ Rscript -e 'rmarkdown::render("vignettes/web.Rmd",
             knitr::purl("vignettes/web.Rmd", output="vignettes/web.R", documentation=0)'
 cp ~/R/vignettes/gaawr2_cran.Rmd $dst/vignettes/gaawr2.Rmd
 cp ~/R/vignettes/web_cran.Rmd $dst/vignettes/web.Rmd
-R CMD build --compact-vignettes=both gaawr2
 find vignettes -maxdepth 1 -type f \( -name '*.png' -o -name '10081*' \) ! -name 'IL-12B_mhtplot.trunc.png' -delete
 find vignettes -type d -name "gaawr2" -exec rm -rf {} +
 ver=$(awk '/^Version:/ {print $2}' "$dst/DESCRIPTION")
 pkg="gaawr2_${ver}.tar.gz"
-R CMD build --resave-data --compact-vignettes=both "$dst"
+_R_CHECK_DEPENDS_ONLY_=true R CMD build --resave-data --compact-vignettes=both "$dst"
 _R_CHECK_DEPENDS_ONLY_=true R CMD check --no-manual "$pkg"
 R CMD check --as-cran --run-donttest "$pkg"
