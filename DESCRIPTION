@@ -23,7 +23,7 @@ Depends:
     R (>= 3.5.0)
 Imports: dplyr, gap, gap.datasets, ggplot2, survival, Rdpack
 RdMacros: Rdpack
-VignetteBuilder: knitr
+VignetteBuilder: knitr, rmarkdown, bookdown
 LazyData: Yes
 LazyLoad: Yes
 LazyDataCompression: xz
@@ -49,6 +49,7 @@ Suggests:
     powerEQTL,
     R2jags,
     regress,
+    rmarkdown,
     Rsamtools,
     SNPassoc,
     testthat,
