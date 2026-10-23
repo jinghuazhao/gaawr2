@@ -5,6 +5,8 @@
 (2026/10/23)
 
 -   Adapt \~/R/docs/gaawr2.sh as cran.sh.
+-   Add to guard the tests/ runner and employ
+    *R_CHECK_DEPENDS_ONLY*=true for build/check.
 -   Fix VignetteIndexEntry()/style=“width:100%” in {gaawr2,
     web}\_cran.Rmd.
 -   Integration of parent/child in {gaawr2, web}.Rmd.
