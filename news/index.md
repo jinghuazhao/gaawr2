@@ -6,7 +6,8 @@
 
 - Adapt ~/R/docs/gaawr2.sh as cran.sh.
 - Add to guard the tests/ runner, and suggest rmarkdown.
-- Employ *R_CHECK_DEPENDS_ONLY*=true R CMD check.
+- Employ *R_CHECK_DEPENDS_ONLY*=true R CMD check as suggested by Prof
+  Brian Ripley.
 - Employ VignetteBuilder: knitr, rmarkdown, bookdown.
 - Fix VignetteIndexEntry()/style=“width:100%” in {gaawr2,
   web}\_cran.Rmd.
