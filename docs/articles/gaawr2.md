@@ -1076,11 +1076,11 @@ kableExtra::kbl(target$geneticConstraint, caption="(b) Genetic Constraint Metric
 kableExtra::kable_styling(bootstrap_options = c("striped", "hover"))
 ```
 
-| constraintType |      exp | obs |   score |      oe | oeLower | oeUpper |
-|:---------------|---------:|----:|--------:|--------:|--------:|--------:|
-| syn            |  367.500 | 362 | 0.15633 | 0.98504 |   0.903 |   1.075 |
-| mis            | 1012.600 | 999 | 0.15583 | 0.98659 |   0.936 |   1.040 |
-| lof            |   92.797 | 101 | 0.00000 | 1.08840 |   0.925 |   1.284 |
+| constraintType |     exp |  obs |     score |     oe | oeLower | oeUpper |
+|:---------------|--------:|-----:|----------:|-------:|--------:|--------:|
+| syn            |  401.25 |  410 | -0.260550 | 1.0218 | 0.94263 |  1.1088 |
+| mis            | 1125.80 | 1131 | -0.065659 | 1.0046 | 0.95683 |  1.0551 |
+| lof            |  111.06 |  118 |  0.000000 | 1.0625 | 0.91518 |  1.2380 |
 
 Table 4.1: (b) Genetic Constraint Metrics
 
